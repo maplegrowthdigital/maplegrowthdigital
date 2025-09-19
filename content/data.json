@@ -1,5 +1,5 @@
 {
-  "logoUrl": "/farbox-logo.png",
+  "logoUrl": "/maplegrowth-logo.png",
   "tidycal": "https://tidycal.com/mpkwol1/30-minute-meeting",
   "hero": {
     "title": "Finely Crafted Websites",
@@ -75,7 +75,7 @@
     ]
   },
   "process": {
-    "title": "The Farbox System",
+    "title": "The MapleGrowth System",
     "intro": "We offer a range of web services, ranging from design & development to product development and podcast production services.",
     "steps": [
       {
@@ -192,7 +192,7 @@
           "Increased targeted traffic",
           "Ongoing upgrades and advisory"
         ],
-        "link": "https://www.farbox.com.au/project/nundle-inland-nsw-tourism/"
+        "link": "https://www.maplegrowthdigital.ca/project/nundle-inland-nsw-tourism/"
       },
       {
         "slug": "dummy-case-study",
@@ -205,7 +205,7 @@
           "Increased targeted traffic",
           "Ongoing upgrades and advisory"
         ],
-        "link": "https://www.farbox.com.au/project/nundle-inland-nsw-tourism/"
+        "link": "https://www.maplegrowthdigital.ca/project/nundle-inland-nsw-tourism/"
       }
     ]
   },
@@ -218,17 +218,10 @@
       "Transparent pricing and timelines",
       "Remote-friendly with on-site options"
     ],
-    "clients": [
-      "Twinings",
-      "Liberty IT",
-      "SBSB",
-      "JBT",
-      "TSA",
-      "RLA"
-    ],
+    "clients": ["Twinings", "Liberty IT", "SBSB", "JBT", "TSA", "RLA"],
     "ceoNote": "I have been doing this for a long time (multiple lifetimes if you count in internet years) and I have learned that building the right team is the difference between achieving an acceptable result and knocking the ball out of the park.",
     "ceoName": "Luke Farrugia",
-    "ceoTitle": "CEO, Farbox Creative",
+    "ceoTitle": "CEO, MapleGrowth Digital",
     "photo": "/about/luke.jpg"
   },
   "book": {

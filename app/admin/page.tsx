@@ -390,7 +390,9 @@ function HeroEditor({
           <input
             type="checkbox"
             checked={primaryCta.target === "_blank"}
-            onChange={(e) => updateCta("primaryCta", "target", e.target.checked)}
+            onChange={(e) =>
+              updateCta("primaryCta", "target", e.target.checked)
+            }
           />
           Open in new tab
         </label>
@@ -415,7 +417,9 @@ function HeroEditor({
           <input
             type="checkbox"
             checked={secondaryCta.target === "_blank"}
-            onChange={(e) => updateCta("secondaryCta", "target", e.target.checked)}
+            onChange={(e) =>
+              updateCta("secondaryCta", "target", e.target.checked)
+            }
           />
           Open in new tab
         </label>
@@ -423,7 +427,6 @@ function HeroEditor({
     </div>
   );
 }
-
 
 function BookEditor({
   value,
@@ -505,7 +508,9 @@ function BookEditor({
           <input
             type="checkbox"
             checked={primaryCta.target === "_blank"}
-            onChange={(e) => updateCta("primaryCta", "target", e.target.checked)}
+            onChange={(e) =>
+              updateCta("primaryCta", "target", e.target.checked)
+            }
           />
           Open in new tab
         </label>
@@ -530,7 +535,9 @@ function BookEditor({
           <input
             type="checkbox"
             checked={secondaryCta.target === "_blank"}
-            onChange={(e) => updateCta("secondaryCta", "target", e.target.checked)}
+            onChange={(e) =>
+              updateCta("secondaryCta", "target", e.target.checked)
+            }
           />
           Open in new tab
         </label>
@@ -555,7 +562,9 @@ function BookEditor({
           <input
             type="checkbox"
             checked={tertiaryCta.target === "_blank"}
-            onChange={(e) => updateCta("tertiaryCta", "target", e.target.checked)}
+            onChange={(e) =>
+              updateCta("tertiaryCta", "target", e.target.checked)
+            }
           />
           Open in new tab
         </label>
@@ -794,8 +803,12 @@ function ServicesEditor({
   const up = (k: string, val: any) => onChange({ ...v, [k]: val });
   const items: any[] = Array.isArray(v.items) ? v.items : [];
   const sectionCta = typeof v.cta === "object" && v.cta ? { ...v.cta } : {};
-  const updateSectionCta = (field: "label" | "href" | "target", val: string | boolean) => {
-    const current = typeof v.cta === "object" && v.cta ? { ...(v.cta as any) } : {};
+  const updateSectionCta = (
+    field: "label" | "href" | "target",
+    val: string | boolean
+  ) => {
+    const current =
+      typeof v.cta === "object" && v.cta ? { ...(v.cta as any) } : {};
     if (field === "target") {
       if (val) current.target = "_blank";
       else delete current.target;
@@ -812,8 +825,12 @@ function ServicesEditor({
     }
   };
   const cta = typeof v.cta === "object" && v.cta ? { ...v.cta } : {};
-  const updateCta = (field: "label" | "href" | "target", val: string | boolean) => {
-    const current = typeof v.cta === "object" && v.cta ? { ...(v.cta as any) } : {};
+  const updateCta = (
+    field: "label" | "href" | "target",
+    val: string | boolean
+  ) => {
+    const current =
+      typeof v.cta === "object" && v.cta ? { ...(v.cta as any) } : {};
     if (field === "target") {
       if (val) current.target = "_blank";
       else delete current.target;
@@ -1011,7 +1028,8 @@ function ProcessEditor({
     field: "label" | "href" | "target",
     val: string | boolean
   ) => {
-    const current = typeof v.cta === "object" && v.cta ? { ...(v.cta as any) } : {};
+    const current =
+      typeof v.cta === "object" && v.cta ? { ...(v.cta as any) } : {};
     if (field === "target") {
       if (val) current.target = "_blank";
       else delete current.target;
@@ -1688,8 +1706,7 @@ function BrandEditor({
 
   const DEFAULT_HEADING_FONT =
     'var(--font-heading-default), "Montserrat", sans-serif';
-  const DEFAULT_BODY_FONT =
-    'var(--font-body-default), "Open Sans", sans-serif';
+  const DEFAULT_BODY_FONT = 'var(--font-body-default), "Open Sans", sans-serif';
 
   const legacyFont =
     typeof current.fontFamily === "string"
@@ -1730,9 +1747,7 @@ function BrandEditor({
       ? current.headingFontFamily
       : "";
   const bodyOverride =
-    typeof current.bodyFontFamily === "string"
-      ? current.bodyFontFamily
-      : "";
+    typeof current.bodyFontFamily === "string" ? current.bodyFontFamily : "";
 
   const fallbackHeading =
     typeof fallbackData.headingFontFamily === "string"
@@ -1812,8 +1827,7 @@ function BrandEditor({
     },
     {
       name: "Poppins",
-      value:
-        "'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+      value: "'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif",
       description: "Rounded sans-serif with personality",
     },
     {
@@ -1842,8 +1856,7 @@ function BrandEditor({
     },
     {
       name: "Roboto",
-      value:
-        "'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+      value: "'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif",
       description: "Versatile workhorse sans-serif",
     },
     {
@@ -1984,7 +1997,9 @@ function BrandEditor({
               <TextInput
                 value={headingOverride}
                 onChange={(e) => setValue("headingFontFamily", e.target.value)}
-                placeholder={'Default: var(--font-heading-default), "Montserrat", sans-serif'}
+                placeholder={
+                  'Default: var(--font-heading-default), "Montserrat", sans-serif'
+                }
               />
             </Field>
             <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -2013,7 +2028,9 @@ function BrandEditor({
                     </div>
                     <span
                       className="text-xs text-gray-500"
-                      style={{ fontFamily: preset.value || DEFAULT_HEADING_FONT }}
+                      style={{
+                        fontFamily: preset.value || DEFAULT_HEADING_FONT,
+                      }}
                     >
                       Aa
                     </span>
@@ -2034,7 +2051,9 @@ function BrandEditor({
               <TextInput
                 value={bodyOverride}
                 onChange={(e) => setValue("bodyFontFamily", e.target.value)}
-                placeholder={'Default: var(--font-body-default), "Open Sans", sans-serif'}
+                placeholder={
+                  'Default: var(--font-body-default), "Open Sans", sans-serif'
+                }
               />
             </Field>
             <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -2080,7 +2099,8 @@ function BrandEditor({
           </div>
         </div>
         <div className="text-xs text-gray-600 dark:text-gray-400">
-          Ensure any custom fonts are loaded on the site (Google Fonts, self-hosted files, etc.).
+          Ensure any custom fonts are loaded on the site (Google Fonts,
+          self-hosted files, etc.).
         </div>
       </div>
     </div>
@@ -2627,15 +2647,15 @@ function SchemaEditor({
           description: it?.description || "",
         }))
       );
-      setBusinessName("Farbox Creative");
-      setLegalName("Farbox Creative");
+      setBusinessName("MapleGrowth Digital");
+      setLegalName("MapleGrowth Digital");
       const logoPath = fallback.logoUrl || "/logo.png";
       const fullLogo = logoPath.startsWith("http")
         ? logoPath
         : origin + logoPath;
       setLogo(fullLogo);
       setImage(fullLogo);
-      setWebsiteName("Farbox Creative");
+      setWebsiteName("MapleGrowth Digital");
       // If existing JSON-LD present, try to hydrate more precisely
       const obj = value || {};
       const graph = Array.isArray(obj["@graph"]) ? obj["@graph"] : [];
@@ -2841,7 +2861,7 @@ function SchemaEditor({
           {
             "@type": "LocalBusiness",
             "@id": agencyId,
-            name: "Farbox Creative",
+            name: "MapleGrowth Digital",
             description: "Web design and development studio",
             url: origin,
             logo: logoPath,
@@ -3414,16 +3434,12 @@ export default function AdminPage() {
     }
     if (tab === "brand") {
       const sanitizeColor = (val: unknown) =>
-        typeof val === "string" && /^#[0-9A-Fa-f]{6}$/.test(val)
-          ? val
-          : null;
+        typeof val === "string" && /^#[0-9A-Fa-f]{6}$/.test(val) ? val : null;
       const sanitizeFont = (val: unknown) => {
         if (typeof val !== "string") return null;
         const trimmed = val.trim();
         if (!trimmed) return null;
-        return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed)
-          ? trimmed
-          : null;
+        return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed) ? trimmed : null;
       };
 
       const cleanedBrand = sanitizeColor(payload.brandColor);
@@ -3467,16 +3483,12 @@ export default function AdminPage() {
     if (tab === "brand" || tab === "settings") {
       try {
         const sanitizeColor = (val: unknown) =>
-          typeof val === "string" && /^#[0-9A-Fa-f]{6}$/.test(val)
-            ? val
-            : null;
+          typeof val === "string" && /^#[0-9A-Fa-f]{6}$/.test(val) ? val : null;
         const sanitizeFont = (val: unknown) => {
           if (typeof val !== "string") return null;
           const trimmed = val.trim();
           if (!trimmed) return null;
-          return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed)
-            ? trimmed
-            : null;
+          return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed) ? trimmed : null;
         };
         const safeBrand = sanitizeColor(payload.brandColor);
         const safeButton = sanitizeColor(payload.primaryButtonColor);
@@ -3647,7 +3659,9 @@ export default function AdminPage() {
                     {tab === "about" && (
                       <AboutEditor value={sectionValue} onChange={setSection} />
                     )}
-                    {tab === "book" && (<BookEditor value={sectionValue} onChange={setSection} />)}
+                    {tab === "book" && (
+                      <BookEditor value={sectionValue} onChange={setSection} />
+                    )}
                     {tab === "contact" && (
                       <ContactEditor
                         value={sectionValue}

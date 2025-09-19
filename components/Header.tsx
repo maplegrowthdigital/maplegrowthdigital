@@ -33,7 +33,11 @@ export function Header({
       }
     >
       <Container className="flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="flex items-center" aria-label="Farbox home">
+        <Link
+          href="/"
+          className="flex items-center"
+          aria-label="MapleGrowth home"
+        >
           <Image
             src={logoUrl || site.logoUrl}
             alt={headerData?.logoAlt || "Your Agency"}

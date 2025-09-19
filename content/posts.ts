@@ -16,7 +16,7 @@ export const posts: readonly Post[] = [
     slug: 'ai-in-digital-marketing-2025',
     title: 'AI in Digital Marketing – How AI Tools Are Changing SEO, Content, and Ads',
     date: '2025-01-10',
-    author: 'Farbox Team',
+    author: 'MapleGrowth Team',
     excerpt: 'How AI tools like ChatGPT, Jasper and MidJourney are reshaping SEO, content, and ads in 2025.',
     coverImage: '/images/project-5.svg',
     tags: ['ai', 'seo', 'content', 'ads'],
@@ -109,7 +109,7 @@ For marketers, the key isn’t to fear AI—it’s to **use it smartly**. The br
     slug: 'crafting-fast-accessible-sites',
     title: 'Crafting Fast, Accessible Sites',
     date: '2024-06-12',
-    author: 'Farbox Team',
+    author: 'MapleGrowth Team',
     excerpt:
       'A practical checklist we use to ship performant, accessible websites without over‑engineering.',
     coverImage: '/images/project-2.svg',
@@ -124,7 +124,7 @@ For marketers, the key isn’t to fear AI—it’s to **use it smartly**. The br
     slug: 'design-systems-that-scale',
     title: 'Design Systems that Scale with You',
     date: '2024-04-28',
-    author: 'Farbox Team',
+    author: 'MapleGrowth Team',
     excerpt:
       'How to introduce a design system without paralyzing product velocity — patterns, tokens, and gradual adoption.',
     coverImage: '/images/project-3.svg',
@@ -139,7 +139,7 @@ For marketers, the key isn’t to fear AI—it’s to **use it smartly**. The br
     slug: 'seo-foundations-for-2024',
     title: 'SEO Foundations for 2024',
     date: '2024-02-10',
-    author: 'Farbox Team',
+    author: 'MapleGrowth Team',
     excerpt:
       'A no‑nonsense overview of the technical SEO essentials we include on every project.',
     coverImage: '/images/project-1.svg',
