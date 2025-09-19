@@ -1,0 +1,255 @@
+{
+  "logoUrl": "/farbox-logo.png",
+  "tidycal": "https://tidycal.com/mpkwol1/30-minute-meeting",
+  "hero": {
+    "title": "Finely Crafted Websites",
+    "subhead": "For Serious Businesses.",
+    "body": "Here we care about the story behind the site. We don’t do high volume work, we take the time to sit with each project and craft it into your voice.",
+    "stats": [
+      {
+        "value": "10+ yrs",
+        "label": "Experience"
+      },
+      {
+        "value": "110+",
+        "label": "Projects shipped"
+      },
+      {
+        "value": "5",
+        "label": "Clients at a time"
+      },
+      {
+        "value": "AU",
+        "label": "Based in Australia"
+      }
+    ]
+  },
+  "marquee": [
+    "Custom Development",
+    "Bespoke Design",
+    "E‑commerce",
+    "Performance",
+    "Security",
+    "Mobile‑first",
+    "Product Development",
+    "Podcast Production",
+    "SEO & Analytics",
+    "Shopify",
+    "Headless CMS"
+  ],
+  "services": {
+    "title": "What we can offer",
+    "subtitle": "Our team specialises in Custom Development and bespoke designs that solve business problems.",
+    "note": "Whether the project is large or small, we build every site with an emphasis on speed, security, and mobile usage in mind.",
+    "items": [
+      {
+        "icon": "UX",
+        "title": "Design",
+        "description": "Brand-aligned UI/UX and visual systems for web."
+      },
+      {
+        "icon": "DEV",
+        "title": "Development",
+        "description": "Custom builds, performance, security and maintainability."
+      },
+      {
+        "icon": "PROD",
+        "title": "Product",
+        "description": "From discovery to product design and prototyping."
+      },
+      {
+        "icon": "POD",
+        "title": "Content & Podcast",
+        "description": "Production support for content and podcasts."
+      },
+      {
+        "icon": "SHOP",
+        "title": "E‑commerce",
+        "description": "Shopify/Headless builds and conversions."
+      },
+      {
+        "icon": "SEO",
+        "title": "SEO & Analytics",
+        "description": "Technical SEO, analytics setup and audits."
+      }
+    ]
+  },
+  "process": {
+    "title": "The Farbox System",
+    "intro": "We offer a range of web services, ranging from design & development to product development and podcast production services.",
+    "steps": [
+      {
+        "title": "1. Discover",
+        "description": "Understand the human element and business context."
+      },
+      {
+        "title": "2. Design",
+        "description": "Translate insight into clear, on-brand experiences."
+      },
+      {
+        "title": "3. Develop",
+        "description": "Engineer fast, secure, mobile‑first websites."
+      },
+      {
+        "title": "4. Deploy",
+        "description": "Ship, measure, and iterate with care."
+      }
+    ]
+  },
+  "beliefs": [
+    {
+      "title": "Contrarian Belief #1",
+      "quote": "We hire for character first. Everything else second."
+    },
+    {
+      "title": "Contrarian Belief #2",
+      "quote": "We never work for clients just because they have money. Our values must align."
+    }
+  ],
+  "clients": {
+    "title": "Our Clients",
+    "items": [
+      "Twinings",
+      "Liberty IT",
+      "SBSB",
+      "JBT",
+      "TSA",
+      "RLA",
+      "NGV",
+      "Monash"
+    ]
+  },
+  "clientLogos": [
+    {
+      "src": "/logos/twinings.jpg",
+      "alt": "Twinings"
+    },
+    {
+      "src": "/logos/libertyit.jpg",
+      "alt": "Liberty IT"
+    },
+    {
+      "src": "/logos/sbsb.jpg",
+      "alt": "SBSB"
+    },
+    {
+      "src": "/logos/jbt.jpg",
+      "alt": "JBT"
+    },
+    {
+      "src": "/logos/exchange-stores.jpg",
+      "alt": "Exchange Stores"
+    }
+  ],
+  "work": {
+    "title": "Selected work",
+    "subtitle": "A snapshot of recent projects.",
+    "projects": [
+      {
+        "title": "Aurora Skincare",
+        "category": "E‑commerce",
+        "image": "/images/project-1.svg"
+      },
+      {
+        "title": "Nimbus Finance",
+        "category": "Product",
+        "image": "/images/project-2.svg"
+      },
+      {
+        "title": "Locale Cafe",
+        "category": "Hospitality",
+        "image": "/images/project-3.svg"
+      },
+      {
+        "title": "Cinder Wines",
+        "category": "Brand",
+        "image": "/images/project-4.svg"
+      },
+      {
+        "title": "Atlas Outdoors",
+        "category": "Campaign",
+        "image": "/images/project-5.svg"
+      },
+      {
+        "title": "Sora Energy",
+        "category": "B2B",
+        "image": "/images/project-6.svg"
+      }
+    ]
+  },
+  "caseStudies": {
+    "title": "Case Studies",
+    "intro": "A closer look at how we solve problems and ship results.",
+    "items": [
+      {
+        "slug": "nundle-inland-nsw-tourism",
+        "title": "Nundle (Inland NSW Tourism)",
+        "category": "Tourism / Community",
+        "summary": "We built a strong web presence to clearly communicate Nundle’s value proposition and followed up with an online marketing campaign to increase targeted traffic.",
+        "image": "/case/nundle-hero.jpg",
+        "results": [
+          "Regional revenue up by $1.5M",
+          "Increased targeted traffic",
+          "Ongoing upgrades and advisory"
+        ],
+        "link": "https://www.farbox.com.au/project/nundle-inland-nsw-tourism/"
+      },
+      {
+        "slug": "dummy-case-study",
+        "title": "Dummy Case Study",
+        "category": "Campaign",
+        "summary": "We built a strong web presence to clearly communicate Nundle’s value proposition and followed up with an online marketing campaign to increase targeted traffic.",
+        "image": "/case/nundle-hero.jpg",
+        "results": [
+          "Regional revenue up by $1.5M",
+          "Increased targeted traffic",
+          "Ongoing upgrades and advisory"
+        ],
+        "link": "https://www.farbox.com.au/project/nundle-inland-nsw-tourism/"
+      }
+    ]
+  },
+  "about": {
+    "title": "About us",
+    "body": "We are a multidisciplinary team of Designers and engineers who know the value of story, excellence and the art of long-lasting partnerships.",
+    "highlights": [
+      "Senior-only team; no handovers",
+      "Direct access to designers and engineers",
+      "Transparent pricing and timelines",
+      "Remote-friendly with on-site options"
+    ],
+    "clients": [
+      "Twinings",
+      "Liberty IT",
+      "SBSB",
+      "JBT",
+      "TSA",
+      "RLA"
+    ],
+    "ceoNote": "I have been doing this for a long time (multiple lifetimes if you count in internet years) and I have learned that building the right team is the difference between achieving an acceptable result and knocking the ball out of the park.",
+    "ceoName": "Luke Farrugia",
+    "ceoTitle": "CEO, Farbox Creative",
+    "photo": "/about/luke.jpg"
+  },
+  "book": {
+    "title": "Book a call",
+    "paragraphs": [
+      "We only work with 5 clients at a time, so we can fully invest in each of them. If that sounds like the level of commitment you want from a service provider, send us a message. If all spots are currently taken we can still explore your needs and add you to the waiting list."
+    ]
+  },
+  "contact": {
+    "email": "hello@yourstudio.com",
+    "phone": "0405 112 906",
+    "location": "Australia",
+    "socials": [
+      {
+        "label": "Instagram",
+        "href": "#"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "#"
+      }
+    ]
+  }
+}

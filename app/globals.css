@@ -1,0 +1,466 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* CSS Custom Properties for Dynamic Brand Colors */
+:root {
+  --brand-500: #C62828;
+  --button-primary: var(--brand-500);
+  --font-heading: var(--font-heading-default), "Montserrat", sans-serif;
+  --font-body: var(--font-body-default), "Open Sans", sans-serif;
+  --brand-loaded: 0; /* Flag to indicate if brand color is loaded */
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* Prevent flash of default colors */
+.brand-element {
+  opacity: var(--brand-loaded, 1);
+  transition: opacity 0.1s ease;
+}
+
+/* Dynamic brand color classes that use CSS variables */
+.brand-bg {
+  background-color: var(--brand-500);
+}
+
+.brand-text {
+  color: var(--brand-500);
+}
+
+.brand-border {
+  border-color: var(--brand-500);
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-5 py-3 text-sm font-medium transition focus:outline-none focus:ring-2;
+    @apply rounded-lg; /* 8px radius for both primary and secondary */
+    focus-ring-color: var(--brand-500);
+  }
+  .btn-primary {
+    @apply btn text-white hover:opacity-90;
+    background-color: var(--button-primary);
+  }
+  .btn-secondary {
+    @apply btn rounded-lg; /* inherit height from .btn, adjust radius to 8px */
+    @apply border border-gray-300 text-gray-900 hover:border-gray-400;
+    @apply dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-600;
+  }
+  /* Animated CTA: gradient slide + sheen + lift */
+  .btn-cta {
+    @apply btn rounded-lg text-white shadow-md;
+    background: linear-gradient(
+      to right,
+      var(--button-primary),
+      color-mix(in srgb, var(--button-primary) 90%, transparent)
+    );
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 100%;
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+      background-position 0.6s ease;
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    background-position: 100% 0;
+  }
+  .btn-cta:active {
+    transform: translateY(0);
+  }
+  .btn-cta::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -15%;
+    width: 40%;
+    height: 140%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0) 60%
+    );
+    transform: translate3d(-120%, 0, 0) skewX(-12deg);
+    opacity: 0;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    pointer-events: none;
+    filter: blur(5px);
+  }
+  .btn-cta:hover::after {
+    transform: translate3d(260%, 0, 0) skewX(-12deg);
+    opacity: 0.9;
+  }
+  .card {
+    @apply rounded-2xl border border-gray-200 dark:border-gray-800;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-lg border border-gray-200 px-3 py-1 text-xs text-gray-600 dark:border-gray-700 dark:text-gray-300;
+  }
+  .chip-brand {
+    @apply inline-flex items-center rounded-lg px-3 py-1 text-xs font-medium;
+    background-color: color-mix(in srgb, var(--brand-500) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--brand-500) 30%, transparent);
+    color: var(--brand-500);
+  }
+
+  /* Article/Markdown typography */
+  .article-content {
+    @apply text-base leading-7 text-gray-800 dark:text-gray-200;
+  }
+  .article-content h1 {
+    @apply mt-8 text-3xl font-semibold tracking-tight sm:text-4xl;
+  }
+  .article-content h2 {
+    @apply mt-10 text-2xl font-semibold tracking-tight sm:text-3xl;
+  }
+  .article-content h3 {
+    @apply mt-8 text-xl font-semibold tracking-tight sm:text-2xl;
+  }
+  .article-content h4 {
+    @apply mt-6 text-lg font-semibold;
+  }
+  .article-content p {
+    @apply mt-4;
+  }
+  .article-content ul {
+    @apply mt-4 list-disc space-y-2 pl-5;
+  }
+  .article-content ol {
+    @apply mt-4 list-decimal space-y-2 pl-5;
+  }
+  .article-content li {
+    @apply leading-7;
+  }
+  .article-content hr {
+    @apply my-8 border-gray-200 dark:border-gray-800;
+  }
+  .article-content a {
+    @apply underline decoration-gray-400 underline-offset-2;
+    color: var(--brand-500);
+  }
+  .article-content a:hover {
+    color: color-mix(in srgb, var(--brand-500) 80%, black);
+  }
+  .article-content code {
+    @apply rounded bg-gray-100 px-1.5 py-0.5 text-[0.9em] text-gray-800 dark:bg-white/10 dark:text-gray-100;
+  }
+  .article-content strong {
+    @apply font-semibold;
+  }
+  .article-content blockquote {
+    @apply mt-6 pl-4 text-gray-700 italic dark:text-gray-200;
+    border-left: 4px solid color-mix(in srgb, var(--brand-500) 40%, transparent);
+  }
+  .article-content pre.code-block {
+    @apply mt-6 overflow-x-auto rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm dark:border-gray-800 dark:bg-neutral-900;
+  }
+  .article-content pre.code-block code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Ensure anchored headings are visible below sticky header */
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
+    scroll-margin-top: 6rem; /* ~96px to clear sticky header */
+  }
+}
+
+/* Update Tailwind brand classes to use CSS variables */
+.text-brand-500 {
+  color: var(--brand-500) !important;
+}
+
+.text-brand-600 {
+  color: color-mix(in srgb, var(--brand-500) 90%, black) !important;
+}
+
+.bg-brand-500 {
+  background-color: var(--brand-500) !important;
+}
+
+.border-brand-500 {
+  border-color: var(--brand-500) !important;
+}
+
+.hover\:border-brand-500:hover {
+  border-color: var(--brand-500) !important;
+}
+
+.hover\:text-brand-500:hover {
+  color: var(--brand-500) !important;
+}
+
+.focus\:ring-brand-500:focus {
+  --tw-ring-color: var(--brand-500) !important;
+}
+
+/* Background opacity variants */
+.bg-brand-500\/5 {
+  background-color: color-mix(
+    in srgb,
+    var(--brand-500) 5%,
+    transparent
+  ) !important;
+}
+
+.bg-brand-500\/10 {
+  background-color: color-mix(
+    in srgb,
+    var(--brand-500) 10%,
+    transparent
+  ) !important;
+}
+
+.bg-brand-500\/15 {
+  background-color: color-mix(
+    in srgb,
+    var(--brand-500) 15%,
+    transparent
+  ) !important;
+}
+
+.bg-brand-500\/20 {
+  background-color: color-mix(
+    in srgb,
+    var(--brand-500) 20%,
+    transparent
+  ) !important;
+}
+
+.bg-brand-500\/30 {
+  background-color: color-mix(
+    in srgb,
+    var(--brand-500) 30%,
+    transparent
+  ) !important;
+}
+
+.bg-brand-500\/40 {
+  background-color: color-mix(
+    in srgb,
+    var(--brand-500) 40%,
+    transparent
+  ) !important;
+}
+
+/* Border opacity variants */
+.border-brand-500\/20 {
+  border-color: color-mix(
+    in srgb,
+    var(--brand-500) 20%,
+    transparent
+  ) !important;
+}
+
+.border-brand-500\/25 {
+  border-color: color-mix(
+    in srgb,
+    var(--brand-500) 25%,
+    transparent
+  ) !important;
+}
+
+.border-brand-500\/30 {
+  border-color: color-mix(
+    in srgb,
+    var(--brand-500) 30%,
+    transparent
+  ) !important;
+}
+
+/* Gradient variants - Proper implementation for fade effect */
+.bg-gradient-to-b.from-brand-500\/5 {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand-500) 5%, transparent),
+    transparent
+  ) !important;
+}
+
+.bg-gradient-to-b.from-brand-500\/10 {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand-500) 10%, transparent),
+    transparent
+  ) !important;
+}
+
+.bg-gradient-to-br.from-brand-500\/5 {
+  background-image: linear-gradient(
+    to bottom right,
+    color-mix(in srgb, var(--brand-500) 5%, transparent),
+    transparent
+  ) !important;
+}
+
+/* Dark mode specific gradients */
+.dark .bg-gradient-to-b.from-brand-500\/5.via-white {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand-500) 5%, transparent),
+    #0a0a0a,
+    #0a0a0a
+  ) !important;
+}
+
+.dark .bg-gradient-to-b.from-brand-500\/10.via-neutral-950 {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand-500) 10%, transparent),
+    #0a0a0a
+  ) !important;
+}
+
+/* Ring variants */
+.ring-brand-500\/30 {
+  --tw-ring-color: color-mix(
+    in srgb,
+    var(--brand-500) 30%,
+    transparent
+  ) !important;
+}
+
+/* Marquee styles */
+.marquee {
+  --gap: 3rem;
+  display: flex;
+  overflow: hidden;
+  gap: var(--gap);
+}
+.marquee__track {
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left 140s linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+/* Speed up marquee on small screens */
+@media (max-width: 640px) {
+  .marquee {
+    --gap: 1.5rem;
+  }
+  .marquee__track {
+    animation-duration: 150s;
+  }
+}
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Logo marquee */
+.logo-marquee {
+  --gap: 4rem;
+  display: flex;
+  overflow: hidden;
+  gap: var(--gap);
+}
+.logo-marquee__track {
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: nowrap;
+  min-width: 100%;
+  will-change: transform;
+  animation: marquee-left 50s linear infinite;
+}
+.logo-marquee:hover .logo-marquee__track {
+  animation-play-state: paused;
+}
+
+/* Reveal on scroll */
+.reveal-anim {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hide native scrollbars for horizontal drags */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Subtle shape animations */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes float-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.anim-float-y {
+  animation: float-y 6s ease-in-out infinite;
+  will-change: transform;
+}
+.anim-float-x {
+  animation: float-x 7s ease-in-out infinite;
+  will-change: transform;
+}
+.anim-spin-slow {
+  animation: spin-slow 20s linear infinite;
+  will-change: transform;
+}
+.anim-delay-500 {
+  animation-delay: 0.5s;
+}
+.anim-delay-1000 {
+  animation-delay: 1s;
+}
+.anim-delay-1500 {
+  animation-delay: 1.5s;
+}
