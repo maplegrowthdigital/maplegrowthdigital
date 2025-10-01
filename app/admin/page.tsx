@@ -2218,6 +2218,23 @@ function SettingsEditor({
         </Field>
       </div>
       <hr className="my-4 border-gray-200 dark:border-gray-800" />
+
+      <div className="space-y-3">
+        <div className="text-sm font-medium">Analytics</div>
+        <Field label="Google Analytics ID">
+          <TextInput
+            value={v.googleAnalyticsId || ""}
+            onChange={(e) => up("googleAnalyticsId", e.target.value)}
+            placeholder="G-XXXXXXXXXX"
+          />
+        </Field>
+        <div className="text-xs text-gray-600 dark:text-gray-400">
+          Enter your Google Analytics 4 measurement ID (starts with G-). Leave
+          blank to disable Google Analytics tracking.
+        </div>
+      </div>
+
+      <hr className="my-4 border-gray-200 dark:border-gray-800" />
       <div className="space-y-2">
         <div className="text-sm font-medium">Sitemap & Robots</div>
         <div className="text-xs text-gray-600 dark:text-gray-400">

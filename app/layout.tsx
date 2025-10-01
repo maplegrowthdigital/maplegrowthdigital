@@ -6,7 +6,7 @@ import { MobileNav } from "../components/MobileNav";
 import { DynamicStyles } from "../components/DynamicStyles";
 import { Montserrat, Open_Sans } from "next/font/google";
 
-import { Analytics } from "@vercel/analytics/next";
+import { AnalyticsProvider } from "../components/Analytics";
 import { createAnonServerClient } from "../utils/supabase/server";
 import { getNavigationItems } from "../lib/navigation";
 
@@ -113,6 +113,7 @@ export default async function RootLayout({
   let bodyFont: string = DEFAULT_BODY_FONT;
   let headerData: any = undefined;
   let footerData: any = undefined;
+  let googleAnalyticsId: string | undefined = undefined;
 
   // Load navigation items server-side to prevent flash
   const navItems = await getNavigationItems();
@@ -183,6 +184,15 @@ export default async function RootLayout({
       footerData = sectionsMap.get("footer");
       const contactData = sectionsMap.get("contact");
 
+      // Extract Google Analytics ID from settings
+      const googleAnalyticsFromSettings = (settings as any)?.googleAnalyticsId;
+      if (
+        typeof googleAnalyticsFromSettings === "string" &&
+        googleAnalyticsFromSettings.startsWith("G-")
+      ) {
+        googleAnalyticsId = googleAnalyticsFromSettings;
+      }
+
       // Merge contact data into footer data for convenience
       if (footerData && contactData) {
         footerData = { ...footerData, contact: contactData };
@@ -205,7 +215,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
-        <Analytics />
+        <AnalyticsProvider googleAnalyticsId={googleAnalyticsId} />
         <DynamicStyles />
         <Header logoUrl={logoUrl} navItems={navItems} headerData={headerData} />
         <main className="md:pb-0">{children}</main>
