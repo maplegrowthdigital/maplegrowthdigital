@@ -68,7 +68,13 @@ const Icon = {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      <rect x="3" y="3" width="5" height="5" rx="1" />
+      <rect x="16" y="3" width="5" height="5" rx="1" />
+      <rect x="9.5" y="16" width="5" height="5" rx="1" />
+      <path d="M8 5.5h8" />
+      <path d="M12 8.5v7" />
+      <path d="M5.5 8v5.5" />
+      <path d="M18.5 8v5.5" />
     </svg>
   ),
   work: (
