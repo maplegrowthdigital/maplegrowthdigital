@@ -32,3 +32,6 @@ SETUP.md
 
 # Uploads (admin)
 public/uploads/
+
+# Memory Bank (local documentation)
+memory-bank/

@@ -9,7 +9,7 @@ html {
 
 /* CSS Custom Properties for Dynamic Brand Colors */
 :root {
-  --brand-500: #C62828;
+  --brand-500: #c62828;
   --button-primary: var(--brand-500);
   --font-heading: var(--font-heading-default), "Montserrat", sans-serif;
   --font-body: var(--font-body-default), "Open Sans", sans-serif;
@@ -50,7 +50,7 @@ h6 {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center px-5 py-3 text-sm font-medium transition focus:outline-none focus:ring-2;
+    @apply inline-flex items-center justify-center px-4 py-3 md:px-5 text-sm font-medium transition focus:outline-none focus:ring-2;
     @apply rounded-lg; /* 8px radius for both primary and secondary */
     focus-ring-color: var(--brand-500);
   }
