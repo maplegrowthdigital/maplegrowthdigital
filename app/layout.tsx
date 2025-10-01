@@ -28,8 +28,7 @@ const DEFAULT_TITLE = "Your Agency";
 const DEFAULT_DESCRIPTION = "Professional web solutions for growing businesses";
 const DEFAULT_HEADING_FONT =
   'var(--font-heading-default), "Montserrat", sans-serif';
-const DEFAULT_BODY_FONT =
-  'var(--font-body-default), "Open Sans", sans-serif';
+const DEFAULT_BODY_FONT = 'var(--font-body-default), "Open Sans", sans-serif';
 
 export async function generateMetadata(): Promise<Metadata> {
   let icons: Metadata["icons"] | undefined = undefined;
@@ -139,9 +138,7 @@ export default async function RootLayout({
         if (typeof val !== "string") return null;
         const trimmed = val.trim();
         if (!trimmed) return null;
-        return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed)
-          ? trimmed
-          : null;
+        return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed) ? trimmed : null;
       };
 
       const brandLogo =
@@ -213,7 +210,7 @@ export default async function RootLayout({
         <Header logoUrl={logoUrl} navItems={navItems} headerData={headerData} />
         <main className="md:pb-0">{children}</main>
         <Footer footerData={footerData} />
-        <MobileNav />
+        <MobileNav navItems={navItems} />
       </body>
     </html>
   );

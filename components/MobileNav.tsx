@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import type { NavItem } from "../lib/navigation";
+import { defaultNavItems } from "../lib/navigation";
 
-type NavItem = { href: string; label: string; icon: ReactNode };
+type MobileNavItem = NavItem & { icon: ReactNode };
 
 const Icon = {
   home: (
@@ -55,6 +57,20 @@ const Icon = {
       <rect x="3" y="14" width="7" height="7" rx="1" />
     </svg>
   ),
+  process: (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+    </svg>
+  ),
   work: (
     <svg
       width="22"
@@ -101,17 +117,72 @@ const Icon = {
   ),
 };
 
-const items: NavItem[] = [
-  { href: "#services", label: "Services", icon: Icon.services },
-  { href: "#case-studies", label: "Case Studies", icon: Icon.work },
-  { href: "#about", label: "About", icon: Icon.about },
-  { href: "/blog", label: "Blog", icon: Icon.blog },
-  { href: "#contact", label: "Contact", icon: Icon.contact },
-];
+// Map navigation labels to icons
+const getIconForLabel = (label: string): ReactNode => {
+  const normalizedLabel = label.toLowerCase();
+  if (normalizedLabel.includes("service")) return Icon.services;
+  if (normalizedLabel.includes("process")) return Icon.process;
+  if (normalizedLabel.includes("case") || normalizedLabel.includes("work"))
+    return Icon.work;
+  if (normalizedLabel.includes("about")) return Icon.about;
+  if (normalizedLabel.includes("blog")) return Icon.blog;
+  if (normalizedLabel.includes("contact")) return Icon.contact;
+  return Icon.home; // fallback
+};
 
-export function MobileNav() {
+export function MobileNav({
+  navItems: initialNavItems,
+}: {
+  navItems?: NavItem[];
+}) {
   const [active, setActive] = useState<string>("");
-  const sectionIds = useMemo(() => items.filter((n) => n.href.startsWith('#')).map((n) => n.href.replace('#', '')), []);
+  const [navItems, setNavItems] = useState<NavItem[]>(
+    initialNavItems || defaultNavItems
+  );
+
+  // Create mobile nav items with icons
+  const items: MobileNavItem[] = useMemo(() => {
+    return navItems.map((item) => ({
+      ...item,
+      icon: getIconForLabel(item.label),
+    }));
+  }, [navItems]);
+
+  // Update navItems if props change (server-side loaded navigation)
+  useEffect(() => {
+    if (initialNavItems && initialNavItems.length > 0) {
+      setNavItems(initialNavItems);
+    }
+  }, [initialNavItems]);
+
+  // Fetch navigation items from database only if not provided via props
+  useEffect(() => {
+    if (initialNavItems && initialNavItems.length > 0) {
+      return; // Skip API call if we have server-side navigation
+    }
+
+    const fetchNavigation = async () => {
+      try {
+        const res = await fetch("/api/admin/content", { cache: "no-store" });
+        const data = await res.json();
+        if (data.navigation && Array.isArray(data.navigation)) {
+          setNavItems(data.navigation);
+        }
+      } catch (error) {
+        console.log("Could not fetch navigation, using defaults");
+      }
+    };
+
+    fetchNavigation();
+  }, [initialNavItems]);
+
+  const sectionIds = useMemo(
+    () =>
+      items
+        .filter((n) => n.href.startsWith("#"))
+        .map((n) => n.href.replace("#", "")),
+    [items]
+  );
 
   useEffect(() => {
     let raf = 0 as number | 0;
@@ -176,7 +247,7 @@ export function MobileNav() {
     >
       <ul className="mx-auto grid max-w-3xl auto-cols-max grid-flow-col justify-center gap-4 px-2 py-2">
         {items.map((item) => {
-          const isActive = item.href.startsWith('#') && active === item.href;
+          const isActive = item.href.startsWith("#") && active === item.href;
           return (
             <li key={item.href} className="w-full">
               <Link
