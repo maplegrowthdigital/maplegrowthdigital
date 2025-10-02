@@ -1,7 +1,5 @@
-import { site } from "../content/site";
-
 export function Marquee({ marquee }: { marquee?: ReadonlyArray<string> }) {
-  const content: ReadonlyArray<string> = marquee && marquee.length > 0 ? marquee : site.marquee;
+  const content: ReadonlyArray<string> = marquee || [];
 
   const items = Array.from(content);
 

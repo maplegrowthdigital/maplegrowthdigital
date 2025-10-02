@@ -1,12 +1,17 @@
 "use client";
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { Container } from './Container';
-import { site } from '../content/site';
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { Container } from "./Container";
 
-export function Clients({ clients, clientLogos }: { clients?: { title: string }; clientLogos?: ReadonlyArray<{ src: string; alt: string }> }) {
-  const heading = clients ?? site.clients;
-  const logos: ReadonlyArray<{ src: string; alt: string }> = clientLogos ?? site.clientLogos;
+export function Clients({
+  clients,
+  clientLogos,
+}: {
+  clients?: { title: string };
+  clientLogos?: ReadonlyArray<{ src: string; alt: string }>;
+}) {
+  const heading = clients || { title: "Trusted by Teams Across Canada" };
+  const logos: ReadonlyArray<{ src: string; alt: string }> = clientLogos || [];
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
@@ -40,19 +45,26 @@ export function Clients({ clients, clientLogos }: { clients?: { title: string };
     const onPointerUp = (_e: PointerEvent) => {
       if (!dragging) return;
       setDragging(false);
-      if (pointerIdRef.current != null && el.hasPointerCapture?.(pointerIdRef.current)) {
-        try { el.releasePointerCapture(pointerIdRef.current); } catch {}
+      if (
+        pointerIdRef.current != null &&
+        el.hasPointerCapture?.(pointerIdRef.current)
+      ) {
+        try {
+          el.releasePointerCapture(pointerIdRef.current);
+        } catch {}
       }
       pointerIdRef.current = null;
     };
     const onPointerCancel = onPointerUp;
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    window.addEventListener('pointerup', onPointerUp, { passive: true });
-    window.addEventListener('pointercancel', onPointerCancel, { passive: true });
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerup", onPointerUp, { passive: true });
+    window.addEventListener("pointercancel", onPointerCancel, {
+      passive: true,
+    });
     return () => {
-      window.removeEventListener('pointermove', onPointerMove);
-      window.removeEventListener('pointerup', onPointerUp);
-      window.removeEventListener('pointercancel', onPointerCancel);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerCancel);
     };
   }, [dragging]);
 
@@ -60,7 +72,7 @@ export function Clients({ clients, clientLogos }: { clients?: { title: string };
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const measure = () => {
       // We render 3 copies of the logos; one segment is a third of total scrollWidth
@@ -71,10 +83,10 @@ export function Clients({ clients, clientLogos }: { clients?: { title: string };
     };
     measure();
     const onResize = () => measure();
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
 
     const tick = (ts: number) => {
-      if (document.visibilityState === 'hidden') {
+      if (document.visibilityState === "hidden") {
         lastTsRef.current = ts;
         rafRef.current = requestAnimationFrame(tick);
         return;
@@ -94,19 +106,25 @@ export function Clients({ clients, clientLogos }: { clients?: { title: string };
     };
     rafRef.current = requestAnimationFrame(tick);
 
-    const onEnter = () => { hoverRef.current = true; };
-    const onLeave = () => { hoverRef.current = false; };
-    el.addEventListener('mouseenter', onEnter);
-    el.addEventListener('mouseleave', onLeave);
-    const onVis = () => { lastTsRef.current = null; };
-    document.addEventListener('visibilitychange', onVis);
+    const onEnter = () => {
+      hoverRef.current = true;
+    };
+    const onLeave = () => {
+      hoverRef.current = false;
+    };
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    const onVis = () => {
+      lastTsRef.current = null;
+    };
+    document.addEventListener("visibilitychange", onVis);
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      el.removeEventListener('mouseenter', onEnter);
-      el.removeEventListener('mouseleave', onLeave);
-      document.removeEventListener('visibilitychange', onVis);
-      window.removeEventListener('resize', onResize);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("resize", onResize);
     };
   }, [dragging]);
 
@@ -121,10 +139,15 @@ export function Clients({ clients, clientLogos }: { clients?: { title: string };
   };
 
   return (
-    <section id="clients" className="overflow-hidden py-20 border-t border-gray-100 dark:border-gray-800">
+    <section
+      id="clients"
+      className="overflow-hidden py-20 border-t border-gray-100 dark:border-gray-800"
+    >
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{heading.title}</h2>
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            {heading.title}
+          </h2>
         </div>
         <div className="relative mt-10">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent dark:from-neutral-950" />
@@ -134,14 +157,18 @@ export function Clients({ clients, clientLogos }: { clients?: { title: string };
             onPointerDown={onPointerDown}
             onScroll={adjustLoop}
             className={
-              'no-scrollbar cursor-' + (dragging ? 'grabbing' : 'grab') +
-              ' overflow-x-auto select-none'
+              "no-scrollbar cursor-" +
+              (dragging ? "grabbing" : "grab") +
+              " overflow-x-auto select-none"
             }
             aria-label="Client logos carousel"
           >
             <div className="flex gap-16 px-4 py-2">
               {[...logos, ...logos, ...logos].map((logo, i) => (
-                <div key={i} className="flex items-center justify-center opacity-80 transition hover:opacity-100">
+                <div
+                  key={i}
+                  className="flex items-center justify-center opacity-80 transition hover:opacity-100"
+                >
                   <div className="relative h-40 w-40 overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-neutral-900">
                     <Image
                       src={logo.src}

@@ -3,7 +3,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { ShapesBackdrop } from "./ShapesBackdrop";
-import { site } from "../content/site";
 
 type CTA = {
   label: string;
@@ -11,22 +10,19 @@ type CTA = {
   target?: string;
 };
 
-export function CaseStudies({
-  caseStudies,
-}: {
-  caseStudies?: typeof site.caseStudies;
-}) {
-  const content = caseStudies ?? site.caseStudies;
-  const sectionCta: CTA =
-    content.cta ?? {
-      label: "Work with us",
-      href: "#contact",
-    };
+export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
+  const content = caseStudies || {};
+  const sectionCta: CTA = content.cta ?? {
+    label: "Work with us",
+    href: "#contact",
+  };
   const sectionTarget =
     sectionCta.target ||
-    (sectionCta.href && sectionCta.href.startsWith("http") ? "_blank" : undefined);
+    (sectionCta.href && sectionCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
   const sectionRel = sectionTarget === "_blank" ? "noreferrer" : undefined;
-  const cs = content.items;
+  const cs = content.items || [];
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -66,7 +62,7 @@ export function CaseStudies({
           </motion.p>
         </motion.div>
 
-        {cs.map((study, idx) => {
+        {cs.map((study: any, idx: number) => {
           const reverse = idx % 2 === 1;
           return (
             <motion.div
@@ -114,7 +110,7 @@ export function CaseStudies({
                     {study.summary}
                   </p>
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {study.results.map((r) => (
+                    {(study.results || []).map((r: string) => (
                       <li
                         key={r}
                         className="inline-flex items-center gap-2 rounded-lg border border-brand-500/30 bg-brand-500/10 px-3 py-2 text-sm text-brand-600 dark:text-brand-500"

@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
-import { site } from "../content/site";
 
 function SocialIcon({ label }: { label: string }) {
   const l = label.toLowerCase();
@@ -65,10 +64,16 @@ function SocialIcon({ label }: { label: string }) {
   );
 }
 
-export function Contact({ contact }: { contact?: typeof site.contact }) {
-  const content = contact ?? site.contact;
-  const container = { hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } } } as const;
-  const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } } as const;
+export function Contact({ contact }: { contact?: any }) {
+  const content = contact || {};
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  } as const;
+  const item = {
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  } as const;
   return (
     <section
       id="contact"
@@ -77,9 +82,24 @@ export function Contact({ contact }: { contact?: typeof site.contact }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-brand-500/5 to-transparent dark:from-brand-500/10" />
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-2">
-          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
-            <motion.h2 variants={item} className="text-3xl font-semibold tracking-tight sm:text-4xl">Tell me about your project</motion.h2>
-            <motion.p variants={item} className="mt-4 text-gray-600 dark:text-gray-300">We’ll get back within 1–2 business days.</motion.p>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.h2
+              variants={item}
+              className="text-3xl font-semibold tracking-tight sm:text-4xl"
+            >
+              Tell me about your project
+            </motion.h2>
+            <motion.p
+              variants={item}
+              className="mt-4 text-gray-600 dark:text-gray-300"
+            >
+              We’ll get back within 1–2 business days.
+            </motion.p>
             <motion.div variants={item} className="mt-8 card p-6 shadow-sm">
               <form className="grid gap-4">
                 <div className="grid gap-2">
@@ -121,12 +141,20 @@ export function Contact({ contact }: { contact?: typeof site.contact }) {
                   />
                 </div>
                 <motion.div variants={item}>
-                  <button type="submit" className="btn-primary w-full">Send</button>
+                  <button type="submit" className="btn-primary w-full">
+                    Send
+                  </button>
                 </motion.div>
               </form>
             </motion.div>
           </motion.div>
-          <motion.aside variants={item} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} className="rounded-2xl bg-white border border-gray-200 p-6 dark:border-gray-800 dark:bg-transparent">
+          <motion.aside
+            variants={item}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            className="rounded-2xl bg-white border border-gray-200 p-6 dark:border-gray-800 dark:bg-transparent"
+          >
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Contact details
             </div>
@@ -150,9 +178,7 @@ export function Contact({ contact }: { contact?: typeof site.contact }) {
                 <div>
                   <dt className="text-gray-600 dark:text-white">Email</dt>
                   <dd className="font-medium text-gray-900 dark:text-gray-400">
-                    <a href={`mailto:${content.email}`}>
-                      {content.email}
-                    </a>
+                    <a href={`mailto:${content.email}`}>{content.email}</a>
                   </dd>
                 </div>
               </div>
@@ -212,7 +238,7 @@ export function Contact({ contact }: { contact?: typeof site.contact }) {
               Socials
             </div>
             <div className="mt-3 flex flex-wrap gap-3">
-              {content.socials.map((s) => (
+              {(content.socials || []).map((s: any) => (
                 <a
                   key={s.label}
                   href={s.href}
@@ -227,7 +253,7 @@ export function Contact({ contact }: { contact?: typeof site.contact }) {
 
             <motion.div variants={item} className="mt-8">
               <a
-                href={site.tidycal}
+                href="https://tidycal.com/maplegrowthdigital/strategy-call"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary dark:text-white"

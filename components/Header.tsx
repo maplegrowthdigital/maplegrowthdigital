@@ -5,17 +5,15 @@ import { useEffect, useState } from "react";
 import { Container } from "./Container";
 import { ThemeToggle } from "./ThemeToggle";
 import { HeaderNav } from "./HeaderNav";
-import { site } from "../content/site";
+import fallbackData from "../content/data.json";
 import type { NavItem } from "../lib/navigation";
 
 export function Header({
   logoUrl,
   navItems,
-  headerData,
 }: {
   logoUrl?: string;
   navItems?: NavItem[];
-  headerData?: any;
 }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -39,8 +37,8 @@ export function Header({
           aria-label="MapleGrowth home"
         >
           <Image
-            src={logoUrl || site.logoUrl}
-            alt={headerData?.logoAlt || "Your Agency"}
+            src={logoUrl || fallbackData.logoUrl}
+            alt="MapleGrowth Digital"
             width={160}
             height={28}
             className="h-10 w-auto"
@@ -51,12 +49,12 @@ export function Header({
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <a
-            href={headerData?.ctaUrl || site.tidycal}
+            href={fallbackData.tidycal}
             target="_blank"
             rel="noreferrer"
             className="btn-cta"
           >
-            {headerData?.ctaText || "Book a call"}
+            Book a call
             <svg
               aria-hidden
               className="ml-2 h-4 w-4"

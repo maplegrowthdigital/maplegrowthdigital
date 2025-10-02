@@ -2,34 +2,34 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
-import { site } from "../content/site";
-
 type CTA = {
   label: string;
   href: string;
   target?: string;
 };
 
-export function About({ about }: { about?: typeof site.about }) {
-  const content = about ?? site.about;
-  const primaryCta: CTA =
-    content.primaryCta ?? {
-      label: "Book a call",
-      href: site.tidycal,
-      target: "_blank",
-    };
-  const secondaryCta: CTA =
-    content.secondaryCta ?? {
-      label: "Contact",
-      href: "#contact",
-    };
+export function About({ about }: { about?: any }) {
+  const content = about || {};
+  const primaryCta: CTA = {
+    label: "Book a strategy call",
+    href: "https://tidycal.com/maplegrowthdigital/strategy-call",
+    target: "_blank",
+  };
+  const secondaryCta: CTA = {
+    label: "Contact",
+    href: "#contact",
+  };
   const primaryTarget =
     primaryCta.target ||
-    (primaryCta.href && primaryCta.href.startsWith("http") ? "_blank" : undefined);
+    (primaryCta.href && primaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
   const secondaryTarget =
     secondaryCta.target ||
-    (secondaryCta.href && secondaryCta.href.startsWith("http") ? "_blank" : undefined);
+    (secondaryCta.href && secondaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
   const secondaryRel = secondaryTarget === "_blank" ? "noreferrer" : undefined;
   const container = {
     hidden: {},
@@ -41,7 +41,9 @@ export function About({ about }: { about?: typeof site.about }) {
   } as const;
   return (
     <section
-      id="about"
+      id={content.id || "about"}
+      role={content.role || "region"}
+      aria-label={content.ariaLabel || "About"}
       className="overflow-hidden py-24 border-t border-gray-100 dark:border-gray-800"
     >
       <Container>
@@ -97,7 +99,7 @@ export function About({ about }: { about?: typeof site.about }) {
               variants={container}
               className="mt-6 grid gap-3 sm:grid-cols-2 text-sm text-gray-700 dark:text-gray-300"
             >
-              {content.highlights.map((h) => (
+              {(content.highlights || []).map((h: string) => (
                 <motion.li
                   key={h}
                   variants={item}

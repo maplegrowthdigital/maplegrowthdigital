@@ -21,26 +21,7 @@ export function HeaderNav({
     }
   }, [initialNavItems]);
 
-  // Fetch navigation items from database only if not provided via props
-  useEffect(() => {
-    if (initialNavItems && initialNavItems.length > 0) {
-      return; // Skip API call if we have server-side navigation
-    }
-
-    const fetchNavigation = async () => {
-      try {
-        const res = await fetch("/api/admin/content", { cache: "no-store" });
-        const data = await res.json();
-        if (data.navigation && Array.isArray(data.navigation)) {
-          setNavItems(data.navigation);
-        }
-      } catch (error) {
-        console.log("Could not fetch navigation, using defaults");
-      }
-    };
-
-    fetchNavigation();
-  }, [initialNavItems]);
+  // No database fetching - use only props and defaults
 
   const sectionIds = useMemo(
     () => navItems.map((n) => n.href.replace("#", "")),

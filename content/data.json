@@ -1,113 +1,199 @@
 {
-  "logoUrl": "/maplegrowth-logo.png",
-  "tidycal": "https://tidycal.com/mpkwol1/30-minute-meeting",
+  "logoUrl": "/maplegrowth-logo.svg",
+  "tidycal": "https://tidycal.com/maplegrowthdigital/strategy-call",
+
+  "seo": {
+    "title": "MapleGrowth Digital — Digital Marketing Agency in Canada | Growth & Small Business Marketing",
+    "description": "Canadian digital marketing agency delivering SEO, PPC, content, and web design. Internet marketing services built for growth-focused small businesses and scale-ups.",
+    "keywords": [
+      "digital marketing agency",
+      "digital marketing services",
+      "growth marketing agency",
+      "internet marketing services",
+      "online marketing company",
+      "small business digital marketing"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/"
+  },
+
+  "a11y": {
+    "landmarks": {
+      "header": { "role": "banner", "ariaLabel": "Site header" },
+      "primaryNav": { "role": "navigation", "ariaLabel": "Primary" },
+      "main": { "role": "main", "ariaLabel": "Main content" },
+      "footer": { "role": "contentinfo", "ariaLabel": "Site footer" }
+    }
+  },
+
   "hero": {
-    "title": "Finely Crafted Websites",
-    "subhead": "For Serious Businesses.",
-    "body": "Here we care about the story behind the site. We don’t do high volume work, we take the time to sit with each project and craft it into your voice.",
+    "id": "hero",
+    "role": "region",
+    "ariaLabel": "Digital marketing agency introduction",
+    "headingLevel": 1,
+    "title": "Smart Marketing. Measurable Growth.",
+    "subhead": "A Canadian digital marketing agency for small businesses and growth-focused brands.",
+    "body": "MapleGrowth Digital is a growth marketing agency that blends creativity, data, and strategy. We deliver internet marketing services you can see, measure, and trust — from SEO and PPC to conversion-focused web design.",
     "stats": [
-      {
-        "value": "10+ yrs",
-        "label": "Experience"
-      },
-      {
-        "value": "110+",
-        "label": "Projects shipped"
-      },
-      {
-        "value": "5",
-        "label": "Clients at a time"
-      },
-      {
-        "value": "AU",
-        "label": "Based in Australia"
-      }
+      { "value": "10+ yrs", "label": "Experience in web & digital marketing" },
+      { "value": "24/7", "label": "Support when you need it" },
+      { "value": "3x ROI", "label": "Average return our clients achieve" },
+      { "value": "CAN", "label": "Proudly Canadian-based" }
+    ],
+    "cta": {
+      "label": "Book a strategy call",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a strategy call with MapleGrowth Digital"
+    }
+  },
+
+  "marquee": {
+    "id": "capabilities-marquee",
+    "role": "region",
+    "ariaLabel": "Capabilities ticker",
+    "headingLevel": 2,
+    "title": "What we’re known for",
+    "items": [
+      "Custom Development",
+      "Bespoke Design",
+      "E-commerce",
+      "Performance",
+      "Security",
+      "Mobile-first",
+      "Product Development",
+      "SEO & Analytics",
+      "Shopify",
+      "Headless CMS"
     ]
   },
-  "marquee": [
-    "Custom Development",
-    "Bespoke Design",
-    "E‑commerce",
-    "Performance",
-    "Security",
-    "Mobile‑first",
-    "Product Development",
-    "Podcast Production",
-    "SEO & Analytics",
-    "Shopify",
-    "Headless CMS"
-  ],
+
   "services": {
-    "title": "What we can offer",
-    "subtitle": "Our team specialises in Custom Development and bespoke designs that solve business problems.",
-    "note": "Whether the project is large or small, we build every site with an emphasis on speed, security, and mobile usage in mind.",
+    "id": "services",
+    "role": "region",
+    "ariaLabel": "Digital marketing services",
+    "headingLevel": 2,
+    "title": "Digital Marketing Services That Drive Growth",
+    "subtitle": "As a Canadian online marketing company, we help small businesses and scale-ups win with strategy, creativity, and technology.",
+    "note": "Every project — big or small — gets the same focus: fast performance, strong security, and mobile-ready experiences.",
+    "itemsHeadingLevel": 3,
     "items": [
-      {
-        "icon": "UX",
-        "title": "Design",
-        "description": "Brand-aligned UI/UX and visual systems for web."
-      },
-      {
-        "icon": "DEV",
-        "title": "Development",
-        "description": "Custom builds, performance, security and maintainability."
-      },
-      {
-        "icon": "PROD",
-        "title": "Product",
-        "description": "From discovery to product design and prototyping."
-      },
-      {
-        "icon": "POD",
-        "title": "Content & Podcast",
-        "description": "Production support for content and podcasts."
-      },
-      {
-        "icon": "SHOP",
-        "title": "E‑commerce",
-        "description": "Shopify/Headless builds and conversions."
-      },
       {
         "icon": "SEO",
         "title": "SEO & Analytics",
-        "description": "Technical SEO, analytics setup and audits."
+        "description": "Technical SEO, on-page optimization, content strategy, and analytics that compound results.",
+        "bullets": [
+          "Local & national visibility",
+          "Content roadmaps",
+          "GA4 & dashboards"
+        ],
+        "ariaLabel": "SEO and analytics service"
+      },
+      {
+        "icon": "PPC",
+        "title": "PPC & Paid Media",
+        "description": "ROI-first campaigns across Google, YouTube, and social. Built for fast, measurable growth.",
+        "bullets": [
+          "Google Ads & Performance Max",
+          "Retargeting",
+          "Landing page CRO"
+        ],
+        "ariaLabel": "PPC and paid media service"
+      },
+      {
+        "icon": "DEV",
+        "title": "Web Design & Development",
+        "description": "Conversion-focused, accessible websites engineered for speed, security, and scalability.",
+        "bullets": [
+          "WordPress & Headless",
+          "Shopify storefronts",
+          "Core Web Vitals"
+        ],
+        "ariaLabel": "Web design and development service"
+      },
+      {
+        "icon": "CONTENT",
+        "title": "Content & Email",
+        "description": "Editorial calendars, sales enablement content, and lifecycle email that nurtures demand.",
+        "bullets": [
+          "Lead magnets & blogs",
+          "Newsletters & flows",
+          "CRM integrations"
+        ],
+        "ariaLabel": "Content and email marketing service"
+      },
+      {
+        "icon": "BRAND",
+        "title": "Brand & Creative",
+        "description": "Brand systems, ad creative, and motion assets that boost recognition and conversion.",
+        "bullets": ["Visual identity", "Ad creative kits", "Video & motion"],
+        "ariaLabel": "Brand and creative service"
+      },
+      {
+        "icon": "GROWTH",
+        "title": "Growth Strategy",
+        "description": "Positioning, messaging, and go-to-market plans tailored to small business digital marketing.",
+        "bullets": [
+          "ICP & messaging",
+          "Channel mix planning",
+          "KPI frameworks"
+        ],
+        "ariaLabel": "Growth strategy service"
       }
     ]
   },
+
   "process": {
-    "title": "The MapleGrowth System",
-    "intro": "We offer a range of web services, ranging from design & development to product development and podcast production services.",
+    "id": "process",
+    "role": "region",
+    "ariaLabel": "Our growth process",
+    "headingLevel": 2,
+    "title": "How We Build Growth",
+    "intro": "A repeatable framework that aligns strategy with execution — the backbone of our digital marketing services.",
+    "stepsHeadingLevel": 3,
     "steps": [
       {
         "title": "1. Discover",
-        "description": "Understand the human element and business context."
+        "description": "Goals, audience, and market. We map opportunities and prioritize impact."
       },
       {
         "title": "2. Design",
-        "description": "Translate insight into clear, on-brand experiences."
+        "description": "From wireframes to creative concepts — built for clarity and conversion."
       },
       {
         "title": "3. Develop",
-        "description": "Engineer fast, secure, mobile‑first websites."
+        "description": "Fast, secure builds and campaign setups tracked end-to-end."
       },
       {
         "title": "4. Deploy",
-        "description": "Ship, measure, and iterate with care."
+        "description": "Launch, learn, and iterate with dashboards and growth sprints."
       }
     ]
   },
-  "beliefs": [
-    {
-      "title": "Contrarian Belief #1",
-      "quote": "We hire for character first. Everything else second."
-    },
-    {
-      "title": "Contrarian Belief #2",
-      "quote": "We never work for clients just because they have money. Our values must align."
-    }
-  ],
+
+  "beliefs": {
+    "id": "beliefs",
+    "role": "region",
+    "ariaLabel": "Agency beliefs and mindset",
+    "headingLevel": 2,
+    "title": "What We Believe",
+    "itemsHeadingLevel": 3,
+    "items": [
+      {
+        "title": "Our Core Belief",
+        "quote": "Clicks don’t equal growth. We focus on results that move your business forward."
+      },
+      {
+        "title": "The MapleGrowth Mindset",
+        "quote": "Marketing isn’t about shouting louder — it’s about connecting smarter."
+      }
+    ]
+  },
+
   "clients": {
-    "title": "Our Clients",
+    "id": "clients",
+    "role": "region",
+    "ariaLabel": "Clients we’ve worked with",
+    "headingLevel": 2,
+    "title": "Trusted by Teams Across Canada",
     "items": [
       "Twinings",
       "Liberty IT",
@@ -119,35 +205,27 @@
       "Monash"
     ]
   },
+
   "clientLogos": [
-    {
-      "src": "/logos/twinings.jpg",
-      "alt": "Twinings"
-    },
-    {
-      "src": "/logos/libertyit.jpg",
-      "alt": "Liberty IT"
-    },
-    {
-      "src": "/logos/sbsb.jpg",
-      "alt": "SBSB"
-    },
-    {
-      "src": "/logos/jbt.jpg",
-      "alt": "JBT"
-    },
-    {
-      "src": "/logos/exchange-stores.jpg",
-      "alt": "Exchange Stores"
-    }
+    { "src": "/logos/twinings.jpg", "alt": "Twinings logo" },
+    { "src": "/logos/libertyit.jpg", "alt": "Liberty IT logo" },
+    { "src": "/logos/sbsb.jpg", "alt": "SBSB logo" },
+    { "src": "/logos/jbt.jpg", "alt": "JBT logo" },
+    { "src": "/logos/exchange-stores.jpg", "alt": "Exchange Stores logo" }
   ],
+
   "work": {
-    "title": "Selected work",
-    "subtitle": "A snapshot of recent projects.",
+    "id": "work",
+    "role": "region",
+    "ariaLabel": "Selected work and projects",
+    "headingLevel": 2,
+    "title": "Selected Work",
+    "subtitle": "A snapshot of recent e-commerce and B2B growth engagements.",
+    "cardsHeadingLevel": 3,
     "projects": [
       {
         "title": "Aurora Skincare",
-        "category": "E‑commerce",
+        "category": "E-commerce",
         "image": "/images/project-1.svg"
       },
       {
@@ -177,15 +255,21 @@
       }
     ]
   },
+
   "caseStudies": {
+    "id": "case-studies",
+    "role": "region",
+    "ariaLabel": "Case studies",
+    "headingLevel": 2,
     "title": "Case Studies",
-    "intro": "A closer look at how we solve problems and ship results.",
+    "intro": "How our internet marketing services turn strategy into measurable growth.",
+    "itemsHeadingLevel": 3,
     "items": [
       {
         "slug": "nundle-inland-nsw-tourism",
         "title": "Nundle (Inland NSW Tourism)",
         "category": "Tourism / Community",
-        "summary": "We built a strong web presence to clearly communicate Nundle’s value proposition and followed up with an online marketing campaign to increase targeted traffic.",
+        "summary": "We built a clear value proposition, improved search visibility, and ran targeted campaigns to grow regional visits and revenue.",
         "image": "/case/nundle-hero.jpg",
         "results": [
           "Regional revenue up by $1.5M",
@@ -198,42 +282,64 @@
         "slug": "dummy-case-study",
         "title": "Dummy Case Study",
         "category": "Campaign",
-        "summary": "We built a strong web presence to clearly communicate Nundle’s value proposition and followed up with an online marketing campaign to increase targeted traffic.",
+        "summary": "From positioning to performance media — a full-funnel approach that scaled qualified demand.",
         "image": "/case/nundle-hero.jpg",
         "results": [
-          "Regional revenue up by $1.5M",
-          "Increased targeted traffic",
-          "Ongoing upgrades and advisory"
+          "Lower CPA with higher ROAS",
+          "Organic growth in high-intent terms",
+          "Funnel reporting with GA4"
         ],
         "link": "https://www.maplegrowthdigital.ca/project/nundle-inland-nsw-tourism/"
       }
     ]
   },
+
   "about": {
-    "title": "About us",
-    "body": "We are a multidisciplinary team of Designers and engineers who know the value of story, excellence and the art of long-lasting partnerships.",
+    "id": "about",
+    "role": "region",
+    "ariaLabel": "About MapleGrowth Digital",
+    "headingLevel": 2,
+    "title": "About MapleGrowth Digital",
+    "body": "We’re a Canadian growth marketing agency dedicated to small business digital marketing. Our cross-disciplinary team ships strategy, creative, and engineering under one roof.",
+    "highlightsHeadingLevel": 3,
     "highlights": [
-      "Senior-only team; no handovers",
-      "Direct access to designers and engineers",
-      "Transparent pricing and timelines",
-      "Remote-friendly with on-site options"
+      "Focused team — no unnecessary handovers",
+      "Direct collaboration with designers, developers, and strategists",
+      "Transparent pricing and clear timelines",
+      "Remote-first, with support available across Canada"
     ],
     "clients": ["Twinings", "Liberty IT", "SBSB", "JBT", "TSA", "RLA"],
-    "ceoNote": "I have been doing this for a long time (multiple lifetimes if you count in internet years) and I have learned that building the right team is the difference between achieving an acceptable result and knocking the ball out of the park.",
-    "ceoName": "Luke Farrugia",
-    "ceoTitle": "CEO, MapleGrowth Digital",
+    "ceoNote": "Growth comes from pairing creativity with accountability — ideas translated into measurable outcomes.",
+    "ceoName": "Founder",
+    "ceoTitle": "MapleGrowth Digital",
     "photo": "/about/luke.jpg"
   },
+
   "book": {
-    "title": "Book a call",
+    "id": "book-a-call",
+    "role": "region",
+    "ariaLabel": "Book a strategy call",
+    "headingLevel": 2,
+    "title": "Book a Strategy Call",
     "paragraphs": [
-      "We only work with 5 clients at a time, so we can fully invest in each of them. If that sounds like the level of commitment you want from a service provider, send us a message. If all spots are currently taken we can still explore your needs and add you to the waiting list."
-    ]
+      "If you’re looking for a partner who cares about outcomes, let’s talk. We’ll review goals, channels, and quick wins for your next growth sprint."
+    ],
+    "cta": {
+      "label": "Book now",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Open booking page for strategy call"
+    }
   },
+
   "contact": {
-    "email": "hello@yourstudio.com",
-    "phone": "0405 112 906",
-    "location": "Australia",
+    "id": "contact",
+    "role": "region",
+    "ariaLabel": "Contact details and social links",
+    "headingLevel": 2,
+    "title": "Contact",
+    "email": "connect@maplegrowthdigital.ca",
+    "phone": "+1 (431) 726-1578",
+    "location": "Canada",
     "socials": [
       {
         "label": "Instagram",

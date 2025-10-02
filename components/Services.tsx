@@ -2,10 +2,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
-import { site } from "../content/site";
 import { ShapesBackdrop } from "./ShapesBackdrop";
 
-function ServiceIcon({ title }: { title: string }) {
+function ServiceIcon({ icon }: { icon: string }) {
   const cls = "h-5 w-5";
   const common = {
     stroke: "currentColor",
@@ -14,79 +13,66 @@ function ServiceIcon({ title }: { title: string }) {
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
   };
-  const t = title.toLowerCase();
-  if (t.includes("design")) {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} {...common}>
-        <path d="M14 3l7 7-7 7-7-7 7-7z" />
-        <path d="M5 19h14" />
-      </svg>
-    );
+
+  switch (icon) {
+    case "SEO":
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M3 3v18h18" />
+          <path d="M7 15l3-3 3 2 4-6" />
+        </svg>
+      );
+    case "PPC":
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M12 2L22 7l-10 5L2 7l10-5z" />
+          <path d="M12 17l10-5" />
+          <path d="M12 17l-10-5" />
+        </svg>
+      );
+    case "DEV":
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M8 9l-4 3 4 3" />
+          <path d="M16 9l4 3-4 3" />
+          <path d="M12 8v8" />
+        </svg>
+      );
+    case "CONTENT":
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6" />
+          <path d="M16 13H8" />
+          <path d="M16 17H8" />
+        </svg>
+      );
+    case "BRAND":
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M14 3l7 7-7 7-7-7 7-7z" />
+          <path d="M5 19h14" />
+        </svg>
+      );
+    case "GROWTH":
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M3 12l9-9 9 9" />
+          <path d="M12 3v18" />
+          <path d="M8 21h8" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24" className={cls} {...common}>
+          <path d="M14.7 6.3a4 4 0 1 0-5.4 5.4l-6 6 3 3 6-6a4 4 0 0 0 5.4-5.4z" />
+        </svg>
+      );
   }
-  if (t.includes("develop")) {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} {...common}>
-        <path d="M8 9l-4 3 4 3" />
-        <path d="M16 9l4 3-4 3" />
-        <path d="M12 8v8" />
-      </svg>
-    );
-  }
-  if (t.includes("product")) {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} {...common}>
-        <path d="M21 16V8l-9-5-9 5v8l9 5 9-5z" />
-        <path d="M3 8l9 5 9-5" />
-        <path d="M12 13v8" />
-      </svg>
-    );
-  }
-  if (t.includes("podcast") || t.includes("content")) {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} {...common}>
-        <rect x="9" y="3" width="6" height="11" rx="3" />
-        <path d="M12 14v7" />
-        <path d="M8 21h8" />
-      </svg>
-    );
-  }
-  if (t.includes("commerce") || t.includes("shopify")) {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} {...common}>
-        <path d="M6 6h15l-1.5 9h-12z" />
-        <path d="M6 6l-2-2" />
-        <circle cx="9" cy="20" r="1" />
-        <circle cx="18" cy="20" r="1" />
-      </svg>
-    );
-  }
-  if (t.includes("seo") || t.includes("analytic")) {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} {...common}>
-        <path d="M3 3v18h18" />
-        <path d="M7 15l3-3 3 2 4-6" />
-      </svg>
-    );
-  }
-  // default: wrench/tool
-  return (
-    <svg viewBox="0 0 24 24" className={cls} {...common}>
-      <path d="M14.7 6.3a4 4 0 1 0-5.4 5.4l-6 6 3 3 6-6a4 4 0 0 0 5.4-5.4z" />
-    </svg>
-  );
 }
 
-export function Services({ services }: { services?: typeof site.services }) {
-  const content = services ?? site.services;
-  const cta = content.cta ?? {
-    label: "Book a call",
-    href: site.tidycal,
-    target: "_blank",
-  };
-  const ctaTarget =
-    cta.target || (cta.href && cta.href.startsWith("http") ? "_blank" : undefined);
-  const ctaRel = ctaTarget === "_blank" ? "noreferrer" : undefined;
-
+export function Services({ services }: { services?: any }) {
+  const content = services || {};
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -97,7 +83,9 @@ export function Services({ services }: { services?: typeof site.services }) {
   } as const;
   return (
     <section
-      id="services"
+      id={content.id || "services"}
+      role={content.role || "region"}
+      aria-label={content.ariaLabel || "Services"}
       className="relative overflow-hidden py-24 border-t border-gray-100 dark:border-gray-800"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-brand-500/5 to-transparent dark:from-brand-500/10" />
@@ -125,34 +113,6 @@ export function Services({ services }: { services?: typeof site.services }) {
             >
               {content.subtitle}
             </motion.p>
-            {cta?.href && cta?.label && (
-              <motion.div
-                variants={item}
-                className="mt-8 flex flex-wrap items-center gap-3"
-              >
-                <a
-                  href={cta.href}
-                  target={ctaTarget}
-                  rel={ctaRel}
-                  className="btn-cta transition-transform duration-300 hover:-translate-y-0.5"
-                >
-                  {cta.label}
-                  <svg
-                    aria-hidden
-                    className="ml-2 h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
-              </motion.div>
-            )}
           </motion.div>
           <div className="hidden lg:block">
             <div className="relative">
@@ -184,22 +144,35 @@ export function Services({ services }: { services?: typeof site.services }) {
           viewport={{ once: true, amount: 0.2 }}
           className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {content.items.map((s) => (
+          {(content.items || []).map((s: any) => (
             <motion.div
               key={s.title}
               variants={item}
               whileHover={{ y: -4 }}
               className="card group p-6 transition hover:shadow-md"
+              aria-label={s.ariaLabel || s.title}
             >
               <div className="flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-500/10 text-brand-500">
-                  <ServiceIcon title={s.title} />
+                  <ServiceIcon icon={s.icon || "DEFAULT"} />
                 </div>
                 <h3 className="font-semibold">{s.title}</h3>
               </div>
               <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
                 {s.description}
               </p>
+              {s.bullets &&
+                Array.isArray(s.bullets) &&
+                s.bullets.length > 0 && (
+                  <ul className="mt-3 space-y-1 text-xs text-gray-500 dark:text-gray-400">
+                    {s.bullets.map((bullet: string, i: number) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="h-1 w-1 rounded-full bg-brand-500"></span>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
             </motion.div>
           ))}
         </motion.div>

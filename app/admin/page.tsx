@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { site as fallback } from "../../content/site";
+import fallbackData from "../../content/data.json";
 import { Markdown } from "../../components/Markdown";
 
 type SectionKey =
@@ -24,19 +24,7 @@ type SectionKey =
   | "header"
   | "footer";
 
-const HOME_SECTIONS: { key: SectionKey; label: string }[] = [
-  { key: "hero", label: "Hero" },
-  { key: "marquee", label: "Capabilities" },
-  { key: "services", label: "Services" },
-  { key: "process", label: "Process" },
-  { key: "beliefs", label: "Beliefs" },
-  { key: "clients", label: "Clients (heading)" },
-  { key: "clientLogos", label: "Client Logos" },
-  { key: "caseStudies", label: "Case Studies" },
-  { key: "about", label: "About" },
-  { key: "book", label: "Book a Call" },
-  { key: "contact", label: "Contact" },
-];
+// Home sections removed - content managed via JSON
 
 // Small UI helpers
 function Label({ children }: { children: React.ReactNode }) {
@@ -2666,7 +2654,7 @@ function SchemaEditor({
       );
       setBusinessName("MapleGrowth Digital");
       setLegalName("MapleGrowth Digital");
-      const logoPath = fallback.logoUrl || "/logo.png";
+      const logoPath = fallbackData.logoUrl || "/logo.png";
       const fullLogo = logoPath.startsWith("http")
         ? logoPath
         : origin + logoPath;
@@ -2882,9 +2870,9 @@ function SchemaEditor({
       const services = contextData?.services || {};
       const socials = Array.isArray(contact.socials) ? contact.socials : [];
       const serviceItems = Array.isArray(services.items) ? services.items : [];
-      const logoPath = (fallback.logoUrl || "/logo.png").startsWith("http")
-        ? fallback.logoUrl
-        : origin + (fallback.logoUrl || "");
+      const logoPath = (fallbackData.logoUrl || "/logo.png").startsWith("http")
+        ? fallbackData.logoUrl
+        : origin + (fallbackData.logoUrl || "");
       const phone = contact.phone || "";
       const sameAs = socials.map((s: any) => s?.href).filter(Boolean);
       const agencyId = origin + "/#agency";
@@ -3399,9 +3387,9 @@ export default function AdminPage() {
         // localStorage not available
       }
 
-      // Default to hero and update URL
-      setTab("hero");
-      window.history.replaceState(null, "", "#hero");
+      // Default to brand and update URL
+      setTab("brand");
+      window.history.replaceState(null, "", "#brand");
     };
 
     initializeTab();
@@ -3724,38 +3712,11 @@ export default function AdminPage() {
                         onChange={setSection}
                       />
                     )}
-                    {tab === "navigation" && (
-                      <NavigationEditor
-                        value={Array.isArray(sectionValue) ? sectionValue : []}
-                        onChange={setSection}
-                      />
-                    )}
-                    {tab === "header" && (
-                      <HeaderEditor
-                        value={sectionValue}
-                        onChange={setSection}
-                      />
-                    )}
-                    {tab === "footer" && (
-                      <FooterEditor
-                        value={sectionValue}
-                        onChange={setSection}
-                      />
-                    )}
-                    {tab === "wireframe" && (
-                      <WireframeViewer
-                        data={data}
-                        onSectionClick={(section) =>
-                          setTabWithPersistence(section)
-                        }
-                        onDataUpdate={(newData) => setData(newData)}
-                      />
-                    )}
                     {tab === "posts" && <PostsEditor />}
                   </div>
                 )}
               </div>
-              {tab !== "wireframe" && tab !== "posts" && (
+              {tab !== "posts" && (
                 <div className="mt-3 flex items-center gap-3">
                   <button
                     onClick={onSave}
@@ -3793,25 +3754,6 @@ function Sidebar({
   return (
     <aside className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/5">
       <div className="px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
-        Home
-      </div>
-      <ul className="space-y-1 text-sm">
-        {HOME_SECTIONS.map((s) => (
-          <li key={s.key}>
-            <button
-              onClick={() => setTab(s.key)}
-              className={`w-full rounded-md px-3 py-2 text-left ${
-                tab === s.key
-                  ? "bg-brand-500 text-white"
-                  : "hover:bg-gray-100 dark:hover:bg-white/10"
-              }`}
-            >
-              {s.label}
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div className="mt-3 px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
         Brand
       </div>
       <ul className="space-y-1 text-sm">
@@ -3846,62 +3788,9 @@ function Sidebar({
         </li>
       </ul>
       <div className="mt-3 px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
-        Layout
-      </div>
-      <ul className="space-y-1 text-sm">
-        <li>
-          <button
-            onClick={() => setTab("header")}
-            className={`w-full rounded-md px-3 py-2 text-left ${
-              tab === "header"
-                ? "bg-brand-500 text-white"
-                : "hover:bg-gray-100 dark:hover:bg-white/10"
-            }`}
-          >
-            Header
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => setTab("footer")}
-            className={`w-full rounded-md px-3 py-2 text-left ${
-              tab === "footer"
-                ? "bg-brand-500 text-white"
-                : "hover:bg-gray-100 dark:hover:bg-white/10"
-            }`}
-          >
-            Footer
-          </button>
-        </li>
-      </ul>
-      <div className="mt-3 px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
         Other
       </div>
       <ul className="space-y-1 text-sm">
-        <li>
-          <button
-            onClick={() => setTab("wireframe")}
-            className={`w-full rounded-md px-3 py-2 text-left ${
-              tab === "wireframe"
-                ? "bg-brand-500 text-white"
-                : "hover:bg-gray-100 dark:hover:bg-white/10"
-            }`}
-          >
-            Wireframe
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => setTab("navigation")}
-            className={`w-full rounded-md px-3 py-2 text-left ${
-              tab === "navigation"
-                ? "bg-brand-500 text-white"
-                : "hover:bg-gray-100 dark:hover:bg-white/10"
-            }`}
-          >
-            Navigation
-          </button>
-        </li>
         <li>
           <button
             onClick={() => setTab("schema")}
@@ -4304,341 +4193,31 @@ function WireframeViewer({
   );
 }
 
-function NavigationEditor({
-  value,
-  onChange,
-}: {
-  value: any[];
-  onChange: (v: any[]) => void;
-}) {
-  const list = Array.isArray(value)
-    ? value
-    : [
-        { href: "/#services", label: "Services" },
-        { href: "/#process", label: "Process" },
-        { href: "/#case-studies", label: "Case Studies" },
-        { href: "/#about", label: "About" },
-        { href: "/blog", label: "Blog" },
-        { href: "/#contact", label: "Contact" },
-      ];
-
-  const [dragIdx, setDragIdx] = useState<number | null>(null);
-  const [overIdx, setOverIdx] = useState<number | null>(null);
-
-  const onDragStart = (idx: number, e: React.DragEvent) => {
-    setDragIdx(idx);
-    e.dataTransfer.effectAllowed = "move";
-    try {
-      e.dataTransfer.setData("text/plain", String(idx));
-    } catch {}
-  };
-
-  const onDragOver = (idx: number, e: React.DragEvent) => {
-    e.preventDefault();
-    if (overIdx !== idx) setOverIdx(idx);
-    e.dataTransfer.dropEffect = "move";
-  };
-
-  const onDrop = (idx: number, e: React.DragEvent) => {
-    e.preventDefault();
-    const from = dragIdx ?? Number(e.dataTransfer.getData("text/plain"));
-    const to = idx;
-    setDragIdx(null);
-    setOverIdx(null);
-    if (Number.isFinite(from) && Number.isFinite(to) && from !== to) {
-      const next = [...list];
-      const [moved] = next.splice(from as number, 1);
-      next.splice(to, 0, moved);
-      onChange(next);
-    }
-  };
-
-  const onDragEnd = () => {
-    setDragIdx(null);
-    setOverIdx(null);
-  };
-
-  return (
-    <div className="space-y-4">
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-white/5">
-        <h3 className="text-sm font-medium mb-2">Header Navigation Menu</h3>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          Customize the navigation menu items that appear in the header. Drag to
-          reorder, edit labels and links.
-        </p>
-      </div>
-
-      <div className="space-y-3">
-        {list.map((item, i) => (
-          <div
-            key={i}
-            draggable
-            onDragStart={(e) => onDragStart(i, e)}
-            onDragOver={(e) => onDragOver(i, e)}
-            onDrop={(e) => onDrop(i, e)}
-            onDragEnd={onDragEnd}
-            className={
-              (overIdx === i ? "border-brand-500 bg-brand-500/5 " : "") +
-              "grid grid-cols-2 gap-2 rounded-md border border-gray-200 p-3 dark:border-gray-800"
-            }
-          >
-            <div className="col-span-2 -mb-1 flex items-center gap-2 text-xs text-gray-500">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-gray-400"
-              >
-                <path d="M8 6h.01M12 6h.01M16 6h.01M8 12h.01M12 12h.01M16 12h.01M8 18h.01M12 18h.01M16 18h.01" />
-              </svg>
-              Drag to reorder
-            </div>
-            <TextInput
-              placeholder="Label"
-              value={item.label || ""}
-              onChange={(e) => {
-                const arr = [...list];
-                arr[i] = { ...arr[i], label: e.target.value };
-                onChange(arr);
-              }}
-            />
-            <TextInput
-              placeholder="Link (/#section or /page)"
-              value={item.href || ""}
-              onChange={(e) => {
-                const arr = [...list];
-                arr[i] = { ...arr[i], href: e.target.value };
-                onChange(arr);
-              }}
-            />
-            <div className="col-span-2 flex justify-end">
-              <IconButton
-                title="Remove"
-                onClick={() => onChange(list.filter((_, idx) => idx !== i))}
-              >
-                Remove
-              </IconButton>
-            </div>
-          </div>
-        ))}
-
-        <IconButton
-          title="Add"
-          onClick={() => onChange([...list, { href: "", label: "" }])}
-        >
-          Add menu item
-        </IconButton>
-      </div>
-
-      <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/5">
-        <h3 className="text-sm font-medium mb-2">Link Examples</h3>
-        <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
-          <div>
-            <strong>Section links:</strong> /#services, /#about, /#contact
-          </div>
-          <div>
-            <strong>Page links:</strong> /blog, /custom-page
-          </div>
-          <div>
-            <strong>External links:</strong> https://example.com
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function HeaderEditor({
-  value,
-  onChange,
-}: {
-  value: any;
-  onChange: (v: any) => void;
-}) {
-  const v = value || {};
-  const up = (k: string, val: any) => onChange({ ...v, [k]: val });
-
-  return (
-    <div className="space-y-4">
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-white/5">
-        <h3 className="text-sm font-medium mb-2">Header Settings</h3>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          Customize the header appearance and call-to-action button.
-        </p>
-      </div>
-
-      <Field label="Call-to-Action Button Text">
-        <TextInput
-          value={v.ctaText || "Book a call"}
-          onChange={(e) => up("ctaText", e.target.value)}
-          placeholder="Book a call"
-        />
-      </Field>
-
-      <Field label="Call-to-Action Button URL">
-        <TextInput
-          value={v.ctaUrl || ""}
-          onChange={(e) => up("ctaUrl", e.target.value)}
-          placeholder="https://calendly.com/your-link"
-        />
-      </Field>
-
-      <Field label="Logo Alt Text">
-        <TextInput
-          value={v.logoAlt || "Your Agency"}
-          onChange={(e) => up("logoAlt", e.target.value)}
-          placeholder="Your Agency"
-        />
-      </Field>
-
-      <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/5">
-        <h3 className="text-sm font-medium mb-2">Note</h3>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          Logo and navigation are managed in Settings and Navigation sections
-          respectively.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function FooterEditor({
-  value,
-  onChange,
-}: {
-  value: any;
-  onChange: (v: any) => void;
-}) {
-  const v = value || {};
-  const up = (k: string, val: any) => onChange({ ...v, [k]: val });
-  const footerLinks: any[] = Array.isArray(v.footerLinks)
-    ? v.footerLinks
-    : [
-        { href: "#services", label: "Services" },
-        { href: "#process", label: "Process" },
-        { href: "#case-studies", label: "Case Studies" },
-        { href: "#about", label: "About" },
-        { href: "#contact", label: "Contact" },
-      ];
-  const socialLinks: any[] = Array.isArray(v.socialLinks)
-    ? v.socialLinks
-    : [
-        { href: "#", label: "Instagram", icon: "instagram" },
-        { href: "#", label: "LinkedIn", icon: "linkedin" },
-        { href: "#", label: "Email", icon: "email" },
-      ];
-
-  return (
-    <div className="space-y-4">
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-white/5">
-        <h3 className="text-sm font-medium mb-2">Footer Settings</h3>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          Customize footer content, links, and company information.
-        </p>
-      </div>
-
-      <Field label="Company Name">
-        <TextInput
-          value={v.companyName || "Your Agency"}
-          onChange={(e) => up("companyName", e.target.value)}
-          placeholder="Your Agency"
-        />
-      </Field>
-
-      <Field label="Company Description">
-        <Textarea
-          rows={2}
-          value={
-            v.companyDescription ||
-            "Professional web solutions for growing businesses."
-          }
-          onChange={(e) => up("companyDescription", e.target.value)}
-          placeholder="Professional web solutions for growing businesses."
-        />
-      </Field>
-
-      <Field label="Copyright Text">
-        <TextInput
-          value={v.copyrightText || "Your Agency"}
-          onChange={(e) => up("copyrightText", e.target.value)}
-          placeholder="Your Agency"
-        />
-      </Field>
-
-      <div className="space-y-2">
-        <Label>Footer Navigation Links</Label>
-        {footerLinks.map((link, i) => (
-          <div key={i} className="grid grid-cols-2 gap-2">
-            <TextInput
-              placeholder="Label"
-              value={link.label || ""}
-              onChange={(e) => {
-                const arr = [...footerLinks];
-                arr[i] = { ...arr[i], label: e.target.value };
-                up("footerLinks", arr);
-              }}
-            />
-            <TextInput
-              placeholder="Link"
-              value={link.href || ""}
-              onChange={(e) => {
-                const arr = [...footerLinks];
-                arr[i] = { ...arr[i], href: e.target.value };
-                up("footerLinks", arr);
-              }}
-            />
-            <div className="col-span-2 flex justify-end">
-              <IconButton
-                title="Remove"
-                onClick={() =>
-                  up(
-                    "footerLinks",
-                    footerLinks.filter((_, idx) => idx !== i)
-                  )
-                }
-              >
-                Remove
-              </IconButton>
-            </div>
-          </div>
-        ))}
-        <IconButton
-          title="Add"
-          onClick={() =>
-            up("footerLinks", [...footerLinks, { href: "", label: "" }])
-          }
-        >
-          Add footer link
-        </IconButton>
-      </div>
-
-      <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/5">
-        <h3 className="text-sm font-medium mb-2">Contact Information</h3>
-        <div className="text-xs text-gray-600 dark:text-gray-400">
-          Email, phone, and social media links are managed in the{" "}
-          <strong>Contact</strong> section. The footer will automatically
-          display the contact information you set there.
-        </div>
-      </div>
-    </div>
-  );
-}
+// Navigation, Header, Footer editors removed - now managed via JSON files
 
 function getSectionLabel(tab: SectionKey): string {
-  const home = HOME_SECTIONS.find((s) => s.key === tab)?.label;
-  if (home) return home;
-  if (tab === "posts") return "Posts";
-  if (tab === "wireframe") return "Homepage Wireframe";
-  if (tab === "navigation") return "Navigation Menu";
-  if (tab === "header") return "Header Settings";
-  if (tab === "footer") return "Footer Settings";
-  if (tab === "schema") return "Schema (JSON‑LD)";
-  if (tab === "brand") return "Brand";
-  if (tab === "settings") return "Settings";
-  return String(tab);
+  // Direct mapping for admin sections (Home content managed via JSON)
+  const labels: Record<SectionKey, string> = {
+    hero: "Hero",
+    marquee: "Capabilities",
+    services: "Services",
+    process: "Process",
+    beliefs: "Beliefs",
+    clients: "Clients (heading)",
+    clientLogos: "Client Logos",
+    caseStudies: "Case Studies",
+    about: "About",
+    book: "Book a Call",
+    contact: "Contact",
+    posts: "Posts",
+    wireframe: "Homepage Wireframe",
+    schema: "Schema (JSON‑LD)",
+    brand: "Brand",
+    settings: "Settings",
+    // Navigation, header, footer removed - managed via static files
+    navigation: "Navigation (Disabled)",
+    header: "Header (Disabled)",
+    footer: "Footer (Disabled)",
+  };
+  return labels[tab] || String(tab);
 }

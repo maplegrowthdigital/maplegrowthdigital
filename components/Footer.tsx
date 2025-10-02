@@ -1,5 +1,5 @@
 import { Container } from "./Container";
-import { site } from "../content/site";
+import fallbackData from "../content/data.json";
 import { BackToTop } from "./BackToTop";
 
 function SocialIcon({ icon }: { icon: string }) {
@@ -68,30 +68,20 @@ function SocialIcon({ icon }: { icon: string }) {
   }
 }
 
-export function Footer({ footerData }: { footerData?: any }) {
-  const companyName = footerData?.companyName || "Your Agency";
-  const companyDescription =
-    footerData?.companyDescription ||
-    "Professional web solutions for growing businesses.";
-  const copyrightText = footerData?.copyrightText || "Your Agency";
+export function Footer() {
+  const content = fallbackData as any;
 
-  const footerLinks = Array.isArray(footerData?.footerLinks)
-    ? footerData.footerLinks
-    : [
-        { href: "#services", label: "Services" },
-        { href: "#process", label: "Process" },
-        { href: "#case-studies", label: "Case Studies" },
-        { href: "#about", label: "About" },
-        { href: "#contact", label: "Contact" },
-      ];
+  const companyName = "MapleGrowth Digital";
+  const companyDescription = "Finely crafted websites for serious businesses.";
+  const copyrightText = "MapleGrowth Digital";
 
-  const socialLinks = Array.isArray(footerData?.socialLinks)
-    ? footerData.socialLinks
-    : [
-        { href: "#", label: "Instagram", icon: "instagram" },
-        { href: "#", label: "LinkedIn", icon: "linkedin" },
-        { href: "#", label: "Email", icon: "email" },
-      ];
+  const footerLinks = [
+    { href: "#services", label: "Services" },
+    { href: "#process", label: "Process" },
+    { href: "#case-studies", label: "Case Studies" },
+    { href: "#about", label: "About" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   return (
     <footer className="bg-gray-900 text-white border-t-2 border-brand-500">
@@ -113,67 +103,59 @@ export function Footer({ footerData }: { footerData?: any }) {
             ))}
           </nav>
           <div className="space-y-3 text-sm">
-            {footerData?.contact?.email && (
-              <div className="flex items-center gap-2 text-white/80">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 4h16v16H4z" />
-                  <path d="M22 6l-10 7L2 6" />
-                </svg>
+            <div className="flex items-center gap-2 text-white/80">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 4h16v16H4z" />
+                <path d="M22 6l-10 7L2 6" />
+              </svg>
+              <a
+                href={`mailto:${content.contact.email}`}
+                className="hover:text-white"
+              >
+                {content.contact.email}
+              </a>
+            </div>
+            <div className="flex items-center gap-2 text-white/80">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.62-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.6 12.6 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.6 12.6 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <a
+                href={`tel:${content.contact.phone.replace(/\s/g, "")}`}
+                className="hover:text-white"
+              >
+                {content.contact.phone}
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              {content.contact.socials.map((social: any, i: number) => (
                 <a
-                  href={`mailto:${footerData.contact.email}`}
-                  className="hover:text-white"
+                  key={i}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="text-white/80 hover:text-white"
                 >
-                  {footerData.contact.email}
+                  <SocialIcon icon={social.label.toLowerCase()} />
                 </a>
-              </div>
-            )}
-            {footerData?.contact?.phone && (
-              <div className="flex items-center gap-2 text-white/80">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.62-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.6 12.6 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.6 12.6 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <a
-                  href={`tel:${footerData.contact.phone.replace(/\s/g, "")}`}
-                  className="hover:text-white"
-                >
-                  {footerData.contact.phone}
-                </a>
-              </div>
-            )}
-            {footerData?.contact?.socials &&
-              Array.isArray(footerData.contact.socials) &&
-              footerData.contact.socials.length > 0 && (
-                <div className="flex items-center gap-4">
-                  {footerData.contact.socials.map((social: any, i: number) => (
-                    <a
-                      key={i}
-                      href={social.href}
-                      aria-label={social.label}
-                      className="text-white/80 hover:text-white"
-                    >
-                      <SocialIcon icon={social.label.toLowerCase()} />
-                    </a>
-                  ))}
-                </div>
-              )}
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60 flex items-center justify-between">

@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
-import { site } from "../content/site";
 import { ShapesBackdrop } from "./ShapesBackdrop";
 
 type CTA = {
@@ -10,35 +9,38 @@ type CTA = {
   target?: string;
 };
 
-export function BookCall({ book }: { book?: typeof site.book }) {
-  const content = book ?? site.book;
-  const primaryCta: CTA =
-    content.primaryCta ?? {
-      label: "Book a call",
-      href: site.tidycal,
-      target: "_blank",
-    };
-  const secondaryCta: CTA =
-    content.secondaryCta ?? {
-      label: "See case studies",
-      href: "#case-studies",
-    };
-  const tertiaryCta: CTA =
-    content.tertiaryCta ?? {
-      label: "Go to contact form",
-      href: "#contact",
-    };
+export function BookCall({ book }: { book?: any }) {
+  const content = book || {};
+  const primaryCta: CTA = content.cta || {
+    label: "Book a strategy call",
+    href: "https://tidycal.com/maplegrowthdigital/strategy-call",
+    target: "_blank",
+  };
+  const secondaryCta: CTA = content.secondaryCta ?? {
+    label: "See What We Offer",
+    href: "#services",
+  };
+  const tertiaryCta: CTA = content.tertiaryCta ?? {
+    label: "Go to contact form",
+    href: "#contact",
+  };
   const primaryTarget =
     primaryCta.target ||
-    (primaryCta.href && primaryCta.href.startsWith("http") ? "_blank" : undefined);
+    (primaryCta.href && primaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
   const secondaryTarget =
     secondaryCta.target ||
-    (secondaryCta.href && secondaryCta.href.startsWith("http") ? "_blank" : undefined);
+    (secondaryCta.href && secondaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
   const secondaryRel = secondaryTarget === "_blank" ? "noreferrer" : undefined;
   const tertiaryTarget =
     tertiaryCta.target ||
-    (tertiaryCta.href && tertiaryCta.href.startsWith("http") ? "_blank" : undefined);
+    (tertiaryCta.href && tertiaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
   const tertiaryRel = tertiaryTarget === "_blank" ? "noreferrer" : undefined;
   const container = {
     hidden: {},
@@ -95,7 +97,7 @@ export function BookCall({ book }: { book?: typeof site.book }) {
                 {content.title}
               </motion.h2>
               <motion.ul variants={container} className="mt-6 grid gap-3">
-                {content.paragraphs.map((p, i) => (
+                {(content.paragraphs || []).map((p: string, i: number) => (
                   <motion.li
                     key={i}
                     variants={item}

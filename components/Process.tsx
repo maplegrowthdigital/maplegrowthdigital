@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Container } from "./Container";
-import { site } from "../content/site";
 import { ShapesBackdrop } from "./ShapesBackdrop";
 
 function StepIcon({ title }: { title: string }) {
@@ -50,9 +49,9 @@ function StepIcon({ title }: { title: string }) {
   );
 }
 
-export function Process({ process }: { process?: typeof site.process }) {
+export function Process({ process }: { process?: any }) {
   const [active, setActive] = useState(0);
-  const content = process ?? site.process;
+  const content = process || {};
   const images = [
     "/images/project-1.svg",
     "/images/project-2.svg",
@@ -93,7 +92,7 @@ export function Process({ process }: { process?: typeof site.process }) {
             </motion.div>
 
             <ol className="mt-8 space-y-4">
-              {content.steps.map((s, idx) => (
+              {(content.steps || []).map((s: any, idx: number) => (
                 <motion.li key={s.title} variants={item}>
                   <button
                     type="button"
@@ -134,7 +133,7 @@ export function Process({ process }: { process?: typeof site.process }) {
                 className="relative overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-800"
               >
                 <div className="relative aspect-[4/3] bg-gray-50 dark:bg-neutral-900">
-                  {content.steps.map((s, idx) => (
+                  {(content.steps || []).map((s: any, idx: number) => (
                     <div
                       key={s.title}
                       className={
@@ -153,7 +152,7 @@ export function Process({ process }: { process?: typeof site.process }) {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent p-4 text-white">
                   <div className="text-sm">
-                    {content.steps[active]?.title}
+                    {(content.steps || [])[active]?.title}
                   </div>
                 </div>
               </motion.div>
