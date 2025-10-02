@@ -2681,13 +2681,29 @@ function SchemaEditor({
         setBusinessName(lb.name || businessName);
         setLegalName(lb.legalName || legalName);
         setUrl(lb.url || url);
-        setLogo(lb.logo || logo);
-        setImage(lb.image || image);
+
+        // Extract URL from ImageObject structure or use string directly
+        const logoUrl =
+          typeof lb.logo === "string"
+            ? lb.logo
+            : typeof lb.logo === "object" && lb.logo?.url
+            ? lb.logo.url
+            : logo;
+        const imageUrl =
+          typeof lb.image === "string"
+            ? lb.image
+            : typeof lb.image === "object" && lb.image?.url
+            ? lb.image.url
+            : image;
+
+        setLogo(logoUrl);
+        setImage(imageUrl);
         setTelephone(lb.telephone || telephone);
         setPriceRange(lb.priceRange || priceRange);
         setAddressLocality(lb.address?.addressLocality || addressLocality);
         setAddressRegion(lb.address?.addressRegion || addressRegion);
         setAddressCountry(lb.address?.addressCountry || addressCountry);
+        if (lb.address?.postalCode) setPostalCode(lb.address.postalCode);
         if (
           Array.isArray(lb.openingHoursSpecification) &&
           lb.openingHoursSpecification[0]
