@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { ShapesBackdrop } from "./ShapesBackdrop";
+import { Icon } from "./Icon";
 
 type CTA = {
   label: string;
@@ -81,19 +82,7 @@ export function Hero({ hero }: { hero?: any }) {
                   aria-label={primaryCta.ariaLabel || primaryCta.label}
                 >
                   {primaryCta.label}
-                  <svg
-                    aria-hidden
-                    className="ml-2 h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
+                  <Icon name="arrow-right" size={16} className="ml-2" />
                 </a>
               )}
               <a
@@ -101,19 +90,7 @@ export function Hero({ hero }: { hero?: any }) {
                 className="btn-secondary transition-transform duration-300 hover:-translate-y-0.5"
               >
                 See What We Offer
-                <svg
-                  aria-hidden
-                  className="ml-2 h-4 w-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
+                <Icon name="arrow-right" size={16} className="ml-2" />
               </a>
             </motion.div>
             <div className="mt-10 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">

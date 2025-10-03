@@ -8,7 +8,6 @@ import Link from "next/link";
 import { Markdown, extractToc } from "../../../components/Markdown";
 import { BlogNav } from "../../../components/BlogNav";
 import { getPostBySlug, getAllPosts } from "../../../content/posts";
-import { createAnonServerClient } from "../../../utils/supabase/server";
 
 type Props = { params: { slug: string } };
 
@@ -17,33 +16,6 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // Try Supabase first
-  try {
-    const supabase = createAnonServerClient();
-    const { data } = await supabase
-      .from("posts")
-      .select("title,excerpt,cover_image,published")
-      .eq("slug", params.slug)
-      .single();
-    if (data && data.published) {
-      return {
-        title: data.title,
-        description: data.excerpt || undefined,
-        openGraph: {
-          title: data.title,
-          description: data.excerpt || undefined,
-          images: data.cover_image ? [{ url: data.cover_image }] : undefined,
-          type: "article",
-        },
-        twitter: {
-          card: "summary_large_image",
-          title: data.title,
-          description: data.excerpt || undefined,
-          images: data.cover_image ? [data.cover_image] : undefined,
-        },
-      };
-    }
-  } catch {}
   const post = getPostBySlug(params.slug);
   if (!post) return {};
   return {
@@ -64,32 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function BlogPost({ params }: Props) {
-  let post = getPostBySlug(params.slug);
-  try {
-    const supabase = createAnonServerClient();
-    const { data } = await supabase
-      .from("posts")
-      .select(
-        "slug,title,excerpt,content_md,cover_image,author,tags,date,published,audio_url"
-      )
-      .eq("slug", params.slug)
-      .single();
-    if (data && data.published) {
-      post = {
-        slug: data.slug,
-        title: data.title,
-        date: data.date,
-        author: data.author ?? undefined,
-        excerpt: data.excerpt ?? "",
-        coverImage: data.cover_image ?? undefined,
-        tags: Array.isArray(data.tags) ? data.tags : undefined,
-        content: [],
-        contentMd: data.content_md ?? undefined,
-        audioUrl: data.audio_url ?? undefined,
-      } as any;
-    }
-  } catch {}
+export default function BlogPost({ params }: Props) {
+  const post = getPostBySlug(params.slug);
   if (!post) return notFound();
 
   const jsonld = {

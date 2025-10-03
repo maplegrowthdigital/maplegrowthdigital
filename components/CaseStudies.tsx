@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { ShapesBackdrop } from "./ShapesBackdrop";
+import { Icon } from "./Icon";
 
 type CTA = {
   label: string;
@@ -115,18 +116,7 @@ export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
                         key={r}
                         className="inline-flex items-center gap-2 rounded-lg border border-brand-500/30 bg-brand-500/10 px-3 py-2 text-sm text-brand-600 dark:text-brand-500"
                       >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 13l4 4L19 7" />
-                        </svg>
+                        <Icon name="check" size={16} />
                         <span>{r}</span>
                       </li>
                     ))}
@@ -134,19 +124,7 @@ export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
                   <div className="mt-7 flex flex-wrap gap-3">
                     <a href={study.link} className="btn-cta">
                       {study.linkLabel ?? "Read case study"}
-                      <svg
-                        aria-hidden
-                        className="ml-2 h-4 w-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </svg>
+                      <Icon name="arrow-right" size={16} className="ml-2" />
                     </a>
                     {sectionCta?.href && sectionCta?.label && (
                       <a

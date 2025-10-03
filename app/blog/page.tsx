@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getAllPosts } from "../../content/posts";
-import { createAnonServerClient } from "../../utils/supabase/server";
 import { Container } from "../../components/Container";
 
 export const metadata: Metadata = {
@@ -23,33 +22,8 @@ function estimateReadMinutes(post: {
   return Math.max(1, Math.round(words / wpm));
 }
 
-export default async function BlogIndex() {
-  // Try Supabase first
-  let posts = getAllPosts();
-  try {
-    const supabase = createAnonServerClient();
-    const { data, error } = await supabase
-      .from("posts")
-      .select(
-        "slug,title,excerpt,cover_image,author,tags,date,published,content_md"
-      )
-      .eq("published", true)
-      .order("date", { ascending: false });
-    if (!error && Array.isArray(data) && data.length > 0) {
-      posts = data.map((p: any) => ({
-        slug: p.slug,
-        title: p.title,
-        date: p.date,
-        author: p.author ?? undefined,
-        excerpt: p.excerpt ?? "",
-        coverImage: p.cover_image ?? undefined,
-        tags: Array.isArray(p.tags) ? p.tags : undefined,
-        content: [],
-        contentMd: p.content_md ?? undefined,
-        audioUrl: p.audio_url ?? undefined,
-      }));
-    }
-  } catch {}
+export default function BlogIndex() {
+  const posts = getAllPosts();
   return (
     <main className="bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
       <section className="relative overflow-hidden pb-10 pt-16 sm:pt-20">

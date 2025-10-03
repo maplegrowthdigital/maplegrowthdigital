@@ -2,73 +2,22 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
+import { Icon } from "./Icon";
 import { ShapesBackdrop } from "./ShapesBackdrop";
 
 function ServiceIcon({ icon }: { icon: string }) {
-  const cls = "h-5 w-5";
-  const common = {
-    stroke: "currentColor",
-    strokeWidth: 2,
-    fill: "none",
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
+  const iconMap: { [key: string]: string } = {
+    SEO: "analytics",
+    PPC: "ppc",
+    DEV: "web-dev",
+    CONTENT: "content",
+    BRAND: "brand",
+    GROWTH: "growth",
+    DEFAULT: "search",
   };
 
-  switch (icon) {
-    case "SEO":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M3 3v18h18" />
-          <path d="M7 15l3-3 3 2 4-6" />
-        </svg>
-      );
-    case "PPC":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M12 2L22 7l-10 5L2 7l10-5z" />
-          <path d="M12 17l10-5" />
-          <path d="M12 17l-10-5" />
-        </svg>
-      );
-    case "DEV":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M8 9l-4 3 4 3" />
-          <path d="M16 9l4 3-4 3" />
-          <path d="M12 8v8" />
-        </svg>
-      );
-    case "CONTENT":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <path d="M14 2v6h6" />
-          <path d="M16 13H8" />
-          <path d="M16 17H8" />
-        </svg>
-      );
-    case "BRAND":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M14 3l7 7-7 7-7-7 7-7z" />
-          <path d="M5 19h14" />
-        </svg>
-      );
-    case "GROWTH":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M3 12l9-9 9 9" />
-          <path d="M12 3v18" />
-          <path d="M8 21h8" />
-        </svg>
-      );
-    default:
-      return (
-        <svg viewBox="0 0 24 24" className={cls} {...common}>
-          <path d="M14.7 6.3a4 4 0 1 0-5.4 5.4l-6 6 3 3 6-6a4 4 0 0 0 5.4-5.4z" />
-        </svg>
-      );
-  }
+  const iconName = iconMap[icon] || iconMap.DEFAULT;
+  return <Icon name={iconName} size={20} />;
 }
 
 export function Services({ services }: { services?: any }) {

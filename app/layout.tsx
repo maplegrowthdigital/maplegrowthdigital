@@ -5,10 +5,10 @@ import { Footer } from "../components/Footer";
 import { MobileNav } from "../components/MobileNav";
 import { DynamicStyles } from "../components/DynamicStyles";
 import { Montserrat, Open_Sans } from "next/font/google";
-
 import { AnalyticsProvider } from "../components/Analytics";
-import { createAnonServerClient } from "../utils/supabase/server";
 import { getNavigationItems } from "../lib/navigation";
+import { config } from "../content/config";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,185 +24,80 @@ const openSans = Open_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const DEFAULT_TITLE = "Your Agency";
-const DEFAULT_DESCRIPTION = "Professional web solutions for growing businesses";
-const DEFAULT_HEADING_FONT =
-  'var(--font-heading-default), "Montserrat", sans-serif';
-const DEFAULT_BODY_FONT = 'var(--font-body-default), "Open Sans", sans-serif';
-
 export async function generateMetadata(): Promise<Metadata> {
-  let icons: Metadata["icons"] | undefined = undefined;
-  let title = DEFAULT_TITLE;
-  let description = DEFAULT_DESCRIPTION;
-  let siteName: string | undefined = undefined;
-  let canonicalUrl: string | undefined = undefined;
-  let ogTitle: string | undefined = undefined;
-  let ogDescription: string | undefined = undefined;
-  let ogImageUrl: string | undefined = undefined;
-  let twitterCard: string | undefined = undefined;
-  let twitterSite: string | undefined = undefined;
-  try {
-    const supabase = createAnonServerClient();
-    const { data, error } = await supabase
-      .from("sections")
-      .select("data")
-      .eq("id", "settings")
-      .single();
-    const settings: any = !error ? data?.data : undefined;
-    const faviconUrl = settings?.faviconUrl as string | undefined;
-    if (faviconUrl) {
-      icons = {
-        icon: [{ url: faviconUrl }],
-        shortcut: [{ url: faviconUrl }],
-        apple: [{ url: faviconUrl }],
-      } as NonNullable<Metadata["icons"]>;
-    }
-    if (settings) {
-      title = (settings.seoTitle as string) || title;
-      description = (settings.seoDescription as string) || description;
-      siteName = (settings.siteName as string) || undefined;
-      canonicalUrl = (settings.canonicalUrl as string) || undefined;
-      ogTitle = (settings.ogTitle as string) || title;
-      ogDescription = (settings.ogDescription as string) || description;
-      ogImageUrl = (settings.ogImageUrl as string) || undefined;
-      twitterCard = (settings.twitterCard as string) || "summary_large_image";
-      twitterSite = (settings.twitterSite as string) || undefined;
-    }
-  } catch {}
-  // Normalize twitter card to allowed union
-  const card: "summary" | "summary_large_image" | "player" | "app" =
-    twitterCard === "summary" ||
-    twitterCard === "player" ||
-    twitterCard === "app"
-      ? (twitterCard as any)
-      : "summary_large_image";
+  const { settings } = config;
 
   return {
-    title,
-    description,
-    icons,
+    metadataBase: new URL(settings.canonicalUrl),
+    title: settings.seoTitle,
+    description: settings.seoDescription,
+    icons: settings.faviconUrl
+      ? {
+          icon: [{ url: settings.faviconUrl }],
+          shortcut: [{ url: settings.faviconUrl }],
+          apple: [{ url: settings.faviconUrl }],
+        }
+      : undefined,
     openGraph: {
-      title: ogTitle || title,
-      description: ogDescription || description,
-      siteName: siteName || title,
-      url: canonicalUrl,
-      images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+      title: settings.ogTitle,
+      description: settings.ogDescription,
+      siteName: settings.siteName,
+      url: settings.canonicalUrl,
+      images: settings.ogImageUrl ? [{ url: settings.ogImageUrl }] : undefined,
       type: "website",
     },
     twitter: {
-      card,
-      site: twitterSite,
-      title: ogTitle || title,
-      description: ogDescription || description,
-      images: ogImageUrl ? [ogImageUrl] : undefined,
+      card: settings.twitterCard as any,
+      site: settings.twitterSite,
+      title: settings.ogTitle,
+      description: settings.ogDescription,
+      images: settings.ogImageUrl ? [settings.ogImageUrl] : undefined,
     },
-    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
+    alternates: settings.canonicalUrl
+      ? { canonical: settings.canonicalUrl }
+      : undefined,
   } satisfies Metadata;
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Load dynamic settings (e.g., logoUrl, brandColor, typography, navigation, header, footer)
-  let logoUrl: string | undefined = undefined;
-  let brandColor: string = "#C62828"; // Default brand color
-  let buttonColor: string = brandColor;
-  let headingFont: string = DEFAULT_HEADING_FONT;
-  let bodyFont: string = DEFAULT_BODY_FONT;
-  let googleAnalyticsId: string | undefined = undefined;
-
-  // Load navigation items from static configuration
+  // Load configuration from static files
+  const { brand, settings } = config;
   const navItems = getNavigationItems();
 
-  // Try to load minimal settings from database (brand and analytics only)
-  try {
-    const supabase = createAnonServerClient();
-    const { data, error } = await supabase
-      .from("sections")
-      .select("id, data")
-      .in("id", ["settings", "brand"]);
-
-    if (!error && Array.isArray(data)) {
-      const sectionsMap = new Map(data.map((row: any) => [row.id, row.data]));
-
-      const settings = sectionsMap.get("settings") || {};
-      const brand = sectionsMap.get("brand") || {};
-
-      const isHex = (val: unknown): string | null =>
-        typeof val === "string" && /^#[0-9A-Fa-f]{6}$/.test(val) ? val : null;
-
-      const isFont = (val: unknown): string | null => {
-        if (typeof val !== "string") return null;
-        const trimmed = val.trim();
-        if (!trimmed) return null;
-        return /^[a-zA-Z0-9\s,"'\/\-:\(\)_]+$/.test(trimmed) ? trimmed : null;
-      };
-
-      const brandLogo =
-        typeof brand.logoUrl === "string" && brand.logoUrl
-          ? (brand.logoUrl as string)
-          : undefined;
-      const settingsLogo =
-        typeof settings.logoUrl === "string" && settings.logoUrl
-          ? (settings.logoUrl as string)
-          : undefined;
-      if (brandLogo) logoUrl = brandLogo;
-      else if (settingsLogo) logoUrl = settingsLogo;
-
-      const baseColor =
-        isHex((brand as any).brandColor) ?? isHex((settings as any).brandColor);
-      if (baseColor) {
-        brandColor = baseColor;
-      }
-
-      const buttonOverride =
-        isHex((brand as any).primaryButtonColor) ??
-        isHex((settings as any).primaryButtonColor);
-      buttonColor = buttonOverride ?? brandColor;
-
-      const headingOverride =
-        isFont((brand as any).headingFontFamily) ??
-        isFont((settings as any).headingFontFamily);
-      const bodyOverride =
-        isFont((brand as any).bodyFontFamily) ??
-        isFont((settings as any).bodyFontFamily);
-      const legacyFont =
-        isFont((brand as any).fontFamily) ??
-        isFont((settings as any).fontFamily);
-
-      if (headingOverride) headingFont = headingOverride;
-      else if (legacyFont) headingFont = legacyFont;
-
-      if (bodyOverride) bodyFont = bodyOverride;
-      else if (legacyFont) bodyFont = legacyFont;
-
-      // Extract Google Analytics ID from settings
-      const googleAnalyticsFromSettings = (settings as any)?.googleAnalyticsId;
-      if (
-        typeof googleAnalyticsFromSettings === "string" &&
-        googleAnalyticsFromSettings.startsWith("G-")
-      ) {
-        googleAnalyticsId = googleAnalyticsFromSettings;
-      }
-    }
-  } catch (error) {
-    // Silently fall back to defaults if database is unavailable
-    console.log("Using default settings - database unavailable");
-  }
+  // Apply brand configuration
+  const brandColor = config.getBrandColor();
+  const buttonColor = config.getButtonColor();
+  const headingFont = config.getHeadingFont();
+  const bodyFont = config.getBodyFont();
+  const logoUrl = config.getLogo();
 
   return (
     <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
       <head>
         <style
           dangerouslySetInnerHTML={{
-            __html: `:root { --brand-500: ${brandColor}; --button-primary: ${buttonColor}; --font-heading: ${headingFont}; --font-body: ${bodyFont}; }`,
+            __html: `:root { 
+              --brand-500: ${brandColor}; 
+              --button-primary: ${buttonColor}; 
+              --font-heading: ${headingFont}; 
+              --font-body: ${bodyFont}; 
+            }`,
           }}
+        />
+        {/* JSON-LD Schema */}
+        <Script
+          id="jsonld-schema"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(config.schema) }}
         />
       </head>
       <body className="antialiased bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
-        <AnalyticsProvider googleAnalyticsId={googleAnalyticsId} />
+        <AnalyticsProvider googleAnalyticsId={settings.googleAnalyticsId} />
         <DynamicStyles />
         <Header logoUrl={logoUrl} navItems={navItems} />
         <main className="md:pb-0">{children}</main>
