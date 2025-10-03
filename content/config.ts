@@ -25,7 +25,8 @@ export const config = {
     'var(--font-heading-default), "Montserrat", sans-serif',
   getBodyFont: () =>
     brand.bodyFontFamily || 'var(--font-body-default), "Open Sans", sans-serif',
-  getLogo: () => brand.logoUrl || fallbackData.logoUrl || "/logo.png",
+  getLogo: () =>
+    brand.logoUrl || fallbackData.logoUrl || "/maplegrowth-logo.svg",
 
   // SEO helpers
   getPageTitle: (pageTitle?: string) => {

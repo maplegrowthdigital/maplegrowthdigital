@@ -25,11 +25,10 @@ export const settings = {
 
   // Additional SEO keywords from data.json
   keywords: [
-    "digital marketing agency",
-    "digital marketing services",
-    "growth marketing agency",
-    "internet marketing services",
-    "online marketing company",
-    "small business digital marketing",
+    "maple growth digital",
+    "digital marketing Mississauga",
+    "SEO services Canada",
+    "website design Mississauga",
+    "PPC management Canada",
   ],
 } as const;
