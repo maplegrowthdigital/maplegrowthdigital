@@ -8,6 +8,8 @@ import Link from "next/link";
 import { Markdown, extractToc } from "../../../components/Markdown";
 import { BlogNav } from "../../../components/BlogNav";
 import { getPostBySlug, getAllPosts } from "../../../content/posts";
+import { BreadcrumbSchema } from "../../../components/BreadcrumbSchema";
+import { generateBreadcrumbSchema } from "../../../lib/breadcrumbs";
 
 type Props = { params: { slug: string } };
 
@@ -40,6 +42,11 @@ export default function BlogPost({ params }: Props) {
   const post = getPostBySlug(params.slug);
   if (!post) return notFound();
 
+  const breadcrumbSchema = generateBreadcrumbSchema(
+    `/blog/${params.slug}`,
+    post.title
+  );
+
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -64,6 +71,7 @@ export default function BlogPost({ params }: Props) {
 
   return (
     <main className="bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
+      <BreadcrumbSchema schema={breadcrumbSchema} />
       <Script
         id="jsonld-article"
         type="application/ld+json"

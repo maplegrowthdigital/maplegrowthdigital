@@ -21,8 +21,20 @@ export const schema = {
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
+        addressLocality: "Mississauga",
+        addressRegion: "ON",
         addressCountry: "Canada",
       },
+      areaServed: [
+        {
+          "@type": "Country",
+          name: "Canada",
+        },
+        {
+          "@type": "Country",
+          name: "United States",
+        },
+      ],
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -35,7 +47,61 @@ export const schema = {
         {
           "@type": "ContactPoint",
           telephone: "+1 (431) 726-1578",
+          email: "connect@maplegrowthdigital.ca",
           contactType: "customer service",
+          availableLanguage: ["English", "French"],
+        },
+      ],
+      sameAs: [
+        "https://www.linkedin.com/company/maplegrowthdigital",
+        "https://www.instagram.com/maplegrowthdigital",
+      ],
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.maplegrowthdigital.ca/#organization",
+      name: "MapleGrowth Digital",
+      legalName: "MapleGrowth Digital",
+      url: "https://www.maplegrowthdigital.ca/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.maplegrowthdigital.ca/maplegrowth-logo.svg",
+      },
+      image: {
+        "@type": "ImageObject",
+        url: "https://www.maplegrowthdigital.ca/maplegrowth-logo.svg",
+      },
+      description:
+        "Canadian digital marketing agency delivering SEO, PPC, content, and web design services for growth-focused small businesses and scale-ups.",
+      slogan: "Smart Marketing. Measurable Growth.",
+      foundingDate: "2014",
+      numberOfEmployees: {
+        "@type": "QuantitativeValue",
+        value: "5-10",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Mississauga",
+        addressRegion: "ON",
+        addressCountry: "Canada",
+      },
+      areaServed: [
+        {
+          "@type": "Country",
+          name: "Canada",
+        },
+        {
+          "@type": "Country",
+          name: "United States",
+        },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+1 (431) 726-1578",
+          email: "connect@maplegrowthdigital.ca",
+          contactType: "customer service",
+          availableLanguage: ["English", "French"],
         },
       ],
       sameAs: [

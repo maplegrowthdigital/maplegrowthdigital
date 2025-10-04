@@ -1,6 +1,6 @@
 export const settings = {
   // Favicon
-  faviconUrl: "/images/favicon.png",
+  faviconUrl: "/images/favico.png",
 
   // SEO Meta
   siteName: "MapleGrowth Digital",
