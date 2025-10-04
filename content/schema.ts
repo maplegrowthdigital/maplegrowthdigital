@@ -21,8 +21,10 @@ export const schema = {
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "363 Lakeshore Rd E",
         addressLocality: "Mississauga",
         addressRegion: "ON",
+        postalCode: "L5G 1H7",
         addressCountry: "Canada",
       },
       areaServed: [
@@ -81,8 +83,10 @@ export const schema = {
       },
       address: {
         "@type": "PostalAddress",
+        streetAddress: "363 Lakeshore Rd E",
         addressLocality: "Mississauga",
         addressRegion: "ON",
+        postalCode: "L5G 1H7",
         addressCountry: "Canada",
       },
       areaServed: [
