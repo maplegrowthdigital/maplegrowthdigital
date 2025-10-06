@@ -154,36 +154,6 @@
     }
   },
 
-  "faq": {
-    "id": "contact-faq",
-    "role": "region",
-    "ariaLabel": "Frequently asked questions",
-    "headingLevel": 2,
-    "title": "Common Questions",
-    "questions": [
-      {
-        "question": "What happens after I book a strategy call?",
-        "answer": "We'll send you a brief questionnaire to understand your business and goals. During the 30-minute call, we'll discuss your challenges, opportunities, and potential solutions. There's no obligation — it's a genuine consultation to see if we're a good fit."
-      },
-      {
-        "question": "How quickly do you respond to inquiries?",
-        "answer": "We respond to all emails and form submissions within 24 hours during business days. For urgent matters, feel free to call us directly."
-      },
-      {
-        "question": "Do you work with businesses outside of Canada?",
-        "answer": "Yes! While we're based in Canada and specialize in the Canadian market, we work with businesses across North America and beyond. Our remote-first approach enables us to serve clients effectively regardless of location."
-      },
-      {
-        "question": "What information should I prepare for our consultation?",
-        "answer": "Come prepared with information about your business goals, current marketing efforts, target audience, and any specific challenges you're facing. We'll guide you through the rest during our conversation."
-      },
-      {
-        "question": "Is the strategy call really free?",
-        "answer": "Absolutely! The strategy call is a genuine consultation with no strings attached. We believe in providing value upfront and building relationships based on trust and results."
-      }
-    ]
-  },
-
   "office": {
     "id": "office-info",
     "role": "region",
@@ -213,46 +183,16 @@
     "subtitle": "Follow our journey and get marketing insights.",
     "links": [
       {
-        "platform": "LinkedIn",
-        "href": "https://www.linkedin.com/company/maplegrowthdigital",
-        "ariaLabel": "Follow MapleGrowth Digital on LinkedIn",
-        "icon": "linkedin"
-      },
-      {
         "platform": "Instagram",
-        "href": "https://www.instagram.com/maplegrowthdigital",
+        "href": "https://www.instagram.com/maplegrowthdigital/",
         "ariaLabel": "Follow MapleGrowth Digital on Instagram",
         "icon": "instagram"
-      }
-    ]
-  },
-
-  "nextSteps": {
-    "id": "next-steps",
-    "role": "region",
-    "ariaLabel": "What happens next",
-    "headingLevel": 2,
-    "title": "What Happens Next?",
-    "steps": [
-      {
-        "step": "1",
-        "title": "We Listen",
-        "description": "We'll learn about your business, goals, and current marketing challenges."
       },
       {
-        "step": "2",
-        "title": "We Analyze",
-        "description": "Our team conducts research and develops initial strategic recommendations."
-      },
-      {
-        "step": "3",
-        "title": "We Propose",
-        "description": "We present a custom strategy and proposal tailored to your specific needs and goals."
-      },
-      {
-        "step": "4",
-        "title": "We Execute",
-        "description": "Once approved, we implement your campaigns with precision and ongoing optimization."
+        "platform": "YouTube",
+        "href": "https://youtube.com/@MapleGrowthDigital",
+        "ariaLabel": "Follow MapleGrowth Digital on YouTube",
+        "icon": "youtube"
       }
     ]
   }

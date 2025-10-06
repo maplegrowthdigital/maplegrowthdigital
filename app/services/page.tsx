@@ -300,36 +300,76 @@ export default function ServicesPage() {
           fields={[
             {
               name: "name",
-              label: "Name",
+              label: "Full Name",
               type: "text",
               required: true,
-              placeholder: "Name",
+              placeholder: "Your name",
             },
             {
               name: "email",
               label: "Email Address",
               type: "email",
               required: true,
-              placeholder: "Email Address",
+              placeholder: "your@email.com",
             },
             {
-              name: "phone",
-              label: "Contact Number",
-              type: "tel",
+              name: "company",
+              label: "Company",
+              type: "text",
               required: false,
-              placeholder: "Contact Number",
+              placeholder: "Your company name",
+            },
+            {
+              name: "website",
+              label: "Website",
+              type: "url",
+              required: false,
+              placeholder: "https://yourwebsite.com",
+            },
+            {
+              name: "services",
+              label: "Services Interested In",
+              type: "select",
+              required: true,
+              options: [
+                { value: "", label: "Select services..." },
+                { value: "seo", label: "SEO & Analytics" },
+                { value: "ppc", label: "PPC & Paid Media" },
+                { value: "web-dev", label: "Web Design & Development" },
+                { value: "content", label: "Content & Email Marketing" },
+                { value: "brand", label: "Brand & Creative" },
+                { value: "strategy", label: "Growth Strategy" },
+                { value: "multiple", label: "Multiple Services" },
+                { value: "not-sure", label: "Not Sure - Need Consultation" },
+              ],
+            },
+            {
+              name: "budget",
+              label: "Monthly Marketing Budget",
+              type: "select",
+              required: false,
+              options: [
+                { value: "", label: "Select budget range..." },
+                { value: "under-2k", label: "Under $2,000" },
+                { value: "2k-5k", label: "$2,000 - $5,000" },
+                { value: "5k-10k", label: "$5,000 - $10,000" },
+                { value: "10k-25k", label: "$10,000 - $25,000" },
+                { value: "25k-plus", label: "$25,000+" },
+                { value: "project-based", label: "One-time project" },
+              ],
             },
             {
               name: "message",
-              label: "Tell me about your project",
+              label: "Tell us about your project",
               type: "textarea",
               required: true,
-              placeholder: "Tell me about your project",
-              rows: 6,
+              placeholder:
+                "Describe your business goals, current challenges, and what you're hoping to achieve with digital marketing...",
+              rows: 5,
             },
           ]}
-          submitLabel="Send"
-          submitAriaLabel="Send message"
+          submitLabel="Send Message"
+          submitAriaLabel="Send contact form message"
           contactDetails={{
             email: "connect@maplegrowthdigital.ca",
             phone: "+1 (431) 726-1578",
@@ -337,13 +377,13 @@ export default function ServicesPage() {
             socials: [
               {
                 platform: "Instagram",
-                href: "#",
-                ariaLabel: "Follow on Instagram",
+                href: "https://www.instagram.com/maplegrowthdigital/",
+                ariaLabel: "Follow MapleGrowth Digital on Instagram",
               },
               {
-                platform: "LinkedIn",
-                href: "#",
-                ariaLabel: "Follow on LinkedIn",
+                platform: "YouTube",
+                href: "https://youtube.com/@MapleGrowthDigital",
+                ariaLabel: "Follow MapleGrowth Digital on YouTube",
               },
             ],
           }}

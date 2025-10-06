@@ -146,7 +146,18 @@ export default function ContactPage() {
             email: "connect@maplegrowthdigital.ca",
             phone: "+1 (431) 726-1578",
             location: "Canada",
-            socials: contactData.social.links,
+            socials: [
+              {
+                platform: "Instagram",
+                href: "https://www.instagram.com/maplegrowthdigital/",
+                ariaLabel: "Follow MapleGrowth Digital on Instagram",
+              },
+              {
+                platform: "YouTube",
+                href: "https://youtube.com/@MapleGrowthDigital",
+                ariaLabel: "Follow MapleGrowth Digital on YouTube",
+              },
+            ],
           }}
           officeInfo={{
             street: contactData.office.address.street,
