@@ -192,7 +192,6 @@ export function generateServicePageSchema(
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
-      priceRange: "$$",
       seller: {
         "@id": `${BASE_URL}/#agency`,
       },
@@ -216,28 +215,6 @@ export function generateServicePageSchema(
           },
         },
       })),
-    },
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: BASE_URL,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Services",
-          item: `${BASE_URL}/services`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: service.title,
-        },
-      ],
     },
   };
 }
@@ -309,12 +286,7 @@ export function generateCaseStudyPageSchema(
     "@id": `${BASE_URL}/case-studies/${caseStudy.slug}#article`,
     headline: caseStudy.title,
     description: caseStudy.summary,
-    image: {
-      "@type": "ImageObject",
-      url: `${BASE_URL}${caseStudy.image}`,
-      width: 1200,
-      height: 630,
-    },
+    image: `${BASE_URL}${caseStudy.image}`,
     author: {
       "@id": `${BASE_URL}/#organization`,
     },
@@ -339,28 +311,6 @@ export function generateCaseStudyPageSchema(
     mainEntity: {
       "@id": `${BASE_URL}/case-studies/${caseStudy.slug}#casestudy`,
     },
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: BASE_URL,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Case Studies",
-          item: `${BASE_URL}/case-studies`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: caseStudy.title,
-        },
-      ],
-    },
   };
 
   const creativeWorkSchema: WithContext<CreativeWork> = {
@@ -379,11 +329,6 @@ export function generateCaseStudyPageSchema(
       name: caseStudy.category,
       description: `Marketing campaign in ${caseStudy.category.toLowerCase()}`,
     },
-    workExample: caseStudy.results.map((result) => ({
-      "@type": "Thing",
-      name: "Campaign Result",
-      description: result,
-    })),
   };
 
   return [articleSchema, creativeWorkSchema];
