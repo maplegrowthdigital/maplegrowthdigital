@@ -1,5 +1,5 @@
 {
-  "logoUrl": "/maplegrowth-logo.svg",
+  "logoUrl": "/mgd-logo.svg",
   "tidycal": "https://tidycal.com/maplegrowthdigital/strategy-call",
 
   "seo": {
@@ -31,7 +31,7 @@
     "ariaLabel": "Digital marketing agency introduction",
     "headingLevel": 1,
     "title": "Smart Marketing. Measurable Growth.",
-    "subhead": "A Canadian digital marketing agency for small businesses and growth-focused brands.",
+    "subhead": "A Canadian Digital Marketing Agency",
     "body": "MapleGrowth Digital is a growth marketing agency that blends creativity, data, and strategy. We deliver internet marketing services you can see, measure, and trust — from SEO and PPC to conversion-focused web design.",
     "stats": [
       { "value": "10+ yrs", "label": "Experience in web & digital marketing" },
@@ -312,7 +312,7 @@
     "ceoNote": "Growth comes from pairing creativity with accountability — ideas translated into measurable outcomes.",
     "ceoName": "Founder",
     "ceoTitle": "MapleGrowth Digital",
-    "photo": "/about/luke.jpg"
+    "photo": "/about/about.png"
   },
 
   "book": {
@@ -343,7 +343,7 @@
     "socials": [
       {
         "label": "Instagram",
-        "href": "#"
+        "href": "https://www.instagram.com/maplegrowthdigital/"
       },
       {
         "label": "LinkedIn",

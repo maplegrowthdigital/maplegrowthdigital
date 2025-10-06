@@ -1,0 +1,259 @@
+{
+  "seo": {
+    "title": "Contact MapleGrowth Digital — Get in Touch | Strategy Call Booking",
+    "description": "Contact MapleGrowth Digital for your digital marketing needs. Book a free strategy call or send us a message about SEO, PPC, web development, and growth marketing.",
+    "keywords": [
+      "contact maplegrowth digital",
+      "digital marketing consultation",
+      "strategy call booking",
+      "marketing agency contact",
+      "Canadian marketing agency",
+      "growth marketing consultation"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/contact"
+  },
+
+  "hero": {
+    "id": "contact-hero",
+    "role": "region",
+    "ariaLabel": "Contact MapleGrowth Digital",
+    "headingLevel": 1,
+    "title": "Let's Start Your Growth Journey",
+    "subhead": "Ready to see what strategic digital marketing can do for your business?",
+    "body": "Whether you're looking to increase organic traffic, improve conversion rates, or scale your digital presence — we're here to help. Book a free strategy call or send us a message to get started.",
+    "image": "/images/contact-hero.jpg"
+  },
+
+  "contact": {
+    "id": "contact-info",
+    "role": "region",
+    "ariaLabel": "Contact information",
+    "headingLevel": 2,
+    "title": "Get in Touch",
+    "subtitle": "Multiple ways to connect with our team.",
+    "methods": [
+      {
+        "type": "strategy-call",
+        "title": "Book a Strategy Call",
+        "description": "Free 30-minute consultation to discuss your goals and explore how we can help.",
+        "cta": {
+          "label": "Book Call Now",
+          "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+          "ariaLabel": "Book a free strategy call with MapleGrowth Digital"
+        },
+        "icon": "calendar",
+        "featured": true
+      },
+      {
+        "type": "email",
+        "title": "Send Us an Email",
+        "description": "Have a specific question? Email us directly and we'll respond within 24 hours.",
+        "value": "connect@maplegrowthdigital.ca",
+        "cta": {
+          "label": "Send Email",
+          "href": "mailto:connect@maplegrowthdigital.ca",
+          "ariaLabel": "Send email to MapleGrowth Digital"
+        },
+        "icon": "email"
+      },
+      {
+        "type": "phone",
+        "title": "Give Us a Call",
+        "description": "Prefer to talk? Call us during business hours (9 AM - 5 PM EST, Mon-Fri).",
+        "value": "+1 (431) 726-1578",
+        "cta": {
+          "label": "Call Now",
+          "href": "tel:+14317261578",
+          "ariaLabel": "Call MapleGrowth Digital"
+        },
+        "icon": "phone"
+      }
+    ]
+  },
+
+  "form": {
+    "id": "contact-form",
+    "role": "region",
+    "ariaLabel": "Contact form",
+    "headingLevel": 2,
+    "title": "Send Us a Message",
+    "subtitle": "Tell us about your project and goals.",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "placeholder": "Your name"
+      },
+      {
+        "name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true,
+        "placeholder": "your@email.com"
+      },
+      {
+        "name": "company",
+        "label": "Company",
+        "type": "text",
+        "required": false,
+        "placeholder": "Your company name"
+      },
+      {
+        "name": "website",
+        "label": "Website",
+        "type": "url",
+        "required": false,
+        "placeholder": "https://yourwebsite.com"
+      },
+      {
+        "name": "services",
+        "label": "Services Interested In",
+        "type": "select",
+        "required": true,
+        "options": [
+          { "value": "", "label": "Select services..." },
+          { "value": "seo", "label": "SEO & Analytics" },
+          { "value": "ppc", "label": "PPC & Paid Media" },
+          { "value": "web-dev", "label": "Web Design & Development" },
+          { "value": "content", "label": "Content & Email Marketing" },
+          { "value": "brand", "label": "Brand & Creative" },
+          { "value": "strategy", "label": "Growth Strategy" },
+          { "value": "multiple", "label": "Multiple Services" },
+          { "value": "not-sure", "label": "Not Sure - Need Consultation" }
+        ]
+      },
+      {
+        "name": "budget",
+        "label": "Monthly Marketing Budget",
+        "type": "select",
+        "required": false,
+        "options": [
+          { "value": "", "label": "Select budget range..." },
+          { "value": "under-2k", "label": "Under $2,000" },
+          { "value": "2k-5k", "label": "$2,000 - $5,000" },
+          { "value": "5k-10k", "label": "$5,000 - $10,000" },
+          { "value": "10k-25k", "label": "$10,000 - $25,000" },
+          { "value": "25k-plus", "label": "$25,000+" },
+          { "value": "project-based", "label": "One-time project" }
+        ]
+      },
+      {
+        "name": "message",
+        "label": "Tell us about your project",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Describe your business goals, current challenges, and what you're hoping to achieve with digital marketing...",
+        "rows": 5
+      }
+    ],
+    "submitButton": {
+      "label": "Send Message",
+      "ariaLabel": "Send contact form message"
+    }
+  },
+
+  "faq": {
+    "id": "contact-faq",
+    "role": "region",
+    "ariaLabel": "Frequently asked questions",
+    "headingLevel": 2,
+    "title": "Common Questions",
+    "questions": [
+      {
+        "question": "What happens after I book a strategy call?",
+        "answer": "We'll send you a brief questionnaire to understand your business and goals. During the 30-minute call, we'll discuss your challenges, opportunities, and potential solutions. There's no obligation — it's a genuine consultation to see if we're a good fit."
+      },
+      {
+        "question": "How quickly do you respond to inquiries?",
+        "answer": "We respond to all emails and form submissions within 24 hours during business days. For urgent matters, feel free to call us directly."
+      },
+      {
+        "question": "Do you work with businesses outside of Canada?",
+        "answer": "Yes! While we're based in Canada and specialize in the Canadian market, we work with businesses across North America and beyond. Our remote-first approach enables us to serve clients effectively regardless of location."
+      },
+      {
+        "question": "What information should I prepare for our consultation?",
+        "answer": "Come prepared with information about your business goals, current marketing efforts, target audience, and any specific challenges you're facing. We'll guide you through the rest during our conversation."
+      },
+      {
+        "question": "Is the strategy call really free?",
+        "answer": "Absolutely! The strategy call is a genuine consultation with no strings attached. We believe in providing value upfront and building relationships based on trust and results."
+      }
+    ]
+  },
+
+  "office": {
+    "id": "office-info",
+    "role": "region",
+    "ariaLabel": "Office information",
+    "headingLevel": 2,
+    "title": "Our Office",
+    "address": {
+      "street": "363 Lakeshore Rd E",
+      "city": "Mississauga",
+      "province": "Ontario",
+      "postalCode": "L5G 1H7",
+      "country": "Canada"
+    },
+    "hours": {
+      "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM EST",
+      "weekend": "Saturday - Sunday: Closed"
+    },
+    "note": "We operate as a remote-first team, but our office address is available for correspondence and meetings by appointment."
+  },
+
+  "social": {
+    "id": "social-links",
+    "role": "region",
+    "ariaLabel": "Social media links",
+    "headingLevel": 2,
+    "title": "Connect With Us",
+    "subtitle": "Follow our journey and get marketing insights.",
+    "links": [
+      {
+        "platform": "LinkedIn",
+        "href": "https://www.linkedin.com/company/maplegrowthdigital",
+        "ariaLabel": "Follow MapleGrowth Digital on LinkedIn",
+        "icon": "linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "href": "https://www.instagram.com/maplegrowthdigital",
+        "ariaLabel": "Follow MapleGrowth Digital on Instagram",
+        "icon": "instagram"
+      }
+    ]
+  },
+
+  "nextSteps": {
+    "id": "next-steps",
+    "role": "region",
+    "ariaLabel": "What happens next",
+    "headingLevel": 2,
+    "title": "What Happens Next?",
+    "steps": [
+      {
+        "step": "1",
+        "title": "We Listen",
+        "description": "We'll learn about your business, goals, and current marketing challenges."
+      },
+      {
+        "step": "2",
+        "title": "We Analyze",
+        "description": "Our team conducts research and develops initial strategic recommendations."
+      },
+      {
+        "step": "3",
+        "title": "We Propose",
+        "description": "We present a custom strategy and proposal tailored to your specific needs and goals."
+      },
+      {
+        "step": "4",
+        "title": "We Execute",
+        "description": "Once approved, we implement your campaigns with precision and ongoing optimization."
+      }
+    ]
+  }
+}

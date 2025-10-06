@@ -1,0 +1,265 @@
+{
+  "seo": {
+    "title": "SEO & Analytics Services — MapleGrowth Digital | Search Engine Optimization",
+    "description": "Professional SEO and analytics services for Canadian businesses. Technical SEO, content strategy, and GA4 implementation for sustainable organic growth.",
+    "keywords": [
+      "SEO services",
+      "search engine optimization",
+      "Google Analytics",
+      "technical SEO",
+      "local SEO",
+      "SEO agency Canada"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/services/seo-analytics"
+  },
+
+  "hero": {
+    "id": "seo-hero",
+    "role": "region",
+    "ariaLabel": "SEO and Analytics services introduction",
+    "headingLevel": 1,
+    "title": "SEO & Analytics Services",
+    "subhead": "Technical SEO, content strategy, and analytics that compound results.",
+    "body": "Sustainable organic growth through strategic SEO implementation, content optimization, and comprehensive analytics tracking. We focus on technical excellence and measurable results.",
+    "image": "/images/services/seo-analytics-hero.jpg",
+    "stats": [
+      { "value": "150%", "label": "Average organic traffic increase" },
+      { "value": "3-6", "label": "Months to see significant results" },
+      { "value": "24/7", "label": "Performance monitoring" },
+      { "value": "100%", "label": "White-hat SEO practices" }
+    ],
+    "cta": {
+      "label": "Get SEO Audit",
+      "href": "https://tidycal.com/maplegrowthdigital/seo-audit",
+      "ariaLabel": "Book a free SEO audit consultation"
+    }
+  },
+
+  "overview": {
+    "id": "seo-overview",
+    "role": "region",
+    "ariaLabel": "SEO service overview",
+    "headingLevel": 2,
+    "title": "Complete SEO Solutions",
+    "subtitle": "From technical audits to content strategy — we handle every aspect of your SEO success.",
+    "body": "Our SEO approach combines technical excellence with strategic content development. We don't just improve rankings; we build sustainable organic growth engines that continue delivering results long-term.",
+    "features": [
+      {
+        "icon": "technical-seo",
+        "title": "Technical SEO",
+        "description": "Site speed, mobile optimization, crawlability, and Core Web Vitals improvements."
+      },
+      {
+        "icon": "content-strategy",
+        "title": "Content Strategy",
+        "description": "Keyword research, content calendars, and optimization for search intent."
+      },
+      {
+        "icon": "local-seo",
+        "title": "Local SEO",
+        "description": "Google Business Profile optimization and local search visibility."
+      },
+      {
+        "icon": "analytics",
+        "title": "Analytics & Reporting",
+        "description": "GA4 setup, conversion tracking, and comprehensive performance reports."
+      }
+    ]
+  },
+
+  "process": {
+    "id": "seo-process",
+    "role": "region",
+    "ariaLabel": "Our SEO process",
+    "headingLevel": 2,
+    "title": "Our SEO Process",
+    "subtitle": "A systematic approach to sustainable organic growth.",
+    "stepsHeadingLevel": 3,
+    "steps": [
+      {
+        "number": "01",
+        "title": "SEO Audit & Analysis",
+        "description": "Comprehensive technical audit, competitor analysis, and keyword research to identify opportunities and challenges.",
+        "deliverables": [
+          "Technical SEO audit report",
+          "Competitor analysis",
+          "Keyword opportunity matrix",
+          "Site architecture review"
+        ],
+        "timeline": "Week 1-2"
+      },
+      {
+        "number": "02",
+        "title": "Strategy Development",
+        "description": "Custom SEO strategy based on audit findings, business goals, and competitive landscape.",
+        "deliverables": [
+          "SEO strategy document",
+          "Content calendar",
+          "Technical implementation plan",
+          "KPI framework"
+        ],
+        "timeline": "Week 3"
+      },
+      {
+        "number": "03",
+        "title": "Implementation",
+        "description": "Execute technical improvements, content optimization, and on-page SEO enhancements.",
+        "deliverables": [
+          "Technical SEO fixes",
+          "On-page optimization",
+          "Content creation",
+          "Analytics setup"
+        ],
+        "timeline": "Week 4-8"
+      },
+      {
+        "number": "04",
+        "title": "Monitor & Optimize",
+        "description": "Ongoing monitoring, performance analysis, and continuous optimization for sustained growth.",
+        "deliverables": [
+          "Monthly performance reports",
+          "Ranking tracking",
+          "Content optimization",
+          "Strategy refinements"
+        ],
+        "timeline": "Ongoing"
+      }
+    ]
+  },
+
+  "results": {
+    "id": "seo-results",
+    "role": "region",
+    "ariaLabel": "SEO results and outcomes",
+    "headingLevel": 2,
+    "title": "What You Can Expect",
+    "subtitle": "Real results from our SEO and analytics services.",
+    "outcomes": [
+      {
+        "metric": "Organic Traffic",
+        "improvement": "150% average increase",
+        "timeframe": "6-12 months",
+        "description": "Sustainable growth in high-quality organic traffic from target keywords."
+      },
+      {
+        "metric": "Search Rankings",
+        "improvement": "Top 3 positions",
+        "timeframe": "3-6 months",
+        "description": "Improved rankings for primary and secondary target keywords."
+      },
+      {
+        "metric": "Conversion Rate",
+        "improvement": "45% improvement",
+        "timeframe": "4-8 months",
+        "description": "Better user experience and content optimization leading to higher conversions."
+      },
+      {
+        "metric": "Page Speed",
+        "improvement": "90+ Core Web Vitals",
+        "timeframe": "1-3 months",
+        "description": "Optimized technical performance for better user experience and SEO."
+      }
+    ]
+  },
+
+  "pricing": {
+    "id": "seo-pricing",
+    "role": "region",
+    "ariaLabel": "SEO service pricing",
+    "headingLevel": 2,
+    "title": "SEO Service Packages",
+    "subtitle": "Flexible SEO solutions for businesses of all sizes.",
+    "packages": [
+      {
+        "name": "SEO Starter",
+        "price": "$2,500",
+        "period": "per month",
+        "description": "Perfect for small businesses starting their SEO journey.",
+        "features": [
+          "Technical SEO audit",
+          "On-page optimization (up to 10 pages)",
+          "Monthly content optimization",
+          "Basic analytics setup",
+          "Monthly performance report"
+        ],
+        "bestFor": "Small businesses, local service providers"
+      },
+      {
+        "name": "SEO Growth",
+        "price": "$4,500",
+        "period": "per month",
+        "description": "Comprehensive SEO for growing businesses.",
+        "features": [
+          "Everything in Starter",
+          "Content creation (4 blog posts/month)",
+          "Local SEO optimization",
+          "Link building campaign",
+          "Advanced analytics & conversion tracking",
+          "Bi-weekly strategy calls"
+        ],
+        "bestFor": "Growing businesses, e-commerce",
+        "popular": true
+      },
+      {
+        "name": "SEO Enterprise",
+        "price": "Custom",
+        "period": "pricing",
+        "description": "Full-scale SEO for large organizations.",
+        "features": [
+          "Everything in Growth",
+          "Custom content volume",
+          "Multi-location SEO",
+          "Advanced technical SEO",
+          "Dedicated account manager",
+          "Weekly reporting and calls"
+        ],
+        "bestFor": "Large businesses, multi-location companies"
+      }
+    ]
+  },
+
+  "faq": {
+    "id": "seo-faq",
+    "role": "region",
+    "ariaLabel": "SEO frequently asked questions",
+    "headingLevel": 2,
+    "title": "SEO FAQs",
+    "questions": [
+      {
+        "question": "How long does it take to see SEO results?",
+        "answer": "Most clients see initial improvements in 3-6 months, with significant results typically occurring within 6-12 months. SEO is a long-term strategy that compounds over time."
+      },
+      {
+        "question": "Do you guarantee first page rankings?",
+        "answer": "We don't guarantee specific rankings as search engines constantly evolve. However, we do guarantee improved visibility, traffic, and performance using proven SEO strategies."
+      },
+      {
+        "question": "What's included in your SEO audit?",
+        "answer": "Our comprehensive audit covers technical SEO, on-page optimization, content analysis, site speed, mobile usability, and competitive analysis. You'll receive a detailed report with actionable recommendations."
+      },
+      {
+        "question": "Do you only work with Canadian businesses?",
+        "answer": "While we specialize in the Canadian market, we work with businesses across North America. Our local SEO expertise is particularly valuable for Canadian companies."
+      }
+    ]
+  },
+
+  "cta": {
+    "id": "seo-cta",
+    "role": "region",
+    "ariaLabel": "Get started with SEO services",
+    "headingLevel": 2,
+    "title": "Ready to Dominate Search Results?",
+    "body": "Let's discuss how our SEO and analytics services can drive sustainable organic growth for your business.",
+    "primaryCta": {
+      "label": "Get Free SEO Audit",
+      "href": "https://tidycal.com/maplegrowthdigital/seo-audit",
+      "ariaLabel": "Book your free SEO audit consultation"
+    },
+    "secondaryCta": {
+      "label": "View All Services",
+      "href": "/services",
+      "ariaLabel": "Explore all our digital marketing services"
+    }
+  }
+}

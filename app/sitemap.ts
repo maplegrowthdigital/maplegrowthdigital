@@ -1,10 +1,8 @@
 import type { MetadataRoute } from "next";
 import { config } from "../content/config";
-import { getAllPosts } from "../content/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = config.getCanonicalUrl();
-  const posts = getAllPosts();
 
   return [
     {
@@ -14,16 +12,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl.replace(/\/$/, "")}/blog`,
+      url: `${baseUrl.replace(/\/$/, "")}/about`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "monthly",
       priority: 0.8,
     },
-    ...posts.map((post) => ({
-      url: `${baseUrl.replace(/\/$/, "")}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
+    {
+      url: `${baseUrl.replace(/\/$/, "")}/services`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl.replace(/\/$/, "")}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
 }

@@ -1,0 +1,140 @@
+{
+  "seo": {
+    "title": "About MapleGrowth Digital — Canadian Digital Marketing Agency Team",
+    "description": "Meet our Canadian digital marketing team. Cross-disciplinary experts in strategy, creative, and engineering delivering growth-focused marketing solutions.",
+    "keywords": [
+      "about maplegrowth digital",
+      "digital marketing team",
+      "canadian marketing agency",
+      "growth marketing experts",
+      "digital marketing professionals"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/about"
+  },
+
+  "hero": {
+    "id": "about-hero",
+    "role": "region",
+    "ariaLabel": "About MapleGrowth Digital introduction",
+    "headingLevel": 1,
+    "title": "About MapleGrowth Digital",
+    "subhead": "A Canadian growth marketing agency dedicated to small business success.",
+    "body": "We're a cross-disciplinary team that ships strategy, creative, and engineering under one roof. Our approach blends creativity with data-driven accountability — turning marketing ideas into measurable business outcomes.",
+    "image": "/about/luke.jpg",
+    "stats": [
+      { "value": "10+ yrs", "label": "Experience in web & digital marketing" },
+      { "value": "24/7", "label": "Support when you need it" },
+      { "value": "3x ROI", "label": "Average return our clients achieve" },
+      { "value": "CAN", "label": "Proudly Canadian-based" }
+    ]
+  },
+
+  "mission": {
+    "id": "mission",
+    "role": "region",
+    "ariaLabel": "Our mission and values",
+    "headingLevel": 2,
+    "title": "Our Mission",
+    "body": "We believe growth comes from pairing creativity with accountability. Every campaign, every website, every strategy is designed with one goal: measurable business results you can see and trust.",
+    "highlights": [
+      "Focused team — no unnecessary handovers",
+      "Direct collaboration with designers, developers, and strategists",
+      "Transparent pricing and clear timelines",
+      "Remote-first, with support available across Canada"
+    ]
+  },
+
+  "team": {
+    "id": "team",
+    "role": "region",
+    "ariaLabel": "Meet our team",
+    "headingLevel": 2,
+    "title": "Meet the Team",
+    "subtitle": "The people behind your growth marketing success.",
+    "members": [
+      {
+        "id": "founder",
+        "name": "Luke Henderson",
+        "title": "Founder & Growth Strategist",
+        "image": "/about/luke.jpg",
+        "bio": "Growth comes from pairing creativity with accountability — ideas translated into measurable outcomes.",
+        "expertise": [
+          "Growth Strategy",
+          "Digital Marketing",
+          "Business Development"
+        ],
+        "linkedin": "https://linkedin.com/in/lukehenderson",
+        "email": "luke@maplegrowthdigital.ca"
+      }
+    ]
+  },
+
+  "approach": {
+    "id": "approach",
+    "role": "region",
+    "ariaLabel": "Our approach to digital marketing",
+    "headingLevel": 2,
+    "title": "Our Approach",
+    "subtitle": "How we deliver growth-focused digital marketing.",
+    "principles": [
+      {
+        "title": "Data-Driven Decisions",
+        "description": "Every strategy starts with research. We analyze your market, competitors, and customers before making recommendations."
+      },
+      {
+        "title": "Measurable Results",
+        "description": "We track what matters: conversions, revenue, and ROI. Vanity metrics don't pay the bills."
+      },
+      {
+        "title": "Transparent Communication",
+        "description": "Regular updates, clear reporting, and honest feedback. You'll always know how your campaigns are performing."
+      },
+      {
+        "title": "Continuous Optimization",
+        "description": "Marketing isn't set-and-forget. We continuously test, learn, and improve to maximize your results."
+      }
+    ]
+  },
+
+  "clients": {
+    "id": "clients-testimonial",
+    "role": "region",
+    "ariaLabel": "Client testimonials",
+    "headingLevel": 2,
+    "title": "Trusted by Canadian Businesses",
+    "testimonials": [
+      {
+        "quote": "MapleGrowth Digital transformed our digital presence. Their strategic approach delivered results we could actually measure.",
+        "author": "Sarah Johnson",
+        "company": "Liberty IT",
+        "role": "Marketing Director"
+      }
+    ],
+    "logoClients": [
+      { "name": "Twinings", "logo": "/logos/twinings.jpg" },
+      { "name": "Liberty IT", "logo": "/logos/libertyit.jpg" },
+      { "name": "SBSB", "logo": "/logos/sbsb.jpg" },
+      { "name": "JBT", "logo": "/logos/jbt.jpg" },
+      { "name": "Exchange Stores", "logo": "/logos/exchange-stores.jpg" }
+    ]
+  },
+
+  "cta": {
+    "id": "about-cta",
+    "role": "region",
+    "ariaLabel": "Get started with MapleGrowth Digital",
+    "headingLevel": 2,
+    "title": "Ready to Grow Your Business?",
+    "body": "Let's discuss how our growth marketing approach can help your business achieve measurable results.",
+    "primaryCta": {
+      "label": "Book a Strategy Call",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a strategy call with MapleGrowth Digital"
+    },
+    "secondaryCta": {
+      "label": "View Our Services",
+      "href": "/services",
+      "ariaLabel": "Explore our digital marketing services"
+    }
+  }
+}

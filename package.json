@@ -33,6 +33,7 @@
     "@types/react-dom": "18.2.23",
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
+    "schema-dts": "^1.1.5",
     "tailwindcss": "3.4.10",
     "typescript": "5.4.5"
   }

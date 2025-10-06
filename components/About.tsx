@@ -16,8 +16,8 @@ export function About({ about }: { about?: any }) {
     target: "_blank",
   };
   const secondaryCta: CTA = {
-    label: "Contact",
-    href: "#contact",
+    label: "Learn More",
+    href: "/about",
   };
   const primaryTarget =
     primaryCta.target ||

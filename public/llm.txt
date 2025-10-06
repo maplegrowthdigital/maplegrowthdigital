@@ -1,0 +1,393 @@
+# LLM Context Instructions
+
+This file is meant for AI assistants contributing to the MapleGrowth Digital project.
+When generating code, text, or content:
+- Follow the patterns and naming conventions defined here.
+- Use only documented components and classes.
+- Match tone and structure of existing JSON and TypeScript files.
+- Prioritize accessibility, performance, and brand consistency.
+
+# MapleGrowth Digital - LLM Context File
+
+## Brand Voice
+
+- **Tone:** Confident, clear, and data-driven. Avoid jargon.
+- **Audience:** Small-to-mid Canadian businesses.
+- **Style:** Conversational but professional — prefer "we help you grow" over "our company provides."
+- **Keywords focus:** Digital marketing, SEO, PPC, web design, growth strategy.
+
+## Project Overview
+
+MapleGrowth Digital is a modern Next.js 14 website for a Canadian digital marketing agency. The project serves as both the company's marketing website and a customizable template for other agencies.
+
+**Tech Stack:**
+- Next.js 14 with App Router
+- TypeScript for type safety
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Supabase for content management (optional)
+
+## Project Structure
+
+```
+maplegrowthdigital/
+├── app/                          # Next.js App Router pages
+│   ├── page.tsx                 # Homepage
+│   ├── layout.tsx               # Root layout
+│   ├── about/page.tsx           # About page
+│   ├── services/page.tsx        # Services listing
+│   ├── contact/page.tsx         # Contact page
+│   ├── blog/                    # Blog system
+│   └── case-studies/            # Case studies
+├── components/                   # React components
+│   ├── Hero.tsx                 # Homepage hero section
+│   ├── Services.tsx             # Services grid component
+│   ├── Process.tsx              # Interactive process component
+│   ├── About.tsx                # About section component
+│   ├── BookCall.tsx             # Booking call-to-action
+│   ├── Contact.tsx              # Original contact component
+│   ├── ContactForm.tsx          # New reusable contact form
+│   ├── PageBanner.tsx           # Reusable page header
+│   └── [other components]       # Additional UI components
+├── content/                      # Content management
+│   ├── data.json                # Homepage content
+│   ├── about.json               # About page content
+│   ├── services.json            # Services page content
+│   ├── contact.json             # Contact page content
+│   ├── schema.ts                # Schema.org markup
+│   ├── page-schemas.ts          # Page-specific schemas
+│   └── [other content files]   # Additional content
+├── lib/                         # Utility functions
+│   ├── breadcrumbs.ts           # Breadcrumb generation
+│   └── navigation.ts            # Navigation helpers
+└── public/                      # Static assets
+    ├── images/                  # Image assets
+    ├── logos/                   # Client logos
+    └── icons-sprite.svg         # Icon system
+```
+
+## Design System Principles
+
+### Critical Rule: NEVER Deviate From Homepage
+The most important rule when working with this project is to **NEVER create custom styling or deviate from the homepage design**. All pages must use existing component patterns.
+
+### Homepage Component Patterns
+
+1. **Hero Pattern**: Large title with stats grid and image
+   - Used for: Main page headers, feature introductions
+   - Components: `Hero.tsx`
+   - Styling: `text-5xl font-semibold tracking-tight sm:text-7xl`
+
+2. **About Pattern**: Two-column layout with decorative elements
+   - Used for: Company info, mission statements, team content
+   - Components: `About.tsx`
+   - Features: Floating decorative elements, backdrop-blur cards
+
+3. **Services Pattern**: Header + image + card grid
+   - Used for: Service listings, feature grids, approach sections
+   - Components: `Services.tsx`
+   - Features: ShapesBackdrop, icon cards, hover animations
+
+4. **Process Pattern**: Interactive step navigation
+   - Used for: Methodology, workflows, step-by-step content
+   - Components: `Process.tsx`
+   - Features: Dynamic images, hover states, sticky positioning
+
+5. **Contact Pattern**: Two-column form with sidebar
+   - Used for: All contact needs across pages
+   - Components: `ContactForm.tsx`
+   - Features: Dynamic fields, contact details sidebar
+
+### Reusable Components
+
+#### PageBanner Component
+```typescript
+// Used on ALL inner pages for consistent headers
+<PageBanner
+  title="Page Title"
+  subtitle="Page description"
+  breadcrumbs={[{ label: "Home", href: "/" }, { label: "Current Page" }]}
+/>
+
+// Features:
+// - Background image (/images/hero.jpg) with black/60 overlay
+// - Centered white text with motion animations
+// - Dynamic breadcrumb generation
+// - Consistent typography scale
+```
+
+#### ContactForm Component
+```typescript
+// Replaces Contact component everywhere
+<ContactForm
+  title="Contact Form Title"
+  subtitle="Form description"
+  fields={[...]} // Dynamic field array
+  submitLabel="Submit Button"
+  contactDetails={{ email, phone, location, socials }}
+  officeInfo={{ address, hours, note }} // Optional
+/>
+
+// Features:
+// - Two-column layout (form left, details right)
+// - TypeScript interfaces for type safety
+// - Motion animations with stagger
+// - Optional contact sidebar and office info
+```
+
+## Content Management
+
+### JSON Content Files
+Each page has its own JSON content file with a specific structure:
+
+```json
+{
+  "seo": {
+    "title": "Page Title for SEO",
+    "description": "Meta description",
+    "keywords": ["keyword1", "keyword2"],
+    "canonical": "https://www.maplegrowthdigital.ca/page"
+  },
+  "hero": {
+    "title": "Page Title",
+    "subhead": "Page subtitle", 
+    "body": "Page description",
+    "image": "/images/page-image.jpg"
+  },
+  "sections": [...] // Page-specific content sections
+}
+```
+
+### Content Guidelines
+- **Always use existing content structure**
+- **Follow established JSON patterns**
+- **Include proper SEO metadata**
+- **Use consistent image paths**
+
+### SEO Keywords Format
+Keywords are stored as arrays in JSON:
+```json
+"keywords": [
+  "digital marketing agency",
+  "SEO services", 
+  "PPC management",
+  "canadian marketing"
+]
+```
+
+### JSON Sample for Service Entry
+When creating new service content, follow this structure:
+
+```json
+{
+  "slug": "seo-analytics",
+  "icon": "SEO",
+  "title": "SEO & Analytics",
+  "description": "Technical SEO, on-page optimization, content strategy, and analytics that compound results.",
+  "bullets": [
+    "Local & national visibility",
+    "Content roadmaps", 
+    "GA4 & dashboards"
+  ],
+  "ariaLabel": "SEO and analytics service",
+  "href": "/services/seo-analytics",
+  "pricing": "Starting at $2,500/month",
+  "deliverables": [
+    "SEO audit and strategy",
+    "Monthly content calendar",
+    "Performance dashboards",
+    "Quarterly strategy reviews"
+  ]
+}
+```
+
+## Component Usage Rules
+
+### When to Use Each Pattern
+
+1. **PageBanner**: ALWAYS use for inner page headers (about, services, contact)
+2. **About Pattern**: Company info, mission, values, team introductions
+3. **Services Pattern**: Service grids, feature lists, approach explanations
+4. **Process Pattern**: Step-by-step content, methodology, workflows
+5. **ContactForm**: Any page needing contact functionality
+
+### Animation System
+All components use consistent Framer Motion animations:
+
+```typescript
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
+} as const;
+
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+} as const;
+```
+
+## CSS Classes and Styling
+
+### Brand-Consistent Classes
+- `chip-brand`: Section badges/labels
+- `btn-cta`: Primary call-to-action buttons  
+- `btn-secondary`: Secondary action buttons
+- `btn-primary`: Form submit buttons
+- `card`: Content cards with hover effects
+
+### Layout Classes
+- `py-24`: Section padding
+- `border-t border-gray-100 dark:border-gray-800`: Section dividers
+- `gap-12 lg:grid-cols-2`: Two-column layouts
+- `bg-gradient-to-b from-brand-500/5`: Section backgrounds
+
+### Typography Scale
+- `text-5xl font-semibold tracking-tight sm:text-7xl`: Main headings
+- `text-3xl font-semibold tracking-tight sm:text-4xl`: Section headings
+- `text-lg text-gray-600 dark:text-gray-300`: Body text
+
+## Schema.org Integration
+
+### Enhanced Business Schemas
+The project includes comprehensive schema markup:
+
+```typescript
+// Main business schemas (content/schema.ts)
+- LocalBusiness with full address and contact info
+- Organization with comprehensive business data
+- 6 Service schemas for each marketing service
+- Website and FAQPage schemas
+
+// Page-specific schemas (content/page-schemas.ts)
+- AboutPage + Person schemas for team members
+- Service schemas with offers and catalogs
+- Article + CreativeWork for case studies
+- ContactPage schemas
+- CollectionPage + ItemList for listings
+```
+
+### Dynamic Breadcrumbs
+All pages include JSON-LD breadcrumb markup:
+```typescript
+const breadcrumbSchema = generateBreadcrumbSchema("/services/seo-analytics", "SEO & Analytics");
+// Generates: Home > Services > SEO & Analytics
+```
+
+## Development Workflow
+
+### Page Creation Process
+1. **Create JSON content file** in `content/` directory
+2. **Choose component pattern** that matches content type
+3. **Create page component** using established pattern
+4. **Add PageBanner** for consistent header
+5. **Include schema markup** for SEO
+6. **Test against homepage** for consistency
+
+### Component Enhancement Rules
+1. **Never create new patterns** - use existing homepage patterns
+2. **Always maintain brand colors** - only use brand-500 palette
+3. **Keep animation timing consistent** - use established motion variants
+4. **Follow TypeScript interfaces** - maintain type safety
+5. **Test responsiveness** - ensure mobile-first approach
+
+## File Organization
+
+### Key Directories
+- **app/**: Page components and routing
+- **components/**: Reusable React components  
+- **content/**: JSON content files and schemas
+- **lib/**: Utility functions and helpers
+- **public/**: Static assets and images
+
+### Important Files
+- `app/layout.tsx`: Root layout with theming
+- `components/ContactForm.tsx`: Reusable contact form
+- `components/PageBanner.tsx`: Reusable page headers
+- `content/page-schemas.ts`: Schema generation utilities
+- `lib/breadcrumbs.ts`: Breadcrumb utilities
+
+## Brand Guidelines
+
+### Color System
+- **Primary Brand**: `brand-500` (defined in Tailwind config)
+- **Text Colors**: `text-gray-600`, `text-gray-700`, `text-gray-900`
+- **Background**: `bg-white`, `bg-gray-50` for sections
+- **Borders**: `border-gray-100`, `border-gray-200`
+
+### Typography Hierarchy
+- **H1**: `text-5xl font-semibold tracking-tight sm:text-7xl`
+- **H2**: `text-3xl font-semibold tracking-tight sm:text-4xl`  
+- **H3**: `text-lg font-semibold`
+- **Body**: `text-lg text-gray-600 dark:text-gray-300`
+
+### Animation Timing
+- **Stagger delay**: 0.12s between items
+- **Initial delay**: 0.05s before starting
+- **Duration**: 0.6s for item animations
+- **Easing**: "easeOut" for all transitions
+
+## SEO Configuration
+
+### Meta Tags
+Each page includes comprehensive meta tags:
+- Title, description, keywords
+- OpenGraph tags for social sharing  
+- Twitter Card metadata
+- Canonical URLs
+
+### Schema Types Used
+- LocalBusiness, Organization (business info)
+- Service, Offer (service information)
+- Article, CreativeWork (case studies)
+- AboutPage, ContactPage (page types)
+- BreadcrumbList (navigation)
+
+## Performance Considerations
+
+### Image Optimization
+- Use Next.js Image component with proper sizing
+- Include alt text for accessibility
+- Use `priority` prop for above-fold images
+
+### Component Loading
+- Server-side rendering for SEO
+- Client-side hydration for interactivity
+- Dynamic imports for heavy components
+
+## Common Tasks
+
+### Adding a New Page
+1. Create JSON content file
+2. Choose homepage pattern that fits content
+3. Create page component using pattern
+4. Add PageBanner and schema markup
+5. Test consistency with homepage
+
+### Modifying Existing Pages
+1. Update JSON content files (not component code)
+2. Maintain existing component structure
+3. Test all breakpoints and interactions
+4. Verify schema markup updates
+
+### Troubleshooting
+- **Icons not showing**: Check `public/icons-sprite.svg` for available icons
+- **Animations not working**: Verify motion variants are applied
+- **Styling inconsistent**: Compare with homepage component patterns
+- **Schema errors**: Validate with Google Rich Results Test
+
+## LLM Behavior Guidelines
+
+- Always use Canadian spelling (e.g., "optimisation," "centre" if needed).
+- Never invent new component names, color tokens, or classes.
+- When unsure of content placement, use homepage layout as reference.
+- Ensure all code is TypeScript-safe.
+- Validate schema with Google's Rich Results Test when editing structured data.
+- Maintain the conversational but professional brand voice in all content.
+- Prioritize small-to-mid Canadian businesses in language and examples.
+- Always test component patterns against homepage for consistency.
+- Use motion animations with the exact timing specified (staggerChildren: 0.12).
+- Include proper ARIA labels and accessibility considerations.
+
+Remember: This project prioritizes brand consistency above all else. Always use existing patterns and components rather than creating new ones.

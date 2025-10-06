@@ -11,11 +11,11 @@ export const schema = {
       url: "https://www.maplegrowthdigital.ca/",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/maplegrowth-logo.svg",
+        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
       },
       image: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/maplegrowth-logo.svg",
+        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
       },
       telephone: "+1 (431) 726-1578",
       priceRange: "$$",
@@ -67,11 +67,11 @@ export const schema = {
       url: "https://www.maplegrowthdigital.ca/",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/maplegrowth-logo.svg",
+        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
       },
       image: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/maplegrowth-logo.svg",
+        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
       },
       description:
         "Canadian digital marketing agency delivering SEO, PPC, content, and web design services for growth-focused small businesses and scale-ups.",

@@ -76,11 +76,9 @@ export function Footer() {
   const copyrightText = "MapleGrowth Digital";
 
   const footerLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#process", label: "Process" },
-    { href: "#case-studies", label: "Case Studies" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (

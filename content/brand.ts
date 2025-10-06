@@ -1,6 +1,6 @@
 export const brand = {
   // Logo configuration
-  logoUrl: "/maplegrowth-logo.svg",
+  logoUrl: "/mgd-logo.svg",
 
   // Brand colors
   brandColor: "#C62828", // Primary brand color

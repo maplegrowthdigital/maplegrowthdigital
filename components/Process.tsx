@@ -5,6 +5,11 @@ import Image from "next/image";
 import { Container } from "./Container";
 import { ShapesBackdrop } from "./ShapesBackdrop";
 import { Icon } from "./Icon";
+type CTA = {
+  label: string;
+  href: string;
+  target?: string;
+};
 
 function StepIcon({ title }: { title: string }) {
   const t = title.toLowerCase();
@@ -23,12 +28,23 @@ function StepIcon({ title }: { title: string }) {
 
 export function Process({ process }: { process?: any }) {
   const [active, setActive] = useState(0);
+  const primaryCta: CTA = {
+    label: "Book a strategy call",
+    href: "https://tidycal.com/maplegrowthdigital/strategy-call",
+    target: "_blank",
+  };
+  const primaryTarget =
+    primaryCta.target ||
+    (primaryCta.href && primaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
+  const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
   const content = process || {};
   const images = [
-    "/images/project-1.svg",
-    "/images/project-2.svg",
-    "/images/project-3.svg",
-    "/images/project-4.svg",
+    "/images/Discovery%20&%20Research.webp",
+    "/images/Strategy%20&%20Planning.webp",
+    "/images/Execution%20&%20Creativity.webp",
+    "/images/Results%20&%20Growth.webp",
   ];
   const container = {
     hidden: {},
@@ -92,6 +108,31 @@ export function Process({ process }: { process?: any }) {
                 </motion.li>
               ))}
             </ol>
+            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
+              {primaryCta?.href && primaryCta?.label && (
+                <a
+                  href={primaryCta.href}
+                  target={primaryTarget}
+                  rel={primaryRel}
+                  className="btn-cta"
+                >
+                  {primaryCta.label}
+                  <svg
+                    aria-hidden
+                    className="ml-2 h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              )}
+            </motion.div>
           </motion.div>
 
           <div className="sticky top-24 hidden lg:block">
@@ -104,7 +145,7 @@ export function Process({ process }: { process?: any }) {
                 viewport={{ once: true, amount: 0.3 }}
                 className="relative overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-800"
               >
-                <div className="relative aspect-[4/3] bg-gray-50 dark:bg-neutral-900">
+                <div className="relative aspect-[4/5] bg-gray-50 dark:bg-neutral-900">
                   {(content.steps || []).map((s: any, idx: number) => (
                     <div
                       key={s.title}

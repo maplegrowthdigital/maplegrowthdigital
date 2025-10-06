@@ -30,7 +30,7 @@ export function Header({
         " sticky top-0 z-50 border-t-2 border-brand-500 text-white backdrop-blur"
       }
     >
-      <Container className="flex h-16 items-center justify-between gap-6">
+      <Container className="flex h-[80px] items-center justify-between gap-6">
         <Link
           href="/"
           className="flex items-center"
@@ -41,7 +41,7 @@ export function Header({
             alt="MapleGrowth Digital"
             width={160}
             height={28}
-            className="h-10 w-auto"
+            className="h-12 md:h-14 w-auto"
             priority
           />
         </Link>

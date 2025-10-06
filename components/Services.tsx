@@ -4,6 +4,11 @@ import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { Icon } from "./Icon";
 import { ShapesBackdrop } from "./ShapesBackdrop";
+type CTA = {
+  label: string;
+  href: string;
+  target?: string;
+};
 
 function ServiceIcon({ icon }: { icon: string }) {
   const iconMap: { [key: string]: string } = {
@@ -22,6 +27,17 @@ function ServiceIcon({ icon }: { icon: string }) {
 
 export function Services({ services }: { services?: any }) {
   const content = services || {};
+  const primaryCta: CTA = {
+    label: "Book a strategy call",
+    href: "https://tidycal.com/maplegrowthdigital/strategy-call",
+    target: "_blank",
+  };
+  const primaryTarget =
+    primaryCta.target ||
+    (primaryCta.href && primaryCta.href.startsWith("http")
+      ? "_blank"
+      : undefined);
+  const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -62,6 +78,31 @@ export function Services({ services }: { services?: any }) {
             >
               {content.subtitle}
             </motion.p>
+            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
+              {primaryCta?.href && primaryCta?.label && (
+                <a
+                  href={primaryCta.href}
+                  target={primaryTarget}
+                  rel={primaryRel}
+                  className="btn-cta"
+                >
+                  {primaryCta.label}
+                  <svg
+                    aria-hidden
+                    className="ml-2 h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              )}
+            </motion.div>
           </motion.div>
           <div className="hidden lg:block">
             <div className="relative">
@@ -75,7 +116,7 @@ export function Services({ services }: { services?: any }) {
               >
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/images/services-graphic.webp"
+                    src="/images/services-1.webp"
                     alt="Computer vector graphic"
                     fill
                     className="object-cover"

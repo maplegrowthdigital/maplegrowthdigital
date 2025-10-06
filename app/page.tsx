@@ -8,7 +8,7 @@ import { Belief } from "../components/Belief";
 import { CaseStudies } from "../components/CaseStudies";
 import { About } from "../components/About";
 import { BookCall } from "../components/BookCall";
-import { Contact } from "../components/Contact";
+import { ContactForm } from "../components/ContactForm";
 
 export default function Page() {
   // Load content directly from JSON file
@@ -46,7 +46,49 @@ export default function Page() {
         <Belief title={beliefs[1].title} quote={beliefs[1].quote} />
       )}
       <BookCall book={bookContent} />
-      <Contact contact={contactContent} />
+      <ContactForm
+        title="Tell me about your project"
+        subtitle="We'll get back within 1–2 business days."
+        fields={[
+          {
+            name: "name",
+            label: "Name",
+            type: "text",
+            required: true,
+            placeholder: "Name",
+          },
+          {
+            name: "email",
+            label: "Email Address",
+            type: "email",
+            required: true,
+            placeholder: "Email Address",
+          },
+          {
+            name: "phone",
+            label: "Contact Number",
+            type: "tel",
+            required: false,
+            placeholder: "Contact Number",
+          },
+          {
+            name: "message",
+            label: "Tell me about your project",
+            type: "textarea",
+            required: true,
+            placeholder: "Tell me about your project",
+            rows: 6,
+          },
+        ]}
+        submitLabel="Send"
+        submitAriaLabel="Send message"
+        contactDetails={{
+          email: contactContent.email,
+          phone: contactContent.phone,
+          location: contactContent.location,
+          socials: contactContent.socials,
+        }}
+      />
     </>
   );
 }

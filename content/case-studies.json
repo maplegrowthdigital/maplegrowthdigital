@@ -1,0 +1,251 @@
+{
+  "seo": {
+    "title": "Case Studies — MapleGrowth Digital | Digital Marketing Success Stories",
+    "description": "Real digital marketing results from MapleGrowth Digital. See how our SEO, PPC, and growth strategies deliver measurable business outcomes for Canadian companies.",
+    "keywords": [
+      "digital marketing case studies",
+      "SEO results",
+      "PPC success stories",
+      "marketing campaign results",
+      "growth marketing examples",
+      "Canadian marketing agency results"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/case-studies"
+  },
+
+  "hero": {
+    "id": "case-studies-hero",
+    "role": "region",
+    "ariaLabel": "Digital marketing case studies introduction",
+    "headingLevel": 1,
+    "title": "Case Studies",
+    "subhead": "How our internet marketing services turn strategy into measurable growth.",
+    "body": "Real results from real clients. See how our data-driven approach to digital marketing delivers sustainable growth for businesses across Canada and beyond.",
+    "image": "/images/case-studies-hero.jpg",
+    "stats": [
+      { "value": "$1.5M+", "label": "Revenue generated for clients" },
+      { "value": "150%", "label": "Average traffic increase" },
+      { "value": "3.2x", "label": "Average ROI improvement" },
+      { "value": "50+", "label": "Successful campaigns" }
+    ]
+  },
+
+  "intro": {
+    "id": "case-studies-intro",
+    "role": "region",
+    "ariaLabel": "Our case study approach",
+    "headingLevel": 2,
+    "title": "Results That Speak for Themselves",
+    "subtitle": "Every case study represents a partnership focused on measurable business outcomes.",
+    "body": "We believe in transparency and accountability. These case studies showcase real campaigns, real challenges, and real results — demonstrating how our strategic approach drives sustainable growth for businesses like yours."
+  },
+
+  "featured": {
+    "id": "featured-case-study",
+    "role": "region",
+    "ariaLabel": "Featured case study",
+    "headingLevel": 2,
+    "title": "Featured Success Story",
+    "caseStudy": {
+      "slug": "nundle-inland-nsw-tourism",
+      "title": "Nundle (Inland NSW Tourism)",
+      "category": "Tourism / Community",
+      "summary": "We built a clear value proposition, improved search visibility, and ran targeted campaigns to grow regional visits and revenue.",
+      "image": "/case/nundle-hero.jpg",
+      "client": "Nundle Tourism Board",
+      "industry": "Tourism & Hospitality",
+      "duration": "12 months",
+      "services": ["SEO & Analytics", "PPC & Paid Media", "Content Marketing"],
+      "challenge": "A regional Australian tourism destination needed to increase visitor numbers and local business revenue while competing with major tourist destinations.",
+      "solution": "Comprehensive digital marketing strategy focusing on unique regional experiences, targeted local and interstate campaigns, and content marketing highlighting authentic rural experiences.",
+      "results": [
+        {
+          "metric": "Regional Revenue",
+          "value": "$1.5M increase",
+          "description": "Direct economic impact from increased tourism"
+        },
+        {
+          "metric": "Organic Traffic",
+          "value": "180% increase",
+          "description": "Year-over-year growth in website visitors"
+        },
+        {
+          "metric": "Visitor Inquiries",
+          "value": "240% increase",
+          "description": "Growth in accommodation and activity bookings"
+        }
+      ],
+      "testimonial": {
+        "quote": "MapleGrowth Digital transformed our digital presence and delivered real economic impact for our region. Their strategic approach and execution exceeded our expectations.",
+        "author": "David Mitchell",
+        "role": "Tourism Development Manager"
+      }
+    }
+  },
+
+  "allCaseStudies": {
+    "id": "all-case-studies",
+    "role": "region",
+    "ariaLabel": "All case studies",
+    "headingLevel": 2,
+    "title": "All Case Studies",
+    "subtitle": "Explore our complete portfolio of successful campaigns.",
+    "filters": [
+      "All Industries",
+      "E-commerce",
+      "B2B Services",
+      "Tourism & Hospitality",
+      "Healthcare",
+      "Technology"
+    ],
+    "items": [
+      {
+        "slug": "nundle-inland-nsw-tourism",
+        "title": "Nundle (Inland NSW Tourism)",
+        "category": "Tourism / Community",
+        "summary": "We built a clear value proposition, improved search visibility, and ran targeted campaigns to grow regional visits and revenue.",
+        "image": "/case/nundle-hero.jpg",
+        "results": [
+          "Regional revenue up by $1.5M",
+          "Increased targeted traffic",
+          "Ongoing upgrades and advisory"
+        ],
+        "services": ["SEO", "PPC", "Content"],
+        "duration": "12 months",
+        "link": "/case-studies/nundle-inland-nsw-tourism"
+      },
+      {
+        "slug": "techflow-b2b-growth",
+        "title": "TechFlow Solutions B2B Growth",
+        "category": "Technology / B2B",
+        "summary": "From positioning to performance media — a full-funnel approach that scaled qualified demand.",
+        "image": "/case/techflow-hero.jpg",
+        "results": [
+          "Lower CPA with higher ROAS",
+          "Organic growth in high-intent terms",
+          "Funnel reporting with GA4"
+        ],
+        "services": ["Strategy", "PPC", "Analytics"],
+        "duration": "8 months",
+        "link": "/case-studies/techflow-b2b-growth"
+      },
+      {
+        "slug": "aurora-skincare-ecommerce",
+        "title": "Aurora Skincare E-commerce Growth",
+        "category": "E-commerce / Beauty",
+        "summary": "Complete e-commerce optimization driving 300% revenue growth through integrated marketing.",
+        "image": "/case/aurora-hero.jpg",
+        "results": [
+          "300% revenue increase",
+          "45% improvement in conversion rate",
+          "150% growth in organic traffic"
+        ],
+        "services": ["SEO", "PPC", "Web Development"],
+        "duration": "10 months",
+        "link": "/case-studies/aurora-skincare-ecommerce"
+      },
+      {
+        "slug": "liberty-it-lead-generation",
+        "title": "Liberty IT Lead Generation",
+        "category": "B2B Services / IT",
+        "summary": "Strategic content marketing and PPC campaigns that tripled qualified lead generation.",
+        "image": "/case/liberty-it-hero.jpg",
+        "results": [
+          "3x increase in qualified leads",
+          "60% reduction in cost per lead",
+          "180% improvement in lead quality"
+        ],
+        "services": ["Content", "PPC", "Analytics"],
+        "duration": "6 months",
+        "link": "/case-studies/liberty-it-lead-generation"
+      }
+    ]
+  },
+
+  "industries": {
+    "id": "industries-served",
+    "role": "region",
+    "ariaLabel": "Industries we serve",
+    "headingLevel": 2,
+    "title": "Industries We Serve",
+    "subtitle": "Specialized expertise across diverse sectors.",
+    "sectors": [
+      {
+        "name": "E-commerce & Retail",
+        "description": "Conversion optimization, SEO, and PPC for online stores",
+        "icon": "ecommerce"
+      },
+      {
+        "name": "B2B Services",
+        "description": "Lead generation and demand creation for service businesses",
+        "icon": "b2b"
+      },
+      {
+        "name": "Tourism & Hospitality",
+        "description": "Local SEO and destination marketing strategies",
+        "icon": "tourism"
+      },
+      {
+        "name": "Healthcare & Wellness",
+        "description": "Compliant marketing for healthcare providers",
+        "icon": "healthcare"
+      },
+      {
+        "name": "Technology",
+        "description": "Growth marketing for SaaS and tech companies",
+        "icon": "technology"
+      },
+      {
+        "name": "Professional Services",
+        "description": "Authority building and client acquisition",
+        "icon": "professional"
+      }
+    ]
+  },
+
+  "process": {
+    "id": "case-study-process",
+    "role": "region",
+    "ariaLabel": "Our case study development process",
+    "headingLevel": 2,
+    "title": "Our Approach to Every Campaign",
+    "subtitle": "The methodology behind our successful case studies.",
+    "steps": [
+      {
+        "title": "Research & Analysis",
+        "description": "Deep dive into market conditions, competitor landscape, and business objectives."
+      },
+      {
+        "title": "Strategy Development",
+        "description": "Custom marketing strategy aligned with business goals and resource constraints."
+      },
+      {
+        "title": "Implementation & Testing",
+        "description": "Systematic campaign execution with continuous testing and optimization."
+      },
+      {
+        "title": "Results & Scaling",
+        "description": "Measure results, document learnings, and scale successful strategies."
+      }
+    ]
+  },
+
+  "cta": {
+    "id": "case-studies-cta",
+    "role": "region",
+    "ariaLabel": "Start your success story",
+    "headingLevel": 2,
+    "title": "Ready to Write Your Success Story?",
+    "body": "Let's discuss how we can deliver similar results for your business. Every great case study starts with a strategy call.",
+    "primaryCta": {
+      "label": "Book Strategy Call",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a strategy call to discuss your marketing goals"
+    },
+    "secondaryCta": {
+      "label": "View Our Services",
+      "href": "/services",
+      "ariaLabel": "Explore our digital marketing services"
+    }
+  }
+}

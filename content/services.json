@@ -1,0 +1,264 @@
+{
+  "seo": {
+    "title": "Digital Marketing Services — MapleGrowth Digital | Growth Marketing Agency",
+    "description": "Comprehensive digital marketing services including SEO, PPC, web development, content marketing, and brand strategy. Canadian agency focused on measurable growth.",
+    "keywords": [
+      "digital marketing services",
+      "SEO services",
+      "PPC management",
+      "web development",
+      "content marketing",
+      "brand strategy",
+      "growth marketing agency"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/services"
+  },
+
+  "hero": {
+    "id": "services-hero",
+    "role": "region",
+    "ariaLabel": "Digital marketing services introduction",
+    "headingLevel": 1,
+    "title": "Digital Marketing Services That Drive Growth",
+    "subhead": "Comprehensive marketing solutions for small businesses and scale-ups.",
+    "body": "From SEO and PPC to web development and brand strategy — our integrated approach delivers measurable results across every touchpoint of your customer journey.",
+    "image": "/images/services-hero.jpg",
+    "cta": {
+      "label": "Book a Strategy Call",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a strategy call to discuss your marketing needs"
+    }
+  },
+
+  "intro": {
+    "id": "services-intro",
+    "role": "region",
+    "ariaLabel": "Our service approach",
+    "headingLevel": 2,
+    "title": "Why Our Services Work",
+    "subtitle": "As a Canadian online marketing company, we help small businesses and scale-ups win with strategy, creativity, and technology.",
+    "body": "Every project — big or small — gets the same focus: fast performance, strong security, and mobile-ready experiences. We don't just deliver campaigns; we build sustainable growth engines.",
+    "highlights": [
+      "Data-driven strategy development",
+      "Integrated cross-channel approach",
+      "Transparent reporting and analytics",
+      "Ongoing optimization and support"
+    ]
+  },
+
+  "services": {
+    "id": "services-grid",
+    "role": "region",
+    "ariaLabel": "Our digital marketing services",
+    "headingLevel": 2,
+    "title": "Our Services",
+    "subtitle": "Full-service digital marketing solutions designed for growth.",
+    "itemsHeadingLevel": 3,
+    "items": [
+      {
+        "slug": "seo-analytics",
+        "icon": "SEO",
+        "title": "SEO & Analytics",
+        "description": "Technical SEO, on-page optimization, content strategy, and analytics that compound results.",
+        "bullets": [
+          "Local & national visibility",
+          "Content roadmaps",
+          "GA4 & dashboards"
+        ],
+        "ariaLabel": "SEO and analytics service",
+        "href": "/services/seo-analytics",
+        "pricing": "Starting at $2,500/month",
+        "deliverables": [
+          "SEO audit and strategy",
+          "Monthly content calendar",
+          "Performance dashboards",
+          "Quarterly strategy reviews"
+        ]
+      },
+      {
+        "slug": "ppc-paid-media",
+        "icon": "PPC",
+        "title": "PPC & Paid Media",
+        "description": "ROI-first campaigns across Google, YouTube, and social. Built for fast, measurable growth.",
+        "bullets": [
+          "Google Ads & Performance Max",
+          "Retargeting",
+          "Landing page CRO"
+        ],
+        "ariaLabel": "PPC and paid media service",
+        "href": "/services/ppc-paid-media",
+        "pricing": "Starting at $3,000/month + ad spend",
+        "deliverables": [
+          "Campaign strategy and setup",
+          "Landing page optimization",
+          "Weekly performance reports",
+          "Monthly optimization calls"
+        ]
+      },
+      {
+        "slug": "web-design-development",
+        "icon": "DEV",
+        "title": "Web Design & Development",
+        "description": "Conversion-focused, accessible websites engineered for speed, security, and scalability.",
+        "bullets": [
+          "WordPress & Headless",
+          "Shopify storefronts",
+          "Core Web Vitals"
+        ],
+        "ariaLabel": "Web design and development service",
+        "href": "/services/web-design-development",
+        "pricing": "Starting at $8,000",
+        "deliverables": [
+          "Custom website design",
+          "Mobile-responsive development",
+          "SEO optimization",
+          "Performance monitoring setup"
+        ]
+      },
+      {
+        "slug": "content-email",
+        "icon": "CONTENT",
+        "title": "Content & Email Marketing",
+        "description": "Editorial calendars, sales enablement content, and lifecycle email that nurtures demand.",
+        "bullets": [
+          "Lead magnets & blogs",
+          "Newsletters & flows",
+          "CRM integrations"
+        ],
+        "ariaLabel": "Content and email marketing service",
+        "href": "/services/content-email",
+        "pricing": "Starting at $1,800/month",
+        "deliverables": [
+          "Content strategy and calendar",
+          "Email automation setup",
+          "Monthly blog posts",
+          "Performance analytics"
+        ]
+      },
+      {
+        "slug": "brand-creative",
+        "icon": "BRAND",
+        "title": "Brand & Creative",
+        "description": "Brand systems, ad creative, and motion assets that boost recognition and conversion.",
+        "bullets": ["Visual identity", "Ad creative kits", "Video & motion"],
+        "ariaLabel": "Brand and creative service",
+        "href": "/services/brand-creative",
+        "pricing": "Starting at $5,000",
+        "deliverables": [
+          "Brand strategy and guidelines",
+          "Logo and visual identity",
+          "Marketing asset templates",
+          "Brand application guide"
+        ]
+      },
+      {
+        "slug": "growth-strategy",
+        "icon": "GROWTH",
+        "title": "Growth Strategy",
+        "description": "Positioning, messaging, and go-to-market plans tailored to small business digital marketing.",
+        "bullets": [
+          "ICP & messaging",
+          "Channel mix planning",
+          "KPI frameworks"
+        ],
+        "ariaLabel": "Growth strategy service",
+        "href": "/services/growth-strategy",
+        "pricing": "Starting at $4,000",
+        "deliverables": [
+          "Market and competitor analysis",
+          "Go-to-market strategy",
+          "Growth roadmap",
+          "Success metrics framework"
+        ]
+      }
+    ]
+  },
+
+  "process": {
+    "id": "services-process",
+    "role": "region",
+    "ariaLabel": "Our service delivery process",
+    "headingLevel": 2,
+    "title": "How We Deliver Results",
+    "subtitle": "Our proven 4-step process ensures every service delivers measurable growth.",
+    "stepsHeadingLevel": 3,
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery & Strategy",
+        "description": "We start with deep research into your business, market, and customers to create a data-driven growth plan.",
+        "deliverables": [
+          "Market analysis",
+          "Competitor research",
+          "Strategy document"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Setup & Launch",
+        "description": "We implement campaigns, build systems, and create assets with meticulous attention to performance and conversion.",
+        "deliverables": [
+          "Campaign setup",
+          "Asset creation",
+          "Tracking implementation"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Monitor & Optimize",
+        "description": "Continuous monitoring and testing ensure peak performance across all channels and touchpoints.",
+        "deliverables": [
+          "Performance reports",
+          "A/B testing",
+          "Optimization recommendations"
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Scale & Grow",
+        "description": "As results prove successful, we scale winning strategies and expand into new channels for sustained growth.",
+        "deliverables": [
+          "Scaling strategy",
+          "New channel expansion",
+          "Growth planning"
+        ]
+      }
+    ]
+  },
+
+  "testimonial": {
+    "id": "services-testimonial",
+    "role": "region",
+    "ariaLabel": "Client testimonial",
+    "headingLevel": 2,
+    "quote": "The results speak for themselves. MapleGrowth Digital doesn't just manage our marketing — they drive our business growth.",
+    "author": "Michael Chen",
+    "company": "TechFlow Solutions",
+    "role": "CEO",
+    "image": "/testimonials/michael-chen.jpg",
+    "results": [
+      "147% increase in qualified leads",
+      "3.2x return on ad spend",
+      "62% improvement in conversion rate"
+    ]
+  },
+
+  "cta": {
+    "id": "services-cta",
+    "role": "region",
+    "ariaLabel": "Start your growth journey",
+    "headingLevel": 2,
+    "title": "Ready to Scale Your Business?",
+    "body": "Let's discuss which services will drive the biggest impact for your business goals.",
+    "primaryCta": {
+      "label": "Book a Strategy Call",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a strategy call to discuss your service needs"
+    },
+    "secondaryCta": {
+      "label": "View Case Studies",
+      "href": "/case-studies",
+      "ariaLabel": "See our marketing success stories"
+    }
+  }
+}
