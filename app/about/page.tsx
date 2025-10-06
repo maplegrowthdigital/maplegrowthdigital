@@ -433,7 +433,7 @@ export default function AboutPage() {
         submitLabel="Send Message"
         submitAriaLabel="Send contact form message"
         contactDetails={{
-          email: "connect@maplegrowthdigital.ca",
+          email: "hello@maplegrowthdigital.ca",
           phone: "+1 (431) 726-1578",
           location: "Canada",
           socials: [

@@ -351,7 +351,7 @@ export function generateContactPageSchema(): WithContext<ContactPage> {
     },
     significantLink: [
       "tel:+14317261578",
-      "mailto:connect@maplegrowthdigital.ca",
+      "mailto:hello@maplegrowthdigital.ca",
       "https://tidycal.com/maplegrowthdigital/strategy-call",
     ],
     breadcrumb: {

@@ -143,7 +143,7 @@ export default function ContactPage() {
           submitLabel={contactData.form.submitButton.label}
           submitAriaLabel={contactData.form.submitButton.ariaLabel}
           contactDetails={{
-            email: "connect@maplegrowthdigital.ca",
+            email: "hello@maplegrowthdigital.ca",
             phone: "+1 (431) 726-1578",
             location: "Canada",
             socials: [

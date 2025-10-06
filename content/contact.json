@@ -48,10 +48,10 @@
         "type": "email",
         "title": "Send Us an Email",
         "description": "Have a specific question? Email us directly and we'll respond within 24 hours.",
-        "value": "connect@maplegrowthdigital.ca",
+        "value": "hello@maplegrowthdigital.ca",
         "cta": {
           "label": "Send Email",
-          "href": "mailto:connect@maplegrowthdigital.ca",
+          "href": "mailto:hello@maplegrowthdigital.ca",
           "ariaLabel": "Send email to MapleGrowth Digital"
         },
         "icon": "email"

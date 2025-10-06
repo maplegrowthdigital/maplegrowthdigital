@@ -49,7 +49,7 @@ export const schema = {
         {
           "@type": "ContactPoint",
           telephone: "+1 (431) 726-1578",
-          email: "connect@maplegrowthdigital.ca",
+          email: "hello@maplegrowthdigital.ca",
           contactType: "customer service",
           availableLanguage: ["English", "French"],
         },
@@ -103,7 +103,7 @@ export const schema = {
         {
           "@type": "ContactPoint",
           telephone: "+1 (431) 726-1578",
-          email: "connect@maplegrowthdigital.ca",
+          email: "hello@maplegrowthdigital.ca",
           contactType: "customer service",
           availableLanguage: ["English", "French"],
         },
