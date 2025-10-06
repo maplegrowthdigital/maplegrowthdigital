@@ -97,7 +97,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
-        <AnalyticsProvider googleAnalyticsId={settings.googleAnalyticsId} />
+        <AnalyticsProvider
+          googleAnalyticsId={settings.googleAnalyticsId}
+          googleTagManagerId={settings.googleTagManagerId}
+        />
         <DynamicStyles />
         <Header logoUrl={logoUrl} navItems={navItems} />
         <main className="md:pb-0">{children}</main>

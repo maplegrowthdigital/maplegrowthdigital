@@ -22,6 +22,7 @@ export const settings = {
 
   // Analytics
   googleAnalyticsId: "", // Add your GA4 ID here: G-XXXXXXXXXX
+  googleTagManagerId: "GTM-WSVN3SR3",
 
   // Additional SEO keywords from data.json
   keywords: [
