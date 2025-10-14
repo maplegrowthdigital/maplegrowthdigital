@@ -87,6 +87,8 @@ export default function ContactPage() {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        role="presentation"
+                        aria-hidden="true"
                       >
                         <rect
                           x="3"

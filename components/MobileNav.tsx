@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { NavItem } from "../lib/navigation";
 import { defaultNavItems } from "../lib/navigation";
+import fallbackData from "../content/data.json";
 
 type MobileNavItem = NavItem & { icon: ReactNode };
 
@@ -17,6 +18,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <path d="M3 12l9-9 9 9" />
       <path d="M9 21V9h6v12" />
@@ -32,6 +35,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
       <path d="M14 2v6h6" />
@@ -50,6 +55,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <rect x="3" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="3" width="7" height="7" rx="1" />
@@ -67,6 +74,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <rect x="3" y="3" width="5" height="5" rx="1" />
       <rect x="16" y="3" width="5" height="5" rx="1" />
@@ -87,6 +96,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <rect x="3" y="7" width="18" height="13" rx="2" />
       <path d="M16 7V5a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v2" />
@@ -102,6 +113,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <circle cx="12" cy="7" r="4" />
       <path d="M5.5 21a7.5 7.5 0 0 1 13 0" />
@@ -117,6 +130,8 @@ const Icon = {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="presentation"
+      aria-hidden="true"
     >
       <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
     </svg>
@@ -141,6 +156,11 @@ export function MobileNav({
 }: {
   navItems?: NavItem[];
 }) {
+  const baseLabel =
+    fallbackData?.a11y?.landmarks?.primaryNav?.ariaLabel ||
+    "Primary navigation";
+  const mobileNavLabel = `${baseLabel} menu (mobile)`;
+
   const [active, setActive] = useState<string>("");
   const [navItems, setNavItems] = useState<NavItem[]>(
     initialNavItems || defaultNavItems
@@ -230,7 +250,9 @@ export function MobileNav({
     <nav
       className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-neutral-950/90"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0.25rem)" }}
-      aria-label="Primary"
+      aria-label={mobileNavLabel}
+      id="primary-navigation-mobile"
+      tabIndex={-1}
     >
       <ul className="mx-auto grid max-w-3xl auto-cols-max grid-flow-col justify-center gap-4 px-2 py-2">
         {items.map((item) => {

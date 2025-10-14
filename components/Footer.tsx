@@ -11,6 +11,8 @@ function SocialIcon({ icon }: { icon: string }) {
     strokeWidth: "2",
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
+    role: "presentation" as const,
+    "aria-hidden": true as const,
   };
 
   switch (icon.toLowerCase()) {
@@ -82,7 +84,10 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white border-t-2 border-brand-500">
+    <footer
+      id="site-footer"
+      className="bg-gray-900 text-white border-t-2 border-brand-500"
+    >
       <Container className="pt-14 pb-28 md:pb-14">
         <div className="grid gap-10 sm:grid-cols-3">
           <div>
@@ -111,6 +116,8 @@ export function Footer() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                role="presentation"
+                aria-hidden="true"
               >
                 <path d="M4 4h16v16H4z" />
                 <path d="M22 6l-10 7L2 6" />
@@ -132,6 +139,8 @@ export function Footer() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                role="presentation"
+                aria-hidden="true"
               >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.62-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.6 12.6 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.6 12.6 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>

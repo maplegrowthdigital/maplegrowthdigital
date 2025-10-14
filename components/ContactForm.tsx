@@ -137,7 +137,10 @@ export function ContactForm({
               <form className="grid gap-4" onSubmit={handleSubmit}>
                 {fields.map((field, index) => (
                   <div key={index} className="grid gap-2">
-                    <label className="text-sm text-gray-700 dark:text-gray-300">
+                    <label
+                      htmlFor={field.name}
+                      className="text-sm text-gray-700 dark:text-gray-300"
+                    >
                       {field.label}
                       {field.required && (
                         <span className="text-red-500 ml-1">*</span>
@@ -217,7 +220,10 @@ export function ContactForm({
                 <div className="text-sm text-gray-500 dark:text-gray-400">
                   Contact details
                 </div>
-                <div className="mt-4 space-y-3 text-sm">
+                <dl
+                  className="mt-4 space-y-3 text-sm"
+                  aria-label="Contact details"
+                >
                   <div className="flex items-center gap-3">
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/10 text-brand-500">
                       <svg
@@ -229,6 +235,8 @@ export function ContactForm({
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        role="presentation"
+                        aria-hidden="true"
                       >
                         <path d="M4 4h16v16H4z" />
                         <path d="M22 6l-10 7L2 6" />
@@ -254,6 +262,8 @@ export function ContactForm({
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        role="presentation"
+                        aria-hidden="true"
                       >
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.62-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.6 12.6 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.6 12.6 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                       </svg>
@@ -283,6 +293,8 @@ export function ContactForm({
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        role="presentation"
+                        aria-hidden="true"
                       >
                         <path d="M17.657 16.657A8 8 0 1 1 21 12" />
                         <path d="M16 9v6" />
@@ -299,7 +311,7 @@ export function ContactForm({
                       </dd>
                     </div>
                   </div>
-                </div>
+                </dl>
 
                 <div className="mt-6 h-px w-full bg-gray-200 dark:bg-gray-800" />
                 <div className="mt-6 text-sm text-gray-500 dark:text-gray-400">
@@ -324,8 +336,10 @@ export function ContactForm({
                     target="_blank"
                     rel="noreferrer"
                     className="btn-secondary dark:text-white"
+                    aria-label="Book a 30-minute chat (opens in a new tab)"
                   >
                     Book a 30‑min chat
+                    <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </motion.div>
               </>

@@ -88,7 +88,6 @@ export function Services({ services }: { services?: any }) {
                 >
                   {primaryCta.label}
                   <svg
-                    aria-hidden
                     className="ml-2 h-4 w-4"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -96,6 +95,8 @@ export function Services({ services }: { services?: any }) {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    role="presentation"
+                    aria-hidden="true"
                   >
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />

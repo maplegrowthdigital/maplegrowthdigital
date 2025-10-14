@@ -97,13 +97,24 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
+        <a className="skip-link" href="#site-navigation">
+          Skip to primary navigation
+        </a>
+        <a className="skip-link" href="#site-footer">
+          Skip to footer
+        </a>
         <AnalyticsProvider
           googleAnalyticsId={settings.googleAnalyticsId}
           googleTagManagerId={settings.googleTagManagerId}
         />
         <DynamicStyles />
         <Header logoUrl={logoUrl} navItems={navItems} />
-        <main className="md:pb-0">{children}</main>
+        <main id="main-content" className="md:pb-0">
+          {children}
+        </main>
         <Footer />
         <MobileNav navItems={navItems} />
       </body>

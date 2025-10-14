@@ -101,7 +101,22 @@ export function renderInline(text: string): React.ReactNode[] {
       if (im) nodes.push(<img key={nodes.length} src={im[2]} alt={im[1] || ''} />);
     } else if (token.startsWith('[')) {
       const lm = /^\[([^\]]+)\]\(([^\)]+)\)$/.exec(token);
-      if (lm) nodes.push(<a key={nodes.length} href={lm[2]} target="_blank" rel="noreferrer">{lm[1]}</a>);
+      if (lm) {
+        const linkText = lm[1];
+        const href = lm[2];
+        nodes.push(
+          <a
+            key={nodes.length}
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${linkText} (opens in a new tab)`}
+          >
+            {linkText}
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        );
+      }
     } else if (token.startsWith('**')) nodes.push(<strong key={nodes.length}>{token.slice(2, -2)}</strong>);
     else if (token.startsWith('`')) nodes.push(<code key={nodes.length}>{token.slice(1, -1)}</code>);
     lastIndex = m.index + token.length;

@@ -25,6 +25,7 @@ export function Header({
 
   return (
     <header
+      id="site-navigation"
       className={
         (scrolled ? "bg-gray-900/95 shadow-md" : "bg-gray-900/100 shadow-sm") +
         " sticky top-0 z-50 border-t-2 border-brand-500 text-white backdrop-blur"
@@ -53,7 +54,7 @@ export function Header({
             target="_blank"
             rel="noreferrer"
             className="btn-cta"
-            aria-label="Book a strategy call"
+            aria-label="Book a strategy call (opens in a new tab)"
           >
             {/* Mobile: Show only call icon */}
             <svg
@@ -64,6 +65,8 @@ export function Header({
               strokeLinecap="round"
               strokeLinejoin="round"
               viewBox="0 0 24 24"
+              role="presentation"
+              aria-hidden="true"
             >
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.62-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.6 12.6 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.6 12.6 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
@@ -71,7 +74,6 @@ export function Header({
             {/* Desktop: Show text with arrow */}
             <span className="hidden sm:inline">Book a call</span>
             <svg
-              aria-hidden
               className="ml-2 h-4 w-4 hidden sm:block"
               viewBox="0 0 24 24"
               fill="none"
@@ -79,10 +81,13 @@ export function Header({
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              role="presentation"
+              aria-hidden="true"
             >
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
+            <span className="sr-only">Opens in a new tab</span>
           </a>
         </div>
       </Container>

@@ -181,9 +181,42 @@ h6 {
   .article-content h3,
   .article-content h4,
   .article-content h5,
-  .article-content h6 {
-    scroll-margin-top: 6rem; /* ~96px to clear sticky header */
-  }
+.article-content h6 {
+  scroll-margin-top: 6rem; /* ~96px to clear sticky header */
+}
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  clip: auto;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #111827;
+  font-weight: 600;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.15);
+  outline: 3px solid var(--brand-500);
+  outline-offset: 4px;
+  z-index: 1000;
+}
+
+.dark .skip-link:focus {
+  background: #111827;
+  color: #f8fafc;
 }
 
 /* Update Tailwind brand classes to use CSS variables */

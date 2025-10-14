@@ -75,6 +75,8 @@ export function TeamSection({
                             className="h-3 w-3 text-white"
                             fill="currentColor"
                             viewBox="0 0 20 20"
+                            role="presentation"
+                            aria-hidden="true"
                           >
                             <path
                               fillRule="evenodd"
@@ -122,6 +124,8 @@ export function TeamSection({
                         className="h-5 w-5"
                         fill="currentColor"
                         viewBox="0 0 20 20"
+                        role="presentation"
+                        aria-hidden="true"
                       >
                         <path
                           fillRule="evenodd"
@@ -142,6 +146,8 @@ export function TeamSection({
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
+                        role="presentation"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"

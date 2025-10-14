@@ -4,16 +4,15 @@ export const settings = {
 
   // SEO Meta
   siteName: "MapleGrowth Digital",
-  seoTitle:
-    "MapleGrowth Digital — Digital Marketing Agency in Canada | Growth & Small Business Marketing",
+  seoTitle: "MapleGrowth Digital — Canadian Growth Marketing Agency",
   seoDescription:
-    "Canadian digital marketing agency delivering SEO, PPC, content, and web design. Internet marketing services built for growth-focused small businesses and scale-ups.",
-  canonicalUrl: "https://www.maplegrowthdigital.ca/",
+    "Canadian digital marketing agency helping small businesses grow with SEO, PPC, content, and conversion-first web design.",
+  canonicalUrl: "https://maplegrowthdigital.ca/",
 
   // Open Graph
-  ogTitle: "MapleGrowth Digital — Digital Marketing Agency in Canada",
+  ogTitle: "MapleGrowth Digital — Canadian Growth Marketing Agency",
   ogDescription:
-    "Canadian digital marketing agency delivering SEO, PPC, content, and web design. Internet marketing services built for growth-focused small businesses and scale-ups.",
+    "Canadian digital marketing agency helping small businesses grow with SEO, PPC, content, and conversion-first web design.",
   ogImageUrl: "/images/og-image.jpg",
 
   // Twitter

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { NavItem } from "../lib/navigation";
 import { defaultNavItems } from "../lib/navigation";
+import fallbackData from "../content/data.json";
 
 export function HeaderNav({
   navItems: initialNavItems,
@@ -85,8 +86,17 @@ export function HeaderNav({
     setActive(href);
   };
 
+  const primaryNavLabel =
+    fallbackData?.a11y?.landmarks?.primaryNav?.ariaLabel ||
+    "Primary navigation";
+
   return (
-    <nav className="hidden md:flex gap-6 text-sm text-white/80">
+    <nav
+      id="primary-navigation"
+      aria-label={primaryNavLabel}
+      className="hidden md:flex gap-6 text-sm text-white/80"
+      tabIndex={-1}
+    >
       {navItems.map((item) => {
         const isActive = active === item.href;
         return (

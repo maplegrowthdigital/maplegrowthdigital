@@ -12,7 +12,6 @@ export function Belief({ title, quote }: { title: string; quote: string }) {
 
           <div className="mx-auto mt-6 max-w-2xl">
             <svg
-              aria-hidden
               className="mx-auto h-10 w-10 text-brand-500/60"
               viewBox="0 0 24 24"
               fill="none"
@@ -20,6 +19,8 @@ export function Belief({ title, quote }: { title: string; quote: string }) {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              role="presentation"
+              aria-hidden="true"
             >
               <path d="M7 7h5v5H7z" />
               <path d="M12 7h5v5h-5z" />
