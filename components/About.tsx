@@ -6,10 +6,23 @@ type CTA = {
   label: string;
   href: string;
   target?: string;
+  ariaLabel?: string;
 };
 
 export function About({ about }: { about?: any }) {
   const content = about || {};
+  const getAriaLabel = (
+    label?: string,
+    ariaLabel?: string,
+    opensInNewTab?: boolean
+  ) => {
+    const base = ariaLabel || label;
+    if (opensInNewTab) {
+      const fallback = base || label || "Open link";
+      return `${fallback} (opens in a new tab)`;
+    }
+    return base;
+  };
   const primaryCta: CTA = {
     label: "Book a strategy call",
     href: "https://tidycal.com/maplegrowthdigital/strategy-call",
@@ -25,12 +38,24 @@ export function About({ about }: { about?: any }) {
       ? "_blank"
       : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
+  const primaryOpensNewTab = primaryTarget === "_blank";
+  const primaryAriaLabel = getAriaLabel(
+    primaryCta.label,
+    primaryCta.ariaLabel,
+    primaryOpensNewTab
+  );
   const secondaryTarget =
     secondaryCta.target ||
     (secondaryCta.href && secondaryCta.href.startsWith("http")
       ? "_blank"
       : undefined);
   const secondaryRel = secondaryTarget === "_blank" ? "noreferrer" : undefined;
+  const secondaryOpensNewTab = secondaryTarget === "_blank";
+  const secondaryAriaLabel = getAriaLabel(
+    secondaryCta.label,
+    secondaryCta.ariaLabel,
+    secondaryOpensNewTab
+  );
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -117,9 +142,9 @@ export function About({ about }: { about?: any }) {
                 className="mt-8 rounded-2xl border border-gray-200 bg-white/60 p-5 italic text-gray-800 backdrop-blur dark:border-gray-800 dark:bg-white/5 dark:text-gray-200"
               >
                 “{content.ceoNote}”
-                <footer className="mt-3 text-sm not-italic text-gray-600 dark:text-gray-400">
+                <cite className="mt-3 block text-sm not-italic text-gray-600 dark:text-gray-400">
                   — {content.ceoName}, {content.ceoTitle}
-                </footer>
+                </cite>
               </motion.blockquote>
             )}
 
@@ -130,8 +155,12 @@ export function About({ about }: { about?: any }) {
                   target={primaryTarget}
                   rel={primaryRel}
                   className="btn-cta"
+                  aria-label={primaryAriaLabel}
                 >
                   {primaryCta.label}
+                  {primaryOpensNewTab && (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  )}
                   <svg
                     className="ml-2 h-4 w-4"
                     viewBox="0 0 24 24"
@@ -154,8 +183,12 @@ export function About({ about }: { about?: any }) {
                   target={secondaryTarget}
                   rel={secondaryRel}
                   className="btn-secondary"
+                  aria-label={secondaryAriaLabel}
                 >
                   {secondaryCta.label}
+                  {secondaryOpensNewTab && (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  )}
                 </a>
               )}
             </motion.div>

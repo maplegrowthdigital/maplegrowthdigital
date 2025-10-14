@@ -9,6 +9,7 @@ type CTA = {
   label: string;
   href: string;
   target?: string;
+  ariaLabel?: string;
 };
 
 function StepIcon({ title }: { title: string }) {
@@ -28,6 +29,18 @@ function StepIcon({ title }: { title: string }) {
 
 export function Process({ process }: { process?: any }) {
   const [active, setActive] = useState(0);
+  const getAriaLabel = (
+    label?: string,
+    ariaLabel?: string,
+    opensInNewTab?: boolean
+  ) => {
+    const base = ariaLabel || label;
+    if (opensInNewTab) {
+      const fallback = base || label || "Open link";
+      return `${fallback} (opens in a new tab)`;
+    }
+    return base;
+  };
   const primaryCta: CTA = {
     label: "Book a strategy call",
     href: "https://tidycal.com/maplegrowthdigital/strategy-call",
@@ -39,6 +52,12 @@ export function Process({ process }: { process?: any }) {
       ? "_blank"
       : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
+  const primaryOpensNewTab = primaryTarget === "_blank";
+  const primaryAriaLabel = getAriaLabel(
+    primaryCta.label,
+    primaryCta.ariaLabel,
+    primaryOpensNewTab
+  );
   const content = process || {};
   const images = [
     "/images/Discovery%20&%20Research.webp",
@@ -115,8 +134,12 @@ export function Process({ process }: { process?: any }) {
                   target={primaryTarget}
                   rel={primaryRel}
                   className="btn-cta"
+                  aria-label={primaryAriaLabel}
                 >
                   {primaryCta.label}
+                  {primaryOpensNewTab && (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  )}
                   <svg
                     className="ml-2 h-4 w-4"
                     viewBox="0 0 24 24"

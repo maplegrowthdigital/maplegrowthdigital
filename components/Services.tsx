@@ -8,6 +8,7 @@ type CTA = {
   label: string;
   href: string;
   target?: string;
+  ariaLabel?: string;
 };
 
 function ServiceIcon({ icon }: { icon: string }) {
@@ -27,6 +28,18 @@ function ServiceIcon({ icon }: { icon: string }) {
 
 export function Services({ services }: { services?: any }) {
   const content = services || {};
+  const getAriaLabel = (
+    label?: string,
+    ariaLabel?: string,
+    opensInNewTab?: boolean
+  ) => {
+    const base = ariaLabel || label;
+    if (opensInNewTab) {
+      const fallback = base || label || "Open link";
+      return `${fallback} (opens in a new tab)`;
+    }
+    return base;
+  };
   const primaryCta: CTA = {
     label: "Book a strategy call",
     href: "https://tidycal.com/maplegrowthdigital/strategy-call",
@@ -38,6 +51,12 @@ export function Services({ services }: { services?: any }) {
       ? "_blank"
       : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
+  const primaryOpensNewTab = primaryTarget === "_blank";
+  const primaryAriaLabel = getAriaLabel(
+    primaryCta.label,
+    primaryCta.ariaLabel,
+    primaryOpensNewTab
+  );
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -85,8 +104,12 @@ export function Services({ services }: { services?: any }) {
                   target={primaryTarget}
                   rel={primaryRel}
                   className="btn-cta"
+                  aria-label={primaryAriaLabel}
                 >
                   {primaryCta.label}
+                  {primaryOpensNewTab && (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  )}
                   <svg
                     className="ml-2 h-4 w-4"
                     viewBox="0 0 24 24"

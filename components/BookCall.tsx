@@ -7,10 +7,23 @@ type CTA = {
   label: string;
   href: string;
   target?: string;
+  ariaLabel?: string;
 };
 
 export function BookCall({ book }: { book?: any }) {
   const content = book || {};
+  const getAriaLabel = (
+    label?: string,
+    ariaLabel?: string,
+    opensInNewTab?: boolean
+  ) => {
+    const base = ariaLabel || label;
+    if (opensInNewTab) {
+      const fallback = base || label || "Open link";
+      return `${fallback} (opens in a new tab)`;
+    }
+    return base;
+  };
   const primaryCta: CTA = content.cta || {
     label: "Book a strategy call",
     href: "https://tidycal.com/maplegrowthdigital/strategy-call",
@@ -30,18 +43,36 @@ export function BookCall({ book }: { book?: any }) {
       ? "_blank"
       : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
+  const primaryOpensNewTab = primaryTarget === "_blank";
+  const primaryAriaLabel = getAriaLabel(
+    primaryCta.label,
+    primaryCta.ariaLabel,
+    primaryOpensNewTab
+  );
   const secondaryTarget =
     secondaryCta.target ||
     (secondaryCta.href && secondaryCta.href.startsWith("http")
       ? "_blank"
       : undefined);
   const secondaryRel = secondaryTarget === "_blank" ? "noreferrer" : undefined;
+  const secondaryOpensNewTab = secondaryTarget === "_blank";
+  const secondaryAriaLabel = getAriaLabel(
+    secondaryCta.label,
+    secondaryCta.ariaLabel,
+    secondaryOpensNewTab
+  );
   const tertiaryTarget =
     tertiaryCta.target ||
     (tertiaryCta.href && tertiaryCta.href.startsWith("http")
       ? "_blank"
       : undefined);
   const tertiaryRel = tertiaryTarget === "_blank" ? "noreferrer" : undefined;
+  const tertiaryOpensNewTab = tertiaryTarget === "_blank";
+  const tertiaryAriaLabel = getAriaLabel(
+    tertiaryCta.label,
+    tertiaryCta.ariaLabel,
+    tertiaryOpensNewTab
+  );
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -114,8 +145,12 @@ export function BookCall({ book }: { book?: any }) {
                     target={primaryTarget}
                     rel={primaryRel}
                     className="btn-cta"
+                    aria-label={primaryAriaLabel}
                   >
                     {primaryCta.label}
+                    {primaryOpensNewTab && (
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    )}
                     <svg
                       className="ml-2 h-4 w-4"
                       viewBox="0 0 24 24"
@@ -138,8 +173,12 @@ export function BookCall({ book }: { book?: any }) {
                     target={secondaryTarget}
                     rel={secondaryRel}
                     className="btn-secondary"
+                    aria-label={secondaryAriaLabel}
                   >
                     {secondaryCta.label}
+                    {secondaryOpensNewTab && (
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    )}
                   </a>
                 )}
               </motion.div>
@@ -160,8 +199,12 @@ export function BookCall({ book }: { book?: any }) {
                   target={tertiaryTarget}
                   rel={tertiaryRel}
                   className="mt-6 inline-flex btn-secondary"
+                  aria-label={tertiaryAriaLabel}
                 >
                   {tertiaryCta.label}
+                  {tertiaryOpensNewTab && (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  )}
                 </a>
               )}
               <div className="mt-6 grid grid-cols-2 gap-3 text-center text-xs text-gray-600 dark:text-gray-400">

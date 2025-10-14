@@ -15,6 +15,19 @@ type CTA = {
 export function Hero({ hero }: { hero?: any }) {
   const content = hero || {};
 
+  const getAriaLabel = (
+    label?: string,
+    ariaLabel?: string,
+    opensInNewTab?: boolean
+  ) => {
+    const base = ariaLabel || label;
+    if (opensInNewTab) {
+      const fallback = base || label || "Open link";
+      return `${fallback} (opens in a new tab)`;
+    }
+    return base;
+  };
+
   const primaryCta: CTA = content.cta || {
     label: "Book a strategy call",
     href: "https://tidycal.com/maplegrowthdigital/strategy-call",
@@ -26,6 +39,12 @@ export function Hero({ hero }: { hero?: any }) {
       ? "_blank"
       : undefined);
   const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
+  const primaryOpensNewTab = primaryTarget === "_blank";
+  const primaryAriaLabel = getAriaLabel(
+    primaryCta.label,
+    primaryCta.ariaLabel,
+    primaryOpensNewTab
+  );
 
   const container = {
     hidden: {},
@@ -79,9 +98,12 @@ export function Hero({ hero }: { hero?: any }) {
                   target={primaryTarget}
                   rel={primaryRel}
                   className="btn-cta"
-                  aria-label={primaryCta.ariaLabel || primaryCta.label}
+                  aria-label={primaryAriaLabel}
                 >
                   {primaryCta.label}
+                  {primaryOpensNewTab && (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  )}
                   <Icon name="arrow-right" size={16} className="ml-2" />
                 </a>
               )}

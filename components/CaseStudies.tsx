@@ -9,10 +9,23 @@ type CTA = {
   label: string;
   href: string;
   target?: string;
+  ariaLabel?: string;
 };
 
 export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
   const content = caseStudies || {};
+  const getAriaLabel = (
+    label?: string,
+    ariaLabel?: string,
+    opensInNewTab?: boolean
+  ) => {
+    const base = ariaLabel || label;
+    if (opensInNewTab) {
+      const fallback = base || label || "Open link";
+      return `${fallback} (opens in a new tab)`;
+    }
+    return base;
+  };
   const sectionCta: CTA = content.cta ?? {
     label: "Work with us",
     href: "#contact",
@@ -23,6 +36,12 @@ export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
       ? "_blank"
       : undefined);
   const sectionRel = sectionTarget === "_blank" ? "noreferrer" : undefined;
+  const sectionOpensNewTab = sectionTarget === "_blank";
+  const sectionAriaLabel = getAriaLabel(
+    sectionCta.label,
+    sectionCta.ariaLabel,
+    sectionOpensNewTab
+  );
   const cs = content.items || [];
   const container = {
     hidden: {},
@@ -132,8 +151,12 @@ export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
                         target={sectionTarget}
                         rel={sectionRel}
                         className="btn-secondary"
+                        aria-label={sectionAriaLabel}
                       >
                         {sectionCta.label}
+                        {sectionOpensNewTab && (
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        )}
                       </a>
                     )}
                   </div>
