@@ -24,13 +24,27 @@ function formatPlaintext(values: Record<string, string>): string {
   return lines.join("\n");
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function formatHtml(values: Record<string, string>) {
   const rows = Object.entries(values)
     .map(
       ([label, value]) => `
         <tr>
-          <th style="text-align:left;padding:4px 12px 4px 0;font-weight:600;">${label}</th>
-          <td style="padding:4px 0;">${value}</td>
+          <th style="text-align:left;padding:4px 12px 4px 0;font-weight:600;">${escapeHtml(
+            label
+          )}</th>
+          <td style="padding:4px 0;">${escapeHtml(value).replace(
+            /\n/g,
+            "<br />"
+          )}</td>
         </tr>`
     )
     .join("");
@@ -103,7 +117,7 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: [TO_ADDRESS],
-      reply_to: email,
+      replyTo: email,
       subject,
       html: formatHtml(safeEntries),
       text: formatPlaintext(safeEntries),
