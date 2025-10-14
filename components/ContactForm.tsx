@@ -1,4 +1,5 @@
 "use client";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 
@@ -54,6 +55,58 @@ export function ContactForm({
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   } as const;
 
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
+  const [feedback, setFeedback] = useState<string | null>(null);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === "loading") return;
+
+    setStatus("loading");
+    setFeedback(null);
+
+    const formData = new FormData(event.currentTarget);
+    const values: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      if (typeof value === "string") {
+        values[key] = value.trim();
+      }
+    });
+
+    const context =
+      typeof window !== "undefined"
+        ? `${title} (${window.location.pathname})`
+        : title;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ values, context }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        throw new Error(data?.error || "Failed to send message.");
+      }
+
+      setStatus("success");
+      setFeedback("Thanks! Your message is on its way.");
+      event.currentTarget.reset();
+    } catch (error: unknown) {
+      setStatus("error");
+      setFeedback(
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your message. Please try again."
+      );
+    }
+  };
+
   return (
     <section
       id="contact-form"
@@ -81,7 +134,7 @@ export function ContactForm({
               {subtitle}
             </motion.p>
             <motion.div variants={item} className="mt-8 card p-6 shadow-sm">
-              <form className="grid gap-4">
+              <form className="grid gap-4" onSubmit={handleSubmit}>
                 {fields.map((field, index) => (
                   <div key={index} className="grid gap-2">
                     <label className="text-sm text-gray-700 dark:text-gray-300">
@@ -128,13 +181,27 @@ export function ContactForm({
                 <motion.div variants={item}>
                   <button
                     type="submit"
-                    className="btn-primary w-full"
+                    className="btn-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
                     aria-label={submitAriaLabel}
+                    disabled={status === "loading"}
                   >
-                    {submitLabel}
+                    {status === "loading" ? "Sending…" : submitLabel}
                   </button>
                 </motion.div>
               </form>
+              <div className="mt-4 text-sm" aria-live="polite" aria-atomic="true">
+                {feedback && (
+                  <p
+                    className={
+                      status === "error"
+                        ? "text-red-600 dark:text-red-400"
+                        : "text-emerald-600 dark:text-emerald-400"
+                    }
+                  >
+                    {feedback}
+                  </p>
+                )}
+              </div>
             </motion.div>
           </motion.div>
 

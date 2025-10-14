@@ -69,3 +69,16 @@ _“Clicks don’t equal growth. We focus on results that actually move your bus
 - **Website:** [https://maplegrowthdigital.ca](https://maplegrowthdigital.ca)
 - **Email:** [hello@maplegrowthdigital.ca](mailto:hello@maplegrowthdigital.ca)
 - **Book a Call:** Link available on our site
+
+## ⚙️ Environment Variables
+
+Create an `.env.local` file (not committed to git) with the following so contact form submissions can send email:
+
+```
+RESEND_API_KEY=your_resend_api_key
+CONTACT_FORM_TO=maplegrowthdigital@gmail.com
+# Optional: set the verified sender used for outbound email
+CONTACT_FORM_FROM="MapleGrowth Digital <no-reply@maplegrowthdigital.ca>"
+```
+
+Restart the dev server after updating environment variables.

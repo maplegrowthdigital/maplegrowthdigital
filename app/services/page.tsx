@@ -295,7 +295,7 @@ export default function ServicesPage() {
 
         {/* Contact Section - using reusable ContactForm component */}
         <ContactForm
-          title="Tell me about your project"
+          title="Tell us about your project"
           subtitle="We'll get back within 1–2 business days."
           fields={[
             {
