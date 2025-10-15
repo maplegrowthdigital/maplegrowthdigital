@@ -64,10 +64,11 @@ export function ContactForm({
     event.preventDefault();
     if (status === "loading") return;
 
+    const form = event.currentTarget;
     setStatus("loading");
     setFeedback(null);
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const values: Record<string, string> = {};
     formData.forEach((value, key) => {
       if (typeof value === "string") {
@@ -96,7 +97,7 @@ export function ContactForm({
 
       setStatus("success");
       setFeedback("Thanks! Your message is on its way.");
-      event.currentTarget.reset();
+      form.reset();
     } catch (error: unknown) {
       setStatus("error");
       setFeedback(
