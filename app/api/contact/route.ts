@@ -8,7 +8,9 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 const TO_ADDRESS =
   process.env.CONTACT_FORM_TO ?? "maplegrowthdigital@gmail.com";
 const FROM_ADDRESS =
-  process.env.CONTACT_FORM_FROM ?? "MapleGrowth Digital <no-reply@maplegrowthdigital.ca>";
+  process.env.CONTACT_FORM_FROM ??
+  process.env.RESEND_FROM_ADDRESS ??
+  "MapleGrowth Digital <onboarding@resend.dev>";
 
 type FormValues = Record<string, unknown>;
 
@@ -119,10 +121,13 @@ export async function POST(request: Request) {
     }
 
     const subject = `New inquiry: ${body?.context ?? "Contact Form"}`;
+    const replyTo =
+      email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : undefined;
+
     const { error } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: [TO_ADDRESS],
-      replyTo: email,
+      ...(replyTo ? { reply_to: replyTo } : {}),
       subject,
       html: formatHtml(safeEntries),
       text: formatPlaintext(safeEntries),
