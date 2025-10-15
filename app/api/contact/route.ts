@@ -7,10 +7,13 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const TO_ADDRESS =
   process.env.CONTACT_FORM_TO ?? "maplegrowthdigital@gmail.com";
-const FROM_ADDRESS =
+
+const FALLBACK_FROM_ADDRESS = "MapleGrowth Digital <onboarding@resend.dev>";
+
+const PRIMARY_FROM_ADDRESS =
   process.env.CONTACT_FORM_FROM ??
   process.env.RESEND_FROM_ADDRESS ??
-  "MapleGrowth Digital <onboarding@resend.dev>";
+  FALLBACK_FROM_ADDRESS;
 
 type FormValues = Record<string, unknown>;
 
@@ -124,19 +127,49 @@ export async function POST(request: Request) {
     const replyTo =
       email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : undefined;
 
-    const { error } = await resend.emails.send({
-      from: FROM_ADDRESS,
+    const payload = {
       to: [TO_ADDRESS],
       ...(replyTo ? { reply_to: replyTo } : {}),
       subject,
       html: formatHtml(safeEntries),
       text: formatPlaintext(safeEntries),
+    };
+
+    let fromAddress = PRIMARY_FROM_ADDRESS;
+    let { error } = await resend.emails.send({
+      from: fromAddress,
+      ...payload,
     });
+
+    if (error && fromAddress !== FALLBACK_FROM_ADDRESS) {
+      const message = String(error?.message ?? "").toLowerCase();
+      const shouldRetry =
+        message.includes("domain") ||
+        message.includes("not verified") ||
+        message.includes("invalid from") ||
+        message.includes("does not match a verified");
+
+      if (shouldRetry) {
+        console.warn(
+          "Resend send failed with configured from address; retrying with fallback.",
+          { error }
+        );
+        fromAddress = FALLBACK_FROM_ADDRESS;
+        ({ error } = await resend.emails.send({
+          from: fromAddress,
+          ...payload,
+        }));
+      }
+    }
 
     if (error) {
       console.error("Failed to send contact email", error);
       return NextResponse.json(
-        { success: false, error: "Failed to deliver message." },
+        {
+          success: false,
+          error: "Failed to deliver message.",
+          details: error?.message ?? null,
+        },
         { status: 502 }
       );
     }
