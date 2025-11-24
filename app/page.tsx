@@ -9,6 +9,7 @@ import { CaseStudies } from "../components/CaseStudies";
 import { About } from "../components/About";
 import { BookCall } from "../components/BookCall";
 import { ContactForm } from "../components/ContactForm";
+import { getAllCaseStudies } from "../content/case-studies";
 
 export default function Page() {
   // Load content directly from JSON file
@@ -23,7 +24,27 @@ export default function Page() {
   const aboutContent = content.about;
   const bookContent = content.book;
   const contactContent = content.contact;
-  const caseStudiesContent = content.caseStudies;
+
+  // Get dynamic case studies from TypeScript files
+  const allCaseStudies = getAllCaseStudies();
+  const caseStudiesContent = {
+    title: "Real Results from Real Clients",
+    intro: "See how our data-driven approach delivers sustainable growth.",
+    items: allCaseStudies.map((cs) => ({
+      slug: cs.slug,
+      title: cs.title,
+      category: cs.category,
+      image: cs.image,
+      summary: cs.summary,
+      results: cs.results.slice(0, 3).map((r) => `${r.value} ${r.metric}`),
+      link: `/case-studies/${cs.slug}`,
+      linkLabel: "Read case study",
+    })),
+    cta: {
+      label: "View all case studies",
+      href: "/case-studies",
+    },
+  };
   const clientsHeading = content.clients;
   const clientsLogos: { src: string; alt: string }[] = Array.from(
     content.clientLogos
@@ -45,6 +66,7 @@ export default function Page() {
       {beliefs[1] && (
         <Belief title={beliefs[1].title} quote={beliefs[1].quote} />
       )}
+      <CaseStudies caseStudies={caseStudiesContent} />
       <BookCall book={bookContent} />
       <ContactForm
         title="Tell us about your project"
