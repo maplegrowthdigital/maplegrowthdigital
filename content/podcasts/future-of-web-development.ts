@@ -30,7 +30,6 @@ In this inaugural episode, we dive deep into the rapidly evolving landscape of w
 
 - [Next.js 14 Documentation](https://nextjs.org)
 - [React Server Components RFC](https://github.com/reactjs/rfcs)
-- [Vercel Edge Runtime](https://vercel.com/docs/functions/edge-functions)
 - [TypeScript 5.0 Release](https://www.typescriptlang.org)
 
 ## Timestamps
