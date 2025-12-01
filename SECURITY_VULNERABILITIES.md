@@ -113,7 +113,7 @@ export async function POST(request: Request) {
 // Option 1: Use middleware with rate limiting library
 import rateLimit from 'express-rate-limit';
 
-// Option 2: Use Vercel's edge config for rate limiting
+// Option 2: Use Upstash Redis or similar for rate limiting
 // Option 3: Implement token bucket algorithm manually
 ```
 
@@ -565,7 +565,7 @@ export const env = envSchema.parse(process.env);
 **CWE:** CWE-311 (Missing Encryption)
 
 **Description:**  
-The application does not enforce HTTPS at the application level. While this may be handled by the hosting platform (Vercel, etc.), it should be explicitly configured.
+The application does not enforce HTTPS at the application level. While this may be handled by the hosting platform (Hostinger), it should be explicitly configured.
 
 **Recommendations:**
 1. Add HSTS header (included in remediation for 2.3)
@@ -614,7 +614,7 @@ npm audit fix
 ```
 
 2. **Implement Rate Limiting** on contact form:
-   - Option A: Use Vercel Edge Config + Middleware
+   - Option A: Use middleware-based rate limiting library
    - Option B: Use Upstash Redis for rate limiting
    - Option C: Implement token bucket algorithm
    - Add CAPTCHA (reCAPTCHA or hCaptcha)
