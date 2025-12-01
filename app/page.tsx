@@ -70,7 +70,7 @@ export default function Page() {
       <BookCall book={bookContent} />
       <ContactForm
         title="Tell us about your project"
-        subtitle="We'll get back within 1–2 business days."
+        subtitle="We'll get back within 1–2 business days.."
         fields={[
           {
             name: "name",
