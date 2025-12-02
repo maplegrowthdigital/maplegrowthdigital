@@ -4,24 +4,44 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { MobileNav } from "../components/MobileNav";
 import { DynamicStyles } from "../components/DynamicStyles";
-import { Montserrat, Open_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { AnalyticsProvider } from "../components/Analytics";
 import { getNavigationItems } from "../lib/navigation";
 import { config } from "../content/config";
 import Script from "next/script";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: [
+    {
+      path: "../public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
   display: "swap",
   variable: "--font-heading-default",
-  weight: ["400", "500", "600", "700"],
 });
 
-const openSans = Open_Sans({
-  subsets: ["latin"],
+const openSans = localFont({
+  src: [
+    {
+      path: "../public/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf",
+      weight: "300 800",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf",
+      weight: "300 800",
+      style: "italic",
+    },
+  ],
   display: "swap",
   variable: "--font-body-default",
-  weight: ["400", "500", "600", "700"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
