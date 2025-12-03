@@ -98,6 +98,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
       <head>
+        {/* SAFE: CSS variables from validated static configuration - not user-controllable */}
         <style
           dangerouslySetInnerHTML={{
             __html: `:root { 
@@ -108,7 +109,7 @@ export default function RootLayout({
             }`,
           }}
         />
-        {/* JSON-LD Schema */}
+        {/* SAFE: JSON-LD schema from static configuration, serialized with JSON.stringify() */}
         <Script
           id="jsonld-schema"
           type="application/ld+json"
