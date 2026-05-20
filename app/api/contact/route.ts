@@ -2,6 +2,20 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+const NO_CACHE_HEADERS = {
+  "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+  "Pragma": "no-cache",
+  "Expires": "0",
+};
+
+function json(body: unknown, init?: { status?: number; headers?: Record<string, string> }) {
+  const res = NextResponse.json(body, { status: init?.status });
+  const merged = { ...NO_CACHE_HEADERS, ...(init?.headers ?? {}) };
+  for (const [k, v] of Object.entries(merged)) res.headers.set(k, v);
+  return res;
+}
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
@@ -146,7 +160,7 @@ function formatHtml(values: Record<string, string>) {
 export async function POST(request: Request) {
   if (!resend) {
     console.error("RESEND_API_KEY is not configured");
-    return NextResponse.json(
+    return json(
       {
         success: false,
         error:
@@ -160,7 +174,7 @@ export async function POST(request: Request) {
 
   const contentLength = Number(request.headers.get("content-length") ?? "0");
   if (contentLength > MAX_PAYLOAD_BYTES) {
-    return NextResponse.json(
+    return json(
       { success: false, error: "Payload too large." },
       { status: 413 }
     );
@@ -168,7 +182,7 @@ export async function POST(request: Request) {
 
   const limit = checkRateLimit(ip);
   if (!limit.ok) {
-    return NextResponse.json(
+    return json(
       { success: false, error: "Too many requests. Please try again later." },
       {
         status: 429,
@@ -180,7 +194,7 @@ export async function POST(request: Request) {
   try {
     const rawText = await request.text();
     if (rawText.length > MAX_PAYLOAD_BYTES) {
-      return NextResponse.json(
+      return json(
         { success: false, error: "Payload too large." },
         { status: 413 }
       );
@@ -190,27 +204,27 @@ export async function POST(request: Request) {
     try {
       body = JSON.parse(rawText);
     } catch {
-      return NextResponse.json(
+      return json(
         { success: false, error: "Invalid payload." },
         { status: 400 }
       );
     }
 
     if (typeof body?._hp === "string" && body._hp.trim() !== "") {
-      return NextResponse.json({ success: true });
+      return json({ success: true });
     }
 
     if (typeof body?._ts === "number" && Number.isFinite(body._ts)) {
       const age = Date.now() - body._ts;
       if (age < MIN_RENDER_AGE_MS || age > MAX_RENDER_AGE_MS) {
-        return NextResponse.json({ success: true });
+        return json({ success: true });
       }
     }
 
     if (TURNSTILE_SECRET) {
       const ok = await verifyTurnstile(String(body?._captcha ?? ""), ip);
       if (!ok) {
-        return NextResponse.json(
+        return json(
           { success: false, error: "Captcha verification failed." },
           { status: 400 }
         );
@@ -219,7 +233,7 @@ export async function POST(request: Request) {
 
     const values = body?.values;
     if (!values || typeof values !== "object" || Array.isArray(values)) {
-      return NextResponse.json(
+      return json(
         { success: false, error: "Invalid payload." },
         { status: 400 }
       );
@@ -231,21 +245,21 @@ export async function POST(request: Request) {
       coerceString(values.message) || coerceString(values.details);
 
     if (!name || !email || !message) {
-      return NextResponse.json(
+      return json(
         { success: false, error: "Name, email, and message are required." },
         { status: 400 }
       );
     }
 
     if (!EMAIL_REGEX.test(email) || email.length > FIELD_LIMITS.email!) {
-      return NextResponse.json(
+      return json(
         { success: false, error: "Invalid email address." },
         { status: 400 }
       );
     }
 
     if (hasControlChars(name) || hasControlChars(email)) {
-      return NextResponse.json(
+      return json(
         { success: false, error: "Invalid characters detected." },
         { status: 400 }
       );
@@ -270,14 +284,14 @@ export async function POST(request: Request) {
 
       if (!value) continue;
       if (value.length > cap) {
-        return NextResponse.json(
+        return json(
           { success: false, error: `Field "${key}" exceeds ${cap} characters.` },
           { status: 400 }
         );
       }
 
       if (key !== "message" && key !== "details" && hasControlChars(value)) {
-        return NextResponse.json(
+        return json(
           { success: false, error: `Field "${key}" contains invalid characters.` },
           { status: 400 }
         );
@@ -331,16 +345,16 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("Failed to send contact email via Resend", error);
-      return NextResponse.json(
+      return json(
         { success: false, error: "Failed to deliver message." },
         { status: 502 }
       );
     }
 
-    return NextResponse.json({ success: true });
+    return json({ success: true });
   } catch (error) {
     console.error("Contact form error", error);
-    return NextResponse.json(
+    return json(
       { success: false, error: "Something went wrong." },
       { status: 500 }
     );
