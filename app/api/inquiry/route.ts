@@ -1,20 +1,17 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
-const NO_CACHE_HEADERS = {
+const NO_CACHE_HEADERS: Record<string, string> = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
   "Pragma": "no-cache",
   "Expires": "0",
 };
 
 function json(body: unknown, init?: { status?: number; headers?: Record<string, string> }) {
-  const res = NextResponse.json(body, { status: init?.status });
-  const merged = { ...NO_CACHE_HEADERS, ...(init?.headers ?? {}) };
-  for (const [k, v] of Object.entries(merged)) res.headers.set(k, v);
-  return res;
+  return NextResponse.json(body, {
+    status: init?.status,
+    headers: { ...NO_CACHE_HEADERS, ...(init?.headers ?? {}) },
+  });
 }
 
 const resendApiKey = process.env.RESEND_API_KEY;
