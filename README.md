@@ -72,13 +72,18 @@ _“Clicks don’t equal growth. We focus on results that actually move your bus
 
 ## ⚙️ Environment Variables
 
-Create an `.env.local` file (not committed to git) with the following so contact form submissions can send email:
+Create an `.env.local` file (not committed to git) with your Hostinger mailbox credentials so contact form submissions can send email via SMTP:
 
 ```
-RESEND_API_KEY=your_resend_api_key
-CONTACT_FORM_TO=maplegrowthdigital@gmail.com
-# Optional: set the verified sender used for outbound email
-CONTACT_FORM_FROM="MapleGrowth Digital <no-reply@maplegrowthdigital.ca>"
+SMTP_HOST=smtp.hostinger.com
+SMTP_PORT=465
+SMTP_USER=info@maplegrowthdigital.ca
+SMTP_PASS=your_mailbox_password
+CONTACT_FORM_TO=info@maplegrowthdigital.ca
+CONTACT_FORM_FROM="MapleGrowth Digital <info@maplegrowthdigital.ca>"
+
+# Optional — Cloudflare Turnstile CAPTCHA (server-side verification)
+# TURNSTILE_SECRET_KEY=your_turnstile_secret
 ```
 
-Restart the dev server after updating environment variables.
+`SMTP_USER` must be a real mailbox on the domain (Hostinger Email). `CONTACT_FORM_FROM` must match that mailbox or one of its aliases. Restart the dev server after updating environment variables.

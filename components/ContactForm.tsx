@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 
@@ -59,6 +59,7 @@ export function ContactForm({
     "idle"
   );
   const [feedback, setFeedback] = useState<string | null>(null);
+  const renderedAtRef = useRef<number>(Date.now());
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,10 +71,15 @@ export function ContactForm({
 
     const formData = new FormData(form);
     const values: Record<string, string> = {};
+    let honeypot = "";
     formData.forEach((value, key) => {
-      if (typeof value === "string") {
-        values[key] = value.trim();
+      if (typeof value !== "string") return;
+      if (key === "_hp_website") {
+        honeypot = value;
+        return;
       }
+      if (key.startsWith("_")) return;
+      values[key] = value.trim();
     });
 
     const context =
@@ -87,7 +93,12 @@ export function ContactForm({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ values, context }),
+        body: JSON.stringify({
+          values,
+          context,
+          _hp: honeypot,
+          _ts: renderedAtRef.current,
+        }),
       });
 
       if (!response.ok) {
@@ -136,6 +147,29 @@ export function ContactForm({
             </motion.p>
             <motion.div variants={item} className="mt-8 card p-6 shadow-sm">
               <form className="grid gap-4" onSubmit={handleSubmit}>
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    left: "-10000px",
+                    top: "auto",
+                    width: "1px",
+                    height: "1px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <label htmlFor="_hp_website">
+                    Leave this field empty
+                    <input
+                      type="text"
+                      id="_hp_website"
+                      name="_hp_website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      defaultValue=""
+                    />
+                  </label>
+                </div>
                 {fields.map((field, index) => (
                   <div key={index} className="grid gap-2">
                     <label
