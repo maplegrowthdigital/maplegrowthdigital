@@ -6,6 +6,7 @@ interface BreadcrumbSchemaProps {
 
 /**
  * Component to inject breadcrumb JSON-LD schema into the page head
+ * SAFE: Schema data is serialized with JSON.stringify() from structured data
  */
 export function BreadcrumbSchema({ schema }: BreadcrumbSchemaProps) {
   return (

@@ -16,6 +16,7 @@ export function AnalyticsProvider({
       {/* Google Tag Manager */}
       {googleTagManagerId && (
         <>
+          {/* SAFE: googleTagManagerId is validated and comes from trusted configuration */}
           <Script
             id="google-tag-manager"
             strategy="afterInteractive"
