@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Container } from "../../components/Container";
 import { PageBanner } from "../../components/PageBanner";
 import { Icon } from "../../components/Icon";
-import { ContactForm } from "../../components/ContactForm";
+import { TidyCalEmbed } from "../../components/TidyCalEmbed";
 import { BreadcrumbSchema } from "../../components/BreadcrumbSchema";
 import { motion } from "framer-motion";
 import { generateContactPageSchema } from "../../content/page-schemas";
@@ -137,40 +137,10 @@ export default function ContactPage() {
           </Container>
         </section>
 
-        {/* Contact Form - using reusable ContactForm component */}
-        <ContactForm
+        {/* Contact Section - TidyCal embed */}
+        <TidyCalEmbed
           title={contactData.form.title}
           subtitle={contactData.form.subtitle}
-          fields={contactData.form.fields}
-          submitLabel={contactData.form.submitButton.label}
-          submitAriaLabel={contactData.form.submitButton.ariaLabel}
-          contactDetails={{
-            email: "hello@maplegrowthdigital.ca",
-            phone: "+1 (431) 726-1578",
-            location: "Canada",
-            socials: [
-              {
-                platform: "Instagram",
-                href: "https://www.instagram.com/maplegrowthdigital/",
-                ariaLabel: "Follow MapleGrowth Digital on Instagram",
-              },
-              {
-                platform: "YouTube",
-                href: "https://youtube.com/@MapleGrowthDigital",
-                ariaLabel: "Follow MapleGrowth Digital on YouTube",
-              },
-            ],
-          }}
-          officeInfo={{
-            street: contactData.office.address.street,
-            city: contactData.office.address.city,
-            province: contactData.office.address.province,
-            postalCode: contactData.office.address.postalCode,
-            country: contactData.office.address.country,
-            weekdays: contactData.office.hours.weekdays,
-            weekend: contactData.office.hours.weekend,
-            note: contactData.office.note,
-          }}
         />
       </main>
     </>

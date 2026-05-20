@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Container } from "../../components/Container";
 import { PageBanner } from "../../components/PageBanner";
 import { BookCall } from "../../components/BookCall";
-import { ContactForm } from "../../components/ContactForm";
+import { TidyCalEmbed } from "../../components/TidyCalEmbed";
 import { BreadcrumbSchema } from "../../components/BreadcrumbSchema";
 import { generateBreadcrumbSchema } from "../../lib/breadcrumbs";
 import { getAllCaseStudies } from "../../content/case-studies";
@@ -257,61 +257,10 @@ export default function CaseStudiesPage() {
         }}
       />
 
-      {/* Contact Form */}
-      <ContactForm
+      {/* Contact Section - TidyCal embed */}
+      <TidyCalEmbed
         title="Tell us about your project"
-        subtitle="We'll get back within 1–2 business days."
-        fields={[
-          {
-            name: "name",
-            label: "Full Name",
-            type: "text",
-            required: true,
-            placeholder: "Your name",
-          },
-          {
-            name: "email",
-            label: "Email Address",
-            type: "email",
-            required: true,
-            placeholder: "your@email.com",
-          },
-          {
-            name: "company",
-            label: "Company",
-            type: "text",
-            required: false,
-            placeholder: "Your company name",
-          },
-          {
-            name: "message",
-            label: "Tell us about your project",
-            type: "textarea",
-            required: true,
-            placeholder:
-              "Describe your business goals, current challenges, and what you're hoping to achieve...",
-            rows: 5,
-          },
-        ]}
-        submitLabel="Send Message"
-        submitAriaLabel="Send contact form message"
-        contactDetails={{
-          email: "hello@maplegrowthdigital.ca",
-          phone: "+1 (431) 726-1578",
-          location: "Canada",
-          socials: [
-            {
-              platform: "Instagram",
-              href: "https://www.instagram.com/maplegrowthdigital/",
-              ariaLabel: "Follow MapleGrowth Digital on Instagram",
-            },
-            {
-              platform: "YouTube",
-              href: "https://youtube.com/@MapleGrowthDigital",
-              ariaLabel: "Follow MapleGrowth Digital on YouTube",
-            },
-          ],
-        }}
+        subtitle="Book a free 30-minute strategy call — we'll discuss your goals and how we can help."
       />
     </>
   );

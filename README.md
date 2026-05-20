@@ -72,16 +72,11 @@ _“Clicks don’t equal growth. We focus on results that actually move your bus
 
 ## ⚙️ Environment Variables
 
-Create an `.env.local` file (not committed to git) with your Resend API key so contact form submissions can send email:
+No server-side secrets are currently required. The site uses a TidyCal embed for contact (see `components/TidyCalEmbed.tsx`), so no email backend or API keys are needed.
+
+Optional analytics IDs can be set in `.env.local`:
 
 ```
-RESEND_API_KEY=your_resend_api_key
-CONTACT_FORM_TO=info@maplegrowthdigital.ca
-# Optional once your domain is verified in Resend:
-CONTACT_FORM_FROM="MapleGrowth Digital <no-reply@maplegrowthdigital.ca>"
-
-# Optional — Cloudflare Turnstile CAPTCHA (server-side verification)
-# TURNSTILE_SECRET_KEY=your_turnstile_secret
+NEXT_PUBLIC_GTM_ID=
+NEXT_PUBLIC_GA_ID=
 ```
-
-Get a Resend API key from [resend.com/api-keys](https://resend.com/api-keys). To use a custom `CONTACT_FORM_FROM` address, verify your domain in the Resend dashboard first; otherwise the route falls back to Resend's sandbox sender. Restart the dev server after updating environment variables.
