@@ -72,18 +72,16 @@ _“Clicks don’t equal growth. We focus on results that actually move your bus
 
 ## ⚙️ Environment Variables
 
-Create an `.env.local` file (not committed to git) with your Hostinger mailbox credentials so contact form submissions can send email via SMTP:
+Create an `.env.local` file (not committed to git) with your Resend API key so contact form submissions can send email:
 
 ```
-SMTP_HOST=smtp.hostinger.com
-SMTP_PORT=465
-SMTP_USER=info@maplegrowthdigital.ca
-SMTP_PASS=your_mailbox_password
+RESEND_API_KEY=your_resend_api_key
 CONTACT_FORM_TO=info@maplegrowthdigital.ca
-CONTACT_FORM_FROM="MapleGrowth Digital <info@maplegrowthdigital.ca>"
+# Optional once your domain is verified in Resend:
+CONTACT_FORM_FROM="MapleGrowth Digital <no-reply@maplegrowthdigital.ca>"
 
 # Optional — Cloudflare Turnstile CAPTCHA (server-side verification)
 # TURNSTILE_SECRET_KEY=your_turnstile_secret
 ```
 
-`SMTP_USER` must be a real mailbox on the domain (Hostinger Email). `CONTACT_FORM_FROM` must match that mailbox or one of its aliases. Restart the dev server after updating environment variables.
+Get a Resend API key from [resend.com/api-keys](https://resend.com/api-keys). To use a custom `CONTACT_FORM_FROM` address, verify your domain in the Resend dashboard first; otherwise the route falls back to Resend's sandbox sender. Restart the dev server after updating environment variables.

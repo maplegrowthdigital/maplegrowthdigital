@@ -1,31 +1,20 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
-const SMTP_HOST = process.env.SMTP_HOST || "smtp.hostinger.com";
-const SMTP_PORT = Number(process.env.SMTP_PORT || "465");
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASS = process.env.SMTP_PASS;
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const TO_ADDRESS =
-  process.env.CONTACT_FORM_TO ?? SMTP_USER ?? "info@maplegrowthdigital.ca";
+  process.env.CONTACT_FORM_TO ?? "info@maplegrowthdigital.ca";
 
-const FROM_ADDRESS =
-  process.env.CONTACT_FORM_FROM ??
-  (SMTP_USER ? `MapleGrowth Digital <${SMTP_USER}>` : "");
+const FALLBACK_FROM_ADDRESS = "MapleGrowth Digital <onboarding@resend.dev>";
+
+const PRIMARY_FROM_ADDRESS =
+  process.env.CONTACT_FORM_FROM ?? FALLBACK_FROM_ADDRESS;
 
 const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY;
-
-const transporter =
-  SMTP_USER && SMTP_PASS
-    ? nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: SMTP_PORT,
-        secure: SMTP_PORT === 465,
-        auth: { user: SMTP_USER, pass: SMTP_PASS },
-      })
-    : null;
 
 const MAX_PAYLOAD_BYTES = 16 * 1024;
 const FIELD_LIMITS: Record<string, number> = {
@@ -155,13 +144,13 @@ function formatHtml(values: Record<string, string>) {
 }
 
 export async function POST(request: Request) {
-  if (!transporter || !FROM_ADDRESS) {
-    console.error("SMTP is not configured (SMTP_USER / SMTP_PASS missing)");
+  if (!resend) {
+    console.error("RESEND_API_KEY is not configured");
     return NextResponse.json(
       {
         success: false,
         error:
-          "Email service is not configured. Confirm SMTP_USER and SMTP_PASS are set on the server.",
+          "Email service is not configured. Confirm RESEND_API_KEY is set on the server.",
       },
       { status: 500 }
     );
@@ -305,54 +294,45 @@ export async function POST(request: Request) {
     const safeContext = rawContext.replace(/[\r\n]+/g, " ") || "Contact Form";
     const subject = `New inquiry: ${safeContext}`;
 
-    try {
-      await transporter.verify();
-    } catch (verifyErr: any) {
-      console.error("SMTP verify failed", verifyErr);
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Failed to deliver message.",
-          _debug: {
-            stage: "verify",
-            message: verifyErr?.message ?? String(verifyErr),
-            code: verifyErr?.code,
-            errno: verifyErr?.errno,
-            syscall: verifyErr?.syscall,
-            address: verifyErr?.address,
-            port: verifyErr?.port,
-            host: SMTP_HOST,
-            usedPort: SMTP_PORT,
-          },
-        },
-        { status: 502 }
-      );
+    const payload = {
+      to: [TO_ADDRESS],
+      reply_to: email,
+      subject,
+      html: formatHtml(safeEntries),
+      text: formatPlaintext(safeEntries),
+    };
+
+    let fromAddress = PRIMARY_FROM_ADDRESS;
+    let { error } = await resend.emails.send({
+      from: fromAddress,
+      ...payload,
+    });
+
+    if (error && fromAddress !== FALLBACK_FROM_ADDRESS) {
+      const errMsg = String(error?.message ?? "").toLowerCase();
+      const shouldRetry =
+        errMsg.includes("domain") ||
+        errMsg.includes("not verified") ||
+        errMsg.includes("invalid from") ||
+        errMsg.includes("does not match a verified");
+
+      if (shouldRetry) {
+        console.warn(
+          "Resend send failed with configured from address; retrying with fallback.",
+          { error }
+        );
+        fromAddress = FALLBACK_FROM_ADDRESS;
+        ({ error } = await resend.emails.send({
+          from: fromAddress,
+          ...payload,
+        }));
+      }
     }
 
-    try {
-      await transporter.sendMail({
-        from: FROM_ADDRESS,
-        to: TO_ADDRESS,
-        replyTo: email,
-        subject,
-        text: formatPlaintext(safeEntries),
-        html: formatHtml(safeEntries),
-      });
-    } catch (sendErr: any) {
-      console.error("Failed to send contact email via SMTP", sendErr);
+    if (error) {
+      console.error("Failed to send contact email via Resend", error);
       return NextResponse.json(
-        {
-          success: false,
-          error: "Failed to deliver message.",
-          _debug: {
-            stage: "send",
-            message: sendErr?.message ?? String(sendErr),
-            code: sendErr?.code,
-            command: sendErr?.command,
-            response: sendErr?.response,
-            responseCode: sendErr?.responseCode,
-          },
-        },
+        { success: false, error: "Failed to deliver message." },
         { status: 502 }
       );
     }
