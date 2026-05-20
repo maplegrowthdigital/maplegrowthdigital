@@ -88,7 +88,7 @@ export function ContactForm({
         : title;
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
