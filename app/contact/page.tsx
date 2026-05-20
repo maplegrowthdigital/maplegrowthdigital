@@ -1,12 +1,9 @@
-"use client";
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "../../components/Container";
 import { PageBanner } from "../../components/PageBanner";
 import { Icon } from "../../components/Icon";
 import { TidyCalEmbed } from "../../components/TidyCalEmbed";
 import { BreadcrumbSchema } from "../../components/BreadcrumbSchema";
-import { motion } from "framer-motion";
 import { generateContactPageSchema } from "../../content/page-schemas";
 import { generateBreadcrumbSchema } from "../../lib/breadcrumbs";
 import contactData from "../../content/contact.json";
@@ -14,15 +11,6 @@ import contactData from "../../content/contact.json";
 export default function ContactPage() {
   const breadcrumbSchema = generateBreadcrumbSchema("/contact");
   const contactSchema = generateContactPageSchema();
-
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-  } as const;
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  } as const;
 
   return (
     <>

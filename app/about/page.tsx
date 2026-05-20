@@ -7,7 +7,6 @@ import { ShapesBackdrop } from "../../components/ShapesBackdrop";
 import { Icon } from "../../components/Icon";
 import { PageBanner } from "../../components/PageBanner";
 import { Services } from "../../components/Services";
-import { TeamSection } from "../../components/TeamSection";
 import { BookCall } from "../../components/BookCall";
 import { TidyCalEmbed } from "../../components/TidyCalEmbed";
 import { BreadcrumbSchema } from "../../components/BreadcrumbSchema";
@@ -244,14 +243,6 @@ export default function AboutPage() {
           ],
         }}
       />
-
-      {/* Team Section - using reusable TeamSection component */}
-      {/* <TeamSection
-        title={aboutData.team.title}
-        subtitle={aboutData.team.subtitle}
-        members={aboutData.team.members}
-        badgeText="Meet the Team"
-      /> */}
 
       {/* Approach Section - using your exact services component pattern */}
       <section

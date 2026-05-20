@@ -2,7 +2,6 @@ import fallbackData from "../content/data.json";
 import { Hero } from "../components/Hero";
 import { Marquee } from "../components/Marquee";
 import { Services } from "../components/Services";
-import { Clients } from "../components/Clients";
 import { Process } from "../components/Process";
 import { Belief } from "../components/Belief";
 import { CaseStudies } from "../components/CaseStudies";
@@ -44,10 +43,6 @@ export default function Page() {
       href: "/case-studies",
     },
   };
-  const clientsHeading = content.clients;
-  const clientsLogos: { src: string; alt: string }[] = Array.from(
-    content.clientLogos
-  );
   const beliefs: { title: string; quote: string }[] = Array.from(
     content.beliefs?.items || content.beliefs || []
   );
