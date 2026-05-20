@@ -306,6 +306,30 @@ export async function POST(request: Request) {
     const subject = `New inquiry: ${safeContext}`;
 
     try {
+      await transporter.verify();
+    } catch (verifyErr: any) {
+      console.error("SMTP verify failed", verifyErr);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Failed to deliver message.",
+          _debug: {
+            stage: "verify",
+            message: verifyErr?.message ?? String(verifyErr),
+            code: verifyErr?.code,
+            errno: verifyErr?.errno,
+            syscall: verifyErr?.syscall,
+            address: verifyErr?.address,
+            port: verifyErr?.port,
+            host: SMTP_HOST,
+            usedPort: SMTP_PORT,
+          },
+        },
+        { status: 502 }
+      );
+    }
+
+    try {
       await transporter.sendMail({
         from: FROM_ADDRESS,
         to: TO_ADDRESS,
@@ -314,10 +338,21 @@ export async function POST(request: Request) {
         text: formatPlaintext(safeEntries),
         html: formatHtml(safeEntries),
       });
-    } catch (sendErr) {
+    } catch (sendErr: any) {
       console.error("Failed to send contact email via SMTP", sendErr);
       return NextResponse.json(
-        { success: false, error: "Failed to deliver message." },
+        {
+          success: false,
+          error: "Failed to deliver message.",
+          _debug: {
+            stage: "send",
+            message: sendErr?.message ?? String(sendErr),
+            code: sendErr?.code,
+            command: sendErr?.command,
+            response: sendErr?.response,
+            responseCode: sendErr?.responseCode,
+          },
+        },
         { status: 502 }
       );
     }

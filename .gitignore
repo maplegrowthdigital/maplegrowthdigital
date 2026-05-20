@@ -35,3 +35,7 @@ public/uploads/
 
 # Memory Bank (local documentation)
 memory-bank/
+
+# Local SMTP diagnostic (contains credentials)
+test-smtp.js
+tsconfig.tsbuildinfo
