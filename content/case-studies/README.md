@@ -127,7 +127,7 @@ import { caseStudy as yourCaseStudy } from "./case-studies/your-case-study-slug"
 
 ```typescript
 export const caseStudies: readonly CaseStudy[] = [
-  nundle,
+  voyamore,
   yourCaseStudy, // Add here
 ];
 ```
@@ -238,7 +238,7 @@ Use consistent categories across case studies:
 
 Check out the existing case study for reference:
 
-- `nundle-tourism.ts` - Complete example with all sections
+- `voyamore.ts` - Complete example with all sections
 
 This shows the full structure with all optional sections included.
 

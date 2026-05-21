@@ -47,7 +47,7 @@ export type CaseStudy = {
 };
 
 // Import individual case studies
-import { caseStudy as nundle } from "./case-studies/nundle-tourism";
+import { caseStudy as voyamore } from "./case-studies/voyamore";
 import { caseStudy as lumiqraft } from "./case-studies/lumiqraft-publishing";
 // Add more imports as you create them
 // import { caseStudy as techflow } from "./case-studies/techflow-b2b-growth";
@@ -57,7 +57,7 @@ import { caseStudy as lumiqraft } from "./case-studies/lumiqraft-publishing";
 // Combine all case studies into array
 export const caseStudies: readonly CaseStudy[] = [
   lumiqraft,
-  nundle,
+  voyamore,
   // Add more case studies here as you create them
 ];
 
