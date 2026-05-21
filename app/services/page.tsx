@@ -20,6 +20,7 @@ import servicesData from "../../content/services.json";
 function ServiceIcon({ icon }: { icon: string }) {
   const iconMap: { [key: string]: string } = {
     SEO: "analytics",
+    GEO: "search",
     PPC: "ppc",
     DEV: "web-dev",
     CONTENT: "content",
@@ -31,6 +32,12 @@ function ServiceIcon({ icon }: { icon: string }) {
   const iconName = iconMap[icon] || iconMap.DEFAULT;
   return <Icon name={iconName} size={20} />;
 }
+
+// Slugs that have a dedicated detail page (mirrors the map in [slug]/page.tsx)
+const SERVICES_WITH_PAGES = new Set([
+  "seo-analytics",
+  "generative-engine-optimization",
+]);
 
 export default function ServicesPage() {
   const breadcrumbSchema = generateBreadcrumbSchema("/services");
@@ -191,77 +198,114 @@ export default function ServicesPage() {
               viewport={{ once: true, amount: 0.2 }}
               className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
             >
-              {servicesData.services.items.map((service, index) => (
-                <motion.div
-                  key={index}
-                  variants={item}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all hover:shadow-xl hover:shadow-brand-500/20 dark:bg-neutral-800"
-                >
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              {servicesData.services.items.map((service, index) => {
+                const hasPage = SERVICES_WITH_PAGES.has(service.slug);
 
-                  <div className="relative">
-                    <div className="mb-6">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-500/5 group-hover:from-brand-500/20 group-hover:to-brand-500/10 transition-all">
-                        <div className="text-brand-500 text-xl">
-                          <ServiceIcon icon={service.icon || "DEFAULT"} />
+                const cardInner = (
+                  <>
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+
+                    <div className="relative">
+                      <div className="mb-6 flex items-start justify-between">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-500/5 group-hover:from-brand-500/20 group-hover:to-brand-500/10 transition-all">
+                          <div className="text-brand-500 text-xl">
+                            <ServiceIcon icon={service.icon || "DEFAULT"} />
+                          </div>
+                        </div>
+                        {hasPage && (
+                          <span className="inline-flex items-center gap-1 text-xs font-medium text-brand-500 opacity-0 transition-opacity group-hover:opacity-100">
+                            Learn more →
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-xl font-semibold group-hover:text-brand-500 transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {service.description}
+                      </p>
+
+                      <ul className="mt-6 space-y-3">
+                        {service.bullets.map((bullet, bulletIndex) => (
+                          <li
+                            key={bulletIndex}
+                            className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400"
+                          >
+                            <div className="h-2 w-2 rounded-full bg-brand-500 group-hover:bg-brand-600 transition-colors" />
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-8 rounded-xl bg-gray-50/80 p-4 backdrop-blur dark:bg-neutral-900/50">
+                        <p className="text-sm font-semibold text-brand-500">
+                          {service.pricing}
+                        </p>
+                        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                          <strong>Includes:</strong>
+                          <ul className="mt-2 space-y-1">
+                            {service.deliverables
+                              .slice(0, 2)
+                              .map((deliverable, delIndex) => (
+                                <li
+                                  key={delIndex}
+                                  className="flex items-center gap-2"
+                                >
+                                  <div className="h-1 w-1 rounded-full bg-brand-500" />
+                                  {deliverable}
+                                </li>
+                              ))}
+                            {service.deliverables.length > 2 && (
+                              <li className="flex items-center gap-2">
+                                <div className="h-1 w-1 rounded-full bg-brand-500" />
+                                +{service.deliverables.length - 2} more
+                              </li>
+                            )}
+                          </ul>
                         </div>
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-semibold group-hover:text-brand-500 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {service.description}
-                    </p>
+                    {/* Bottom accent line */}
+                    <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-500 group-hover:w-full" />
+                  </>
+                );
 
-                    <ul className="mt-6 space-y-3">
-                      {service.bullets.map((bullet, bulletIndex) => (
-                        <li
-                          key={bulletIndex}
-                          className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400"
-                        >
-                          <div className="h-2 w-2 rounded-full bg-brand-500 group-hover:bg-brand-600 transition-colors" />
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
+                const baseClasses =
+                  "group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all hover:shadow-xl hover:shadow-brand-500/20 dark:bg-neutral-800";
 
-                    <div className="mt-8 rounded-xl bg-gray-50/80 p-4 backdrop-blur dark:bg-neutral-900/50">
-                      <p className="text-sm font-semibold text-brand-500">
-                        {service.pricing}
-                      </p>
-                      <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        <strong>Includes:</strong>
-                        <ul className="mt-2 space-y-1">
-                          {service.deliverables
-                            .slice(0, 2)
-                            .map((deliverable, delIndex) => (
-                              <li
-                                key={delIndex}
-                                className="flex items-center gap-2"
-                              >
-                                <div className="h-1 w-1 rounded-full bg-brand-500" />
-                                {deliverable}
-                              </li>
-                            ))}
-                          {service.deliverables.length > 2 && (
-                            <li className="flex items-center gap-2">
-                              <div className="h-1 w-1 rounded-full bg-brand-500" />
-                              +{service.deliverables.length - 2} more
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                if (hasPage) {
+                  return (
+                    <motion.div
+                      key={index}
+                      variants={item}
+                      whileHover={{ y: -8, scale: 1.02 }}
+                    >
+                      <Link
+                        href={service.href}
+                        aria-label={service.ariaLabel}
+                        className={`${baseClasses} block focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-950`}
+                      >
+                        {cardInner}
+                      </Link>
+                    </motion.div>
+                  );
+                }
 
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-500 group-hover:w-full" />
-                </motion.div>
-              ))}
+                return (
+                  <motion.div
+                    key={index}
+                    variants={item}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className={baseClasses}
+                    aria-label={service.ariaLabel}
+                  >
+                    {cardInner}
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </Container>
         </section>
@@ -309,6 +353,7 @@ export default function ServicesPage() {
               required: true,
               options: [
                 { value: "", label: "Select services..." },
+                { value: "geo", label: "Generative Engine Optimization (GEO)" },
                 { value: "seo", label: "SEO & Analytics" },
                 { value: "ppc", label: "PPC & Paid Media" },
                 { value: "web-dev", label: "Web Design & Development" },
