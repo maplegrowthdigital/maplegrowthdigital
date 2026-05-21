@@ -12,7 +12,7 @@ export const caseStudy: CaseStudy = {
   },
   summary:
     "We built a custom, lightweight WordPress platform for a Canadian-focused travel deal aggregator — including a proprietary plugin that replaced bloated third-party dependencies and consistently scores 90+ on technical SEO.",
-  image: "/case/voyamore-hero.jpg",
+  image: "/case/voyamore-hero.png",
   date: "2026-05-01",
   duration: "Ongoing",
   services: [
