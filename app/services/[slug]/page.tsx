@@ -10,48 +10,50 @@ import {
 } from "../../../content/page-schemas";
 import { generateBreadcrumbSchema } from "../../../lib/breadcrumbs";
 import seoServiceData from "../../../content/service-seo-analytics.json";
+import geoServiceData from "../../../content/service-generative-engine-optimization.json";
 import servicesData from "../../../content/services.json";
 
 type Props = { params: { slug: string } };
 
+// Map slug → full service data. Only slugs with a dedicated JSON file render.
+const SERVICE_DATA_BY_SLUG: Record<string, typeof seoServiceData> = {
+  "seo-analytics": seoServiceData,
+  "generative-engine-optimization": geoServiceData,
+};
+
 export async function generateStaticParams() {
-  // Generate paths for all services
-  return servicesData.services.items.map((service) => ({
-    slug: mapServiceData(service).slug,
-  }));
+  // Only generate paths for services with a dedicated content file.
+  return Object.keys(SERVICE_DATA_BY_SLUG).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // For now, using SEO service data as template
-  // In a real app, you'd load the correct service data based on slug
+  const data = SERVICE_DATA_BY_SLUG[params.slug];
+  if (!data) return {};
+
   return {
-    title: seoServiceData.seo.title,
-    description: seoServiceData.seo.description,
-    keywords: seoServiceData.seo.keywords,
-    alternates: {
-      canonical: seoServiceData.seo.canonical,
-    },
+    title: data.seo.title,
+    description: data.seo.description,
+    keywords: data.seo.keywords,
+    alternates: { canonical: data.seo.canonical },
     openGraph: {
-      title: seoServiceData.seo.title,
-      description: seoServiceData.seo.description,
-      url: seoServiceData.seo.canonical,
+      title: data.seo.title,
+      description: data.seo.description,
+      url: data.seo.canonical,
       type: "website",
     },
   };
 }
 
 export default function ServicePage({ params }: Props) {
-  // For now, only showing SEO service. In a real app, you'd load based on slug
-  if (params.slug !== "seo-analytics") {
-    return notFound();
-  }
+  const data = SERVICE_DATA_BY_SLUG[params.slug];
+  if (!data) return notFound();
 
   const breadcrumbSchema = generateBreadcrumbSchema(
     `/services/${params.slug}`,
-    seoServiceData.hero.title
+    data.hero.title
   );
 
-  // Get service data for schema
+  // Get service data for schema (matches the services.json item with the same slug)
   const serviceItem = servicesData.services.items.find(
     (s) => mapServiceData(s).slug === params.slug
   );
@@ -59,6 +61,9 @@ export default function ServicePage({ params }: Props) {
 
   const serviceData = mapServiceData(serviceItem);
   const serviceSchema = generateServicePageSchema(serviceData);
+
+  // Use the active service data for the page render
+  const seoServiceData = data;
 
   return (
     <>

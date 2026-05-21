@@ -39,3 +39,6 @@ memory-bank/
 # Local SMTP diagnostic (contains credentials)
 test-smtp.js
 tsconfig.tsbuildinfo
+
+# Internal SEO playbook (not shipped)
+SEO_PLAYBOOK.md

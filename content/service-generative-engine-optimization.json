@@ -1,0 +1,279 @@
+{
+  "seo": {
+    "title": "Generative Engine Optimization (GEO) Mississauga — MapleGrowth Digital",
+    "description": "GEO services for Mississauga and GTA small businesses. Get cited by ChatGPT, Google AI Overviews, Perplexity, and Gemini. Local-first AI search optimization that builds authority before your competitors do.",
+    "keywords": [
+      "generative engine optimization",
+      "GEO Mississauga",
+      "GEO services Mississauga",
+      "AI search optimization Mississauga",
+      "GEO agency Toronto",
+      "AI SEO Mississauga",
+      "ChatGPT optimization",
+      "Google AI Overview optimization"
+    ],
+    "canonical": "https://www.maplegrowthdigital.ca/services/generative-engine-optimization"
+  },
+
+  "hero": {
+    "id": "geo-hero",
+    "role": "region",
+    "ariaLabel": "Generative Engine Optimization services introduction",
+    "headingLevel": 1,
+    "title": "Generative Engine Optimization (GEO) for Mississauga Businesses",
+    "subhead": "Get cited by ChatGPT, Google AI Overviews, Perplexity, and Gemini — not just ranked in blue links.",
+    "body": "Generative Engine Optimization (GEO) is the practice of structuring your website content so AI search engines quote your business as the authoritative answer. Over 60% of Google searches now trigger an AI-generated summary, and most of your Mississauga competitors haven't adapted. We build the technical foundation, citation-worthy content, and topical authority that gets your brand surfaced when buyers ask AI for recommendations.",
+    "image": "/images/services/geo-hero.jpg",
+    "stats": [
+      { "value": "60%+", "label": "Google searches trigger AI answers" },
+      { "value": "40–60%", "label": "More likely to be cited with data-backed content" },
+      { "value": "90 days", "label": "Typical time to first AI citations" },
+      { "value": "0", "label": "Mississauga competitors with a dedicated GEO page" }
+    ],
+    "cta": {
+      "label": "Book a Free GEO Audit",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a free Generative Engine Optimization audit"
+    }
+  },
+
+  "overview": {
+    "id": "geo-overview",
+    "role": "region",
+    "ariaLabel": "GEO service overview",
+    "headingLevel": 2,
+    "title": "What Generative Engine Optimization Includes",
+    "subtitle": "AI search visibility built on the same fundamentals as great SEO — applied to a new layer.",
+    "body": "Traditional SEO gets you ranked. GEO gets you quoted. Our service combines content engineering for AI extraction, structured data implementation, topical authority building, and AI-referrer analytics — so your business doesn't just appear in search, it gets cited as the answer.",
+    "features": [
+      {
+        "icon": "ai-content",
+        "title": "AI-Quotable Content",
+        "description": "Lead-with-the-answer paragraphs, citable statistics, and structured paragraphs engineered for ChatGPT and Google AI Overview extraction."
+      },
+      {
+        "icon": "schema",
+        "title": "Structured Data & Schema",
+        "description": "Organization, LocalBusiness, FAQ, and Service schema markup that gives AI parsers unambiguous context about your business."
+      },
+      {
+        "icon": "topical-authority",
+        "title": "Topical Authority Clusters",
+        "description": "Pillar pages and interlinked content clusters that establish your domain as the expert source on your service categories."
+      },
+      {
+        "icon": "ai-analytics",
+        "title": "AI Search Analytics",
+        "description": "Track citations in ChatGPT, Perplexity, Google AI Overviews, and Bing Copilot. Monitor referral traffic from AI platforms and measure brand mention growth."
+      }
+    ]
+  },
+
+  "process": {
+    "id": "geo-process",
+    "role": "region",
+    "ariaLabel": "Our GEO process",
+    "headingLevel": 2,
+    "title": "Our GEO Process",
+    "subtitle": "A 90-day systematic approach to AI search visibility.",
+    "stepsHeadingLevel": 3,
+    "steps": [
+      {
+        "number": "01",
+        "title": "AI Visibility Audit",
+        "description": "We query ChatGPT, Perplexity, Google AI Overviews, and Gemini for the questions your buyers actually ask. We document where you currently appear (or don't), benchmark against competitors, and identify the highest-impact content gaps.",
+        "deliverables": [
+          "Current AI citation report",
+          "Competitor citation comparison",
+          "Top 20 buyer-intent queries with current AI answers",
+          "Robots.txt audit for AI crawler access"
+        ],
+        "timeline": "Week 1–2"
+      },
+      {
+        "number": "02",
+        "title": "GEO Strategy & Content Plan",
+        "description": "We map your services and expertise to the queries AI engines are answering. We produce a content roadmap with quotable answer paragraphs, supporting citations, and the schema markup plan for every priority page.",
+        "deliverables": [
+          "GEO strategy document",
+          "Priority page list with target AI queries",
+          "Schema markup implementation plan",
+          "Content cluster architecture"
+        ],
+        "timeline": "Week 3"
+      },
+      {
+        "number": "03",
+        "title": "Implementation",
+        "description": "We rewrite your priority pages with AI-quotable structure, install Organization, LocalBusiness, FAQ, and Service schema, build out topical content clusters, and verify your robots.txt allows GPTBot, ClaudeBot, PerplexityBot, and Google-Extended.",
+        "deliverables": [
+          "Rewritten priority pages",
+          "JSON-LD schema across the site",
+          "New supporting content articles",
+          "Robots.txt and sitemap updates"
+        ],
+        "timeline": "Week 4–8"
+      },
+      {
+        "number": "04",
+        "title": "Monitor & Iterate",
+        "description": "AI engines change weekly. We track your citation rate, monitor AI referrer traffic, run monthly query-set checks across all major AI platforms, and refine content where citations aren't yet landing.",
+        "deliverables": [
+          "Monthly AI citation reports",
+          "AI referral traffic dashboards",
+          "Content optimization based on AI feedback",
+          "Quarterly GEO strategy refresh"
+        ],
+        "timeline": "Ongoing"
+      }
+    ]
+  },
+
+  "results": {
+    "id": "geo-results",
+    "role": "region",
+    "ariaLabel": "GEO results and outcomes",
+    "headingLevel": 2,
+    "title": "What You Can Expect",
+    "subtitle": "Measurable outcomes from a 90-day Generative Engine Optimization engagement.",
+    "outcomes": [
+      {
+        "metric": "AI Citations",
+        "improvement": "First citations",
+        "timeframe": "60–90 days",
+        "description": "Your brand starts appearing as the cited source in ChatGPT, Perplexity, and Google AI Overviews for buyer-intent queries."
+      },
+      {
+        "metric": "AI Referral Traffic",
+        "improvement": "New traffic source",
+        "timeframe": "90–120 days",
+        "description": "Direct visits from chatgpt.com, perplexity.ai, and other AI platforms become a tracked, growing channel in your analytics."
+      },
+      {
+        "metric": "Topical Authority",
+        "improvement": "Pillar status",
+        "timeframe": "3–6 months",
+        "description": "AI engines treat your domain as a primary source for your service categories — citations compound as the cluster matures."
+      },
+      {
+        "metric": "Conventional Rankings",
+        "improvement": "Organic lift",
+        "timeframe": "4–8 months",
+        "description": "Side benefit: the same content engineering that wins AI citations also lifts traditional Google rankings for your priority keywords."
+      }
+    ]
+  },
+
+  "pricing": {
+    "id": "geo-pricing",
+    "role": "region",
+    "ariaLabel": "GEO service pricing",
+    "headingLevel": 2,
+    "title": "GEO Service Packages",
+    "subtitle": "Built for Mississauga and GTA small businesses that want to be cited by AI before their competitors are.",
+    "packages": [
+      {
+        "name": "GEO Starter",
+        "price": "$1,500",
+        "period": "per month",
+        "description": "For small businesses ready to claim AI visibility in their local market.",
+        "features": [
+          "AI visibility audit (4 platforms)",
+          "Up to 5 priority pages rewritten for AI extraction",
+          "Organization + LocalBusiness schema",
+          "Monthly AI citation report",
+          "Robots.txt + sitemap setup for AI crawlers"
+        ],
+        "bestFor": "Local Mississauga small businesses, service providers"
+      },
+      {
+        "name": "GEO Growth",
+        "price": "$3,000",
+        "period": "per month",
+        "description": "Full topical authority cluster + ongoing content engineering.",
+        "features": [
+          "Everything in Starter",
+          "Up to 15 priority pages + 2 pillar pages",
+          "Full schema suite (Organization, LocalBusiness, FAQ, Service, Article)",
+          "Monthly supporting content (4 articles/month)",
+          "Bi-weekly AI citation tracking across ChatGPT, Perplexity, Google AI Overviews, Bing Copilot, Gemini",
+          "Bi-weekly strategy calls"
+        ],
+        "bestFor": "Growing GTA service businesses, scale-ups, professional firms",
+        "popular": true
+      },
+      {
+        "name": "GEO Enterprise",
+        "price": "Custom",
+        "period": "pricing",
+        "description": "Multi-location and high-volume content programs.",
+        "features": [
+          "Everything in Growth",
+          "Unlimited priority pages",
+          "Multi-location LocalBusiness schema",
+          "Custom content volume",
+          "Dedicated GEO strategist",
+          "Weekly reporting and strategy calls"
+        ],
+        "bestFor": "Multi-location businesses, large service firms, e-commerce brands"
+      }
+    ]
+  },
+
+  "faq": {
+    "id": "geo-faq",
+    "role": "region",
+    "ariaLabel": "GEO frequently asked questions",
+    "headingLevel": 2,
+    "title": "GEO FAQs",
+    "questions": [
+      {
+        "question": "What is Generative Engine Optimization (GEO)?",
+        "answer": "Generative Engine Optimization is the practice of structuring website content, metadata, and schema so AI search engines like ChatGPT, Google AI Overviews, Perplexity, and Gemini quote your business as the authoritative answer to user queries. Where traditional SEO competes for blue-link rankings, GEO competes to be the cited source inside AI-generated summaries."
+      },
+      {
+        "question": "How is GEO different from traditional SEO?",
+        "answer": "Traditional SEO optimizes for keyword rankings on Google's results page. GEO optimizes for citation inside AI-generated answers. The two share fundamentals like quality content, structured data, and topical authority — but GEO emphasizes a different output format: quotable answer paragraphs at the top of pages, named-source statistics, and machine-readable structure designed specifically for AI extraction."
+      },
+      {
+        "question": "How long until I start getting cited by AI search engines?",
+        "answer": "Most clients see their first AI citations within 60–90 days of implementation, with consistent citation growth over the following 3–6 months as topical authority compounds. AI engines re-crawl and re-evaluate content faster than traditional Google indexing, so well-engineered content often surfaces quickly."
+      },
+      {
+        "question": "Do I need GEO if I already do SEO?",
+        "answer": "Yes. SEO and GEO are complementary, not interchangeable. SEO drives traditional organic clicks; GEO drives AI citations and the growing volume of zero-click AI search traffic. Over 60% of Google searches now trigger an AI summary, and ChatGPT alone handles over a billion queries per week — much of which never reaches traditional search results. Brands that only do SEO are leaving that traffic on the table."
+      },
+      {
+        "question": "Why Mississauga and the GTA specifically?",
+        "answer": "We're a Canadian-founded agency based in Mississauga with deep familiarity with the local market. No other Mississauga agency has a dedicated GEO service page yet, which means small businesses in the GTA have a narrow window to claim AI search visibility before their competitors catch up."
+      },
+      {
+        "question": "Do you only work with Mississauga businesses?",
+        "answer": "No. While we specialize in Mississauga and Greater Toronto Area clients, we work with small businesses across Canada and North America. GEO is location-agnostic at the technical level, though local Mississauga businesses get the additional benefit of our local market knowledge."
+      },
+      {
+        "question": "What AI platforms do you optimize for?",
+        "answer": "We optimize for citations across ChatGPT, Google AI Overviews (SGE), Perplexity, Microsoft Copilot (Bing), and Google Gemini. We also verify your site is accessible to GPTBot, ClaudeBot, PerplexityBot, and Google-Extended crawlers — blocking these is the most common reason businesses are invisible in AI search."
+      }
+    ]
+  },
+
+  "cta": {
+    "id": "geo-cta",
+    "role": "region",
+    "ariaLabel": "Get started with GEO services",
+    "headingLevel": 2,
+    "title": "Be the Answer, Not Just a Result",
+    "body": "AI search is reshaping how Mississauga buyers find businesses. Lock in your AI visibility before your competitors do.",
+    "primaryCta": {
+      "label": "Book a Free GEO Audit",
+      "href": "https://tidycal.com/maplegrowthdigital/strategy-call",
+      "ariaLabel": "Book a free Generative Engine Optimization audit"
+    },
+    "secondaryCta": {
+      "label": "View All Services",
+      "href": "/services",
+      "ariaLabel": "Explore all our digital marketing services"
+    }
+  }
+}

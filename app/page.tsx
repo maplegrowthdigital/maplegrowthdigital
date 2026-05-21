@@ -78,6 +78,7 @@ export default function Page() {
             required: true,
             options: [
               { value: "", label: "Select services..." },
+              { value: "geo", label: "Generative Engine Optimization (GEO)" },
               { value: "seo", label: "SEO & Analytics" },
               { value: "ppc", label: "PPC & Paid Media" },
               { value: "web-dev", label: "Web Design & Development" },

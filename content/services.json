@@ -56,6 +56,26 @@
     "itemsHeadingLevel": 3,
     "items": [
       {
+        "slug": "generative-engine-optimization",
+        "icon": "GEO",
+        "title": "Generative Engine Optimization (GEO)",
+        "description": "Get cited by ChatGPT, Google AI Overviews, Perplexity, and Gemini. AI search visibility for Mississauga businesses before competitors catch up.",
+        "bullets": [
+          "AI-quotable content engineering",
+          "Schema & topical authority",
+          "AI citation tracking"
+        ],
+        "ariaLabel": "Generative Engine Optimization service",
+        "href": "/services/generative-engine-optimization",
+        "pricing": "Starting at $1,500/month",
+        "deliverables": [
+          "AI visibility audit",
+          "Priority pages rewritten for AI extraction",
+          "Schema markup implementation",
+          "Monthly AI citation reports"
+        ]
+      },
+      {
         "slug": "seo-analytics",
         "icon": "SEO",
         "title": "SEO & Analytics",
