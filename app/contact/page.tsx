@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "../../components/Container";
 import { PageBanner } from "../../components/PageBanner";
 import { Icon } from "../../components/Icon";
-import { TidyCalEmbed } from "../../components/TidyCalEmbed";
+import { ContactForm } from "../../components/ContactForm";
 import { BreadcrumbSchema } from "../../components/BreadcrumbSchema";
 import { generateContactPageSchema } from "../../content/page-schemas";
 import { generateBreadcrumbSchema } from "../../lib/breadcrumbs";
@@ -126,9 +126,67 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Section - TidyCal embed */}
-        <TidyCalEmbed
+        <ContactForm
           title={contactData.form.title}
           subtitle={contactData.form.subtitle}
+          fields={[
+            { name: "name", label: "Full Name", type: "text", required: true, placeholder: "Your name" },
+            { name: "email", label: "Email Address", type: "email", required: true, placeholder: "your@email.com" },
+            { name: "company", label: "Company", type: "text", required: false, placeholder: "Your company name" },
+            { name: "website", label: "Website", type: "url", required: false, placeholder: "https://yourwebsite.com" },
+            {
+              name: "services",
+              label: "Services Interested In",
+              type: "select",
+              required: true,
+              options: [
+                { value: "", label: "Select services..." },
+                { value: "seo", label: "SEO & Analytics" },
+                { value: "ppc", label: "PPC & Paid Media" },
+                { value: "web-dev", label: "Web Design & Development" },
+                { value: "content", label: "Content & Email Marketing" },
+                { value: "brand", label: "Brand & Creative" },
+                { value: "strategy", label: "Growth Strategy" },
+                { value: "multiple", label: "Multiple Services" },
+                { value: "not-sure", label: "Not Sure - Need Consultation" },
+              ],
+            },
+            {
+              name: "budget",
+              label: "Monthly Marketing Budget",
+              type: "select",
+              required: false,
+              options: [
+                { value: "", label: "Select budget range..." },
+                { value: "under-2k", label: "Under $2,000" },
+                { value: "2k-5k", label: "$2,000 - $5,000" },
+                { value: "5k-10k", label: "$5,000 - $10,000" },
+                { value: "10k-25k", label: "$10,000 - $25,000" },
+                { value: "25k-plus", label: "$25,000+" },
+                { value: "project-based", label: "One-time project" },
+              ],
+            },
+            {
+              name: "message",
+              label: "Tell us about your project",
+              type: "textarea",
+              required: true,
+              placeholder:
+                "Describe your business goals, current challenges, and what you're hoping to achieve with digital marketing...",
+              rows: 5,
+            },
+          ]}
+          submitLabel="Send Message"
+          submitAriaLabel="Send contact form message"
+          contactDetails={{
+            email: "hello@maplegrowthdigital.ca",
+            phone: "+1 (431) 726-1578",
+            location: "Canada",
+            socials: [
+              { platform: "Instagram", href: "https://www.instagram.com/maplegrowthdigital/", ariaLabel: "Follow MapleGrowth Digital on Instagram" },
+              { platform: "YouTube", href: "https://youtube.com/@MapleGrowthDigital", ariaLabel: "Follow MapleGrowth Digital on YouTube" },
+            ],
+          }}
         />
       </main>
     </>
