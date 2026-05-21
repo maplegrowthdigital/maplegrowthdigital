@@ -380,6 +380,10 @@ export function mapServiceData(serviceItem: any): ServiceData {
   // Map service titles to slugs and service types
   const serviceMapping: Record<string, { slug: string; serviceType: string }> =
     {
+      "Generative Engine Optimization (GEO)": {
+        slug: "generative-engine-optimization",
+        serviceType: "AI Search Optimization",
+      },
       "SEO & Analytics": {
         slug: "seo-analytics",
         serviceType: "Search Engine Optimization",
