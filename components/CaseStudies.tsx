@@ -1,171 +1,210 @@
 "use client";
+
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Container } from "./Container";
-import { ShapesBackdrop } from "./ShapesBackdrop";
-import { Icon } from "./Icon";
+import Link from "next/link";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
 
-type CTA = {
-  label: string;
-  href: string;
-  target?: string;
-  ariaLabel?: string;
-};
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
+}
 
-export function CaseStudies({ caseStudies }: { caseStudies?: any }) {
-  const content = caseStudies || {};
-  const getAriaLabel = (
-    label?: string,
-    ariaLabel?: string,
-    opensInNewTab?: boolean
-  ) => {
-    const base = ariaLabel || label;
-    if (opensInNewTab) {
-      const fallback = base || label || "Open link";
-      return `${fallback} (opens in a new tab)`;
-    }
-    return base;
-  };
-  const sectionCta: CTA = content.cta ?? {
-    label: "Work with us",
-    href: "#contact",
-  };
-  const sectionTarget =
-    sectionCta.target ||
-    (sectionCta.href && sectionCta.href.startsWith("http")
-      ? "_blank"
-      : undefined);
-  const sectionRel = sectionTarget === "_blank" ? "noreferrer" : undefined;
-  const sectionOpensNewTab = sectionTarget === "_blank";
-  const sectionAriaLabel = getAriaLabel(
-    sectionCta.label,
-    sectionCta.ariaLabel,
-    sectionOpensNewTab
+interface CaseStudyItem {
+  slug: string;
+  title: string;
+  category: string;
+  image: string;
+  summary: string;
+  results: string[]; // already formatted like "+42% Repeat purchase"
+  /** Optional — when present, renders a "Read case study" link.
+   *  Single-page mode: leave undefined to suppress the click-through. */
+  link?: string;
+  linkLabel?: string;
+}
+
+interface CaseStudiesData {
+  title?: string;
+  intro?: string;
+  items?: CaseStudyItem[];
+}
+
+export function CaseStudies({
+  caseStudies,
+}: {
+  caseStudies?: CaseStudiesData;
+}) {
+  const ref = useRef<HTMLElement>(null);
+  const items: CaseStudyItem[] = caseStudies?.items ?? [];
+
+  useGSAP(
+    () => {
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      // Section title split-text
+      const titleEl = ref.current?.querySelector<HTMLElement>(
+        ".section-title[data-split]"
+      );
+      if (titleEl && !prefersReduced) {
+        const split = new SplitText(titleEl, {
+          type: "lines,words",
+          linesClass: "split-line",
+        });
+        gsap.set(split.words, { yPercent: 110, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: titleEl,
+          start: "top 82%",
+          once: true,
+          onEnter: () => {
+            gsap.to(split.words, {
+              yPercent: 0,
+              opacity: 1,
+              duration: 1.0,
+              stagger: 0.03,
+              ease: "expo.out",
+            });
+          },
+        });
+      }
+
+      // Reveal-up label
+      const reveals = ref.current?.querySelectorAll<HTMLElement>(
+        '[data-reveal="up"]'
+      );
+      if (reveals) {
+        gsap.set(reveals, { opacity: 0, y: 28 });
+        if (!prefersReduced) {
+          reveals.forEach((el) => {
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top 88%",
+              once: true,
+              onEnter: () => {
+                gsap.to(el, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.9,
+                  delay: parseFloat(el.dataset.revealDelay || "0"),
+                  ease: "expo.out",
+                });
+              },
+            });
+          });
+        } else {
+          gsap.set(reveals, { opacity: 1, y: 0 });
+        }
+      }
+
+      // Case cards — opacity-only entrance (y would fight position: sticky)
+      const cards = ref.current?.querySelectorAll<HTMLElement>("[data-case]");
+      if (cards && !prefersReduced) {
+        cards.forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            duration: 0.7,
+            ease: "expo.out",
+            scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          });
+        });
+      }
+
+      // Subtle media parallax on each case placeholder
+      const placeholders = ref.current?.querySelectorAll<HTMLElement>(
+        ".case__placeholder"
+      );
+      if (placeholders && !prefersReduced) {
+        placeholders.forEach((el) => {
+          gsap.to(el, {
+            yPercent: -8,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el.closest(".case"),
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+      }
+    },
+    { scope: ref }
   );
-  const cs = content.items || [];
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-  } as const;
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  } as const;
-  return (
-    <section
-      id="case-studies"
-      className="relative overflow-hidden py-24 border-t border-gray-100 dark:border-gray-800"
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-brand-500/5 to-transparent dark:from-brand-500/10" />
-      <Container>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <motion.span variants={item} className="chip-brand">
-            Case Studies
-          </motion.span>
-          <motion.h2
-            variants={item}
-            className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl"
-          >
-            {content.title}
-          </motion.h2>
-          <motion.p
-            variants={item}
-            className="mt-4 text-gray-600 dark:text-gray-300"
-          >
-            {content.intro}
-          </motion.p>
-        </motion.div>
 
-        {cs.map((study: any, idx: number) => {
-          const reverse = idx % 2 === 1;
-          return (
-            <motion.div
-              key={study.slug}
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mt-12 grid items-center gap-10 lg:grid-cols-2"
-            >
-              <motion.div
-                variants={item}
-                className={
-                  (reverse ? "lg:order-2 " : "lg:order-1 ") + "relative"
-                }
-              >
-                <ShapesBackdrop />
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="relative overflow-hidden rounded-3xl border border-gray-200 shadow-sm dark:border-gray-800"
-                >
-                  <div className="relative aspect-[4/3] bg-gray-50 dark:bg-neutral-900">
-                    <Image
-                      src={study.image}
-                      alt={study.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-              <motion.div
-                variants={item}
-                className={reverse ? "lg:order-1" : "lg:order-2"}
-              >
-                <div className="max-w-xl">
-                  <div className="chip">{study.category}</div>
-                  <h3 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-                    {study.title}
-                  </h3>
-                  <p className="mt-4 text-gray-700 dark:text-gray-300">
-                    {study.summary}
-                  </p>
-                  <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {(study.results || []).map((r: string) => (
-                      <li
-                        key={r}
-                        className="inline-flex items-center gap-2 rounded-lg border border-brand-500/30 bg-brand-500/10 px-3 py-2 text-sm text-brand-600 dark:text-brand-500"
-                      >
-                        <Icon name="check" size={16} />
-                        <span>{r}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    <a href={study.link} className="btn-cta">
-                      {study.linkLabel ?? "Read case study"}
-                      <Icon name="arrow-right" size={16} className="ml-2" />
-                    </a>
-                    {sectionCta?.href && sectionCta?.label && (
-                      <a
-                        href={sectionCta.href}
-                        target={sectionTarget}
-                        rel={sectionRel}
-                        className="btn-secondary"
-                        aria-label={sectionAriaLabel}
-                      >
-                        {sectionCta.label}
-                        {sectionOpensNewTab && (
-                          <span className="sr-only"> (opens in a new tab)</span>
-                        )}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          );
-        })}
-      </Container>
+  // Map dynamic case studies to placeholder colors (rose, ink, amber, forest)
+  const colorCycle = ["rose", "ink", "amber", "forest"];
+
+  return (
+    <section ref={ref} className="work" id="work" aria-label="Selected work">
+      <div className="section-head">
+        <div className="section-label" data-reveal="up">
+          <span className="dot" />
+          <span>Selected work</span>
+        </div>
+        <h2 className="section-title" data-split>
+          {caseStudies?.title ? (
+            caseStudies.title
+          ) : (
+            <>
+              Real results from&nbsp;<em>real</em> clients.
+            </>
+          )}
+        </h2>
+      </div>
+
+      <div className="work__stack" data-work-stack>
+        {items.map((item, i) => (
+          <article
+            key={item.slug}
+            className="case"
+            data-case
+            style={{ ["--stack-i" as keyof React.CSSProperties]: i } as React.CSSProperties}
+          >
+            <div className="case__media">
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 880px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+              ) : (
+                <div
+                  className="case__placeholder"
+                  data-color={colorCycle[i % colorCycle.length]}
+                />
+              )}
+              <span className="case__tag">{item.category}</span>
+            </div>
+            <div className="case__body">
+              <h3 className="case__title">{item.title}</h3>
+              <p className="case__summary">{item.summary}</p>
+              <ul className="case__metrics">
+                {item.results.slice(0, 3).map((r, j) => {
+                  // Split "value metric" into bold + label
+                  const m = r.match(/^(\S+)\s+(.+)$/);
+                  return (
+                    <li key={j}>
+                      <strong>{m ? m[1] : r}</strong>
+                      <span>{m ? m[2] : ""}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+              {item.link ? (
+                <Link href={item.link} className="case__link">
+                  {item.linkLabel || "Read case study"}{" "}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              ) : null}
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

@@ -19,11 +19,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "framer-motion": "11.3.30",
+    "@gsap/react": "^2.1.1",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.3",
+    "@vercel/analytics": "^1.4.1",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.20",
     "next": "^14.2.35",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "resend": "^6.12.3",
+    "resend": "^4.0.1",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
@@ -32,7 +37,6 @@
     "@types/react-dom": "18.2.23",
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
-    "schema-dts": "^1.1.5",
     "tailwindcss": "3.4.10",
     "typescript": "5.4.5"
   }

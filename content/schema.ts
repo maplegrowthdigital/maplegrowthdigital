@@ -49,7 +49,7 @@ export const schema = {
         {
           "@type": "ContactPoint",
           telephone: "+1 (431) 726-1578",
-          email: "hello@maplegrowthdigital.ca",
+          email: "info@maplegrowthdigital.ca",
           contactType: "customer service",
           availableLanguage: ["English", "French"],
         },
@@ -103,7 +103,7 @@ export const schema = {
         {
           "@type": "ContactPoint",
           telephone: "+1 (431) 726-1578",
-          email: "hello@maplegrowthdigital.ca",
+          email: "info@maplegrowthdigital.ca",
           contactType: "customer service",
           availableLanguage: ["English", "French"],
         },
@@ -115,7 +115,7 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/services/seo-analytics#service",
+      "@id": "https://www.maplegrowthdigital.ca/#service-seo-analytics",
       name: "SEO & Analytics",
       description:
         "Technical SEO, on-page optimization, content strategy, and analytics that compound results.",
@@ -124,8 +124,7 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id":
-        "https://www.maplegrowthdigital.ca/services/ppc-paid-media#service",
+      "@id": "https://www.maplegrowthdigital.ca/#service-ppc-paid-media",
       name: "PPC & Paid Media",
       description:
         "ROI-first campaigns across Google, YouTube, and social. Built for fast, measurable growth.",
@@ -134,8 +133,7 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id":
-        "https://www.maplegrowthdigital.ca/services/web-design-development#service",
+      "@id": "https://www.maplegrowthdigital.ca/#service-web-design-development",
       name: "Web Design & Development",
       description:
         "Conversion-focused, accessible websites engineered for speed, security, and scalability.",
@@ -144,7 +142,7 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/services/content-email#service",
+      "@id": "https://www.maplegrowthdigital.ca/#service-content-email",
       name: "Content & Email Marketing",
       description:
         "Editorial calendars, sales enablement content, and lifecycle email that nurtures demand.",
@@ -153,8 +151,7 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id":
-        "https://www.maplegrowthdigital.ca/services/brand-creative#service",
+      "@id": "https://www.maplegrowthdigital.ca/#service-brand-creative",
       name: "Brand & Creative",
       description:
         "Brand systems, ad creative, and motion assets that boost recognition and conversion.",
@@ -163,8 +160,7 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id":
-        "https://www.maplegrowthdigital.ca/services/growth-strategy#service",
+      "@id": "https://www.maplegrowthdigital.ca/#service-growth-strategy",
       name: "Growth Strategy",
       description:
         "Positioning, messaging, and go-to-market plans tailored to small business digital marketing.",

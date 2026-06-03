@@ -1,96 +1,92 @@
 "use client";
+
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Container } from "./Container";
 import { ThemeToggle } from "./ThemeToggle";
-import { HeaderNav } from "./HeaderNav";
-import fallbackData from "../content/data.json";
+import { useModal, useModalState } from "./global/ModalProvider";
 import type { NavItem } from "../lib/navigation";
 
+const MOBILE_NAV = "mobile-nav";
+
 export function Header({
-  logoUrl,
   navItems,
 }: {
-  logoUrl?: string;
   navItems?: NavItem[];
 }) {
   const [scrolled, setScrolled] = useState(false);
+  const { open, close } = useModal();
+  const { isOpen: mobileNavOpen } = useModalState(MOBILE_NAV);
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const toggleMobileNav = () => {
+    if (mobileNavOpen) close(MOBILE_NAV);
+    else open(MOBILE_NAV);
+  };
+
   return (
     <header
       id="site-navigation"
-      className={
-        (scrolled ? "bg-gray-900/95 shadow-md" : "bg-gray-900/100 shadow-sm") +
-        " sticky top-0 z-50 border-t-2 border-brand-500 text-white backdrop-blur"
-      }
+      className={`site-header${scrolled ? " is-scrolled" : ""}`}
+      data-header
     >
-      <Container className="flex h-[80px] items-center justify-between gap-6">
-        <Link
-          href="/"
-          className="flex items-center"
-          aria-label="MapleGrowth home"
-        >
-          <Image
-            src={logoUrl || fallbackData.logoUrl}
-            alt="MapleGrowth Digital"
-            width={160}
-            height={28}
-            className="h-12 md:h-14 w-auto"
-            priority
-          />
-        </Link>
-        <HeaderNav navItems={navItems} />
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <a
-            href={fallbackData.tidycal}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-cta"
-            aria-label="Book a strategy call (opens in a new tab)"
-          >
-            {/* Mobile: Show only call icon */}
-            <svg
-              className="h-5 w-5 sm:hidden"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              viewBox="0 0 24 24"
-              role="presentation"
-              aria-hidden="true"
-            >
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.62-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.6 12.6 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.6 12.6 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
+      <Link href="/" className="logo" aria-label="MapleGrowth Digital home">
+        {/* Two variants — one shown per theme via CSS [data-theme] swap.
+            The hidden one is `display: none`, so screen readers only see
+            one, and most browsers skip fetching the off-theme image. */}
+        <img
+          src="/mgd-logo.svg"
+          alt="MapleGrowth Digital"
+          width={182}
+          height={60}
+          className="logo__img logo__img--dark"
+        />
+        <img
+          src="/mgd-logo-light.svg"
+          alt=""
+          width={182}
+          height={60}
+          className="logo__img logo__img--light"
+          aria-hidden="true"
+        />
+      </Link>
 
-            {/* Desktop: Show text with arrow */}
-            <span className="hidden sm:inline">Book a call</span>
-            <svg
-              className="ml-2 h-4 w-4 hidden sm:block"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              role="presentation"
-              aria-hidden="true"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-            <span className="sr-only">Opens in a new tab</span>
-          </a>
-        </div>
-      </Container>
+      <nav className="nav" aria-label="Primary">
+        {(navItems || []).map((item) => (
+          <Link key={item.href} href={item.href}>
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+
+      <div className="site-header__actions">
+        <ThemeToggle />
+        <Link
+          href="#contact"
+          className="btn btn--ghost btn--small site-header__cta"
+          data-magnetic
+        >
+          <span>Book a call</span>
+          <span className="btn__arrow" aria-hidden="true">→</span>
+        </Link>
+        <button
+          className={`hamburger${mobileNavOpen ? " is-open" : ""}`}
+          type="button"
+          onClick={toggleMobileNav}
+          aria-controls="mobile-menu"
+          aria-expanded={mobileNavOpen}
+          aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
+        >
+          <span className="hamburger__bar" />
+          <span className="hamburger__bar" />
+          <span className="hamburger__bar" />
+        </button>
+      </div>
     </header>
   );
 }

@@ -30,12 +30,15 @@ const nextConfig = {
         key: "Content-Security-Policy",
         value: [
           "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+          // Cloudflare Turnstile loads its API script + renders an iframe.
+          // Vercel Analytics loads /_vercel/insights/script.js from va.vercel-scripts.com.
+          // GTM is optional (only if NEXT_PUBLIC_GTM_ID is set).
+          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com https://va.vercel-scripts.com",
           "style-src 'self' 'unsafe-inline'",
           "font-src 'self' data:",
           "img-src 'self' data: https:",
-          "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
-          "frame-src 'self' https://www.googletagmanager.com",
+          "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://challenges.cloudflare.com https://va.vercel-scripts.com",
+          "frame-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com",
           "base-uri 'self'",
         ].join("; "),
       },

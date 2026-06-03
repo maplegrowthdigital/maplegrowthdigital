@@ -1,203 +1,237 @@
 "use client";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Container } from "./Container";
-import { Icon } from "./Icon";
-import { ShapesBackdrop } from "./ShapesBackdrop";
-type CTA = {
-  label: string;
-  href: string;
-  target?: string;
-  ariaLabel?: string;
-};
 
-function ServiceIcon({ icon }: { icon: string }) {
-  const iconMap: { [key: string]: string } = {
-    SEO: "analytics",
-    PPC: "ppc",
-    DEV: "web-dev",
-    CONTENT: "content",
-    BRAND: "brand",
-    GROWTH: "growth",
-    DEFAULT: "search",
-  };
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
+import { useModal } from "./global/ModalProvider";
 
-  const iconName = iconMap[icon] || iconMap.DEFAULT;
-  return <Icon name={iconName} size={20} />;
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 }
 
-export function Services({ services }: { services?: any }) {
-  const content = services || {};
-  const getAriaLabel = (
-    label?: string,
-    ariaLabel?: string,
-    opensInNewTab?: boolean
-  ) => {
-    const base = ariaLabel || label;
-    if (opensInNewTab) {
-      const fallback = base || label || "Open link";
-      return `${fallback} (opens in a new tab)`;
-    }
-    return base;
-  };
-  const primaryCta: CTA = {
-    label: "Book a strategy call",
-    href: "https://tidycal.com/maplegrowthdigital/strategy-call",
-    target: "_blank",
-  };
-  const primaryTarget =
-    primaryCta.target ||
-    (primaryCta.href && primaryCta.href.startsWith("http")
-      ? "_blank"
-      : undefined);
-  const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
-  const primaryOpensNewTab = primaryTarget === "_blank";
-  const primaryAriaLabel = getAriaLabel(
-    primaryCta.label,
-    primaryCta.ariaLabel,
-    primaryOpensNewTab
-  );
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-  } as const;
-  const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  } as const;
-  return (
-    <section
-      id={content.id || "services"}
-      role={content.role || "region"}
-      aria-label={content.ariaLabel || "Services"}
-      className="relative overflow-hidden py-24 border-t border-gray-100 dark:border-gray-800"
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-brand-500/5 to-transparent dark:from-brand-500/10" />
-      <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            className="max-w-xl"
-          >
-            <motion.span variants={item} className="chip-brand">
-              Services
-            </motion.span>
-            <motion.h2
-              variants={item}
-              className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl"
-            >
-              {content.title}
-            </motion.h2>
-            <motion.p
-              variants={item}
-              className="mt-4 text-gray-600 dark:text-gray-300"
-            >
-              {content.subtitle}
-            </motion.p>
-            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
-              {primaryCta?.href && primaryCta?.label && (
-                <a
-                  href={primaryCta.href}
-                  target={primaryTarget}
-                  rel={primaryRel}
-                  className="btn-cta"
-                  aria-label={primaryAriaLabel}
-                >
-                  {primaryCta.label}
-                  {primaryOpensNewTab && (
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  )}
-                  <svg
-                    className="ml-2 h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    role="presentation"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
-              )}
-            </motion.div>
-          </motion.div>
-          <div className="hidden lg:block">
-            <div className="relative">
-              <ShapesBackdrop />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.4 }}
-                className="relative overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-800"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src="/images/services-1.webp"
-                    alt="Computer vector graphic"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  bullets: string[];
+}
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {(content.items || []).map((s: any) => (
-            <motion.div
-              key={s.title}
-              variants={item}
-              whileHover={{ y: -4 }}
-              className="card group p-6 transition hover:shadow-md"
-              aria-label={s.ariaLabel || s.title}
+const DEFAULT_SERVICES: ServiceItem[] = [
+  {
+    id: "seo",
+    title: "SEO & Analytics",
+    description: "Technical SEO, on-page optimization, and analytics that compound results.",
+    bullets: ["Local & national visibility", "Content roadmaps", "GA4 & dashboards"],
+  },
+  {
+    id: "ppc",
+    title: "PPC & Paid Media",
+    description: "ROI-first campaigns across Google, YouTube, and social.",
+    bullets: ["Google & Performance Max", "Retargeting", "Landing page CRO"],
+  },
+  {
+    id: "web",
+    title: "Web Design & Development",
+    description: "Conversion-focused, accessible sites engineered for speed and scale.",
+    bullets: ["WordPress & Headless", "Shopify storefronts", "Core Web Vitals"],
+  },
+  {
+    id: "content",
+    title: "Content & Email",
+    description: "Editorial calendars and lifecycle email that nurture demand.",
+    bullets: ["Lead magnets & blogs", "Newsletters & flows", "CRM integrations"],
+  },
+  {
+    id: "brand",
+    title: "Brand & Creative",
+    description: "Brand systems, ad creative, and motion assets that lift recognition.",
+    bullets: ["Visual identity", "Ad creative kits", "Video & motion"],
+  },
+  {
+    id: "strategy",
+    title: "Growth Strategy",
+    description: "Positioning, messaging, and go-to-market plans tailored to your stage.",
+    bullets: ["ICP & messaging", "Channel mix planning", "KPI frameworks"],
+  },
+];
+
+export interface ServicesProps {
+  /**
+   * Optional — accepts existing data.json `services` shape. Falls back to
+   * prototype copy if the items aren't provided.
+   */
+  services?: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      title: string;
+      description?: string;
+      bullets?: string[];
+    }>;
+  };
+}
+
+export function Services({ services }: ServicesProps) {
+  const ref = useRef<HTMLElement>(null);
+  const { open } = useModal();
+
+  // Reconcile data.json shape with our internal shape; fall back to defaults
+  const items: ServiceItem[] = (services?.items ?? []).length
+    ? services!.items!.map((item, i) => ({
+        id: DEFAULT_SERVICES[i]?.id ?? `service-${i}`,
+        title: item.title,
+        description: item.description || DEFAULT_SERVICES[i]?.description || "",
+        bullets: item.bullets || DEFAULT_SERVICES[i]?.bullets || [],
+      }))
+    : DEFAULT_SERVICES;
+
+  useGSAP(
+    () => {
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      // Split-text on the section title
+      const titleEl = ref.current?.querySelector<HTMLElement>(
+        ".section-title[data-split]"
+      );
+      if (titleEl && !prefersReduced) {
+        const split = new SplitText(titleEl, {
+          type: "lines,words",
+          linesClass: "split-line",
+        });
+        gsap.set(split.words, { yPercent: 110, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: titleEl,
+          start: "top 82%",
+          once: true,
+          onEnter: () => {
+            gsap.to(split.words, {
+              yPercent: 0,
+              opacity: 1,
+              duration: 1.0,
+              stagger: 0.03,
+              ease: "expo.out",
+            });
+          },
+        });
+      }
+
+      // Generic reveal-up on label + intro
+      const reveals = ref.current?.querySelectorAll<HTMLElement>(
+        '[data-reveal="up"]'
+      );
+      if (reveals && reveals.length > 0) {
+        gsap.set(reveals, { opacity: 0, y: 28 });
+        if (!prefersReduced) {
+          reveals.forEach((el) => {
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top 88%",
+              once: true,
+              onEnter: () => {
+                gsap.to(el, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.9,
+                  delay: parseFloat(el.dataset.revealDelay || "0"),
+                  ease: "expo.out",
+                });
+              },
+            });
+          });
+        } else {
+          gsap.set(reveals, { opacity: 1, y: 0 });
+        }
+      }
+
+      // Cards stagger reveal on scroll
+      const cards = ref.current?.querySelectorAll<HTMLElement>("[data-service]");
+      if (cards && cards.length > 0 && !prefersReduced) {
+        cards.forEach((el, i) => {
+          gsap.from(el, {
+            y: 60,
+            opacity: 0,
+            duration: 1,
+            ease: "expo.out",
+            delay: (i % 3) * 0.06,
+            scrollTrigger: { trigger: el, start: "top 88%", once: true },
+            clearProps: "transform,opacity",
+          });
+
+          // Cursor-tracking spotlight (CSS variable per card)
+          const onMove = (e: MouseEvent) => {
+            const rect = el.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            el.style.setProperty("--mx", `${x}%`);
+            el.style.setProperty("--my", `${y}%`);
+          };
+          el.addEventListener("mousemove", onMove);
+        });
+      }
+    },
+    { scope: ref }
+  );
+
+  // Card click → open service deep-dive modal.
+  // Each card is now a real <button> inside <li> (see render below) so
+  // Enter / Space activation is handled natively — no onKeyDown needed.
+  const handleServiceClick = (id: string) => () => {
+    open("service", { payload: { serviceId: id } });
+  };
+
+  return (
+    <section ref={ref} className="services" id="services" aria-label="Services">
+      <div className="section-head">
+        <div className="section-label" data-reveal="up">
+          <span className="dot" />
+          <span>Services</span>
+        </div>
+        <h2 className="section-title" data-split>
+          {services?.title ? (
+            services.title
+          ) : (
+            <>
+              Marketing services that&nbsp;<em>compound</em>.
+            </>
+          )}
+        </h2>
+        <p className="section-intro" data-reveal="up" data-reveal-delay="0.2">
+          {services?.subtitle ??
+            "Strategy, creative, and engineering under one roof — so the work that moves your numbers also moves with you."}
+        </p>
+      </div>
+
+      <ol className="services__grid" role="list">
+        {items.map((service, i) => (
+          <li key={service.id}>
+            <button
+              type="button"
+              className="service"
+              data-service
+              onClick={handleServiceClick(service.id)}
+              aria-label={`${service.title} — view details`}
             >
-              <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-500/10 text-brand-500">
-                  <ServiceIcon icon={s.icon || "DEFAULT"} />
-                </div>
-                <h3 className="font-semibold">{s.title}</h3>
-              </div>
-              <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                {s.description}
-              </p>
-              {s.bullets &&
-                Array.isArray(s.bullets) &&
-                s.bullets.length > 0 && (
-                  <ul className="mt-3 space-y-1 text-xs text-gray-500 dark:text-gray-400">
-                    {s.bullets.map((bullet: string, i: number) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="h-1 w-1 rounded-full bg-brand-500"></span>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-            </motion.div>
-          ))}
-        </motion.div>
-        {content.note && (
-          <div className="mt-12">
-            <div className="mx-auto max-w-3xl rounded-xl border border-brand-500/20 bg-white/70 px-5 py-4 text-center text-gray-700 backdrop-blur dark:border-brand-500/30 dark:bg-white/5 dark:text-gray-300">
-              {content.note}
-            </div>
-          </div>
-        )}
-      </Container>
+              <span className="service__num">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="service__title">{service.title}</h3>
+              <p className="service__desc">{service.description}</p>
+              <ul className="service__bullets">
+                {service.bullets.map((b, j) => (
+                  <li key={j}>{b}</li>
+                ))}
+              </ul>
+              <span className="service__arrow" aria-hidden="true">
+                →
+              </span>
+            </button>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

@@ -1,0 +1,122 @@
+/* =========================================================
+   MGD design tokens — single source of truth.
+   Ported from design-prototype/css/tokens.css.
+
+   Theme switching: [data-theme="light"] on <html> swaps values.
+   Initial theme is set by an inline preload script in layout.tsx
+   so there's no flash of wrong theme.
+   ========================================================= */
+
+:root {
+  /* === DARK theme (default) === */
+  --ink:        #0d0c0a;
+  --ink-2:      #161310;
+  --ink-3:      #1f1a16;
+  --paper:      #f4ede2;
+  --paper-2:    #e8dfd0;
+  --muted:      #8a847c;
+  --rule:       rgba(244, 237, 226, 0.12);
+
+  /* Deep surface gradients */
+  --surface-deep:        #14110e;
+  --surface-deep-2:      #1e1612;
+  --surface-accent:      #5a2a23;
+  --surface-accent-deep: #2a1612;
+
+  /* RGB component tokens.
+     -rgb (comma form) is used inside the legacy rgba(var(--paper-rgb), 0.X) pattern in prototype.css.
+     -channels (space form) is used by Tailwind's `text-paper/72` etc. */
+  --paper-rgb:           244, 237, 226;
+  --paper-rgb-channels:  244 237 226;
+  --ink-rgb:             13, 12, 10;
+  --ink-rgb-channels:    13 12 10;
+
+  /* Theme-aware support tokens */
+  --shadow-rgb:        0, 0, 0;
+  --grain-blend:       overlay;
+  --grain-opacity:     0.08;
+  --ring-paper-alpha:  0.08;
+  --card-glow-color:   rgba(244, 237, 226, 0.04);
+
+  /* Brand */
+  --accent:     #C62828;
+  --accent-2:   #9e1f1f;
+  --accent-soft:#e89393;
+
+  /* Decorative tints */
+  --rose:       #c97a6a;
+  --amber:      #cf924a;
+  --forest:     #4a6b53;
+
+  /* Type — fonts are set by next/font (via the className on <html>),
+     which gives us a class-scoped --font-display and --font-sans-mgd.
+     We deliberately don't redefine them here at :root so the next/font
+     value wins regardless of CSS source order. */
+
+  /* Fluid type scale */
+  --fs-12: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --fs-14: clamp(0.84rem, 0.8rem + 0.2vw, 0.92rem);
+  --fs-16: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --fs-18: clamp(1.05rem, 0.98rem + 0.35vw, 1.18rem);
+  --fs-20: clamp(1.15rem, 1.05rem + 0.45vw, 1.32rem);
+  --fs-24: clamp(1.32rem, 1.18rem + 0.7vw, 1.6rem);
+  --fs-32: clamp(1.7rem, 1.4rem + 1.4vw, 2.2rem);
+  --fs-48: clamp(2.2rem, 1.7rem + 2.4vw, 3.2rem);
+  --fs-64: clamp(2.8rem, 2.1rem + 3.4vw, 4.4rem);
+  --fs-80: clamp(3.4rem, 2.4rem + 4.8vw, 5.8rem);
+  --fs-120:clamp(4.2rem, 2.8rem + 6.6vw, 8rem);
+
+  /* Spacing — also mirrored as Tailwind utilities (sp-1..sp-10) */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10:8rem;
+
+  /* Layout */
+  --content-max: 1320px;
+  --gutter: clamp(1.25rem, 3.5vw, 3rem);
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* Motion */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur:      0.5s;
+  --dur-slow: 0.9s;
+}
+
+/* === LIGHT theme overrides === */
+:root[data-theme="light"] {
+  --ink:        #faf6ed;
+  --ink-2:      #f2ead9;
+  --ink-3:      #e6dcc6;
+  --paper:      #1a1714;
+  --paper-2:    #2a2520;
+  --muted:      #6b665e;
+  --rule:       rgba(26, 23, 20, 0.14);
+
+  --surface-deep:        #ebe2cd;
+  --surface-deep-2:      #ddd1b6;
+  --surface-accent:      #e8c9bf;
+  --surface-accent-deep: #c97a6a;
+
+  --paper-rgb:           26, 23, 20;
+  --paper-rgb-channels:  26 23 20;
+  --ink-rgb:             250, 246, 237;
+  --ink-rgb-channels:    250 246 237;
+
+  --shadow-rgb:        26, 23, 20;
+  --grain-blend:       multiply;
+  --grain-opacity:     0.05;
+  --ring-paper-alpha:  0.10;
+  --card-glow-color:   rgba(26, 23, 20, 0.04);
+  /* --accent stays unchanged on both themes */
+}

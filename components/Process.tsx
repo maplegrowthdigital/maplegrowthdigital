@@ -1,202 +1,238 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { Container } from "./Container";
-import { ShapesBackdrop } from "./ShapesBackdrop";
-import { Icon } from "./Icon";
-type CTA = {
-  label: string;
-  href: string;
-  target?: string;
-  ariaLabel?: string;
-};
 
-function StepIcon({ title }: { title: string }) {
-  const t = title.toLowerCase();
-  let iconName = "deploy"; // default
+import { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
 
-  if (t.includes("discover")) {
-    iconName = "search";
-  } else if (t.includes("design")) {
-    iconName = "edit";
-  } else if (t.includes("develop")) {
-    iconName = "code";
-  }
-
-  return <Icon name={iconName} size={20} />;
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 }
 
-export function Process({ process }: { process?: any }) {
-  const [active, setActive] = useState(0);
-  const getAriaLabel = (
-    label?: string,
-    ariaLabel?: string,
-    opensInNewTab?: boolean
-  ) => {
-    const base = ariaLabel || label;
-    if (opensInNewTab) {
-      const fallback = base || label || "Open link";
-      return `${fallback} (opens in a new tab)`;
-    }
-    return base;
-  };
-  const primaryCta: CTA = {
-    label: "Book a strategy call",
-    href: "https://tidycal.com/maplegrowthdigital/strategy-call",
-    target: "_blank",
-  };
-  const primaryTarget =
-    primaryCta.target ||
-    (primaryCta.href && primaryCta.href.startsWith("http")
-      ? "_blank"
-      : undefined);
-  const primaryRel = primaryTarget === "_blank" ? "noreferrer" : undefined;
-  const primaryOpensNewTab = primaryTarget === "_blank";
-  const primaryAriaLabel = getAriaLabel(
-    primaryCta.label,
-    primaryCta.ariaLabel,
-    primaryOpensNewTab
+interface Phase {
+  num: string;
+  title: string;
+  desc: string;
+  bullets: string[];
+}
+
+const PHASES: Phase[] = [
+  {
+    num: "01",
+    title: "Discover",
+    desc:
+      "Goals, audience, and market mapping. We surface the highest-leverage opportunities and align the team on what matters first.",
+    bullets: ["Stakeholder interviews", "Competitive teardown", "Channel & audience audit"],
+  },
+  {
+    num: "02",
+    title: "Design",
+    desc:
+      "Wireframes, brand systems, and creative concepts that prioritize clarity and conversion over decoration.",
+    bullets: ["Information architecture", "Design systems", "Creative concepts"],
+  },
+  {
+    num: "03",
+    title: "Develop",
+    desc:
+      "Fast, accessible builds and campaign setups tracked end-to-end with clear acceptance criteria.",
+    bullets: ["Performance & security", "Tagging & analytics", "Campaign & ad setup"],
+  },
+  {
+    num: "04",
+    title: "Deploy",
+    desc:
+      "Launch, learn, iterate. Dashboards, sprint reviews, and a steady cadence of experiments turn signal into compounding growth.",
+    bullets: ["Launch & QA", "Dashboards & reporting", "Growth sprints"],
+  },
+];
+
+export function Process({ process }: { process?: { title?: string; intro?: string } }) {
+  const ref = useRef<HTMLElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useGSAP(
+    () => {
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      // Section title split-text reveal
+      const titleEl = ref.current?.querySelector<HTMLElement>(
+        ".section-title[data-split]"
+      );
+      if (titleEl && !prefersReduced) {
+        const split = new SplitText(titleEl, {
+          type: "lines,words",
+          linesClass: "split-line",
+        });
+        gsap.set(split.words, { yPercent: 110, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: titleEl,
+          start: "top 82%",
+          once: true,
+          onEnter: () => {
+            gsap.to(split.words, {
+              yPercent: 0,
+              opacity: 1,
+              duration: 1.0,
+              stagger: 0.03,
+              ease: "expo.out",
+            });
+          },
+        });
+      }
+
+      // Reveal-up label + intro
+      const reveals = ref.current?.querySelectorAll<HTMLElement>(
+        '[data-reveal="up"]'
+      );
+      if (reveals && reveals.length > 0) {
+        gsap.set(reveals, { opacity: 0, y: 28 });
+        if (!prefersReduced) {
+          reveals.forEach((el) => {
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top 88%",
+              once: true,
+              onEnter: () => {
+                gsap.to(el, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.9,
+                  delay: parseFloat(el.dataset.revealDelay || "0"),
+                  ease: "expo.out",
+                });
+              },
+            });
+          });
+        } else {
+          gsap.set(reveals, { opacity: 1, y: 0 });
+        }
+      }
+
+      // Phase card scroll-reveals
+      const phases = ref.current?.querySelectorAll<HTMLElement>(".phase");
+      if (phases && !prefersReduced) {
+        phases.forEach((phase) => {
+          gsap.from(phase, {
+            y: 60,
+            opacity: 0,
+            duration: 1.0,
+            ease: "expo.out",
+            scrollTrigger: { trigger: phase, start: "top 85%", once: true },
+            clearProps: "transform,opacity",
+          });
+        });
+      }
+
+      // Sticky stepper highlighting — track which phase is centered
+      if (phases && phases.length > 0) {
+        phases.forEach((phase, i) => {
+          ScrollTrigger.create({
+            trigger: phase,
+            start: "top 55%",
+            end: "bottom 45%",
+            onEnter: () => setActiveStep(i),
+            onEnterBack: () => setActiveStep(i),
+          });
+        });
+      }
+
+      // DrawSVG connector — animated path through stepper
+      const path = ref.current?.querySelector<SVGPathElement>(
+        "[data-process-path]"
+      );
+      const processEl = ref.current;
+      if (path && processEl && !prefersReduced) {
+        const length = path.getTotalLength();
+        path.style.strokeDashoffset = String(length);
+        gsap.to(path, {
+          strokeDashoffset: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: processEl,
+            start: "top 60%",
+            end: "bottom 70%",
+            scrub: 0.8,
+          },
+        });
+      }
+    },
+    { scope: ref }
   );
-  const content = process || {};
-  const images = [
-    "/images/Discovery%20&%20Research.webp",
-    "/images/Strategy%20&%20Planning.webp",
-    "/images/Execution%20&%20Creativity.webp",
-    "/images/Results%20&%20Growth.webp",
-  ];
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-  } as const;
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  } as const;
 
   return (
-    <section
-      id="process"
-      className="relative overflow-hidden py-24 border-t border-gray-100 dark:border-gray-800"
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-brand-500/5 to-transparent dark:from-brand-500/10" />
-      <Container>
-        <div className="grid items-start gap-10 lg:grid-cols-2">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <motion.div variants={item} className="max-w-2xl">
-              <span className="chip-brand">Process</span>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                {content.title}
-              </h2>
-              <p className="mt-4 text-gray-600 dark:text-gray-300">
-                {content.intro}
-              </p>
-            </motion.div>
+    <section ref={ref} className="process" id="process" aria-label="Our process">
+      <div className="process__inner">
+        <aside className="process__aside">
+          <div className="section-label" data-reveal="up">
+            <span className="dot" />
+            <span>Process</span>
+          </div>
+          <h2 className="section-title" data-split>
+            {process?.title ? (
+              process.title
+            ) : (
+              <>
+                A repeatable system for&nbsp;<em>real</em> growth.
+              </>
+            )}
+          </h2>
+          <p className="section-intro" data-reveal="up" data-reveal-delay="0.2">
+            {process?.intro ??
+              "Four phases that align strategy with execution. Predictable, transparent, and tied to outcomes you can see in the dashboard."}
+          </p>
 
-            <ol className="mt-8 space-y-4">
-              {(content.steps || []).map((s: any, idx: number) => (
-                <motion.li key={s.title} variants={item}>
-                  <button
-                    type="button"
-                    onMouseEnter={() => setActive(idx)}
-                    onFocus={() => setActive(idx)}
-                    className={
-                      "card w-full rounded-xl p-5 text-left transition hover:-translate-y-0.5 hover:shadow-md " +
-                      (active === idx
-                        ? "border-brand-500 ring-1 ring-brand-500/30"
-                        : "")
-                    }
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-500/10 text-brand-500">
-                        <StepIcon title={s.title} />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">{s.title}</h3>
-                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                          {s.description}
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                </motion.li>
+          <div className="process__stepper-wrap">
+            <svg
+              className="process__line"
+              viewBox="0 0 60 360"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                data-process-path
+                d="M 20 5 C 20 35, 40 50, 40 80 S 20 125, 20 155 S 40 200, 40 230 S 20 275, 20 305 L 20 355"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeDasharray="3 5"
+              />
+            </svg>
+            <ol className="process__stepper">
+              {PHASES.map((phase, i) => (
+                <li
+                  key={phase.num}
+                  className={i === activeStep ? "is-active" : ""}
+                >
+                  <span className="process__stepper-num">{phase.num}</span>
+                  <span>{phase.title}</span>
+                </li>
               ))}
             </ol>
-            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
-              {primaryCta?.href && primaryCta?.label && (
-                <a
-                  href={primaryCta.href}
-                  target={primaryTarget}
-                  rel={primaryRel}
-                  className="btn-cta"
-                  aria-label={primaryAriaLabel}
-                >
-                  {primaryCta.label}
-                  {primaryOpensNewTab && (
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  )}
-                  <svg
-                    className="ml-2 h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    role="presentation"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
-              )}
-            </motion.div>
-          </motion.div>
-
-          <div className="sticky top-24 hidden lg:block">
-            <div className="relative">
-              <ShapesBackdrop />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="relative overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-800"
-              >
-                <div className="relative aspect-[4/5] bg-gray-50 dark:bg-neutral-900">
-                  {(content.steps || []).map((s: any, idx: number) => (
-                    <div
-                      key={s.title}
-                      className={
-                        "absolute inset-0 transition-opacity duration-500 " +
-                        (active === idx ? "opacity-100" : "opacity-0")
-                      }
-                    >
-                      <Image
-                        src={images[idx % images.length]}
-                        alt={s.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent p-4 text-white">
-                  <div className="text-sm">
-                    {(content.steps || [])[active]?.title}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
           </div>
-        </div>
-      </Container>
+        </aside>
+
+        <ol className="process__phases" role="list">
+          {PHASES.map((phase) => (
+            <li key={phase.num} className="phase">
+              <div className="phase__head">
+                <span className="phase__num">{phase.num}</span>
+                <h3 className="phase__title">{phase.title}</h3>
+              </div>
+              <p className="phase__desc">{phase.desc}</p>
+              <ul className="phase__list">
+                {phase.bullets.map((b, j) => (
+                  <li key={j}>{b}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }

@@ -1,31 +1,68 @@
+"use client";
+
+import { Fragment, useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP);
+}
+
 export function Marquee({ marquee }: { marquee?: ReadonlyArray<string> }) {
-  const content: ReadonlyArray<string> = marquee || [];
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const items = Array.from(content);
+  const items =
+    marquee && marquee.length > 0
+      ? Array.from(marquee)
+      : [
+          "SEO & Analytics",
+          "PPC & Paid Media",
+          "Web Design",
+          "Development",
+          "Brand & Creative",
+          "Content",
+          "Growth Strategy",
+          "Generative Engine Optimization",
+        ];
 
-  // Build a larger base group (items × 3), then duplicate that group once for seamless 50% translate looping
-  const group = [...items, ...items, ...items];
-  const loop = [...group, ...group];
-  return (
-    <section
-      aria-label="Capabilities"
-      className="relative border-y border-gray-100 bg-white py-4 dark:border-gray-800 dark:bg-neutral-950"
+  useGSAP(
+    () => {
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (prefersReduced || !trackRef.current) return;
+      const distance = trackRef.current.scrollWidth / 2;
+      gsap.to(trackRef.current, {
+        x: -distance,
+        duration: 28,
+        ease: "none",
+        repeat: -1,
+      });
+    },
+    { scope: trackRef }
+  );
+
+  // Render text + ✦ as alternating <span> direct children so the
+  // CSS `:nth-child(even)` accent-color rule works.
+  const renderGroup = (keyPrefix: string, ariaHidden = false) => (
+    <div
+      className="mgd-marquee__group"
+      {...(ariaHidden ? { "aria-hidden": true } : {})}
     >
-      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent dark:from-neutral-950 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent dark:from-neutral-950 pointer-events-none" />
-      <div className="marquee">
-        <div className="marquee__track">
-          {loop.map((text, i) => (
-            <div
-              key={i}
-              className="flex flex-none items-center gap-6 md:gap-12 whitespace-nowrap text-sm font-semibold tracking-wide text-gray-900 dark:text-gray-100"
-              aria-hidden={i >= group.length}
-            >
-              <span className="uppercase opacity-80">{text}</span>
-              <span className="h-1 w-1 rounded-full bg-brand-500" />
-            </div>
-          ))}
-        </div>
+      {items.map((text, i) => (
+        <Fragment key={`${keyPrefix}-${i}`}>
+          <span>{text}</span>
+          <span aria-hidden="true">✦</span>
+        </Fragment>
+      ))}
+    </div>
+  );
+
+  return (
+    <section className="mgd-marquee" aria-label="What we’re known for">
+      <div className="mgd-marquee__track" ref={trackRef}>
+        {renderGroup("a")}
+        {renderGroup("b", true)}
       </div>
     </section>
   );

@@ -42,3 +42,6 @@ tsconfig.tsbuildinfo
 
 # Internal SEO playbook (not shipped)
 SEO_PLAYBOOK.md
+
+# Design prototype (HTML/CSS/JS sandbox — ported to Next.js once finalized)
+design-prototype/

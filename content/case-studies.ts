@@ -65,21 +65,3 @@ export function getAllCaseStudies() {
   // Sorted newest first
   return [...caseStudies].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
-
-export function getCaseStudyBySlug(slug: string) {
-  return caseStudies.find((cs) => cs.slug === slug);
-}
-
-// Helper to get case studies by category
-export function getCaseStudiesByCategory(category: string) {
-  return caseStudies.filter((cs) => cs.category.includes(category));
-}
-
-// Get all unique categories
-export function getAllCategories() {
-  const categories = new Set<string>();
-  caseStudies.forEach((cs) => {
-    cs.category.split(" / ").forEach((cat) => categories.add(cat.trim()));
-  });
-  return Array.from(categories).sort();
-}

@@ -2,13 +2,37 @@ import fallbackData from "../content/data.json";
 import { Hero } from "../components/Hero";
 import { Marquee } from "../components/Marquee";
 import { Services } from "../components/Services";
-import { Process } from "../components/Process";
+import { Industries } from "../components/Industries";
+import { Why } from "../components/Why";
 import { Belief } from "../components/Belief";
+import { Process } from "../components/Process";
 import { CaseStudies } from "../components/CaseStudies";
 import { About } from "../components/About";
-import { BookCall } from "../components/BookCall";
-import { ContactForm } from "../components/ContactForm";
+// Insights — temporarily hidden pre-launch. Currently renders 4 hardcoded
+// fictional blog posts which would mislead visitors. Restore by wiring to
+// real published content (CMS / mdx / hand-written posts).
+// import { Insights } from "../components/Insights";
+import { Pricing } from "../components/Pricing";
+import { FAQ } from "../components/FAQ";
+import { CTA } from "../components/CTA";
+import { Newsletter } from "../components/Newsletter";
+// Hiring — temporarily hidden pre-launch. Currently lists 3 placeholder
+// roles that aren't actually open. Restore by wiring to real job listings
+// (Ashby / Greenhouse / a careers JSON file).
+// import { Hiring } from "../components/Hiring";
 import { getAllCaseStudies } from "../content/case-studies";
+
+// Homepage-only global effects
+import { GrainOverlay } from "../components/global/GrainOverlay";
+import { CustomCursor } from "../components/global/CustomCursor";
+import { LeafCanvas } from "../components/global/LeafCanvas";
+import { StickyBottomCta } from "../components/global/StickyBottomCta";
+import { MagneticButtons } from "../components/global/MagneticButtons";
+
+// Modals — mounted globally on the homepage so any section can open them
+import { ConfigureWizard } from "../components/modals/ConfigureWizard";
+import { QuickQuote } from "../components/modals/QuickQuote";
+import { ServiceDeepDive } from "../components/modals/ServiceDeepDive";
 
 export default function Page() {
   // Load content directly from JSON file
@@ -21,13 +45,14 @@ export default function Page() {
   const services = content.services;
   const processContent = content.process;
   const aboutContent = content.about;
-  const bookContent = content.book;
-  const contactContent = content.contact;
 
-  // Get dynamic case studies from TypeScript files
+  // Get dynamic case studies from TypeScript files.
+  // Single-page mode: no per-study detail route, so we omit link/linkLabel —
+  // CaseStudies will render the card without the "Read case study" CTA.
+  // When detail pages come back, restore the link fields here.
   const allCaseStudies = getAllCaseStudies();
   const caseStudiesContent = {
-    title: "Real Results from Real Clients",
+    title: "Real results from real clients",
     intro: "See how our data-driven approach delivers sustainable growth.",
     items: allCaseStudies.map((cs) => ({
       slug: cs.slug,
@@ -36,13 +61,7 @@ export default function Page() {
       image: cs.image,
       summary: cs.summary,
       results: cs.results.slice(0, 3).map((r) => `${r.value} ${r.metric}`),
-      link: `/case-studies/${cs.slug}`,
-      linkLabel: "Read case study",
     })),
-    cta: {
-      label: "View all case studies",
-      href: "/case-studies",
-    },
   };
   const beliefs: { title: string; quote: string }[] = Array.from(
     content.beliefs?.items || content.beliefs || []
@@ -50,82 +69,35 @@ export default function Page() {
 
   return (
     <>
+      {/* Homepage-only global effects */}
+      <GrainOverlay />
+      <CustomCursor />
+      <LeafCanvas />
+      <StickyBottomCta />
+      <MagneticButtons />
+
       <Hero hero={hero} />
       <Marquee marquee={marquee} />
       <Services services={services} />
-      <Process process={processContent} />
+      <Industries />
+      <Why />
       {beliefs[0] && (
         <Belief title={beliefs[0].title} quote={beliefs[0].quote} />
       )}
-      <About about={aboutContent} />
-      {beliefs[1] && (
-        <Belief title={beliefs[1].title} quote={beliefs[1].quote} />
-      )}
+      <Process process={processContent} />
       <CaseStudies caseStudies={caseStudiesContent} />
-      <BookCall book={bookContent} />
-      <ContactForm
-        title="Tell us about your project"
-        subtitle="We'll get back within 1–2 business days."
-        fields={[
-          { name: "name", label: "Full Name", type: "text", required: true, placeholder: "Your name" },
-          { name: "email", label: "Email Address", type: "email", required: true, placeholder: "your@email.com" },
-          { name: "company", label: "Company", type: "text", required: false, placeholder: "Your company name" },
-          { name: "website", label: "Website", type: "url", required: false, placeholder: "https://yourwebsite.com" },
-          {
-            name: "services",
-            label: "Services Interested In",
-            type: "select",
-            required: true,
-            options: [
-              { value: "", label: "Select services..." },
-              { value: "geo", label: "Generative Engine Optimization (GEO)" },
-              { value: "seo", label: "SEO & Analytics" },
-              { value: "ppc", label: "PPC & Paid Media" },
-              { value: "web-dev", label: "Web Design & Development" },
-              { value: "content", label: "Content & Email Marketing" },
-              { value: "brand", label: "Brand & Creative" },
-              { value: "strategy", label: "Growth Strategy" },
-              { value: "multiple", label: "Multiple Services" },
-              { value: "not-sure", label: "Not Sure - Need Consultation" },
-            ],
-          },
-          {
-            name: "budget",
-            label: "Monthly Marketing Budget",
-            type: "select",
-            required: false,
-            options: [
-              { value: "", label: "Select budget range..." },
-              { value: "under-2k", label: "Under $2,000" },
-              { value: "2k-5k", label: "$2,000 - $5,000" },
-              { value: "5k-10k", label: "$5,000 - $10,000" },
-              { value: "10k-25k", label: "$10,000 - $25,000" },
-              { value: "25k-plus", label: "$25,000+" },
-              { value: "project-based", label: "One-time project" },
-            ],
-          },
-          {
-            name: "message",
-            label: "Tell us about your project",
-            type: "textarea",
-            required: true,
-            placeholder:
-              "Describe your business goals, current challenges, and what you're hoping to achieve with digital marketing...",
-            rows: 5,
-          },
-        ]}
-        submitLabel="Send Message"
-        submitAriaLabel="Send contact form message"
-        contactDetails={{
-          email: contactContent.email,
-          phone: contactContent.phone,
-          location: contactContent.location,
-          socials: [
-            { platform: "Instagram", href: "https://www.instagram.com/maplegrowthdigital/", ariaLabel: "Follow MapleGrowth Digital on Instagram" },
-            { platform: "YouTube", href: "https://youtube.com/@MapleGrowthDigital", ariaLabel: "Follow MapleGrowth Digital on YouTube" },
-          ],
-        }}
-      />
+      <About about={aboutContent} />
+      {/* <Insights />  — hidden pre-launch (see import comment above) */}
+      <Pricing />
+      <FAQ />
+      <CTA />
+      <Newsletter />
+      {/* <Hiring />  — hidden pre-launch (see import comment above) */}
+
+      {/* Modals — always mounted, opened on demand via ModalProvider */}
+      <ConfigureWizard />
+      <QuickQuote />
+      <ServiceDeepDive />
     </>
   );
 }

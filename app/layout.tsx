@@ -3,45 +3,30 @@ import "./globals.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { MobileNav } from "../components/MobileNav";
-import { DynamicStyles } from "../components/DynamicStyles";
-import localFont from "next/font/local";
+import { Fraunces, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { AnalyticsProvider } from "../components/Analytics";
 import { getNavigationItems } from "../lib/navigation";
 import { config } from "../content/config";
 import Script from "next/script";
+import { LenisProvider } from "../components/global/LenisProvider";
+import { ModalProvider } from "../components/global/ModalProvider";
+import { CookieBanner } from "../components/global/CookieBanner";
 
-const montserrat = localFont({
-  src: [
-    {
-      path: "../public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf",
-      weight: "100 900",
-      style: "italic",
-    },
-  ],
+// === MGD homepage fonts (Fraunces display + Inter body) ===
+// Both are VARIABLE fonts on Google Fonts. For next/font/google, variable
+// fonts want `weight: "variable"` (or no weight at all) — specifying static
+// weights causes silent load failure.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
   display: "swap",
-  variable: "--font-heading-default",
 });
 
-const openSans = localFont({
-  src: [
-    {
-      path: "../public/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf",
-      weight: "300 800",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf",
-      weight: "300 800",
-      style: "italic",
-    },
-  ],
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans-mgd",
   display: "swap",
-  variable: "--font-body-default",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -84,32 +69,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Load configuration from static files
-  const { brand, settings } = config;
+  const { settings } = config;
   const navItems = getNavigationItems();
 
-  // Apply brand configuration
-  const brandColor = config.getBrandColor();
-  const buttonColor = config.getButtonColor();
-  const headingFont = config.getHeadingFont();
-  const bodyFont = config.getBodyFont();
-  const logoUrl = config.getLogo();
-
   return (
-    <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${fraunces.variable} ${inter.variable}`}
+    >
       <head>
-        {/* SAFE: CSS variables from validated static configuration - not user-controllable */}
-        <style
+        {/* Theme preload — runs synchronously before paint to set [data-theme]
+            so there's no flash of the wrong theme on initial render. */}
+        <Script
+          id="mgd-theme-preload"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `:root { 
-              --brand-500: ${brandColor}; 
-              --button-primary: ${buttonColor}; 
-              --font-heading: ${headingFont}; 
-              --font-body: ${bodyFont}; 
-            }`,
+            __html: `(function(){try{var s=localStorage.getItem("mgd:theme");var p=window.matchMedia("(prefers-color-scheme: light)").matches;var t=s||(p?"light":"dark");document.documentElement.dataset.theme=t;}catch(e){}})();`,
           }}
         />
-        {/* SAFE: JSON-LD schema from static configuration, serialized with JSON.stringify() */}
+        {/* JSON-LD schema (org / local business) from static config */}
         <Script
           id="jsonld-schema"
           type="application/ld+json"
@@ -117,7 +96,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(config.schema) }}
         />
       </head>
-      <body className="antialiased bg-white text-gray-900 dark:bg-neutral-950 dark:text-gray-100">
+      <body className="antialiased">
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
@@ -131,13 +110,20 @@ export default function RootLayout({
           googleAnalyticsId={settings.googleAnalyticsId}
           googleTagManagerId={settings.googleTagManagerId}
         />
-        <DynamicStyles />
-        <Header logoUrl={logoUrl} navItems={navItems} />
-        <main id="main-content" className="md:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileNav navItems={navItems} />
+        <LenisProvider>
+          <ModalProvider>
+            <Header navItems={navItems} />
+            <main id="main-content" className="md:pb-0">
+              {children}
+            </main>
+            <Footer />
+            <MobileNav navItems={navItems} />
+            <CookieBanner />
+          </ModalProvider>
+        </LenisProvider>
+        {/* Vercel Analytics — Web Vitals + page-view tracking.
+            Loaded last so it doesn't compete with interactive content. */}
+        <Analytics />
       </body>
     </html>
   );

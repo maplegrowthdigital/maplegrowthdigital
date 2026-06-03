@@ -1,48 +1,15 @@
-import { brand } from "./brand";
 import { settings } from "./settings";
 import { schema } from "./schema";
-import fallbackData from "./data.json";
 
+/**
+ * Site-wide config surface. Trimmed to what the homepage + layout actually
+ * consume (`settings`, `schema`, `getCanonicalUrl`). The legacy brand /
+ * font / page-title / page-description helpers were dropped along with
+ * the inner pages — restore from git history if you need them back.
+ */
 export const config = {
-  // Brand configuration
-  brand,
-
-  // Site settings
   settings,
-
-  // JSON-LD Schema
   schema,
-
-  // Main content (from JSON)
-  content: fallbackData,
-
-  // Utility functions
-  getBrandColor: () => brand.brandColor || "#C62828",
-  getButtonColor: () =>
-    brand.primaryButtonColor || brand.brandColor || "#C62828",
-  getHeadingFont: () =>
-    brand.headingFontFamily ||
-    'var(--font-heading-default), "Montserrat", sans-serif',
-  getBodyFont: () =>
-    brand.bodyFontFamily || 'var(--font-body-default), "Open Sans", sans-serif',
-  getLogo: () => brand.logoUrl || fallbackData.logoUrl || "/mgd-logo.svg",
-
-  // SEO helpers
-  getPageTitle: (pageTitle?: string) => {
-    const baseTitle =
-      settings.seoTitle || settings.siteName || "MapleGrowth Digital";
-    return pageTitle
-      ? `${pageTitle} | ${settings.siteName || "MapleGrowth Digital"}`
-      : baseTitle;
-  },
-
-  getPageDescription: (pageDescription?: string) => {
-    return (
-      pageDescription ||
-      settings.seoDescription ||
-      "Canadian digital marketing agency for growth-focused businesses."
-    );
-  },
 
   getCanonicalUrl: (path?: string) => {
     const base = settings.canonicalUrl || "https://www.maplegrowthdigital.ca/";
