@@ -2044,18 +2044,28 @@ body.menu-open { overflow: hidden; }
   position: relative;
   width: 100%;
   max-width: 640px;
+  /* `100vh` first as fallback for very old browsers; `100dvh` overrides
+     on modern ones and tracks the real visible viewport so the panel
+     bottom never gets cut off behind iOS Safari's dynamic chrome. */
   max-height: calc(100vh - var(--sp-6) * 2);
+  max-height: calc(100dvh - var(--sp-6) * 2);
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, var(--ink-2), var(--surface-deep));
   border: 1px solid var(--rule);
   border-radius: var(--radius-lg);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  /* Theme-aware shadow. Dark theme reads the original 0,0,0 base from
+     --shadow-rgb; light theme softens both the alpha and spread so the
+     halo doesn't look heavy on the paper backdrop. */
+  box-shadow: 0 24px 60px rgba(var(--shadow-rgb), 0.55);
   overflow: hidden;
   transform: translateY(20px) scale(0.98);
   opacity: 0;
   transition: transform 0.5s var(--ease-out),
               opacity 0.4s var(--ease-out);
+}
+:root[data-theme="light"] .modal__panel {
+  box-shadow: 0 16px 40px rgba(var(--shadow-rgb), 0.18);
 }
 .modal.is-open .modal__panel {
   transform: translateY(0) scale(1);
@@ -2132,6 +2142,13 @@ body.menu-open { overflow: hidden; }
 }
 
 body.modal-open { overflow: hidden; }
+/* Hide the fixed site header while any modal is open. On short screens
+   the panel's close button visually clashes with the header (logo +
+   theme toggle + hamburger sit in the same top strip). Removing the
+   header gives the modal a clean stage and the close button room to
+   breathe. The header is purely fixed so display:none doesn't reflow. */
+body.modal-open .site-header,
+body.modal-open .sticky-cta { display: none; }
 
 /* =========================================================
    Configure wizard
