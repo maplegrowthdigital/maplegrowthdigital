@@ -3958,3 +3958,143 @@ body.modal-open .sticky-cta { display: none; }
     white-space: nowrap;
   }
 }
+
+/* =========================================================
+   404 — Page not found
+   Branded miss-page: oversize Fraunces "4 🍁 4" with the maple
+   leaf as the centre digit, ambient accent rings, quick links.
+   ========================================================= */
+.notfound {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--sp-10) + var(--sp-8)) var(--gutter) var(--sp-9);
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+/* Ambient decorative rings (behind content) */
+.notfound__art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+.notfound__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(198, 40, 40, 0.18);
+  will-change: transform;
+}
+.notfound__ring--1 { width: 340px; height: 340px; }
+.notfound__ring--2 { width: 560px; height: 560px; border-color: rgba(198, 40, 40, 0.12); }
+.notfound__ring--3 { width: 800px; height: 800px; border-color: rgba(var(--paper-rgb), 0.05); }
+
+.notfound__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  display: grid;
+  gap: var(--sp-5);
+  justify-items: center;
+}
+
+/* The "4 leaf 4" lockup */
+.notfound__code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.2rem, 1.5vw, 0.6rem);
+  margin: var(--sp-2) 0;
+  line-height: 0.9;
+}
+.notfound__digit {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(7rem, 22vw, 14rem);
+  letter-spacing: -0.04em;
+  color: var(--paper);
+  font-variation-settings: "opsz" 144;
+}
+.notfound__leaf {
+  display: inline-flex;
+  width: clamp(5rem, 16vw, 10rem);
+  height: clamp(5rem, 16vw, 10rem);
+  color: var(--accent);
+  will-change: transform;
+  filter: drop-shadow(0 8px 24px rgba(198, 40, 40, 0.35));
+}
+.notfound__leaf svg { width: 100%; height: 100%; display: block; }
+
+.notfound__lead {
+  font-size: var(--fs-20);
+  line-height: 1.55;
+  color: rgba(var(--paper-rgb), 0.74);
+  max-width: 46ch;
+}
+
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5);
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--sp-2);
+}
+
+.notfound__links {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--rule);
+  width: 100%;
+  max-width: 460px;
+  display: grid;
+  gap: var(--sp-3);
+}
+.notfound__links-label {
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.notfound__links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.notfound__links a {
+  position: relative;
+  font-size: var(--fs-14);
+  color: rgba(var(--paper-rgb), 0.82);
+  padding: 0.2rem 0;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.notfound__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur) var(--ease-out);
+}
+.notfound__links a:hover { color: var(--paper); }
+.notfound__links a:hover::after { transform-origin: left; transform: scaleX(1); }
+
+@media (max-width: 760px) {
+  .notfound { padding-top: calc(var(--sp-10) + var(--sp-4)); }
+  .notfound__ring--3 { width: 600px; height: 600px; }
+  .notfound__lead { font-size: var(--fs-18); }
+}
