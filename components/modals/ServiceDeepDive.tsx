@@ -57,7 +57,7 @@ export function ServiceDeepDive() {
             </ul>
           </div>
           <div>
-            <h3 className="service-body__col-head">Recent results</h3>
+            <h3 className="service-body__col-head">What we deliver</h3>
             <ul className="service-body__list">
               {service.results.map((r, i) => (
                 <li key={i}>{r}</li>

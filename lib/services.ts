@@ -46,11 +46,11 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
       "Local + national visibility programs",
     ],
     results: [
-      "+218% organic traffic for SBSB in 9 months",
-      "#1 ranking on category-defining terms",
-      "4.9★ Google Business profile (review velocity)",
+      "Lumiqraft: 340% Amazon sales growth, SEO + content led",
+      "Lumiqraft: 5 titles ranked in Amazon's top 100",
+      "Voyamore: 90+ technical SEO score at launch",
     ],
-    quote: "Six months in, organic was our #1 channel — and our cheapest.",
+    quote: "We chase compounding visibility, not vanity rankings — traffic that keeps paying after the invoice clears.",
   },
   {
     id: "ppc",
@@ -67,11 +67,11 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
       "Weekly performance + spend reviews",
     ],
     results: [
-      "5.6× ROAS for JBT's cross-channel program",
-      "+74% new customers, −18% blended CAC",
-      "Sub-30-day payback on Meta cohorts",
+      "ROI-first account structure built for measurable payback",
+      "Creative + landing pages tested to lower acquisition cost",
+      "Transparent spend reporting — every dollar accounted for",
     ],
-    quote: "They cut our CAC by a third and doubled our new-customer rate. Same budget.",
+    quote: "Paid media should pay for itself, fast. If it doesn't, we change the plan — not the invoice.",
   },
   {
     id: "web",
@@ -88,11 +88,11 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
       "Analytics + tagging implementation",
     ],
     results: [
-      "Twinings: re-platformed loyalty in 6 weeks",
-      "+42% repeat purchase, 2.1× email CTR",
-      "Lighthouse 95+ across the board",
+      "Voyamore: travel aggregator shipped with zero third-party plugin bloat",
+      "Voyamore: 90+ technical SEO score at launch",
+      "Voyamore: 8 Canadian departure hubs on one fast codebase",
     ],
-    quote: "Looks great, ships fast, converts. Not three different agencies — one.",
+    quote: "Fast, accessible, and built to convert — not just to look good in a screenshot.",
   },
   {
     id: "content",
@@ -109,11 +109,11 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
       "CRM integrations + segmentation",
     ],
     results: [
-      "Liberty IT: 3.4× MQL volume from email",
-      "+58% pipeline contribution",
-      "Sub-2% unsubscribe rate at scale",
+      "Lumiqraft: 340% Amazon sales growth, content-led",
+      "Lumiqraft: 2,800+ engaged social followers built from scratch",
+      "Lumiqraft: 5 titles into Amazon's top 100 best-sellers",
     ],
-    quote: "Our newsletter is now the #1 source of qualified pipeline.",
+    quote: "Content that earns attention and email that earns the sale — without ever spamming an inbox.",
   },
   {
     id: "brand",
@@ -130,11 +130,11 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
       "Brand voice + messaging frameworks",
     ],
     results: [
-      "30%+ recall lift across category",
-      "Refreshed brand → +40% inbound interest",
-      "Featured in DesignSpotlight, Brand New",
+      "Lumiqraft: brand + creative behind 5 best-selling titles",
+      "Cohesive identity across Amazon, social, and web",
+      "Creative built to convert — not just to win awards",
     ],
-    quote: "It finally feels like one brand — not eight Slack threads of creative.",
+    quote: "A brand should do a job: recognition that turns into revenue.",
   },
   {
     id: "strategy",
@@ -151,11 +151,11 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
       "Competitive landscape + positioning audit",
     ],
     results: [
-      "Repositioning → 2× win rate in 90 days",
-      "Channel reallocation: 40% efficiency gain",
-      "Executed within 60 days of kickoff",
+      "Positioning + channel mix mapped to your stage",
+      "A KPI framework so progress is measurable, not vibes",
+      "We don't just advise — we ship the plan with you",
     ],
-    quote: "They run our growth team. We just unblock them.",
+    quote: "Strategy you can act on Monday — not a deck that gathers dust.",
   },
 ];
 
