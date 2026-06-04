@@ -99,7 +99,10 @@ export function QuickQuote() {
         : "3–6 weeks";
 
     return {
-      amount: `${formatMoney(low)} – ${formatMoney(high)} / mo`,
+      // Headline shows the entry point only ("starting at") so multi-service
+      // selections don't surface a scary top-of-range number. The full range
+      // still appears in the detail row below.
+      amount: `Starting at ${formatMoney(low)} / mo`,
       team: parts.join(" + ") || "Lean team",
       timeline,
       total: `${formatMoney(low * duration)} – ${formatMoney(high * duration)}`,

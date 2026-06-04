@@ -104,7 +104,7 @@ export function Pricing() {
             </p>
           </header>
           <div className="pricing-card__price">
-            <span className="pricing-card__amount">From&nbsp;$4,500</span>
+            <span className="pricing-card__amount">From&nbsp;$1,500</span>
             <span className="pricing-card__period">per project</span>
           </div>
           <ul className="pricing-card__features">
@@ -132,7 +132,7 @@ export function Pricing() {
             </p>
           </header>
           <div className="pricing-card__price">
-            <span className="pricing-card__amount">From&nbsp;$4,500</span>
+            <span className="pricing-card__amount">From&nbsp;$1,000</span>
             <span className="pricing-card__period">per month</span>
           </div>
           <ul className="pricing-card__features">
