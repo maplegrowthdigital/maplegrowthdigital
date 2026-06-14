@@ -43,12 +43,14 @@ export async function generateMetadata(): Promise<Metadata> {
           apple: [{ url: settings.faviconUrl }],
         }
       : undefined,
+    // NOTE: og:image / twitter:image are auto-injected by the file-based
+    // metadata convention (app/opengraph-image.tsx + app/twitter-image.tsx),
+    // so we intentionally don't set `images` here.
     openGraph: {
       title: settings.ogTitle,
       description: settings.ogDescription,
       siteName: settings.siteName,
       url: settings.canonicalUrl,
-      images: settings.ogImageUrl ? [{ url: settings.ogImageUrl }] : undefined,
       type: "website",
     },
     twitter: {
@@ -56,7 +58,6 @@ export async function generateMetadata(): Promise<Metadata> {
       site: settings.twitterSite,
       title: settings.ogTitle,
       description: settings.ogDescription,
-      images: settings.ogImageUrl ? [settings.ogImageUrl] : undefined,
     },
     alternates: settings.canonicalUrl
       ? { canonical: settings.canonicalUrl }

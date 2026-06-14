@@ -3,19 +3,19 @@ export const schema = {
   "@graph": [
     {
       "@type": ["LocalBusiness", "ProfessionalService"],
-      "@id": "https://www.maplegrowthdigital.ca/#agency",
+      "@id": "https://maplegrowthdigital.ca/#agency",
       name: "MapleGrowth Digital",
       legalName: "MapleGrowth Digital",
       description:
         "Canadian digital marketing agency delivering SEO, PPC, content, and web design services for growth-focused small businesses and scale-ups.",
-      url: "https://www.maplegrowthdigital.ca/",
+      url: "https://maplegrowthdigital.ca/",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
+        url: "https://maplegrowthdigital.ca/mgd-logo.svg",
       },
       image: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
+        url: "https://maplegrowthdigital.ca/mgd-logo.svg",
       },
       telephone: "+1 (431) 726-1578",
       priceRange: "$$",
@@ -61,17 +61,17 @@ export const schema = {
     },
     {
       "@type": "Organization",
-      "@id": "https://www.maplegrowthdigital.ca/#organization",
+      "@id": "https://maplegrowthdigital.ca/#organization",
       name: "MapleGrowth Digital",
       legalName: "MapleGrowth Digital",
-      url: "https://www.maplegrowthdigital.ca/",
+      url: "https://maplegrowthdigital.ca/",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
+        url: "https://maplegrowthdigital.ca/mgd-logo.svg",
       },
       image: {
         "@type": "ImageObject",
-        url: "https://www.maplegrowthdigital.ca/mgd-logo.svg",
+        url: "https://maplegrowthdigital.ca/mgd-logo.svg",
       },
       description:
         "Canadian digital marketing agency delivering SEO, PPC, content, and web design services for growth-focused small businesses and scale-ups.",
@@ -115,121 +115,124 @@ export const schema = {
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/#service-seo-analytics",
+      "@id": "https://maplegrowthdigital.ca/#service-seo-analytics",
       name: "SEO & Analytics",
       description:
         "Technical SEO, on-page optimization, content strategy, and analytics that compound results.",
       serviceType: "Search Engine Optimization",
-      provider: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/#service-ppc-paid-media",
+      "@id": "https://maplegrowthdigital.ca/#service-ppc-paid-media",
       name: "PPC & Paid Media",
       description:
         "ROI-first campaigns across Google, YouTube, and social. Built for fast, measurable growth.",
       serviceType: "Pay Per Click Advertising",
-      provider: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/#service-web-design-development",
+      "@id": "https://maplegrowthdigital.ca/#service-web-design-development",
       name: "Web Design & Development",
       description:
         "Conversion-focused, accessible websites engineered for speed, security, and scalability.",
       serviceType: "Web Development",
-      provider: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/#service-content-email",
+      "@id": "https://maplegrowthdigital.ca/#service-content-email",
       name: "Content & Email Marketing",
       description:
         "Editorial calendars, sales enablement content, and lifecycle email that nurtures demand.",
       serviceType: "Content Marketing",
-      provider: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/#service-brand-creative",
+      "@id": "https://maplegrowthdigital.ca/#service-brand-creative",
       name: "Brand & Creative",
       description:
         "Brand systems, ad creative, and motion assets that boost recognition and conversion.",
       serviceType: "Brand Development",
-      provider: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
       "@type": "Service",
-      "@id": "https://www.maplegrowthdigital.ca/#service-growth-strategy",
+      "@id": "https://maplegrowthdigital.ca/#service-growth-strategy",
       name: "Growth Strategy",
       description:
         "Positioning, messaging, and go-to-market plans tailored to small business digital marketing.",
       serviceType: "Marketing Strategy",
-      provider: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.maplegrowthdigital.ca/#website",
-      url: "https://www.maplegrowthdigital.ca/",
+      "@id": "https://maplegrowthdigital.ca/#website",
+      url: "https://maplegrowthdigital.ca/",
       name: "MapleGrowth Digital",
-      publisher: { "@id": "https://www.maplegrowthdigital.ca/#agency" },
+      publisher: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
+      // IMPORTANT: these Q&As must mirror the visible FAQ in components/FAQ.tsx
+      // verbatim — Google requires FAQPage structured data to match on-page
+      // content. If you edit one, edit the other.
       "@type": "FAQPage",
       mainEntity: [
         {
-          name: "What services does MapleGrowth Digital offer?",
+          name: "How long does a typical engagement last?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "We provide web design and development, mobile app development, e-commerce solutions, SEO and analytics, branding, and content/podcast production.",
+            text: "It depends on the shape of the work. Sprints run 4–6 weeks for focused deliverables (audits, launches, redesigns). Retainers typically start at 3 months and run as long as we're earning our keep — most clients stay 12+ months because the work compounds.",
             "@type": "Answer",
           },
         },
         {
-          name: "Do you only work with Canadian businesses?",
+          name: "Do you work with companies outside of Canada?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "While we’re proudly Canadian and rooted in local values, we work with businesses across North America and beyond.",
+            text: "Yes. We're proudly Canadian-based, but a good share of our active work is international — clients and partners across the US, Australia, and India. We're remote-first and run engagements across four time zones at any given time.",
             "@type": "Answer",
           },
         },
         {
-          name: "How do you measure success for your clients?",
+          name: "Do you require long-term contracts?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "We track measurable outcomes such as conversions, lead generation, ROI, and long-term digital growth — not just vanity metrics like clicks.",
+            text: "No lock-ins. Retainers are month-to-month with a 30-day notice period. We'd rather earn your business every month than rely on a contract to keep you.",
             "@type": "Answer",
           },
         },
         {
-          name: "How much does a project cost?",
+          name: "How do you measure success?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "Pricing depends on scope, but we provide transparent quotes and clear timelines before starting any project. No hidden surprises.",
+            text: "We agree on the metrics before kickoff and report against them every sprint. Common ones: pipeline created, qualified leads, organic sessions, MRR contribution, CAC, ROAS. If we can't tie the work to a number that matters to you, we shouldn't be doing it.",
             "@type": "Answer",
           },
         },
         {
-          name: "Do you offer ongoing support after launch?",
+          name: "Will I get a dedicated team?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "Yes. We provide ongoing maintenance, performance monitoring, and optimization to ensure your website or app continues to grow with your business.",
+            text: "Yes. Every engagement has a named team — usually a strategist, a designer, and an engineer at minimum. You'll meet them in week one and have direct contact (Slack, email, calls) for the duration of the engagement.",
             "@type": "Answer",
           },
         },
         {
-          name: "How is MapleGrowth Digital different from other agencies?",
+          name: "How fast can we start?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "We only take on a handful of clients at a time to ensure each project gets our full attention. Our approach blends creativity with data-driven strategy, rooted in Canadian values of trust and integrity.",
+            text: "Usually within 1–2 weeks of signing. We intentionally keep ~15% capacity open so new engagements don't wait on a queue. Urgent sprints can sometimes start within 48 hours.",
             "@type": "Answer",
           },
         },
         {
-          name: "How can I get started?",
+          name: "What's your pricing model?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "The best way is to book a free strategy call with us. We’ll learn about your goals and suggest a tailored plan for growth.",
+            text: "Three options: fixed-scope sprints, monthly retainers, or custom engagements. Sprints start at $1.5K, retainers at $1K/month. We share specific scope and pricing on the discovery call — no surprises later.",
             "@type": "Answer",
           },
         },

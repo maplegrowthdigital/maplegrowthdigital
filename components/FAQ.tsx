@@ -49,7 +49,7 @@ const FAQS: FAQItem[] = [
   {
     q: "What's your pricing model?",
     a:
-      "Three options: fixed-scope sprints, monthly retainers, or custom engagements. Sprints start at $4.5K, retainers at $4.5K/month. We share specific scope and pricing on the discovery call — no surprises later.",
+      "Three options: fixed-scope sprints, monthly retainers, or custom engagements. Sprints start at $1.5K, retainers at $1K/month. We share specific scope and pricing on the discovery call — no surprises later.",
   },
 ];
 
