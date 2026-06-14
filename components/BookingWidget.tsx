@@ -177,6 +177,7 @@ export function BookingWidget() {
   const [submitting, setSubmitting] = useState(false);
   const [weekSlots, setWeekSlots] = useState<Map<string, Timeslot[]>>(new Map());
   const [slotsError, setSlotsError] = useState<string>("");
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
 
   const viewportRef = useRef<HTMLDivElement>(null);
   const tz = useRef<string>(typeof window !== "undefined" ? userTimezone() : "UTC");
@@ -227,9 +228,12 @@ export function BookingWidget() {
     const end = new Date(start);
     end.setDate(start.getDate() + 7);
     setSlotsError("");
+    setIsLoadingSlots(true);
+    let cancelled = false;
     tidycal
       .getTimeslots(bookingType.id, start.toISOString(), end.toISOString())
       .then((slots) => {
+        if (cancelled) return;
         // Filter out slots that violate the configured min lead-time.
         const filtered = slots.filter(
           (s) => new Date(s.starts_at).getTime() >= minSlotTime
@@ -243,11 +247,18 @@ export function BookingWidget() {
         setWeekSlots(byDay);
       })
       .catch(() => {
+        if (cancelled) return;
         setWeekSlots(new Map());
         setSlotsError(
           "We couldn't load times right now. Please try again in a moment."
         );
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoadingSlots(false);
       });
+    return () => {
+      cancelled = true;
+    };
   }, [bookingType, weekOffset, minSlotTime]);
 
   // Animate step cross-fade
@@ -596,7 +607,7 @@ export function BookingWidget() {
                 {noticeLabel ? <> · {noticeLabel} required</> : null}
               </p>
             </header>
-            <div className="booking-cal">
+            <div className="booking-cal" aria-busy={isLoadingSlots}>
               <div className="booking-cal__nav">
                 <button
                   type="button"
@@ -643,7 +654,9 @@ export function BookingWidget() {
                       </span>
                       <span className="cal-day__num">{d.date.getDate()}</span>
                       <span className="cal-day__count">
-                        {d.isWeekend
+                        {isLoadingSlots
+                          ? "…"
+                          : d.isWeekend
                           ? "—"
                           : d.slotCount > 0
                           ? `${d.slotCount} slot${d.slotCount === 1 ? "" : "s"}`
@@ -654,7 +667,11 @@ export function BookingWidget() {
                 })}
               </ol>
               <div className="booking-cal__slots">
-                {slotsError ? (
+                {isLoadingSlots ? (
+                  <p className="booking-cal__empty" aria-live="polite">
+                    Finding open times…
+                  </p>
+                ) : slotsError ? (
                   <p className="booking-cal__empty">{slotsError}</p>
                 ) : activeSlots.length === 0 ? (
                   <p className="booking-cal__empty">
@@ -726,6 +743,10 @@ export function BookingWidget() {
                   onChange={(e) =>
                     setContact({ ...contact, name: e.target.value })
                   }
+                  aria-invalid={
+                    formError === "Please enter your name." || undefined
+                  }
+                  aria-describedby={formError ? "booking-form-msg" : undefined}
                 />
               </label>
               <label className="booking-field">
@@ -740,6 +761,10 @@ export function BookingWidget() {
                   onChange={(e) =>
                     setContact({ ...contact, email: e.target.value })
                   }
+                  aria-invalid={
+                    formError === "Please enter a valid email." || undefined
+                  }
+                  aria-describedby={formError ? "booking-form-msg" : undefined}
                 />
               </label>
 
@@ -769,7 +794,11 @@ export function BookingWidget() {
                   </label>
                 )}
 
-              <p className="booking-form__msg" aria-live="polite">
+              <p
+                id="booking-form-msg"
+                className="booking-form__msg"
+                aria-live="polite"
+              >
                 {formError}
               </p>
               <div className="booking-form__actions">

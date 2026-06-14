@@ -79,18 +79,31 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
     [stack]
   );
 
-  // Body scroll lock + focus restore when stack empties
+  // Body scroll lock + background `inert` + focus restore when stack empties.
+  // `inert` on <main>/<footer> removes the page behind the modal from BOTH
+  // the tab order and the accessibility tree, so keyboard + screen-reader
+  // users can't escape the dialog into hidden content. Modals are portaled
+  // to <body> (see Modal.tsx), so they're outside these inert subtrees.
   useEffect(() => {
+    const bg = [
+      document.getElementById("main-content"),
+      document.getElementById("site-footer"),
+    ].filter((el): el is HTMLElement => el != null);
+
     if (stack.length > 0) {
       document.body.classList.add("modal-open");
+      bg.forEach((el) => el.setAttribute("inert", ""));
     } else {
       document.body.classList.remove("modal-open");
+      bg.forEach((el) => el.removeAttribute("inert"));
       const last = lastFocusRef.current;
       if (last && typeof last.focus === "function") {
         last.focus({ preventScroll: true });
         lastFocusRef.current = null;
       }
     }
+
+    return () => bg.forEach((el) => el.removeAttribute("inert"));
   }, [stack.length]);
 
   // ESC closes topmost

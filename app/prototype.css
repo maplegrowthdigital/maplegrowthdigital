@@ -17,6 +17,35 @@ body {
   transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
 }
 
+/* =========================================================
+   Global keyboard focus ring.
+   Branded, consistent, and ONLY for keyboard users (:focus-visible),
+   so mouse clicks don't show a ring. Applies to every interactive
+   element that doesn't define its own focus style. Components with a
+   bespoke focus treatment (mobile-nav links, form inputs) override this.
+   ========================================================= */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Pill/round controls read better with a slightly larger offset. */
+.btn:focus-visible,
+.theme-toggle:focus-visible,
+.modal__close:focus-visible {
+  outline-offset: 4px;
+}
+/* Range slider thumb had outline:none with no replacement — restore a
+   visible focus indicator for keyboard users on both engines. */
+.quote-slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.quote-slider:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* Custom cursor scoping — the CustomCursor component adds
    .mgd-cursor-on to <body> on mount, removes it on unmount.
    Other pages keep their native cursor. */

@@ -202,6 +202,8 @@ export function Newsletter() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              aria-invalid={state === "error" || undefined}
+              aria-describedby={message ? "newsletter-msg" : undefined}
             />
             <button
               type="submit"
@@ -223,6 +225,7 @@ export function Newsletter() {
             />
           </div>
           <p
+            id="newsletter-msg"
             className={
               "newsletter__msg" +
               (state === "error" ? " is-error" : "") +

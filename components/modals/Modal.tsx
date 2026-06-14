@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useModal, useModalState, type ModalName } from "../global/ModalProvider";
 
 interface ModalProps {
@@ -31,6 +32,13 @@ export function Modal({
   const { close } = useModal();
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // Portal to document.body so the modal lives OUTSIDE <main>. That lets
+  // ModalProvider mark <main>/<footer> as `inert` while a modal is open
+  // without disabling the modal itself, and avoids any z-index / overflow
+  // stacking-context surprises. Mounted guard prevents an SSR mismatch.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const handleClose = () => close(name);
 
   // Focus first focusable inside the panel when modal opens
@@ -49,7 +57,9 @@ export function Modal({
 
   const variantClass = variant ? ` modal__panel--${variant}` : "";
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       className={`modal${isOpen ? " is-open" : ""}`}
       data-modal={name}
@@ -82,6 +92,7 @@ export function Modal({
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
