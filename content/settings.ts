@@ -3,18 +3,22 @@ export const settings = {
   faviconUrl: "/images/favico.png",
 
   // SEO Meta
+  // Primary keyword target: "digital marketing agency Mississauga / GTA"
+  // (local-first — easier to rank, ties to the LocalBusiness schema + HQ
+  // address). Title leads with the keyword, then the brand. ~58 chars.
   siteName: "MapleGrowth Digital",
-  seoTitle: "MapleGrowth Digital — Canadian Growth Marketing Agency",
+  seoTitle: "Mississauga Digital Marketing Agency | MapleGrowth Digital",
   seoDescription:
-    "Canadian digital marketing agency helping small businesses grow with SEO, PPC, content, and conversion-first web design.",
+    "A Mississauga digital marketing agency serving the GTA and across Canada — SEO, PPC, content, and conversion-first web design built for measurable growth.",
   canonicalUrl: "https://maplegrowthdigital.ca/",
 
   // Open Graph
   // og:image is generated dynamically via app/opengraph-image.tsx (next/og) —
-  // no static image path needed.
+  // no static image path needed. OG title stays brand-led (social shares
+  // benefit from brand recognition more than keyword placement).
   ogTitle: "MapleGrowth Digital — Canadian Growth Marketing Agency",
   ogDescription:
-    "Canadian digital marketing agency helping small businesses grow with SEO, PPC, content, and conversion-first web design.",
+    "A Mississauga digital marketing agency serving the GTA and across Canada — SEO, PPC, content, and conversion-first web design built for measurable growth.",
 
   // Twitter
   twitterCard: "summary_large_image",
@@ -30,12 +34,17 @@ export const settings = {
   googleAnalyticsId: "G-LVQFYZGN8R",
   googleTagManagerId: "GTM-WSVN3SR3",
 
-  // Additional SEO keywords from data.json
+  // Target keywords — REFERENCE ONLY (internal documentation of what we're
+  // optimizing for). Not rendered: Google has ignored the meta-keywords tag
+  // since ~2009, so we intentionally don't emit it. Ordered by priority,
+  // local-first to match the homepage strategy.
   keywords: [
-    "maple growth digital",
-    "digital marketing Mississauga",
-    "SEO services Canada",
-    "website design Mississauga",
-    "PPC management Canada",
+    "digital marketing agency Mississauga",
+    "marketing agency GTA",
+    "SEO services Mississauga",
+    "PPC management Mississauga",
+    "web design Mississauga",
+    "Canadian digital marketing agency",
+    "maplegrowth digital",
   ],
 } as const;
