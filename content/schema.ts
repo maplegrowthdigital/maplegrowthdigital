@@ -168,6 +168,24 @@ export const schema = {
       provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
+      "@type": "Service",
+      "@id": "https://maplegrowthdigital.ca/#service-mobile-app",
+      name: "Mobile App Development",
+      description:
+        "Native and cross-platform mobile apps, built with our engineering partner Growmintech — from concept to App Store launch.",
+      serviceType: "Mobile App Development",
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
+    },
+    {
+      "@type": "Service",
+      "@id": "https://maplegrowthdigital.ca/#service-ecommerce",
+      name: "E-Commerce Store Development",
+      description:
+        "High-converting online stores on Shopify and headless commerce, built with our engineering partner Growmintech.",
+      serviceType: "E-commerce Development",
+      provider: { "@id": "https://maplegrowthdigital.ca/#agency" },
+    },
+    {
       "@type": "WebSite",
       "@id": "https://maplegrowthdigital.ca/#website",
       url: "https://maplegrowthdigital.ca/",

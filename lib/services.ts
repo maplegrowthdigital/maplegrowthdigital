@@ -157,6 +157,48 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     ],
     quote: "Strategy you can act on Monday — not a deck that gathers dust.",
   },
+  {
+    id: "mobile-app",
+    title: "Mobile App Development",
+    tag: "Native + cross-platform",
+    band: [4000, 15000],
+    teamFactor: { strategists: 0.25, designers: 0.5, devs: 1.5 },
+    lead: "Native and cross-platform mobile apps, designed and built with our engineering partner Growmintech — from concept to App Store launch.",
+    deliverables: [
+      "Product scoping + UX flows",
+      "iOS & Android (native or React Native / Flutter)",
+      "API + backend integration",
+      "App Store + Play Store submission",
+      "Post-launch maintenance & iteration",
+    ],
+    results: [
+      "Delivered with our engineering partner, Growmintech",
+      "Built for performance, offline resilience, and scale",
+      "One team from strategy through store launch",
+    ],
+    quote: "An app is a product, not a project — we plan for version two before we ship version one.",
+  },
+  {
+    id: "ecommerce",
+    title: "E-Commerce Store Development",
+    tag: "Stores that sell",
+    band: [3000, 12000],
+    teamFactor: { strategists: 0.25, designers: 0.75, devs: 1.25 },
+    lead: "High-converting online stores — Shopify, headless commerce, or custom — built with our engineering partner Growmintech and tuned to convert.",
+    deliverables: [
+      "Storefront design + build (Shopify / headless)",
+      "Payments, checkout & tax configuration",
+      "Product + catalog architecture",
+      "Conversion-rate optimization",
+      "Analytics + lifecycle email integration",
+    ],
+    results: [
+      "Delivered with our engineering partner, Growmintech",
+      "Built on conversion best-practices, not just aesthetics",
+      "Integrated with your marketing + email stack",
+    ],
+    quote: "A store's only job is to sell — every design choice should defend the checkout.",
+  },
 ];
 
 export const findServiceById = (id: string) =>

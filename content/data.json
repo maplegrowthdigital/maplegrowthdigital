@@ -125,6 +125,28 @@
           "KPI frameworks"
         ],
         "ariaLabel": "Growth strategy service"
+      },
+      {
+        "icon": "DEV",
+        "title": "Mobile App Development",
+        "description": "Native and cross-platform mobile apps, built with our engineering partner Growmintech.",
+        "bullets": [
+          "iOS & Android",
+          "Cross-platform builds",
+          "App Store launch"
+        ],
+        "ariaLabel": "Mobile app development service"
+      },
+      {
+        "icon": "DEV",
+        "title": "E-Commerce Store Development",
+        "description": "High-converting online stores on Shopify and headless, built with our partner Growmintech.",
+        "bullets": [
+          "Shopify & headless",
+          "Payments & checkout",
+          "Conversion-optimized"
+        ],
+        "ariaLabel": "E-commerce store development service"
       }
     ]
   },

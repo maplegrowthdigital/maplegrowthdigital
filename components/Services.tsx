@@ -55,6 +55,18 @@ const DEFAULT_SERVICES: ServiceItem[] = [
     description: "Positioning, messaging, and go-to-market plans tailored to your stage.",
     bullets: ["ICP & messaging", "Channel mix planning", "KPI frameworks"],
   },
+  {
+    id: "mobile-app",
+    title: "Mobile App Development",
+    description: "Native and cross-platform mobile apps, built with our engineering partner.",
+    bullets: ["iOS & Android", "Cross-platform builds", "App Store launch"],
+  },
+  {
+    id: "ecommerce",
+    title: "E-Commerce Store Development",
+    description: "High-converting online stores on Shopify and headless.",
+    bullets: ["Shopify & headless", "Payments & checkout", "Conversion-optimized"],
+  },
 ];
 
 export interface ServicesProps {
