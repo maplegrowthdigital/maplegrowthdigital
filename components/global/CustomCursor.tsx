@@ -1,12 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 
 /**
  * CustomCursor — dot + ring cursor that follows the pointer.
  *
  * Mount this once per page that wants the effect (typically the homepage).
+ * - Portaled to <body> so it isn't trapped inside <main>'s z-index stacking
+ *   context. (Modals portal to <body> at z-index 200; the cursor lives at
+ *   z-index 9999, so it must share the body-level stacking context to render
+ *   ABOVE an open modal — otherwise it vanishes behind it.)
  * - Adds `body.mgd-cursor-on` so prototype.css can `cursor: none`.
  * - Skipped on touch devices and when `prefers-reduced-motion: reduce`.
  * - Ring lerp-follows the dot for a soft trail effect.
@@ -14,8 +19,15 @@ import { gsap } from "gsap";
  */
 export function CustomCursor() {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Portal target (document.body) only exists on the client. Gate the render
+  // + the effect on `mounted` so SSR doesn't touch `document`.
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
+    if (!mounted) return;
+
     const isTouch = window.matchMedia("(hover: none)").matches;
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -48,7 +60,8 @@ export function CustomCursor() {
     gsap.ticker.add(tick);
 
     // Hover targets — grow the ring
-    const targets = "a, button, [data-magnetic], [data-service], [data-case], [data-insight]";
+    const targets =
+      "a, button, [data-magnetic], [data-service], [data-case], [data-insight]";
     const onEnter = () => cursor.classList.add("is-hover");
     const onLeave = () => cursor.classList.remove("is-hover");
     const hoverEls = Array.from(document.querySelectorAll(targets));
@@ -66,12 +79,15 @@ export function CustomCursor() {
       });
       document.body.classList.remove("mgd-cursor-on");
     };
-  }, []);
+  }, [mounted]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div ref={wrapRef} className="cursor" aria-hidden="true">
       <div className="cursor__dot" />
       <div className="cursor__ring" />
-    </div>
+    </div>,
+    document.body
   );
 }

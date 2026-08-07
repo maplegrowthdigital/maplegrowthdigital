@@ -3,13 +3,14 @@ export const settings = {
   faviconUrl: "/images/favico.png",
 
   // SEO Meta
-  // Primary keyword target: "digital marketing agency Mississauga / GTA"
-  // (local-first — easier to rank, ties to the LocalBusiness schema + HQ
-  // address). Title leads with the keyword, then the brand. ~58 chars.
+  // Primary keyword: "growth marketing agency" (Canada) — chosen from real
+  // data: it's the term GSC already shows impressions for + brand-aligned
+  // (MapleGrowth). Secondary: digital marketing agency, Toronto/GTA geo.
+  // Title leads with the keyword, then the brand. ~55 chars.
   siteName: "MapleGrowth Digital",
-  seoTitle: "Mississauga Digital Marketing Agency | MapleGrowth Digital",
+  seoTitle: "Growth Marketing Agency in Canada | MapleGrowth Digital",
   seoDescription:
-    "A Mississauga digital marketing agency serving the GTA and across Canada — SEO, PPC, content, and conversion-first web design built for measurable growth.",
+    "A Canadian growth marketing agency — SEO, PPC, content, and conversion-first web design that drives measurable growth. Book a free strategy call.",
   canonicalUrl: "https://maplegrowthdigital.ca/",
 
   // Open Graph
@@ -18,7 +19,7 @@ export const settings = {
   // benefit from brand recognition more than keyword placement).
   ogTitle: "MapleGrowth Digital — Canadian Growth Marketing Agency",
   ogDescription:
-    "A Mississauga digital marketing agency serving the GTA and across Canada — SEO, PPC, content, and conversion-first web design built for measurable growth.",
+    "A Canadian growth marketing agency — SEO, PPC, content, and conversion-first web that drives measurable growth across Toronto, the GTA, and beyond.",
 
   // Twitter
   twitterCard: "summary_large_image",
@@ -36,14 +37,14 @@ export const settings = {
 
   // Target keywords — REFERENCE ONLY (internal documentation of what we're
   // optimizing for). Not rendered: Google has ignored the meta-keywords tag
-  // since ~2009, so we intentionally don't emit it. Ordered by priority,
-  // local-first to match the homepage strategy.
+  // since ~2009, so we intentionally don't emit it. Ordered by priority to
+  // match the homepage strategy (growth-marketing-agency primary, from GSC data).
   keywords: [
-    "digital marketing agency Mississauga",
-    "marketing agency GTA",
-    "SEO services Mississauga",
-    "PPC management Mississauga",
-    "web design Mississauga",
+    "growth marketing agency",
+    "growth marketing agency Canada",
+    "growth marketing agency Toronto",
+    "digital marketing agency Canada",
+    "digital growth agency",
     "Canadian digital marketing agency",
     "maplegrowth digital",
   ],
