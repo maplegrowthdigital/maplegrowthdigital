@@ -4,6 +4,7 @@
    self-hosted, no external stylesheet, plays nice with the site's CSP.) */
 @import "./prototype-tokens.css";
 @import "./prototype.css";
+@import "./about.css";
 
 @tailwind base;
 @tailwind components;

@@ -13,7 +13,7 @@ export const defaultNavItems: NavItem[] = [
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/#about", label: "About" },
+  { href: "/about", label: "About" },
 ];
 
 export function getNavigationItems(): NavItem[] {
