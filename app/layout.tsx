@@ -36,13 +36,18 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(settings.canonicalUrl),
     title: settings.seoTitle,
     description: settings.seoDescription,
-    icons: settings.faviconUrl
-      ? {
-          icon: [{ url: settings.faviconUrl }],
-          shortcut: [{ url: settings.faviconUrl }],
-          apple: [{ url: settings.faviconUrl }],
-        }
-      : undefined,
+    // Brand mark (maple leaf). The SVG is the primary icon — it stays crisp
+    // at every size and in both browser themes. The PNGs are generated from
+    // it (see public/favicon.svg) for browsers that ignore SVG icons and for
+    // iOS, which requires an opaque bitmap.
+    icons: {
+      icon: [
+        { url: settings.faviconUrl, type: "image/svg+xml" },
+        { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      ],
+      shortcut: [{ url: "/favicon.png" }],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    },
     // NOTE: og:image / twitter:image are auto-injected by the file-based
     // metadata convention (app/opengraph-image.tsx + app/twitter-image.tsx),
     // so we intentionally don't set `images` here.

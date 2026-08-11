@@ -1,6 +1,8 @@
 export const settings = {
-  // Favicon
-  faviconUrl: "/images/favico.png",
+  // Favicon — the maple-leaf brand mark. Vector primary; the PNG fallbacks
+  // (/favicon.png, /apple-icon.png, /icon-192.png, /icon-512.png) are
+  // rendered from this same SVG, so re-export them if the mark ever changes.
+  faviconUrl: "/favicon.svg",
 
   // SEO Meta
   // Primary keyword: "growth marketing agency" (Canada) — chosen from real
