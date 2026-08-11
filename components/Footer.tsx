@@ -28,14 +28,14 @@ export function Footer() {
           <img
             src="/mgd-logo.svg"
             alt="MapleGrowth Digital"
-            width={182}
+            width={302}
             height={60}
             className="site-footer__logo site-footer__logo--dark"
           />
           <img
             src="/mgd-logo-light.svg"
             alt=""
-            width={182}
+            width={302}
             height={60}
             className="site-footer__logo site-footer__logo--light"
             aria-hidden="true"

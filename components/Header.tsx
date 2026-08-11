@@ -42,14 +42,14 @@ export function Header({
         <img
           src="/mgd-logo.svg"
           alt="MapleGrowth Digital"
-          width={182}
+          width={302}
           height={60}
           className="logo__img logo__img--dark"
         />
         <img
           src="/mgd-logo-light.svg"
           alt=""
-          width={182}
+          width={302}
           height={60}
           className="logo__img logo__img--light"
           aria-hidden="true"
