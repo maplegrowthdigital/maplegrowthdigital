@@ -18,9 +18,9 @@ interface Principle {
 const PRINCIPLES: Principle[] = [
   {
     num: "01",
-    title: "Senior-only team",
+    title: "Experts do the work",
     desc:
-      "No juniors handed the keys. Everyone touching your account has 5+ years in the trenches — you speak directly with the people doing the work.",
+      "Every account is run by people with 5+ years of hands-on experience — not juniors learning on your budget. You work directly with the strategists, designers, and engineers doing the work.",
   },
   {
     num: "02",

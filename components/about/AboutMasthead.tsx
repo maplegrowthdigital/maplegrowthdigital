@@ -133,7 +133,7 @@ export function AboutMasthead() {
               from the US to Australia.
             </p>
             <ul className="about-cred__chips" role="list">
-              <li>Senior-only team</li>
+              <li>Experts on the work</li>
               <li>Outcomes over outputs</li>
               <li>No lock-in retainers</li>
             </ul>
