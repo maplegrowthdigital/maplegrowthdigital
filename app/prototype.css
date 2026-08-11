@@ -73,12 +73,17 @@ em {
 /* =========================================================
    Custom cursor
    ========================================================= */
+/* The blend MUST stay on this wrapper, not on .cursor__dot/.cursor__ring.
+   `position: fixed` + z-index makes .cursor its own stacking context, so a
+   child's mix-blend-mode would only blend against this empty transparent
+   box — not the page — and render as its raw source colour (solid white). */
 .cursor {
   position: fixed;
   top: 0; left: 0;
   width: 0; height: 0;
   pointer-events: none;
   z-index: 9999;
+  mix-blend-mode: difference;
 }
 .cursor__dot,
 .cursor__ring {
@@ -86,14 +91,10 @@ em {
   top: 0; left: 0;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  /* Blend lives on the children, not the wrapper, so the hover ring can opt
-     back out (below) and show true brand red instead of an inverted hue. */
-  mix-blend-mode: difference;
 }
-/* Must be literal white, NOT var(--paper). `difference` inverts the backdrop
-   only when the source is white; --paper flips to near-black in the light
-   theme, which differenced against light paper produced a near-invisible
-   light grey. White works on both themes and over imagery. */
+/* Literal white, NOT var(--paper): `difference` only inverts the backdrop
+   when the source is white. --paper flips to near-black in the light theme,
+   which differenced against light paper gave rgb(224,223,217) — invisible. */
 .cursor__dot {
   width: 6px;
   height: 6px;
@@ -108,8 +109,6 @@ em {
 .cursor.is-hover .cursor__ring {
   width: 64px;
   height: 64px;
-  /* Opt out of the blend so the accent reads as brand red, not its inverse. */
-  mix-blend-mode: normal;
   background: rgba(198, 40, 40, 0.15);
   border-color: var(--accent);
 }
