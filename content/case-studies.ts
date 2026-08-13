@@ -48,15 +48,14 @@ export type CaseStudy = {
 
 // Import individual case studies
 import { caseStudy as voyamore } from "./case-studies/voyamore";
-import { caseStudy as lumiqraft } from "./case-studies/lumiqraft-publishing";
 // Add more imports as you create them
-// import { caseStudy as techflow } from "./case-studies/techflow-b2b-growth";
-// import { caseStudy as aurora } from "./case-studies/aurora-skincare";
-// import { caseStudy as liberty } from "./case-studies/liberty-it";
 
 // Combine all case studies into array
+//
+// Only add a study here when the client, the engagement, and every figure in
+// it are real and you'd be comfortable with the client reading the page.
+// Testimonials must be genuine and attributed with permission.
 export const caseStudies: readonly CaseStudy[] = [
-  lumiqraft,
   voyamore,
   // Add more case studies here as you create them
 ];

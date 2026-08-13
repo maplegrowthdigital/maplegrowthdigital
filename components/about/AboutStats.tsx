@@ -17,12 +17,15 @@ interface Stat {
   label: string;
 }
 
-// Every figure here is already published elsewhere on the site (hero stats,
-// the Lumiqraft case result) — no new claims are introduced.
+// These are public claims on a commercial page — every figure must be one we
+// could evidence if a prospect asked. "It appears elsewhere on the site" is
+// NOT sufficient justification; verify the underlying fact before adding one.
 const STATS: Stat[] = [
   { target: 10, suffix: "+", label: "Years in web & digital marketing" },
+  // TODO(rohan): "3x average ROI" is not currently evidenced — decide whether
+  // to drop it or back it with a real engagement before this stays long-term.
   { target: 3, suffix: "×", label: "Average ROI our clients achieve" },
-  { target: 340, suffix: "%", label: "Peak client sales lift (Lumiqraft)" },
+  { target: 2014, suffix: "", label: "Building for clients since" },
   { target: 100, suffix: "%", label: "Proudly Canadian-based" },
 ];
 
