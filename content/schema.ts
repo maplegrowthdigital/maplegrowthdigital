@@ -250,7 +250,7 @@ export const schema = {
           name: "What's your pricing model?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "Three options: fixed-scope sprints, monthly retainers, or custom engagements. Sprints start at $1.5K, retainers at $1K/month. We share specific scope and pricing on the discovery call — no surprises later.",
+            text: "Four options: a small-business starter plan, fixed-scope sprints, monthly retainers, or custom engagements. Starter plans begin at $500/month, sprints at $1.5K, and retainers at $1K/month. We share specific scope and pricing on the discovery call — no surprises later.",
             "@type": "Answer",
           },
         },

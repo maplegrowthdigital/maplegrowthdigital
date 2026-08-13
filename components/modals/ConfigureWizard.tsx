@@ -29,10 +29,10 @@ const GOALS: OptionItem[] = [
 ];
 
 const BUDGETS: OptionItem[] = [
-  { id: "under1_5", title: "Under $1.5K", sub: "per month" },
+  { id: "under500", title: "Under $500", sub: "per month" },
+  { id: "500to1_5", title: "$500 – $1.5K", sub: "per month" },
   { id: "1_5to3", title: "$1.5K – $3K", sub: "per month" },
-  { id: "3to6", title: "$3K – $6K", sub: "per month" },
-  { id: "6plus", title: "$6K+", sub: "per month" },
+  { id: "3plus", title: "$3K+", sub: "per month" },
   { id: "project", title: "Project-based", sub: "fixed scope" },
 ];
 

@@ -35,7 +35,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "seo",
     title: "SEO & Analytics",
     tag: "Compounding visibility",
-    band: [1000, 2500],
+    band: [500, 2000],
     teamFactor: { strategists: 0.5, designers: 0, devs: 0.5 },
     lead: "Technical SEO, on-page optimization, content strategy, and analytics that compound — not vanity metrics.",
     deliverables: [
@@ -56,7 +56,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "ppc",
     title: "PPC & Paid Media",
     tag: "ROI-first acquisition",
-    band: [1000, 3000],
+    band: [600, 2400],
     teamFactor: { strategists: 0.75, designers: 0.5, devs: 0.25 },
     lead: "ROI-first campaigns across Google, Performance Max, YouTube, and social. Built for measurable, compounding growth.",
     deliverables: [
@@ -77,7 +77,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "web",
     title: "Web Design & Development",
     tag: "Conversion-first builds",
-    band: [1500, 5000],
+    band: [750, 4000],
     teamFactor: { strategists: 0.5, designers: 1, devs: 1 },
     lead: "Conversion-focused, accessible websites engineered for speed, security, and scalability — not just aesthetics.",
     deliverables: [
@@ -98,7 +98,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "content",
     title: "Content & Email",
     tag: "Nurture demand",
-    band: [800, 2000],
+    band: [500, 1500],
     teamFactor: { strategists: 0.5, designers: 0.25, devs: 0 },
     lead: "Editorial calendars, sales enablement content, and lifecycle email that nurtures demand without spamming inboxes.",
     deliverables: [
@@ -119,7 +119,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "brand",
     title: "Brand & Creative",
     tag: "Recognition + conversion",
-    band: [1000, 3000],
+    band: [500, 2400],
     teamFactor: { strategists: 0.5, designers: 1, devs: 0 },
     lead: "Brand systems, ad creative, and motion assets that lift recognition and convert — beyond decoration.",
     deliverables: [
@@ -140,7 +140,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "strategy",
     title: "Growth Strategy",
     tag: "Aligned execution",
-    band: [1000, 2500],
+    band: [500, 2000],
     teamFactor: { strategists: 1, designers: 0.25, devs: 0.25 },
     lead: "Positioning, messaging, and go-to-market plans tailored to your stage. We don't just consult — we ship.",
     deliverables: [
@@ -161,7 +161,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "mobile-app",
     title: "Mobile App Development",
     tag: "Native + cross-platform",
-    band: [4000, 15000],
+    band: [2500, 12000],
     teamFactor: { strategists: 0.25, designers: 0.5, devs: 1.5 },
     lead: "Native and cross-platform mobile apps, designed and built with our engineering partner Growmintech — from concept to App Store launch.",
     deliverables: [
@@ -182,7 +182,7 @@ export const SERVICE_CATALOG: ServiceEntry[] = [
     id: "ecommerce",
     title: "E-Commerce Store Development",
     tag: "Stores that sell",
-    band: [3000, 12000],
+    band: [2000, 9000],
     teamFactor: { strategists: 0.25, designers: 0.75, devs: 1.25 },
     lead: "High-converting online stores — Shopify, headless commerce, or custom — built with our engineering partner Growmintech and tuned to convert.",
     deliverables: [

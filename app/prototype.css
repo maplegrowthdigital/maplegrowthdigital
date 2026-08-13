@@ -1917,7 +1917,7 @@ body.menu-open { overflow: hidden; }
   max-width: calc(var(--content-max) - var(--gutter) * 2);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-4);
   align-items: stretch;
 }
@@ -2043,6 +2043,11 @@ body.menu-open { overflow: hidden; }
 }
 .pricing-card__cta--dual .btn--primary { justify-content: center; }
 
+/* Four tiers need an intermediate 2x2 step before collapsing to one column,
+   otherwise the cards get too narrow for the price + feature list to read. */
+@media (max-width: 1180px) {
+  .pricing__grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 920px) {
   .pricing__grid { grid-template-columns: 1fr; }
   .pricing-card__ribbon { right: var(--sp-4); }

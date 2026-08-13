@@ -85,15 +85,44 @@ export function Pricing() {
           <span>Pricing</span>
         </div>
         <h2 className="section-title" data-split>
-          Three ways to&nbsp;<em>engage</em>.
+          Four ways to&nbsp;<em>engage</em>.
         </h2>
         <p className="section-intro" data-reveal="up" data-reveal-delay="0.2">
-          From focused sprints to embedded partnerships. All transparent, all
-          month-to-month — no lock-ins, no surprise invoices.
+          From a small-business starter plan to embedded partnerships. All
+          transparent, all month-to-month — no lock-ins, no surprise invoices.
         </p>
       </div>
 
       <ol className="pricing__grid" role="list">
+        {/* Starter — entry tier for small businesses. Deliberately scoped to
+            one focus area so it stays deliverable at this price. */}
+        <li className="pricing-card" data-pricing-card>
+          <header className="pricing-card__head">
+            <span className="pricing-card__label">Starter</span>
+            <h3 className="pricing-card__title">Small-business essentials</h3>
+            <p className="pricing-card__sub">
+              Best for local businesses getting the fundamentals right.
+            </p>
+          </header>
+          <div className="pricing-card__price">
+            <span className="pricing-card__amount">From&nbsp;$500</span>
+            <span className="pricing-card__period">per month</span>
+          </div>
+          <ul className="pricing-card__features">
+            <li>One focus area, done properly</li>
+            <li>Local SEO + Google Business Profile</li>
+            <li>Monthly report and review call</li>
+            <li>Month-to-month, 30-day notice</li>
+            <li>Direct line to your strategist</li>
+          </ul>
+          <div className="pricing-card__cta">
+            <Link href="#contact" className="btn btn--ghost" data-magnetic>
+              <span>Book a call</span>
+              <span className="btn__arrow" aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </li>
+
         {/* Sprint */}
         <li className="pricing-card" data-pricing-card>
           <header className="pricing-card__head">
