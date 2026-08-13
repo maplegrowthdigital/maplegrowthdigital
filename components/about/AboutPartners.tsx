@@ -9,27 +9,27 @@ interface Partner {
   detail: string;
 }
 
-// NOTE: Growmintech's role is confirmed (engineering partner for the app +
-// e-commerce services). The other two descriptors are best-guess placeholders
-// — confirm/adjust before treating them as final copy.
+// Descriptions are drawn from each partner's own site (2026-08). If a partner
+// repositions, re-check the source before editing — these are claims about
+// other companies, so they should stay accurate rather than aspirational.
 const PARTNERS: Partner[] = [
   {
     name: "Growmintech",
-    role: "Engineering partner",
+    role: "Apps & e-commerce",
     detail:
-      "Our build partner for mobile apps and e-commerce — from product scoping through App Store launch and post-launch iteration.",
+      "Custom mobile and e-commerce engineering in Next.js, TypeScript, and React Native — hand-built rather than assembled from page builders, with clients keeping full ownership of the code. They deliver our app and storefront builds end to end.",
   },
   {
     name: "Blue Vineyard",
-    role: "Web & WordPress studio",
+    role: "Software & platforms",
     detail:
-      "Design and web-build collaborators for content-driven sites and bespoke WordPress work.",
+      "A technology partner for mission-driven organizations, building custom software, digital platforms, and websites under the banner “Tech for shared purpose” — 150+ clients and 40,000+ users across 12 countries.",
   },
   {
     name: "Dark Blue Tech",
-    role: "Product & technology",
+    role: "Managed IT & security",
     detail:
-      "Specialist technology support we bring in for heavier product and platform engineering.",
+      "A Michigan-based managed IT provider running helpdesk, cloud migration, and cybersecurity — endpoint protection, email security, and compliance — for when a client needs the infrastructure side covered too.",
   },
 ];
 
