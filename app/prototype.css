@@ -1273,6 +1273,25 @@ body.menu-open { overflow: hidden; }
   margin-bottom: var(--sp-4);
 }
 .site-footer__cols ul { display: grid; gap: var(--sp-3); font-size: var(--fs-14); }
+
+/* Visible NAP block. <address> defaults to italic, so reset it. */
+.site-footer__nap {
+  display: grid;
+  gap: var(--sp-2);
+  font-style: normal;
+  font-size: var(--fs-14);
+  color: rgba(var(--paper-rgb), 0.82);
+  line-height: 1.5;
+}
+.site-footer__nap-name {
+  color: var(--paper);
+  font-weight: 600;
+}
+.site-footer__nap a {
+  color: rgba(var(--paper-rgb), 0.82);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.site-footer__nap a:hover { color: var(--accent); }
 .site-footer__cols a {
   color: rgba(var(--paper-rgb), 0.82);
   transition: color var(--dur-fast) var(--ease-out);

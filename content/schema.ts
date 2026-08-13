@@ -1,11 +1,13 @@
+import { nap } from "./nap";
+
 export const schema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": ["LocalBusiness", "ProfessionalService"],
       "@id": "https://maplegrowthdigital.ca/#agency",
-      name: "MapleGrowth Digital",
-      legalName: "MapleGrowth Digital",
+      name: nap.name,
+      legalName: nap.name,
       description:
         "Canadian digital marketing agency delivering SEO, PPC, content, and web design services for growth-focused small businesses and scale-ups.",
       url: "https://maplegrowthdigital.ca/",
@@ -17,15 +19,15 @@ export const schema = {
         "@type": "ImageObject",
         url: "https://maplegrowthdigital.ca/mgd-logo.svg",
       },
-      telephone: "+1 (431) 726-1578",
+      telephone: nap.telephone,
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "363 Lakeshore Rd E",
-        addressLocality: "Mississauga",
-        addressRegion: "ON",
-        postalCode: "L5G 1H7",
-        addressCountry: "Canada",
+        streetAddress: nap.streetAddress,
+        addressLocality: nap.addressLocality,
+        addressRegion: nap.addressRegion,
+        postalCode: nap.postalCode,
+        addressCountry: nap.addressCountry,
       },
       areaServed: [
         {
@@ -48,8 +50,8 @@ export const schema = {
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+1 (431) 726-1578",
-          email: "info@maplegrowthdigital.ca",
+          telephone: nap.telephone,
+          email: nap.email,
           contactType: "customer service",
           availableLanguage: ["English", "French"],
         },
@@ -62,8 +64,8 @@ export const schema = {
     {
       "@type": "Organization",
       "@id": "https://maplegrowthdigital.ca/#organization",
-      name: "MapleGrowth Digital",
-      legalName: "MapleGrowth Digital",
+      name: nap.name,
+      legalName: nap.name,
       url: "https://maplegrowthdigital.ca/",
       logo: {
         "@type": "ImageObject",
@@ -83,11 +85,11 @@ export const schema = {
       },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "363 Lakeshore Rd E",
-        addressLocality: "Mississauga",
-        addressRegion: "ON",
-        postalCode: "L5G 1H7",
-        addressCountry: "Canada",
+        streetAddress: nap.streetAddress,
+        addressLocality: nap.addressLocality,
+        addressRegion: nap.addressRegion,
+        postalCode: nap.postalCode,
+        addressCountry: nap.addressCountry,
       },
       areaServed: [
         {
@@ -102,8 +104,8 @@ export const schema = {
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+1 (431) 726-1578",
-          email: "info@maplegrowthdigital.ca",
+          telephone: nap.telephone,
+          email: nap.email,
           contactType: "customer service",
           availableLanguage: ["English", "French"],
         },

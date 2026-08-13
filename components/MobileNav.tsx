@@ -7,6 +7,7 @@ import { useModal, useModalState } from "./global/ModalProvider";
 import type { NavItem } from "../lib/navigation";
 import { defaultNavItems } from "../lib/navigation";
 import fallbackData from "../content/data.json";
+import { nap, telHref } from "../content/nap";
 
 const MODAL_NAME = "mobile-nav";
 
@@ -80,14 +81,14 @@ export function MobileNav({ navItems }: { navItems?: NavItem[] }) {
           </ul>
         </nav>
         <div className="mobile-menu__foot" ref={footRef}>
-          <a href={`mailto:${fallbackData.contact?.email ?? "info@maplegrowthdigital.ca"}`} onClick={closeMenu}>
-            {fallbackData.contact?.email ?? "info@maplegrowthdigital.ca"}
+          {/* Same source as the footer NAP + LocalBusiness schema, so the
+              phone/email shown here can't drift out of sync. */}
+          <a href={`mailto:${nap.email}`} onClick={closeMenu}>
+            {nap.email}
           </a>
-          {fallbackData.contact?.phone && (
-            <a href={`tel:${fallbackData.contact.phone.replace(/[^+\d]/g, "")}`} onClick={closeMenu}>
-              {fallbackData.contact.phone}
-            </a>
-          )}
+          <a href={telHref} onClick={closeMenu}>
+            {nap.telephone}
+          </a>
           <div className="mobile-menu__social">
             {(fallbackData.contact?.socials || []).map((s: { label: string; href: string }) => (
               <a key={s.label} href={s.href} target="_blank" rel="noreferrer" onClick={closeMenu}>

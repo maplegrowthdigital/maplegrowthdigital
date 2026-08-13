@@ -201,23 +201,7 @@
     "ariaLabel": "About MapleGrowth Digital",
     "headingLevel": 2,
     "title": "A Canadian Growth Marketing Agency",
-    "body": "We’re a Canadian growth marketing agency dedicated to small business digital marketing. Our cross-disciplinary team ships strategy, creative, and engineering under one roof.",
-    "highlightsHeadingLevel": 3,
-    "highlights": [
-      "Focused team — no unnecessary handovers",
-      "Direct collaboration with designers, developers, and strategists",
-      "Transparent pricing and clear timelines",
-      "Remote-first, with support available across Canada"
-    ],
-    "clients": [
-      "Voyamore",
-      "Lumiqraft",
-      "Blue Vineyard",
-      "Dark Blue Tech"
-    ],
-    "ceoNote": "Growth comes from pairing creativity with accountability — ideas translated into measurable outcomes.",
-    "ceoName": "Founder",
-    "ceoTitle": "MapleGrowth Digital"
+    "body": "We’re a Canadian growth marketing agency dedicated to small business digital marketing. Our cross-disciplinary team ships strategy, creative, and engineering under one roof."
   },
   "contact": {
     "id": "contact",
@@ -227,7 +211,6 @@
     "title": "Contact",
     "email": "info@maplegrowthdigital.ca",
     "phone": "+1 (431) 726-1578",
-    "location": "Mississauga, ON · Canada",
     "socials": [
       {
         "label": "Instagram",

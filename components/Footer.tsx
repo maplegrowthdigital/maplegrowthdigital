@@ -1,5 +1,6 @@
 import Link from "next/link";
 import fallbackData from "../content/data.json";
+import { nap, telHref } from "../content/nap";
 
 // Single-page site — these mirror the header nav exactly.
 // "Book a call" lives as its own CTA section, not in this destination list.
@@ -12,9 +13,8 @@ const sitemapLinks = [
 ];
 
 export function Footer() {
-  const email = fallbackData.contact?.email ?? "info@maplegrowthdigital.ca";
-  const phone = fallbackData.contact?.phone ?? "+1 (431) 726-1578";
-  const location = fallbackData.contact?.location ?? "Canada";
+  // Contact details come from content/nap.ts (see the address block below);
+  // data.json still supplies the social links.
   const socials = (fallbackData.contact?.socials || []) as Array<{
     label: string;
     href: string;
@@ -55,15 +55,19 @@ export function Footer() {
           </div>
           <div>
             <h4>Contact</h4>
-            <ul>
-              <li>
-                <a href={`mailto:${email}`}>{email}</a>
-              </li>
-              <li>
-                <a href={`tel:${phone.replace(/[^+\d]/g, "")}`}>{phone}</a>
-              </li>
-              <li>{location}</li>
-            </ul>
+            {/* Visible NAP. Must match the LocalBusiness structured data and
+                the Google Business Profile exactly — all three read from
+                content/nap.ts so they can't drift apart. */}
+            <address className="site-footer__nap">
+              <span className="site-footer__nap-name">{nap.name}</span>
+              <span>{nap.streetAddress}</span>
+              <span>
+                {nap.addressLocality}, {nap.addressRegion} {nap.postalCode}
+              </span>
+              <span>{nap.addressCountry}</span>
+              <a href={`mailto:${nap.email}`}>{nap.email}</a>
+              <a href={telHref}>{nap.telephone}</a>
+            </address>
           </div>
           <div>
             <h4>Social</h4>
