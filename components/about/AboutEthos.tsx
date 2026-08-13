@@ -33,7 +33,7 @@ const TENETS: Tenet[] = [
     k: "03",
     strong: "We earn the retainer every month.",
     body:
-      "Engagements are month-to-month with a 30-day notice. We’d rather keep your business by moving numbers than by locking you into a contract — most clients stay 12+ months because the work compounds.",
+      "Engagements are month-to-month with a 30-day notice. We’d rather keep your business by moving numbers than by locking you into a contract.",
   },
 ];
 

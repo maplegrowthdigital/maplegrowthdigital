@@ -16,8 +16,8 @@ if (typeof window !== "undefined") {
 // or refactor to read from content/data.json later.
 const STATS = [
   { count: 10, suffix: "+ yrs", value: null, label: "Web & digital experience" },
-  { count: 3,  suffix: "× ROI", value: null, label: "Average client return" },
-  { count: null, suffix: "",    value: "24/7", label: "Support when you need it" },
+  { count: 3,  suffix: "",      value: null, label: "Specialist delivery partners" },
+  { count: null, suffix: "",    value: "2014", label: "Building for clients since" },
   { count: null, suffix: "",    value: "CA",   label: "Proudly Canadian-based" },
 ] as const;
 

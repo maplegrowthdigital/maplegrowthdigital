@@ -19,7 +19,7 @@ const FAQS: FAQItem[] = [
   {
     q: "How long does a typical engagement last?",
     a:
-      "It depends on the shape of the work. Sprints run 4–6 weeks for focused deliverables (audits, launches, redesigns). Retainers typically start at 3 months and run as long as we're earning our keep — most clients stay 12+ months because the work compounds.",
+      "It depends on the shape of the work. Sprints run 4–6 weeks for focused deliverables (audits, launches, redesigns). Retainers typically start at 3 months and run as long as we're earning our keep.",
   },
   {
     q: "Do you work with companies outside of Canada?",
@@ -39,12 +39,12 @@ const FAQS: FAQItem[] = [
   {
     q: "Will I get a dedicated team?",
     a:
-      "Yes. Every engagement has a named team — usually a strategist, a designer, and an engineer at minimum. You'll meet them in week one and have direct contact (Slack, email, calls) for the duration of the engagement.",
+      "Yes. You'll have a named point of contact from day one, and you'll meet the specialists actually doing the work — including our delivery partners where they're involved. Direct contact (Slack, email, calls) runs for the duration of the engagement.",
   },
   {
     q: "How fast can we start?",
     a:
-      "Usually within 1–2 weeks of signing. We intentionally keep ~15% capacity open so new engagements don't wait on a queue. Urgent sprints can sometimes start within 48 hours.",
+      "Usually within 1–2 weeks of signing. We keep deliberate slack in our schedule so new engagements don't wait on a queue. Urgent sprints can sometimes start within 48 hours.",
   },
   {
     q: "What's your pricing model?",

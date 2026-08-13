@@ -204,7 +204,7 @@ export const schema = {
           name: "How long does a typical engagement last?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "It depends on the shape of the work. Sprints run 4–6 weeks for focused deliverables (audits, launches, redesigns). Retainers typically start at 3 months and run as long as we're earning our keep — most clients stay 12+ months because the work compounds.",
+            text: "It depends on the shape of the work. Sprints run 4–6 weeks for focused deliverables (audits, launches, redesigns). Retainers typically start at 3 months and run as long as we're earning our keep.",
             "@type": "Answer",
           },
         },
@@ -236,7 +236,7 @@ export const schema = {
           name: "Will I get a dedicated team?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "Yes. Every engagement has a named team — usually a strategist, a designer, and an engineer at minimum. You'll meet them in week one and have direct contact (Slack, email, calls) for the duration of the engagement.",
+            text: "Yes. You'll have a named point of contact from day one, and you'll meet the specialists actually doing the work — including our delivery partners where they're involved. Direct contact (Slack, email, calls) runs for the duration of the engagement.",
             "@type": "Answer",
           },
         },
@@ -244,7 +244,7 @@ export const schema = {
           name: "How fast can we start?",
           "@type": "Question",
           acceptedAnswer: {
-            text: "Usually within 1–2 weeks of signing. We intentionally keep ~15% capacity open so new engagements don't wait on a queue. Urgent sprints can sometimes start within 48 hours.",
+            text: "Usually within 1–2 weeks of signing. We keep deliberate slack in our schedule so new engagements don't wait on a queue. Urgent sprints can sometimes start within 48 hours.",
             "@type": "Answer",
           },
         },

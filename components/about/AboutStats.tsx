@@ -22,9 +22,7 @@ interface Stat {
 // NOT sufficient justification; verify the underlying fact before adding one.
 const STATS: Stat[] = [
   { target: 10, suffix: "+", label: "Years in web & digital marketing" },
-  // TODO(rohan): "3x average ROI" is not currently evidenced — decide whether
-  // to drop it or back it with a real engagement before this stays long-term.
-  { target: 3, suffix: "×", label: "Average ROI our clients achieve" },
+  { target: 3, suffix: "", label: "Specialist partners we deliver with" },
   { target: 2014, suffix: "", label: "Building for clients since" },
   { target: 100, suffix: "%", label: "Proudly Canadian-based" },
 ];

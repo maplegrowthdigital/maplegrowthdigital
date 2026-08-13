@@ -52,8 +52,9 @@ export default function Page() {
   // When detail pages come back, restore the link fields here.
   const allCaseStudies = getAllCaseStudies();
   const caseStudiesContent = {
-    title: "Real results from real clients",
-    intro: "See how our data-driven approach delivers sustainable growth.",
+    title: "Selected work",
+    intro:
+      "A closer look at what we build and how we approach it. More studies as current engagements wrap.",
     items: allCaseStudies.map((cs) => ({
       slug: cs.slug,
       title: cs.title,
