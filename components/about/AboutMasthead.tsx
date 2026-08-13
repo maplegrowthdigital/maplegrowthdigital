@@ -96,8 +96,8 @@ export function AboutMasthead() {
           >
             Since 2014 we&rsquo;ve paired strategy, creative, and engineering
             under one roof &mdash; shipping marketing you can measure. No
-            juniors on the keys, no handoffs that dilute the plan. Just senior
-            people held to the numbers that move your business.
+            juniors on the keys, no handoffs that dilute the plan. Just
+            experienced people held to the numbers that move your business.
           </p>
 
           <div

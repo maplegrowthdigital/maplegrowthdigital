@@ -25,7 +25,7 @@ const SERVICES_URL = `${ORIGIN}/services`;
 export const metadata: Metadata = {
   title: "Growth Marketing Services in Canada | MapleGrowth Digital",
   description:
-    "SEO, PPC, web design, content, brand, and growth strategy for Canadian businesses — delivered by a senior team with specialist partners. Book a free strategy call.",
+    "SEO, PPC, web design, content, brand, and growth strategy for Canadian businesses — one accountable team with specialist partners. Book a free strategy call.",
   alternates: { canonical: SERVICES_URL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -60,7 +60,7 @@ const servicesJsonLd = {
       url: SERVICES_URL,
       name: "Growth Marketing Services",
       description:
-        "SEO, PPC, web design, content, brand, and growth strategy for Canadian businesses, delivered by a senior team with specialist partners.",
+        "SEO, PPC, web design, content, brand, and growth strategy for Canadian businesses, delivered by one accountable team with specialist partners.",
       inLanguage: "en-CA",
       isPartOf: { "@id": `${ORIGIN}/#website` },
       about: { "@id": `${ORIGIN}/#organization` },

@@ -22,13 +22,13 @@ const ABOUT_URL = `${ORIGIN}/about`;
 export const metadata: Metadata = {
   title: "About MapleGrowth Digital | Canadian Growth Marketing Agency",
   description:
-    "Meet MapleGrowth Digital — a Canadian growth marketing agency founded in 2014. A senior-only, outcome-first team based in Mississauga. Book a free strategy call.",
+    "MapleGrowth Digital is a Canadian growth marketing agency founded in 2014 — an experienced, outcome-first team in Mississauga. Book a free strategy call.",
   alternates: { canonical: ABOUT_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "About MapleGrowth Digital — Canadian Growth Marketing Agency",
     description:
-      "Founded in 2014. A senior-only, outcome-first growth marketing team based in Mississauga and remote across Canada.",
+      "Founded in 2014. An experienced, outcome-first growth marketing team based in Mississauga and remote across Canada.",
     url: ABOUT_URL,
     type: "website",
   },

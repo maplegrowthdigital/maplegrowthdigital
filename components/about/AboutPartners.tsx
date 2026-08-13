@@ -65,7 +65,7 @@ export function AboutPartners() {
             data-reveal="up"
             data-reveal-delay="0.2"
           >
-            We keep the core team small and senior. When a project needs deep
+            We keep the core team small and experienced. When a project needs deep
             engineering or a specialist skill set, we bring in partners we
             trust &mdash; and stay accountable for the outcome, end to end.
           </p>
