@@ -84,9 +84,12 @@ export function AboutMasthead() {
             <span>About&nbsp;·&nbsp;Est. 2014&nbsp;·&nbsp;Mississauga, ON</span>
           </div>
 
+          {/* Brand-led, not keyword-led — see the targeting note in
+              app/about/page.tsx. Growth-marketing wording stays in the body
+              copy below, where it reads naturally without pulling this page
+              into SERPs the homepage already ranks better for. */}
           <h1 className="about-masthead__title" data-split>
-            We&rsquo;re a Canadian <em>growth marketing</em> agency built for
-            the long game.
+            The team behind <em>MapleGrowth</em> Digital.
           </h1>
 
           <p
@@ -94,10 +97,11 @@ export function AboutMasthead() {
             data-reveal="up"
             data-reveal-delay="0.15"
           >
-            Since 2014 we&rsquo;ve paired strategy, creative, and engineering
-            under one roof &mdash; shipping marketing you can measure. No
-            juniors on the keys, no handoffs that dilute the plan. Just
-            experienced people held to the numbers that move your business.
+            Since 2014 we&rsquo;ve run growth marketing for Canadian
+            businesses &mdash; pairing strategy, creative, and engineering
+            under one roof so the work stays measurable. No juniors on the
+            keys, no handoffs that dilute the plan. Just experienced people
+            held to the numbers that move your business.
           </p>
 
           <div

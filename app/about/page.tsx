@@ -19,16 +19,21 @@ import { AboutCta } from "../../components/about/AboutCta";
 const ORIGIN = config.getCanonicalUrl().replace(/\/$/, "");
 const ABOUT_URL = `${ORIGIN}/about`;
 
+// Deliberately does NOT target "canadian growth marketing agency" — the
+// homepage ranks 11.5 for that query while this page sat at 56.9, competing
+// with it across six queries and winning none (GSC, 90 days to 2026-08-13).
+// This page's job is E-E-A-T support and brand queries, so the title and H1
+// lead with the brand and the story instead of the head term.
 export const metadata: Metadata = {
-  title: "About MapleGrowth Digital | Canadian Growth Marketing Agency",
+  title: "About MapleGrowth Digital — Our Story, Team & Partners",
   description:
-    "MapleGrowth Digital is a Canadian growth marketing agency founded in 2014 — an experienced, outcome-first team in Mississauga. Book a free strategy call.",
+    "The story, team, and partner network behind MapleGrowth Digital — founded in 2014, based in Mississauga and working remotely across Canada.",
   alternates: { canonical: ABOUT_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "About MapleGrowth Digital — Canadian Growth Marketing Agency",
+    title: "About MapleGrowth Digital — Our Story, Team & Partners",
     description:
-      "Founded in 2014. An experienced, outcome-first growth marketing team based in Mississauga and remote across Canada.",
+      "Founded in 2014. An experienced, outcome-first team based in Mississauga and remote across Canada.",
     url: ABOUT_URL,
     type: "website",
   },
