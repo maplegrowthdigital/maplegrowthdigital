@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useAboutReveals } from "./useAboutReveals";
+import { useSectionReveals } from "../shared/useSectionReveals";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -24,7 +24,7 @@ export function AboutMasthead() {
   const ref = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  useAboutReveals(ref);
+  useSectionReveals(ref);
 
   useGSAP(
     () => {

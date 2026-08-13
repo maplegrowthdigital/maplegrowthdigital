@@ -5,6 +5,7 @@
 @import "./prototype-tokens.css";
 @import "./prototype.css";
 @import "./about.css";
+@import "./services.css";
 
 @tailwind base;
 @tailwind components;

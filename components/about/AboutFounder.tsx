@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useAboutReveals } from "./useAboutReveals";
+import { useSectionReveals } from "../shared/useSectionReveals";
 
 /**
  * AboutFounder — signed founder's note, set typographically.
@@ -13,7 +13,7 @@ import { useAboutReveals } from "./useAboutReveals";
 export function AboutFounder() {
   const ref = useRef<HTMLElement>(null);
 
-  useAboutReveals(ref);
+  useSectionReveals(ref);
 
   return (
     <section ref={ref} className="about-founder" aria-label="From the founder">

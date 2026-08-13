@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useAboutReveals } from "./useAboutReveals";
+import { useSectionReveals } from "../shared/useSectionReveals";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -30,7 +30,7 @@ const STATS: Stat[] = [
 export function AboutStats() {
   const ref = useRef<HTMLElement>(null);
 
-  useAboutReveals(ref);
+  useSectionReveals(ref);
 
   useGSAP(
     () => {

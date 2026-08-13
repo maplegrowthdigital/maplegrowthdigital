@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useAboutReveals } from "./useAboutReveals";
+import { useSectionReveals } from "../shared/useSectionReveals";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -47,7 +47,7 @@ export function AboutEthos() {
   const railRef = useRef<HTMLSpanElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
 
-  useAboutReveals(ref);
+  useSectionReveals(ref);
 
   useGSAP(
     () => {

@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * Shared entrance choreography for the About page sections.
+ * Shared entrance choreography for page sections (About, Services).
  *
  * Mirrors the pattern used across the homepage (About / Why / CTA):
  *  - Any `[data-split]` heading is word-split and rises into view once.
@@ -21,7 +21,7 @@ if (typeof window !== "undefined") {
  * Fully reduced-motion aware. Scoped to the passed section ref so each
  * section wires its own triggers and cleans them up on unmount.
  */
-export function useAboutReveals(scope: RefObject<HTMLElement>) {
+export function useSectionReveals(scope: RefObject<HTMLElement>) {
   useGSAP(
     () => {
       const prefersReduced = window.matchMedia(

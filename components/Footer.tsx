@@ -5,7 +5,7 @@ import { nap, telHref } from "../content/nap";
 // Single-page site — these mirror the header nav exactly.
 // "Book a call" lives as its own CTA section, not in this destination list.
 const sitemapLinks = [
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
   { href: "/#pricing", label: "Pricing" },

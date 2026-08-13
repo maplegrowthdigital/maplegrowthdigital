@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useAboutReveals } from "./useAboutReveals";
+import { useSectionReveals } from "../shared/useSectionReveals";
 
 interface Partner {
   name: string;
@@ -43,7 +43,7 @@ export function AboutPartners() {
   const [active, setActive] = useState(0);
   const isTouchRef = useRef(false);
 
-  useAboutReveals(ref);
+  useSectionReveals(ref);
 
   useEffect(() => {
     isTouchRef.current = window.matchMedia("(hover: none)").matches;

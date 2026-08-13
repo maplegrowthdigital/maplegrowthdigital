@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useAboutReveals } from "./useAboutReveals";
+import { useSectionReveals } from "../shared/useSectionReveals";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -20,7 +20,7 @@ const STRATEGY_CALL_URL =
  */
 export function AboutCta() {
   const ref = useRef<HTMLElement>(null);
-  useAboutReveals(ref);
+  useSectionReveals(ref);
 
   return (
     <section ref={ref} className="cta about-cta" id="contact" aria-label="Get in touch">

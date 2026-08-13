@@ -9,7 +9,7 @@ export type NavItem = { href: string; label: string };
  * route — Next.js navigates home first, then the hash scrolls into view.
  */
 export const defaultNavItems: NavItem[] = [
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
   { href: "/#pricing", label: "Pricing" },
