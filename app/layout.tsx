@@ -94,11 +94,17 @@ export default function RootLayout({
             __html: `(function(){try{var s=localStorage.getItem("mgd:theme");var p=window.matchMedia("(prefers-color-scheme: light)").matches;var t=s||(p?"light":"dark");document.documentElement.dataset.theme=t;}catch(e){}})();`,
           }}
         />
-        {/* JSON-LD schema (org / local business) from static config */}
-        <Script
-          id="jsonld-schema"
+        {/* JSON-LD schema (org / local business) from static config.
+            MUST stay a plain <script>, not next/script. With
+            strategy="afterInteractive" this was injected only after
+            hydration, so the LocalBusiness / Organization / Service graph
+            was absent from the server HTML on every page. Google can still
+            reach it via the render queue, but that is slower and less
+            reliable, and crawlers that don't execute JS (Bing, social, AI,
+            most SEO tools) saw nothing at all. A plain tag is what Next
+            documents for JSON-LD, and matches app/about + app/services. */}
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(config.schema) }}
         />
       </head>
