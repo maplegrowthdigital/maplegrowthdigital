@@ -22,7 +22,7 @@ const PARTNERS: Partner[] = [
   {
     name: "Growmintech",
     covers: "Mobile apps and e-commerce builds",
-    where: "India",
+    where: "Canada",
   },
   {
     name: "Dark Blue Technologies",

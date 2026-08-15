@@ -20,6 +20,6 @@ export default function AboutOpengraphImage() {
     eyebrow: "About · Est. 2014",
     title: "The team behind MapleGrowth Digital.",
     subtitle:
-      "A small, experienced team in Mississauga — delivering with specialist partners across Canada, the US, Australia, and India.",
+      "A small, experienced team in Mississauga — delivering with specialist partners across Canada, the US, and Australia.",
   });
 }
