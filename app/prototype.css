@@ -1264,7 +1264,7 @@ body.menu-open { overflow: hidden; }
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-6);
 }
-.site-footer__cols h4 {
+.site-footer__cols h2 {
   font-family: var(--font-sans);
   font-size: var(--fs-12);
   text-transform: uppercase;
@@ -1332,8 +1332,14 @@ body.menu-open { overflow: hidden; }
 
 /* =========================================================
    Animation helpers (initial states)
+
+   Deliberately NO static [data-reveal] { opacity: 0 } rule here. Hiding
+   reveal targets in CSS means they stay invisible until the JS bundle
+   arrives — on throttled mobile that pushed the hero's LCP to ~8s while
+   FCP was 3.7s. Components hide their own targets via gsap.set() at
+   hydration instead, so content is natively painted from frame one and
+   the entrance only runs when JS shows up early enough to matter.
    ========================================================= */
-[data-reveal] { opacity: 0; transform: translateY(28px); }
 /* Hide words sliding in from below but let descenders (g, y, p, q) show.
    Using clip-path instead of overflow:hidden so it doesn't add box space
    between lines. The -0.3em bottom extends the clip region below the
@@ -1348,7 +1354,6 @@ body.menu-open { overflow: hidden; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  [data-reveal] { opacity: 1; transform: none; }
 }
 
 /* In-content link from the homepage Services section to the /services hub. */

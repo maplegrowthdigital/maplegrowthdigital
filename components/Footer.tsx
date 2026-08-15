@@ -44,7 +44,7 @@ export function Footer() {
         </div>
         <div className="site-footer__cols">
           <div>
-            <h4>Explore</h4>
+            <h2>Explore</h2>
             <ul>
               {sitemapLinks.map((l) => (
                 <li key={l.href}>
@@ -54,7 +54,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4>Contact</h4>
+            <h2>Contact</h2>
             {/* Visible NAP. Must match the LocalBusiness structured data and
                 the Google Business Profile exactly — all three read from
                 content/nap.ts so they can't drift apart. */}
@@ -70,7 +70,7 @@ export function Footer() {
             </address>
           </div>
           <div>
-            <h4>Social</h4>
+            <h2>Social</h2>
             <ul>
               {socials.map((s) => (
                 <li key={s.label}>

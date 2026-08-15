@@ -79,18 +79,16 @@ export function Hero({ hero }: HeroProps) {
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
-      // Lighthouse / headless Chrome / Puppeteer / bots: skip the entrance
-      // animation entirely. The hero's title is the LCP candidate — if we
-      // hide it via gsap.set + SplitText DOM mutation before first paint,
-      // Lighthouse can't measure LCP and reports NO_LCP. Bailing early
-      // keeps the content natively painted from frame one.
-      const isAutomated =
-        typeof navigator !== "undefined" &&
-        ((navigator as Navigator & { webdriver?: boolean }).webdriver ||
-          /HeadlessChrome|Lighthouse|PageSpeed|GTmetrix/i.test(
-            navigator.userAgent
-          ));
-      if (isAutomated) return;
+      // Late hydration (slow network, throttled device, headless agent):
+      // skip the entrance entirely. The hero content is visible from first
+      // paint (no CSS initial-hide — see prototype.css), so by the time a
+      // slow load hydrates, the visitor is already reading it. Yanking it
+      // back to opacity 0 to replay an intro is worse than no intro — and
+      // it's exactly what pushed mobile LCP to 8.3s. Time-based, so it
+      // needs no UA sniffing and covers bots for free (the previous
+      // /Lighthouse|HeadlessChrome/ check stopped matching Lighthouse 13,
+      // and when it DID match it left the hero permanently hidden).
+      if (performance.now() > 2000) return;
 
       // === Entrance timeline ===
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
