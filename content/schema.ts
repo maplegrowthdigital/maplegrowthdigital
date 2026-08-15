@@ -114,6 +114,40 @@ export const schema = {
         "https://www.linkedin.com/company/maplegrowthdigital",
         "https://www.instagram.com/maplegrowthdigital",
       ],
+      founder: [
+        { "@id": "https://maplegrowthdigital.ca/#rohan-t-george" },
+        { "@id": "https://maplegrowthdigital.ca/#tom-boban" },
+        { "@id": "https://maplegrowthdigital.ca/#thomas-thomas" },
+      ],
+    },
+    // The three co-founders. These are real people — names and roles must
+    // match the visible credits in components/about/AboutFounder.tsx exactly.
+    // They live in the site-wide graph (not the About page) because they're a
+    // property of the organisation, so Organization.founder above never points
+    // at nodes that exist on only one route.
+    {
+      "@type": "Person",
+      "@id": "https://maplegrowthdigital.ca/#rohan-t-george",
+      name: "Rohan T George",
+      jobTitle: "Co-founder — Strategy",
+      worksFor: { "@id": "https://maplegrowthdigital.ca/#organization" },
+      url: "https://maplegrowthdigital.ca/about",
+    },
+    {
+      "@type": "Person",
+      "@id": "https://maplegrowthdigital.ca/#tom-boban",
+      name: "Tom Boban",
+      jobTitle: "Co-founder — Engineering",
+      worksFor: { "@id": "https://maplegrowthdigital.ca/#organization" },
+      url: "https://maplegrowthdigital.ca/about",
+    },
+    {
+      "@type": "Person",
+      "@id": "https://maplegrowthdigital.ca/#thomas-thomas",
+      name: "Thomas Thomas",
+      jobTitle: "Co-founder — Delivery",
+      worksFor: { "@id": "https://maplegrowthdigital.ca/#organization" },
+      url: "https://maplegrowthdigital.ca/about",
     },
     {
       "@type": "Service",

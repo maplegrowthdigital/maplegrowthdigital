@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Page-specific structured data. Complements the site-wide Organization /
-// LocalBusiness graph injected in app/layout.tsx. The Person entry must stay
-// in sync with the visible founder credit in AboutFounder.tsx.
+// Page-specific structured data. Complements the site-wide graph injected in
+// app/layout.tsx — which is also where the three co-founder Person nodes live,
+// since they belong to the organisation rather than to this one route.
 const aboutJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -74,14 +74,6 @@ const aboutJsonLd = {
           item: ABOUT_URL,
         },
       ],
-    },
-    {
-      "@type": "Person",
-      "@id": `${ORIGIN}/#founder`,
-      name: "Rohan T George",
-      jobTitle: "Founder",
-      worksFor: { "@id": `${ORIGIN}/#organization` },
-      url: ABOUT_URL,
     },
   ],
 };

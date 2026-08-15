@@ -18,7 +18,7 @@ const PARTNERS: Partner[] = [
     name: "Growmintech",
     role: "Apps & e-commerce",
     detail:
-      "Custom mobile and e-commerce engineering in Next.js, TypeScript, and React Native — hand-built rather than assembled from page builders, with clients keeping full ownership of the code. They deliver our app and storefront builds end to end.",
+      "Custom mobile and e-commerce engineering in Next.js, TypeScript, and React Native — hand-built rather than assembled from page builders, with clients keeping full ownership of the code. Growmintech was founded by Tom Boban, one of our co-founders, which is why the two teams work as one rather than as vendor and client.",
   },
   {
     name: "Blue Vineyard",

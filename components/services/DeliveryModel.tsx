@@ -71,7 +71,8 @@ export function DeliveryModel() {
             accountable for the outcome. Where a project needs deep engineering
             or a specialist skill set, we bring in partners we&rsquo;ve worked
             with for years &mdash; and we tell you which parts they&rsquo;re
-            building.
+            building. Growmintech is founded by one of our own co-founders, so
+            that partnership in particular runs as a single team.
           </p>
           <p data-reveal="up" data-reveal-delay="0.2">
             The trade is deliberate: you get people who do one thing properly

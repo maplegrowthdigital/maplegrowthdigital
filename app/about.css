@@ -449,24 +449,27 @@
   color: rgba(var(--paper-rgb), 0.8);
   max-width: 52ch;
 }
+/* Three co-founder signatures, side by side under a single accent rule. */
+.about-founder__signatures {
+  list-style: none;
+  margin: 0;
+  padding-top: var(--sp-5);
+  border-top: 2px solid var(--accent);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
 .about-founder__sign {
   display: grid;
   gap: var(--sp-1);
-}
-.about-founder__sign::before {
-  content: "";
-  display: block;
-  width: 44px;
-  height: 2px;
-  background: var(--accent);
-  margin-bottom: var(--sp-4);
+  align-content: start;
 }
 .about-founder__sign-name {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: var(--fs-32);
-  line-height: 1.1;
+  font-size: var(--fs-24);
+  line-height: 1.15;
   letter-spacing: -0.015em;
   color: var(--paper);
 }
@@ -475,6 +478,17 @@
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--muted);
+}
+.about-founder__sign-note {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-14);
+  color: var(--muted);
+}
+@media (max-width: 620px) {
+  .about-founder__signatures {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
 }
 
 /* =========================================================
