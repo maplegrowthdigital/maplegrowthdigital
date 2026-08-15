@@ -26,7 +26,15 @@ const fraunces = Fraunces({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans-mgd",
-  display: "swap",
+  // "fallback", not "swap": the hero body copy (set in Inter) is the LCP
+  // element, and with swap a late-arriving font file repaints it — on
+  // throttled mobile that re-registered LCP at ~6s against a 3.7s FCP.
+  // fallback gives the font a ~3s swap window; miss it and the system
+  // sans stays for the session (visually near-identical), so slow
+  // connections never take the late-repaint LCP hit. Fraunces stays on
+  // swap deliberately — the display face is brand-critical and the H1
+  // isn't the LCP element.
+  display: "fallback",
 });
 
 export async function generateMetadata(): Promise<Metadata> {

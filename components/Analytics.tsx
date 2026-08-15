@@ -60,14 +60,21 @@ export function AnalyticsProvider({
         </>
       )}
 
-      {/* Google Analytics */}
+      {/* Google Analytics.
+          lazyOnload, not afterInteractive: gtag.js is ~161 KiB and its
+          parse/eval landed inside the Lighthouse load window, showing up
+          as TBT. Deferring to browser idle keeps the pageview (gtag
+          queues through dataLayer) while moving the cost off the
+          critical path. Trade-off: a visitor who bounces within the
+          first ~1-2s may go uncounted — acceptable for a marketing
+          site's analytics. */}
       {validGa && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${validGa}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="google-analytics" strategy="afterInteractive">
+          <Script id="google-analytics" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
