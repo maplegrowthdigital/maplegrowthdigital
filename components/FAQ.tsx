@@ -24,7 +24,7 @@ const FAQS: FAQItem[] = [
   {
     q: "Do you work with companies outside of Canada?",
     a:
-      "Yes. We're proudly Canadian-based, but a good share of our active work is international — clients and partners across the US, Australia, and India. We're remote-first and run engagements across four time zones at any given time.",
+      "Yes. We're proudly Canadian-based, but a good share of our active work is international — clients and partners across the US and Australia, and a founding team that spans Canada and India. We're remote-first and run engagements across four time zones at any given time.",
   },
   {
     q: "Do you require long-term contracts?",
