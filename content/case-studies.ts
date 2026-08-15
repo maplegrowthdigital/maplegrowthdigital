@@ -42,7 +42,8 @@ export type CaseStudy = {
     title: string;
     description: string;
     keywords: string[];
-    canonical: string;
+    /** Optional — only meaningful once case studies have their own routes. */
+    canonical?: string;
   };
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { useSectionReveals } from "../shared/useSectionReveals";
 
@@ -75,7 +76,9 @@ export function DeliveryModel() {
           <p data-reveal="up" data-reveal-delay="0.2">
             The trade is deliberate: you get people who do one thing properly
             instead of generalists learning on your budget, without having to
-            manage three vendors yourself.
+            manage three vendors yourself. More on{" "}
+            <Link href="/about">who we are and how we got here</Link>, or see{" "}
+            <Link href="/#work">the work</Link>.
           </p>
         </div>
 

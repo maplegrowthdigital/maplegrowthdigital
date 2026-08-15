@@ -5,7 +5,8 @@ export const metadata: Metadata = {
   title: "Privacy Policy — MapleGrowth Digital",
   description:
     "How MapleGrowth Digital collects, uses, and protects personal information from website visitors.",
-  alternates: { canonical: "https://www.maplegrowthdigital.ca/privacy" },
+  // Non-www — www redirects here, so a www canonical would contradict itself.
+  alternates: { canonical: "https://maplegrowthdigital.ca/privacy" },
   robots: { index: true, follow: true },
 };
 
@@ -62,8 +63,8 @@ export default function PrivacyPage() {
             based in Mississauga, Ontario, Canada. This policy describes how
             we collect, use, share, and protect personal information when you
             visit our website at{" "}
-            <a href="https://www.maplegrowthdigital.ca">
-              www.maplegrowthdigital.ca
+            <a href="https://maplegrowthdigital.ca">
+              maplegrowthdigital.ca
             </a>{" "}
             and interact with our forms.
           </p>

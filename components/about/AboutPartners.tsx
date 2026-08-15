@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useSectionReveals } from "../shared/useSectionReveals";
 
@@ -65,9 +66,11 @@ export function AboutPartners() {
             data-reveal="up"
             data-reveal-delay="0.2"
           >
-            We keep the core team small and experienced. When a project needs deep
-            engineering or a specialist skill set, we bring in partners we
-            trust &mdash; and stay accountable for the outcome, end to end.
+            We keep the core team small and experienced. When a project needs
+            deep engineering or a specialist skill set, we bring in partners we
+            trust &mdash; and stay accountable for the outcome, end to end. See{" "}
+            <Link href="/services">which services we deliver in-house</Link>{" "}
+            and which we build with partners.
           </p>
         </div>
 

@@ -125,7 +125,9 @@ export const caseStudy: CaseStudy = {
       "technical SEO case study",
       "travel deal aggregator",
     ],
-    canonical:
-      "https://www.maplegrowthdigital.ca/case-studies/voyamore-travel-deals",
+    // No `canonical` on purpose. This whole `seo` block is currently unread —
+    // case studies render inside the homepage Work section and have no detail
+    // route. The previous value pointed at /case-studies/… on the www host:
+    // a 404 on the wrong hostname. Set it only when real detail pages exist.
   },
 };

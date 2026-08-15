@@ -12,7 +12,7 @@ export const config = {
   schema,
 
   getCanonicalUrl: (path?: string) => {
-    const base = settings.canonicalUrl || "https://www.maplegrowthdigital.ca/";
+    const base = settings.canonicalUrl || "https://maplegrowthdigital.ca/";
     return path ? `${base.replace(/\/$/, "")}${path}` : base;
   },
 } as const;

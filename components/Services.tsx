@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -244,6 +245,16 @@ export function Services({ services }: ServicesProps) {
           </li>
         ))}
       </ol>
+
+      {/* In-content link to the hub. The cards open modals rather than
+          navigating, so without this the only internal links to /services
+          come from the header and footer — which is thin for a page we want
+          to rank. */}
+      <div className="services__more" data-reveal="up">
+        <Link href="/services" className="btn btn--link">
+          <span>See how we deliver, and what each service includes</span>
+        </Link>
+      </div>
     </section>
   );
 }

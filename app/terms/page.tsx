@@ -5,7 +5,8 @@ export const metadata: Metadata = {
   title: "Terms of Service — MapleGrowth Digital",
   description:
     "The terms that govern your use of the MapleGrowth Digital website and its forms.",
-  alternates: { canonical: "https://www.maplegrowthdigital.ca/terms" },
+  // Non-www — www redirects here, so a www canonical would contradict itself.
+  alternates: { canonical: "https://maplegrowthdigital.ca/terms" },
   robots: { index: true, follow: true },
 };
 
@@ -59,8 +60,8 @@ export default function TermsPage() {
             These Terms of Service (&ldquo;<strong>Terms</strong>&rdquo;)
             govern your access to and use of the MapleGrowth Digital
             website at{" "}
-            <a href="https://www.maplegrowthdigital.ca">
-              www.maplegrowthdigital.ca
+            <a href="https://maplegrowthdigital.ca">
+              maplegrowthdigital.ca
             </a>{" "}
             (the &ldquo;<strong>Site</strong>&rdquo;), provided by
             MapleGrowth Digital (&ldquo;<strong>we</strong>&rdquo;,

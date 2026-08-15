@@ -1351,6 +1351,15 @@ body.menu-open { overflow: hidden; }
   [data-reveal] { opacity: 1; transform: none; }
 }
 
+/* In-content link from the homepage Services section to the /services hub. */
+.services__more {
+  max-width: calc(var(--content-max) - var(--gutter) * 2);
+  margin: var(--sp-7) auto 0;
+  padding: 0 var(--gutter);
+  display: flex;
+  justify-content: center;
+}
+
 /* =========================================================
    Industries — 3D tilt cards with layered depth
    ========================================================= */
