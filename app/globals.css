@@ -6,6 +6,8 @@
 @import "./prototype.css";
 @import "./about.css";
 @import "./services.css";
+@import "./blog.css";
+@import "./blog-article.css";
 
 @tailwind base;
 @tailwind components;

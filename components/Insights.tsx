@@ -1,16 +1,28 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
+import { PILLARS, formatDate, type PostMeta } from "../lib/post-format";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 }
 
-export function Insights() {
+/**
+ * Insights — the homepage "From the blog" section.
+ *
+ * Driven entirely by real published posts passed from the Server Component
+ * (app/page.tsx only renders it once there are ≥3). The original had a
+ * hardcoded featured article and a fictional podcast card; both are gone —
+ * nothing here can show content that doesn't exist.
+ *
+ * Layout: featured (latest) spans the top row, up to three more below.
+ */
+export function Insights({ posts }: { posts: PostMeta[] }) {
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -71,8 +83,8 @@ export function Insights() {
         }
       }
 
-      // Bento cards entrance — skip if section already in view on initial render
-      // (safe pattern — avoids stale-transform bug on mid-page reload)
+      // Bento entrance — skipped if already in view on initial render
+      // (avoids the stale-transform bug on mid-page reload).
       const bento = ref.current?.querySelector(".insights__bento");
       const cards = ref.current?.querySelectorAll<HTMLElement>("[data-insight]");
       if (bento && cards && !prefersReduced) {
@@ -100,32 +112,55 @@ export function Insights() {
     { scope: ref }
   );
 
+  if (posts.length === 0) return null;
+  const [featured, ...rest] = posts;
+
+  const Meta = ({ p }: { p: PostMeta }) => (
+    <div className="insight__foot">
+      <div className="insight__meta">
+        <time dateTime={p.date}>{formatDate(p.date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{p.readingMinutes} min read</span>
+      </div>
+    </div>
+  );
+
   return (
     <section
       ref={ref}
       className="insights"
       id="insights"
-      aria-label="Insights and podcast"
+      aria-label="Latest guides from the blog"
     >
       <div className="section-head insights__head">
         <div>
           <div className="section-label" data-reveal="up">
             <span className="dot" />
-            <span>Insights</span>
+            <span>From the blog</span>
           </div>
           <h2 className="section-title" data-split>
             Field notes from the&nbsp;<em>work</em>.
           </h2>
         </div>
-        {/* Single-page mode: blog + podcast indexes don't exist yet, so the
-            "All articles / All episodes" header links are suppressed. Re-add
-            once those routes come back. */}
+        <Link
+          href="/blog"
+          className="btn btn--ghost btn--small"
+          data-reveal="up"
+          data-reveal-delay="0.15"
+        >
+          <span>All guides</span>
+          <span className="btn__arrow" aria-hidden="true">
+            →
+          </span>
+        </Link>
       </div>
 
       <div className="insights__bento">
-        {/* Featured article — Single-page mode: no detail page, so card is
-            a static preview tile (no click-through). */}
-        <div className="insight insight--featured" data-insight>
+        <Link
+          href={`/blog/${featured.slug}`}
+          className="insight insight--featured"
+          data-insight
+        >
           <div className="insight__media">
             <span className="insight__media-grid" aria-hidden="true" />
             <svg
@@ -137,108 +172,32 @@ export function Insights() {
               <circle cx="100" cy="100" r="58" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.55" />
               <circle cx="100" cy="100" r="30" fill="currentColor" opacity="0.4" />
             </svg>
-            <span className="insight__tag">Featured · SEO</span>
+            <span className="insight__tag">
+              Latest · {PILLARS[featured.pillar].label}
+            </span>
           </div>
           <div className="insight__body">
-            <h3 className="insight__title">
-              The SEO playbook for Canadian small businesses in 2026
-            </h3>
-            <p className="insight__excerpt">
-              The strategies that are quietly compounding for Canadian small
-              businesses right now — and the dead-end tactics still recommended
-              by most agencies.
-            </p>
-            <div className="insight__foot">
-              <div className="insight__meta">
-                <time>May 14, 2026</time>
-                <span aria-hidden="true">·</span>
-                <span>6 min read</span>
-              </div>
-            </div>
+            <h3 className="insight__title">{featured.title}</h3>
+            <p className="insight__excerpt">{featured.description}</p>
+            <Meta p={featured} />
           </div>
-        </div>
+        </Link>
 
-        {/* Podcast card */}
-        <div className="insight insight--podcast" data-insight>
-          <div className="insight__podcast-visual">
-            <div className="insight__podcast-bg" aria-hidden="true" />
-            <span className="insight__pod-num">Ep. 12</span>
-            <button
-              className="insight__play"
-              type="button"
-              aria-label="Play latest episode"
-              onClick={(e) => e.preventDefault()}
-            >
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                <path d="M7 5l12 7-12 7V5Z" fill="currentColor" />
-              </svg>
-              <span className="insight__play-rim" aria-hidden="true" />
-              <span
-                className="insight__play-rim insight__play-rim--2"
-                aria-hidden="true"
-              />
-            </button>
-          </div>
-          <div className="insight__body">
-            <span className="insight__tag">The MapleGrowth Podcast</span>
-            <h3 className="insight__title">
-              Building a brand that compounds — with Priya Anand
-            </h3>
-            <p className="insight__excerpt">
-              How founder-led brands keep their voice as they scale, and the
-              channels that move the needle in year two and beyond.
-            </p>
-            <div className="insight__foot">
-              <div className="insight__meta">
-                <time>May 18, 2026</time>
-                <span aria-hidden="true">·</span>
-                <span>52 min</span>
-              </div>
+        {rest.slice(0, 3).map((p) => (
+          <Link
+            href={`/blog/${p.slug}`}
+            className="insight"
+            data-insight
+            key={p.slug}
+          >
+            <div className="insight__body">
+              <span className="insight__tag">{PILLARS[p.pillar].label}</span>
+              <h3 className="insight__title">{p.title}</h3>
+              <p className="insight__excerpt">{p.description}</p>
+              <Meta p={p} />
             </div>
-          </div>
-        </div>
-
-        {/* Small post 1 */}
-        <div className="insight insight--small" data-insight>
-          <div className="insight__body">
-            <span className="insight__tag">PPC</span>
-            <h3 className="insight__title">
-              Why your paid campaigns aren't compounding
-            </h3>
-            <p className="insight__excerpt">
-              The compounding ad accounts share three habits. Most teams do none
-              of them.
-            </p>
-            <div className="insight__foot">
-              <div className="insight__meta">
-                <time>May 06, 2026</time>
-                <span aria-hidden="true">·</span>
-                <span>8 min read</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Small post 2 */}
-        <div className="insight insight--small" data-insight>
-          <div className="insight__body">
-            <span className="insight__tag">Web</span>
-            <h3 className="insight__title">
-              We re-platformed in 6 weeks. Here's what we'd do differently.
-            </h3>
-            <p className="insight__excerpt">
-              A retrospective on a tight-window migration — what worked, what
-              we'd rebuild from scratch.
-            </p>
-            <div className="insight__foot">
-              <div className="insight__meta">
-                <time>Apr 28, 2026</time>
-                <span aria-hidden="true">·</span>
-                <span>5 min read</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          </Link>
+        ))}
       </div>
     </section>
   );

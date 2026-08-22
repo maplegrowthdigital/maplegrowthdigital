@@ -5,46 +5,19 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useSectionReveals } from "../shared/useSectionReveals";
+import { FOUNDER_LIST } from "../../content/founders";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
-interface Founder {
-  name: string;
-  role: string;
-  /** Role-scoped stance — describes what the role owns, not biography. */
-  stance: string;
-  /** Optional extra credit line (real, disclosed facts only). */
-  extra?: string;
-}
-
 /**
- * The three co-founders. Keep names/roles in sync with the Person nodes in
- * content/schema.ts — Google expects structured data to match what's visible,
- * and these are real people's names, so they should never drift or be guessed.
+ * Names, roles, and stance lines all come from content/founders.ts — the
+ * same source as the Person nodes in content/schema.ts, the blog bylines,
+ * and the article author box — so nothing about a real person is typed
+ * twice.
  */
-const FOUNDERS: Founder[] = [
-  {
-    name: "Rohan T George",
-    role: "Strategy",
-    stance:
-      "Owns the plan — and the number every engagement is judged against.",
-  },
-  {
-    name: "Tom Boban",
-    role: "Engineering",
-    stance:
-      "Owns the build — fast, secure, and still maintainable after handover.",
-    extra: "Founder of Growmintech, our build partner.",
-  },
-  {
-    name: "Thomas Thomas",
-    role: "Delivery",
-    stance:
-      "Owns the cadence — scoped honestly, shipped on time, reported every sprint.",
-  },
-];
+const FOUNDERS = FOUNDER_LIST;
 
 /**
  * AboutFounder — the founding team as a full-width triptych.

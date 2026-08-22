@@ -1,17 +1,17 @@
 import type { MetadataRoute } from "next";
 import { config } from "../content/config";
+import { getAllPosts } from "../lib/posts";
 
 /**
- * Sitemap entries. Single-page marketing site + the two legal pages
- * (which are `index, follow`-able).
- *
- * When inner pages come back, add them here as new entries.
+ * Sitemap. Static pages plus every published blog post. `/blog` itself is
+ * only listed once at least one post exists — an empty index is noindex.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = config.getCanonicalUrl().replace(/\/$/, "");
   const now = new Date();
+  const posts = getAllPosts();
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
       lastModified: now,
@@ -30,6 +30,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+  ];
+
+  if (posts.length > 0) {
+    entries.push({
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(posts[0].updated ?? posts[0].date),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    });
+    for (const p of posts) {
+      entries.push({
+        url: `${baseUrl}/blog/${p.slug}`,
+        lastModified: new Date(p.updated ?? p.date),
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    }
+  }
+
+  entries.push(
+    {
+      url: `${baseUrl}/editorial-standards`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     {
       url: `${baseUrl}/privacy`,
       lastModified: now,
@@ -41,6 +67,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.3,
-    },
-  ];
+    }
+  );
+
+  return entries;
 }

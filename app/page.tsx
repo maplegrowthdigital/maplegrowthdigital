@@ -8,10 +8,10 @@ import { Belief } from "../components/Belief";
 import { Process } from "../components/Process";
 import { CaseStudies } from "../components/CaseStudies";
 import { About } from "../components/About";
-// Insights — temporarily hidden pre-launch. Currently renders 4 hardcoded
-// fictional blog posts which would mislead visitors. Restore by wiring to
-// real published content (CMS / mdx / hand-written posts).
-// import { Insights } from "../components/Insights";
+// Insights renders real published posts only (see components/Insights.tsx);
+// it stays hidden until at least three exist so the bento never looks thin.
+import { Insights } from "../components/Insights";
+import { getAllPosts } from "../lib/posts";
 import { Pricing } from "../components/Pricing";
 import { FAQ } from "../components/FAQ";
 import { CTA } from "../components/CTA";
@@ -45,6 +45,7 @@ export default function Page() {
   const services = content.services;
   const processContent = content.process;
   const aboutContent = content.about;
+  const posts = getAllPosts();
 
   // Get dynamic case studies from TypeScript files.
   // Single-page mode: no per-study detail route, so we omit link/linkLabel —
@@ -88,7 +89,7 @@ export default function Page() {
       <Process process={processContent} />
       <CaseStudies caseStudies={caseStudiesContent} />
       <About about={aboutContent} />
-      {/* <Insights />  — hidden pre-launch (see import comment above) */}
+      {posts.length >= 3 && <Insights posts={posts.slice(0, 4)} />}
       <Pricing />
       <FAQ />
       <CTA />

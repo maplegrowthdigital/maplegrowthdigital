@@ -90,6 +90,7 @@ export function Footer() {
         <nav className="site-footer__legal" aria-label="Legal">
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
+          <Link href="/editorial-standards">Editorial standards</Link>
         </nav>
         <span>Made in Canada</span>
       </div>

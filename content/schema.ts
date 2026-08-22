@@ -1,5 +1,6 @@
 import { nap } from "./nap";
 import { HOME_FAQ } from "./home-faq";
+import { FOUNDER_LIST } from "./founders";
 
 export const schema = {
   "@context": "https://schema.org",
@@ -115,41 +116,21 @@ export const schema = {
         "https://www.linkedin.com/company/maplegrowthdigital",
         "https://www.instagram.com/maplegrowthdigital",
       ],
-      founder: [
-        { "@id": "https://maplegrowthdigital.ca/#rohan-t-george" },
-        { "@id": "https://maplegrowthdigital.ca/#tom-boban" },
-        { "@id": "https://maplegrowthdigital.ca/#thomas-thomas" },
-      ],
+      founder: FOUNDER_LIST.map((f) => ({ "@id": f.id })),
     },
-    // The three co-founders. These are real people — names and roles must
-    // match the visible credits in components/about/AboutFounder.tsx exactly.
-    // They live in the site-wide graph (not the About page) because they're a
-    // property of the organisation, so Organization.founder above never points
-    // at nodes that exist on only one route.
-    {
+    // The three co-founders, from content/founders.ts — the same source the
+    // About page credits and blog bylines read, so the visible names and
+    // these Person nodes cannot disagree. They live in the site-wide graph
+    // because they're a property of the organisation: Organization.founder
+    // above must never point at nodes that exist on only one route.
+    ...FOUNDER_LIST.map((f) => ({
       "@type": "Person",
-      "@id": "https://maplegrowthdigital.ca/#rohan-t-george",
-      name: "Rohan T George",
-      jobTitle: "Co-founder — Strategy",
+      "@id": f.id,
+      name: f.name,
+      jobTitle: f.jobTitle,
       worksFor: { "@id": "https://maplegrowthdigital.ca/#organization" },
       url: "https://maplegrowthdigital.ca/about",
-    },
-    {
-      "@type": "Person",
-      "@id": "https://maplegrowthdigital.ca/#tom-boban",
-      name: "Tom Boban",
-      jobTitle: "Co-founder — Engineering",
-      worksFor: { "@id": "https://maplegrowthdigital.ca/#organization" },
-      url: "https://maplegrowthdigital.ca/about",
-    },
-    {
-      "@type": "Person",
-      "@id": "https://maplegrowthdigital.ca/#thomas-thomas",
-      name: "Thomas Thomas",
-      jobTitle: "Co-founder — Delivery",
-      worksFor: { "@id": "https://maplegrowthdigital.ca/#organization" },
-      url: "https://maplegrowthdigital.ca/about",
-    },
+    })),
     {
       "@type": "Service",
       "@id": "https://maplegrowthdigital.ca/#service-seo-analytics",
