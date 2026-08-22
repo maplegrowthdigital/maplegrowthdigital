@@ -1,4 +1,5 @@
 import { nap } from "./nap";
+import { HOME_FAQ } from "./home-faq";
 
 export const schema = {
   "@context": "https://schema.org",
@@ -229,68 +230,16 @@ export const schema = {
       publisher: { "@id": "https://maplegrowthdigital.ca/#agency" },
     },
     {
-      // IMPORTANT: these Q&As must mirror the visible FAQ in components/FAQ.tsx
-      // verbatim — Google requires FAQPage structured data to match on-page
-      // content. If you edit one, edit the other.
+      // Built from the same array the homepage accordion renders
+      // (content/home-faq.ts), so the visible copy and this structured
+      // data cannot drift — Google requires them to match. Edit the
+      // questions there, never here.
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          name: "How long does a typical engagement last?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "It depends on the shape of the work. Sprints run 4–6 weeks for focused deliverables (audits, launches, redesigns). Retainers typically start at 3 months and run as long as we're earning our keep.",
-            "@type": "Answer",
-          },
-        },
-        {
-          name: "Do you work with companies outside of Canada?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "Yes. We're proudly Canadian-based, but a good share of our active work is international — clients and partners across the US and Australia, and a founding team that spans Canada and India. We're remote-first and run engagements across four time zones at any given time.",
-            "@type": "Answer",
-          },
-        },
-        {
-          name: "Do you require long-term contracts?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "No lock-ins. Retainers are month-to-month with a 30-day notice period. We'd rather earn your business every month than rely on a contract to keep you.",
-            "@type": "Answer",
-          },
-        },
-        {
-          name: "How do you measure success?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "We agree on the metrics before kickoff and report against them every sprint. Common ones: pipeline created, qualified leads, organic sessions, MRR contribution, CAC, ROAS. If we can't tie the work to a number that matters to you, we shouldn't be doing it.",
-            "@type": "Answer",
-          },
-        },
-        {
-          name: "Will I get a dedicated team?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "Yes. You'll have a named point of contact from day one, and you'll meet the specialists actually doing the work — including our delivery partners where they're involved. Direct contact (Slack, email, calls) runs for the duration of the engagement.",
-            "@type": "Answer",
-          },
-        },
-        {
-          name: "How fast can we start?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "Usually within 1–2 weeks of signing. We keep deliberate slack in our schedule so new engagements don't wait on a queue. Urgent sprints can sometimes start within 48 hours.",
-            "@type": "Answer",
-          },
-        },
-        {
-          name: "What's your pricing model?",
-          "@type": "Question",
-          acceptedAnswer: {
-            text: "Four options: a small-business starter plan, fixed-scope sprints, monthly retainers, or custom engagements. Starter plans begin at $500/month, sprints at $1.5K, and retainers at $1K/month. We share specific scope and pricing on the discovery call — no surprises later.",
-            "@type": "Answer",
-          },
-        },
-      ],
+      mainEntity: HOME_FAQ.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
     },
   ],
 } as const;
