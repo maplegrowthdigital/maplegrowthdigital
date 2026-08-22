@@ -42,6 +42,14 @@ Invalid frontmatter fails the build on purpose (see `lib/posts.ts`).
   traces to `memory-bank/CONTENT_FACT_BANK.md` or a listed source. No
   invented numbers, examples, or quotes — see `/editorial-standards`.
 
+## Voice
+
+Every post follows `memory-bank/VOICE_GUIDE.md` and must pass
+`npm run lint:prose <file>` with zero errors before review. The lint
+fails on the banned words and phrases, false contrasts, exclamation
+marks, and self-reference; it warns on em-dash density, throat-clearing
+openers, uniform bullet lists, and summary endings.
+
 ## Workflow
 
 Draft in `memory-bank/` (gitignored) → founder review → move here with
